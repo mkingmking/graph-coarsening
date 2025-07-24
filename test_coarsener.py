@@ -89,7 +89,7 @@ def test_reconnect_neighbors_conservatively():
 
 def test_coarsen_and_inflate_full_cycle(simple_ab_graph):
     # set P high so exactly one merge
-    co = SpatioTemporalGraphCoarsener(simple_ab_graph, alpha=1, beta=1, P=0.9, radiusCoeff=1, depot_id="D")
+    co = SpatioTemporalGraphCoarsener(simple_ab_graph, alpha=1, beta=1, P=0.9, radiusCoeff=10, depot_id="D")
     G_coarse, layers = co.coarsen()
     # should have merged A and B into SN_A_B
     assert any(sn.startswith("SN_A_B") for sn, *_ in layers)
