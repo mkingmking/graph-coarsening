@@ -59,25 +59,18 @@ class GreedySolver:
                 feasible_candidates = []
                 for candidate_node_id in unvisited_customers:
                     candidate_node = self.graph.nodes[candidate_node_id]
-                    
-                    # Check capacity
+
                     if current_load + candidate_node.demand > self.vehicle_capacity:
-                        continue # Cannot add this customer due to capacity
+                        continue
 
                     travel_time_to_candidate = compute_euclidean_tau(current_node, candidate_node)
                     arrival_time_at_candidate = current_time + travel_time_to_candidate
                     service_start_time_at_candidate = max(arrival_time_at_candidate, candidate_node.e)
 
-                    # Check time window for starting service
-                    if service_start_time_at_candidate <= candidate_node.l:
-                        finish_time_at_candidate = service_start_time_at_candidate + candidate_node.s
-                        depot_node = self.graph.nodes[self.depot_id]
-                        travel_back_to_depot = compute_euclidean_tau(candidate_node, depot_node)
-                        arrival_back_to_depot = finish_time_at_candidate + travel_back_to_depot
+                    if service_start_time_at_candidate > candidate_node.l:
+                        continue
 
-                        # Ensure vehicle can return to depot within its time window
-                        if arrival_back_to_depot <= depot_node.l:
-                            feasible_candidates.append((travel_time_to_candidate, candidate_node_id))
+                    feasible_candidates.append((travel_time_to_candidate, candidate_node_id))
                 
                 if feasible_candidates:
                     # Sort feasible candidates by travel time to find the closest
@@ -108,27 +101,22 @@ class GreedySolver:
                     break 
             
             # Current vehicle returns to depot
+            # This check is done after the route segment is built
             if current_node_id != self.depot_id:
                 depot_node = self.graph.nodes[self.depot_id]
                 current_node = self.graph.nodes[current_node_id]
                 travel_time_to_depot = compute_euclidean_tau(current_node, depot_node)
                 arrival_time_at_depot = current_time + travel_time_to_depot
-                
-                # Check if arrival at depot is within its time window (service START at depot)
-                # Assuming depot service time is 0 for simplicity, so arrival time is effectively service start time
-                if arrival_time_at_depot <= depot_node.l: 
-                    current_route.append(self.depot_id)
-                    logger.info(
-                        f"    Vehicle {vehicle_count}: Returned to depot. Route: {current_route}"
-                    )
-                else:
+
+                if arrival_time_at_depot > depot_node.l:
                     logger.warning(
-                        f"    Vehicle {vehicle_count}: Warning: Cannot return to depot within its time window. Route ends at {current_node_id}. Final time: {arrival_time_at_depot:.2f} (Depot L: {depot_node.l:.2f})"
+                        f"    Vehicle {vehicle_count}: WARNING: Final route segment cannot return to depot within its time window. Route: {current_route}. Arrival at depot: {arrival_time_at_depot:.2f} (Depot L: {depot_node.l:.2f})"
                     )
-                    current_route.append(self.depot_id) # Still append for route completeness, but note infeasibility
+                current_route.append(self.depot_id)
+                logger.info(f"    Vehicle {vehicle_count}: Returned to depot. Route: {current_route}")
             else:
                 # If the current_node_id is already the depot (e.g., if no customers were visited by this vehicle)
-                if current_route[0] != self.depot_id: # Should not happen with current logic
+                if current_route[0] != self.depot_id:
                     current_route.insert(0, self.depot_id)
                 if current_route[-1] != self.depot_id:
                     current_route.append(self.depot_id)
@@ -151,9 +139,5 @@ class GreedySolver:
         
         logger.info(f"--- Greedy Solver Finished ---")
         
-        metrics = calculate_route_metrics(
-            self.graph, all_routes, self.depot_id, self.vehicle_capacity
-        )
-        if unvisited_customers:
-            metrics["is_feasible"] = False
+        metrics = calculate_route_metrics(self.graph, all_routes, self.depot_id, self.vehicle_capacity)
         return all_routes, metrics
