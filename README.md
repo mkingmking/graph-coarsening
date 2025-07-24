@@ -2,7 +2,7 @@ This repository contains the implementation and evaluation of a spatio-temporal 
 
 Repository Contents:
 
-solomon_dataset/: This directory holds the Solomon VRPTW benchmark datasets in CSV format (e.g., C101.csv, R101.csv). These files contain customer coordinates, demands, time windows, and service times, along with vehicle capacity information.
+solomon_dataset/: Directory containing the Solomon VRPTW benchmark datasets in CSV format (e.g., ``C101.csv`` or ``R101.csv``).  The files list the depot and customers with coordinates, demands and time windows.  Vehicle capacity is not stored in the files, so the loaders assume the standard Solomon capacity of ``200``.
 
 graph_coarsening.py: This Python script implements the core spatio-temporal graph coarsening algorithm, including node and edge definitions, graph operations, and the multilevel coarsening and inflation procedures. It also integrates Greedy and Clarke and Wright Savings heuristics for solving VRPTW instances on both original and coarsened graphs.
 
