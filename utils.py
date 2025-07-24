@@ -8,6 +8,17 @@ import logging
 from graph import Graph, compute_euclidean_tau  # Import Graph and helper
 from node import Node  # Import Node
 
+
+def parse_float(value: str) -> float:
+    """Safely parse a float from a potentially malformed string."""
+    try:
+        return float(value)
+    except ValueError:
+        match = re.search(r"[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?", value)
+        if match:
+            return float(match.group(0))
+        raise
+
 logger = logging.getLogger(__name__)
 
 def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_capacity: float):
@@ -124,47 +135,67 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
     }
 
 def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
-    """Load a Solomon VRPTW instance from a CSV file.
-
-    Older versions of this helper expected several header lines and attempted
-    to extract the vehicle capacity from line four. The CSV files bundled with
-    this repository, however, only contain a single header line followed by the
-    data rows. The previous logic consequently skipped the first eight customers
-    and misread the vehicle capacity. This implementation simply parses the CSV
-    from the start and assumes the standard Solomon capacity of ``200``.
-
-    Args:
-        file_path: Path to the CSV file.
-
-    Returns:
-        ``(graph, depot_id, vehicle_capacity)`` where ``depot_id`` is the ID of
-        the first node in the file.
-    """
+    """Loads graph data from a Solomon VRPTW CSV file."""
     graph = Graph()
     depot_id = None
-    vehicle_capacity = 200.0
+    vehicle_capacity = None
 
-    # Define the actual column headers found in Solomon datasets
     solomon_headers = [
-        'CUST NO.', 'XCOORD.', 'YCOORD.', 'DEMAND', 'READY TIME', 'DUE DATE', 'SERVICE TIME'
+        'CUST NO.', 'XCOORD.', 'YCOORD.', 'DEMAND',
+        'READY TIME', 'DUE DATE', 'SERVICE TIME'
     ]
 
     try:
-        with open(file_path, newline="") as f:
-            reader = csv.DictReader(f)
+        with open(file_path, mode='r', newline='') as f:
+            lines = f.readlines()
+
+            if len(lines) >= 4:
+                capacity_line = lines[3].strip()
+
+                parts = capacity_line.split(',')
+                if len(parts) >= 2:
+                    try:
+                        vehicle_capacity = float(parts[1].strip())
+                    except ValueError:
+                        pass
+
+                if vehicle_capacity is None:
+                    capacity_match = re.search(r"\s*\d+\s+(\d+\.?\d*)", capacity_line)
+                    if capacity_match:
+                        vehicle_capacity = float(capacity_match.group(1))
+
+                if vehicle_capacity is None:
+                    raise ValueError(f"Could not parse vehicle capacity from line 4: '{capacity_line}'")
+            else:
+                raise ValueError("File is too short to contain vehicle capacity information (expected at least 4 lines).")
+
+            if len(lines) < 10:
+                raise ValueError("File is too short to contain customer data.")
+
+            data_lines = lines[9:]
+            data_io = io.StringIO("".join(data_lines))
+            reader = csv.DictReader(data_io, fieldnames=solomon_headers, delimiter=',', skipinitialspace=True)
 
             for i, row in enumerate(reader):
-                if not row:
+                cleaned_row = {}
+                for k, v in row.items():
+                    if k is not None and v is not None:
+                        sk = k.strip()
+                        sv = v.strip()
+                        if sk != '' and sv != '':
+                            cleaned_row[sk] = sv
+
+                if not cleaned_row:
                     continue
 
                 try:
-                    node_id = row[solomon_headers[0]].strip()
-                    x = float(row[solomon_headers[1]])
-                    y = float(row[solomon_headers[2]])
-                    demand = float(row[solomon_headers[3]])
-                    e = float(row[solomon_headers[4]])
-                    l = float(row[solomon_headers[5]])
-                    s = float(row[solomon_headers[6]])
+                    node_id = cleaned_row[solomon_headers[0]]
+                    x = parse_float(cleaned_row[solomon_headers[1]])
+                    y = parse_float(cleaned_row[solomon_headers[2]])
+                    demand = parse_float(cleaned_row[solomon_headers[3]])
+                    e = parse_float(cleaned_row[solomon_headers[4]])
+                    l = parse_float(cleaned_row[solomon_headers[5]])
+                    s = parse_float(cleaned_row[solomon_headers[6]])
 
                     node = Node(node_id, x, y, s, e, l, demand)
                     graph.add_node(node)
@@ -173,13 +204,14 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
                         depot_id = node_id
                 except (ValueError, KeyError) as data_error:
                     raise ValueError(
-                        f"Error processing data in row {i+1} of {file_path}. Row content: {row}. Details: {data_error}"
+                        f"Error processing data in row {i+1} of {file_path}. Row content: {cleaned_row}. Details: {data_error}"
                     ) from data_error
 
         if depot_id is None:
             raise ValueError("No nodes found in CSV data or depot not identified.")
+        if vehicle_capacity is None:
+            raise ValueError("Vehicle capacity could not be determined from the file.")
 
-        # Add edges between all nodes (assuming a complete graph for simplicity)
         node_ids = list(graph.nodes.keys())
         for i in range(len(node_ids)):
             for j in range(i + 1, len(node_ids)):
@@ -190,22 +222,17 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
                 tau = compute_euclidean_tau(node1, node2)
                 graph.add_edge(id1, id2, tau)
 
-        logger.info(
-            f"Successfully loaded graph from {file_path}. Depot ID: {depot_id}, Vehicle Capacity: {vehicle_capacity}"
-        )
+        logger.info(f"Successfully loaded graph from {file_path}. Depot ID: {depot_id}, Vehicle Capacity: {vehicle_capacity}")
         return graph, depot_id, vehicle_capacity
 
     except FileNotFoundError:
         logger.error(f"Error: CSV file not found at {file_path}")
-        # Re-raise the original exception for the calling code to handle
         raise
     except ValueError as e:
         logger.error(f"Error processing CSV data: {e}")
-        # Re-raise the original exception for the calling code to handle
         raise
     except Exception as e:
-        logger.exception(f"An unexpected error occurred while loading CSV: {e}")
+        logger.error(f"An unexpected error occurred while loading CSV: {e}")
         import traceback
-        traceback.print_exc()  # Print full traceback for unexpected errors
-        # Re-raise the original exception for the calling code to handle
+        traceback.print_exc()
         raise

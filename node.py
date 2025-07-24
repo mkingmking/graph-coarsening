@@ -25,8 +25,9 @@ class Node:
         self.e = e
         self.l = l
         self.demand = demand
-        # Calculate central time (t_i) as the midpoint of the service START time window [e_i, l_i]
-        self.t = (e + l) / 2
+        # Calculate central time (t_i) considering the effective window for service START
+        # (earliest start + (latest start - service time)) / 2
+        self.t = (e + (l - s)) / 2 if (l - s) >= 0 else e
         self.is_super_node = is_super_node
         self.original_nodes = original_nodes if original_nodes is not None else [id]
 

@@ -264,9 +264,8 @@ class SpatioTemporalGraphCoarsener:
                 # Aggregate service duration
                 s_ij = node_i.s + node_j.s
                 
-                # Calculate central time for super-node
-                # Based on the new time window [e_prime, l_prime] for service START
-                t_ij = (e_prime + l_prime) / 2 
+                # Calculate central time for super-node using the effective service window
+                t_ij = (e_prime + (l_prime - s_ij)) / 2 if (l_prime - s_ij) >= 0 else e_prime
 
                 # Aggregate original nodes for inflation
                 original_nodes_in_super = list(set(node_i.original_nodes + node_j.original_nodes))
