@@ -1,11 +1,9 @@
-# coarsener.py
-
 import math
 import copy
 import logging
-from node import Node, compute_euclidean_tau  # Import Node and helper
-from edge import Edge  # Import Edge
-from graph import Graph  # Import Graph
+
+from graph import Graph, compute_euclidean_tau
+from node import Node
 
 logger = logging.getLogger(__name__)
 
@@ -22,22 +20,16 @@ class SpatioTemporalGraphCoarsener:
         self.depot_id = depot_id
         self.merge_layers = [] # Stores (super_node_id, original_node_i_id, original_node_j_id, pi_order)
 
-    def _compute_D_ij(self, current_graph: Graph, edge: Edge) -> float:
+    def _compute_D_ij(self, current_graph: Graph, edge) -> float:
         """
         Computes the spatio-temporal distance metric D_ij for an edge.
         D_ij = alpha * tau_ij + beta * max(0, e_j - (t_i + s_i + tau_ij))
         Takes the current_graph to ensure nodes are from the correct graph state.
-        
-        NOTE: The original formula for temporal slack (from the paper) is:
-        max(0, e_j - (t_i + s_i + tau_ij))
-        Where t_i is the "central time" of node i.
-        If t_i is defined as (e_i + l_i) / 2, then this is consistent.
         """
         node_i = current_graph.nodes[edge.u_id]
         node_j = current_graph.nodes[edge.v_id]
 
-        # Calculate tau_ij based on the Euclidean distance
-        tau_ij = compute_euclidean_tau(node_i, node_j)
+        tau_ij = compute_euclidean_tau(node_i, node_j) # Use the global helper
 
         # Temporal slack calculation (for i -> j order)
         # This is max(0, earliest_service_start_at_j - earliest_arrival_at_j_from_i_considering_i_central_time)
@@ -185,10 +177,8 @@ class SpatioTemporalGraphCoarsener:
         n_0 = len(G_prime.nodes)
 
         level = 0
-        logger.info("--- Starting Coarsening ---")
-        logger.info(
-            f"Initial graph size: {len(G_prime.nodes)} nodes, {len(G_prime.edges)} edges"
-        )
+        logger.info(f"--- Starting Coarsening ---")
+        logger.info(f"Initial graph size: {len(G_prime.nodes)} nodes, {len(G_prime.edges)} edges")
 
         while len(G_prime.nodes) > self.P * n_0:
             level += 1
@@ -264,7 +254,7 @@ class SpatioTemporalGraphCoarsener:
                 # Aggregate service duration
                 s_ij = node_i.s + node_j.s
                 
-                # Calculate central time for super-node using the effective service window
+                # Calculate central time for super-node
                 t_ij = (e_prime + (l_prime - s_ij)) / 2 if (l_prime - s_ij) >= 0 else e_prime
 
                 # Aggregate original nodes for inflation
@@ -288,9 +278,7 @@ class SpatioTemporalGraphCoarsener:
             for node_id in nodes_to_remove_this_level:
                 G_prime.remove_node(node_id)
             
-            logger.info(
-                f"  Current graph size: {len(G_prime.nodes)} nodes, {len(G_prime.edges)} edges"
-            )
+            logger.info(f"  Current graph size: {len(G_prime.nodes)} nodes, {len(G_prime.edges)} edges")
 
         logger.info("\n--- Coarsening Finished ---")
         return G_prime, self.merge_layers
@@ -307,7 +295,7 @@ class SpatioTemporalGraphCoarsener:
                   original graph.
         """
         all_inflated_routes = []
-        logger.info("\n--- Starting Inflation Process ---")
+        logger.info(f"\n--- Starting Inflation Process ---")
         logger.info(f"Initial coarsened routes: {coarsened_routes}")
 
         for route_idx, coarsened_route in enumerate(coarsened_routes):
@@ -344,15 +332,12 @@ class SpatioTemporalGraphCoarsener:
                 
                 inflated_route = new_inflated_route_segment
                 if replaced_this_layer:
-                    logger.info(
-                        f"    Inflated {super_node_id} to {ordered_pair}. Current Route {route_idx + 1}: {inflated_route}"
-                    )
+                    logger.info(f"    Inflated {super_node_id} to {ordered_pair}. Current Route {route_idx + 1}: {inflated_route}")
                 
             all_inflated_routes.append(inflated_route)
-            logger.info(
-                f"  Route {route_idx + 1} Inflation Finished. Final: {inflated_route}"
-            )
+            logger.info(f"  Route {route_idx + 1} Inflation Finished. Final: {inflated_route}")
             
         logger.info(f"--- Inflation Finished ---")
         logger.info(f"Final inflated routes: {all_inflated_routes}")
         return all_inflated_routes
+

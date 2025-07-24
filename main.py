@@ -1,18 +1,19 @@
-# main.py
-
 import os
 import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+logger = logging.getLogger(__name__)
+
+# Import classes and functions from separate files
 from graph import Graph
+from utils import load_graph_from_csv, calculate_route_metrics
 from coarsener import SpatioTemporalGraphCoarsener
 from greedy_solver import GreedySolver
 from savings_solver import SavingsSolver
-from utils import load_graph_from_csv, calculate_route_metrics
-
-logger = logging.getLogger(__name__)
 
 if __name__ == "__main__":
     # Define the base directory where 'solomon_dataset' is located
-    # Assuming the Python script is in the same directory as 'solomon_dataset'
     base_dataset_dir = 'solomon_dataset' 
 
     # List to store full paths of all CSV files found
@@ -43,7 +44,7 @@ if __name__ == "__main__":
         try:
             initial_graph, depot_id, VEHICLE_CAPACITY = load_graph_from_csv(csv_file_path)
         except Exception as e:
-            logger.warning(f"Skipping {csv_file_path} due to error loading graph: {e}")
+            logger.error(f"Skipping {csv_file_path} due to error loading graph: {e}")
             continue # Skip to the next file if loading fails
 
         current_file_results = {}
@@ -61,7 +62,8 @@ if __name__ == "__main__":
         # --- Solve directly on the uncoarsened graph with Greedy Solver ---
         logger.info("\n\n=== Solving on UNCOARSENED Graph (Greedy Solver) ===")
         uncoarsened_greedy_solver = GreedySolver(initial_graph, depot_id, VEHICLE_CAPACITY)
-        uncoarsened_greedy_routes, uncoarsened_greedy_metrics = uncoarsened_greedy_solver.solve()
+        uncoarsened_greedy_routes, _ = uncoarsened_greedy_solver.solve() # Metrics are calculated here
+        uncoarsened_greedy_metrics = calculate_route_metrics(initial_graph, uncoarsened_greedy_routes, depot_id, VEHICLE_CAPACITY)
         current_file_results['Uncoarsened Greedy'] = uncoarsened_greedy_metrics
         
         logger.info("\n--- Metrics for UNCOARSENED Greedy Routes ---")
@@ -76,7 +78,8 @@ if __name__ == "__main__":
         # --- Solve directly on the uncoarsened graph with Savings Solver ---
         logger.info("\n\n=== Solving on UNCOARSENED Graph (Savings Solver) ===")
         uncoarsened_savings_solver = SavingsSolver(initial_graph, depot_id, VEHICLE_CAPACITY)
-        uncoarsened_savings_routes, uncoarsened_savings_metrics = uncoarsened_savings_solver.solve()
+        uncoarsened_savings_routes, _ = uncoarsened_savings_solver.solve() # Metrics are calculated here
+        uncoarsened_savings_metrics = calculate_route_metrics(initial_graph, uncoarsened_savings_routes, depot_id, VEHICLE_CAPACITY)
         current_file_results['Uncoarsened Savings'] = uncoarsened_savings_metrics
         
         logger.info("\n--- Metrics for UNCOARSENED Savings Routes ---")
@@ -130,7 +133,7 @@ if __name__ == "__main__":
         # --- Solve on the coarsened graph with Greedy Solver and then inflate ---
         logger.info("\n\n=== Solving on COARSENED Graph (Greedy Solver) and Inflating ===")
         coarsened_greedy_solver = GreedySolver(coarsened_graph, depot_id, VEHICLE_CAPACITY)
-        coarsened_greedy_routes, coarsened_greedy_metrics = coarsened_greedy_solver.solve()
+        coarsened_greedy_routes, _ = coarsened_greedy_solver.solve() # Metrics are calculated here
         
         final_inflated_greedy_routes = coarsener.inflate_route(coarsened_greedy_routes)
 
@@ -149,7 +152,7 @@ if __name__ == "__main__":
         # --- Solve on the coarsened graph with Savings Solver and then inflate ---
         logger.info("\n\n=== Solving on COARSENED Graph (Savings Solver) and Inflating ===")
         coarsened_savings_solver = SavingsSolver(coarsened_graph, depot_id, VEHICLE_CAPACITY)
-        coarsened_savings_routes, coarsened_savings_metrics = coarsened_savings_solver.solve()
+        coarsened_savings_routes, _ = coarsened_savings_solver.solve() # Metrics are calculated here
         
         final_inflated_savings_routes = coarsener.inflate_route(coarsened_savings_routes)
 
@@ -186,12 +189,12 @@ if __name__ == "__main__":
     ]
 
     # Print headers for the summary table
-    logger.info(f"{'Metric':<25} | {'Uncoarsened Greedy':<20} | {'Uncoarsened Savings':<20} | {'Inflated Greedy':<20} | {'Inflated Savings':<20}")
-    logger.info("-" * 120)
+    print(f"{'Metric':<25} | {'Uncoarsened Greedy':<20} | {'Uncoarsened Savings':<20} | {'Inflated Greedy':<20} | {'Inflated Savings':<20}")
+    print("-" * 120)
 
     for file_name in sorted(all_results.keys()): # Iterate in sorted order of file names
         results = all_results[file_name]
-        logger.info(f"\n--- Results for {file_name} ---")
+        print(f"\n--- Results for {file_name} ---")
         
         for metric in metrics_to_compare:
             uncoarsened_greedy_val = results.get('Uncoarsened Greedy', {}).get(metric, 'N/A')
@@ -204,7 +207,7 @@ if __name__ == "__main__":
                     return f"{val:.2f}"
                 return str(val)
 
-            logger.info(f"{metric.replace('_', ' ').title():<25} | {format_val(uncoarsened_greedy_val):<20} | {format_val(uncoarsened_savings_val):<20} | {format_val(inflated_greedy_val):<20} | {format_val(inflated_savings_val):<20}")
+            print(f"{metric.replace('_', ' ').title():<25} | {format_val(uncoarsened_greedy_val):<20} | {format_val(uncoarsened_savings_val):<20} | {format_val(inflated_greedy_val):<20} | {format_val(inflated_savings_val):<20}")
 
-    logger.info("\nNote: 'Is Feasible' indicates if any time window or capacity violations were found across all routes.")
-    logger.info("A well-functioning coarsening/inflation should ideally result in feasible inflated routes serving all demand.")
+    print("\nNote: 'Is Feasible' indicates if any time window or capacity violations were found across all routes.")
+    print("A well-functioning coarsening/inflation should ideally result in feasible inflated routes serving all demand.")

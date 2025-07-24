@@ -1,5 +1,3 @@
-# edge.py
-
 class Edge:
     """
     Represents an edge between two nodes in the graph.
@@ -17,3 +15,4 @@ class Edge:
 
     def __repr__(self):
         return f"Edge({self.u_id}-{self.v_id}, Tau={self.tau:.2f}, D_ij={self.D_ij:.2f})"
+

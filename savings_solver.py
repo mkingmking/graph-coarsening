@@ -1,8 +1,5 @@
-# savings_solver.py
-
-from graph import Graph, compute_euclidean_tau  # Import Graph and helper
-from utils import calculate_route_metrics  # Import the utility function
 import logging
+from graph import Graph, compute_euclidean_tau
 
 logger = logging.getLogger(__name__)
 
@@ -146,9 +143,7 @@ class SavingsSolver:
                 - list: A list of generated routes (each route is a list of node IDs).
                 - dict: A dictionary of aggregated metrics for all routes.
         """
-        logger.info(
-            f"\n--- Starting Savings Solver on graph with depot {self.depot_id} ---"
-        )
+        logger.info(f"\n--- Starting Savings Solver on graph with depot {self.depot_id} ---")
 
         # Step 1: Initialize routes (each customer gets its own route)
         routes = {} # {customer_id: [depot_id, customer_id, depot_id]}
@@ -217,9 +212,7 @@ class SavingsSolver:
                         del routes[route_id_i]
                         del routes[route_id_j]
                         merged_any_this_iteration = True
-                        logger.info(
-                            f"  Merged routes {route_id_i} and {route_id_j} via ({id_i} -> {id_j}) with saving {saving_value:.2f}. New route: {new_route_id}"
-                        )
+                        logger.info(f"  Merged routes {route_id_i} and {route_id_j} via ({id_i} -> {id_j}) with saving {saving_value:.2f}. New route: {new_route_id}")
                         break # Restart iteration over savings after a merge
                 
                 # Case 2: Merge Route_j's end with Route_i's start (j -> i)
@@ -246,9 +239,7 @@ class SavingsSolver:
                             del routes[route_id_i]
                             del routes[route_id_j]
                             merged_any_this_iteration = True
-                            logger.info(
-                                f"  Merged routes {route_id_j} and {route_id_i} via ({id_j} -> {id_i}) with saving {saving_value:.2f}. New route: {new_route_id}"
-                            )
+                            logger.info(f"  Merged routes {route_id_j} and {route_id_i} via ({id_j} -> {id_i}) with saving {saving_value:.2f}. New route: {new_route_id}")
                             break # Restart iteration over savings after a merge
 
             # If no merges were made in an entire pass, stop.
@@ -256,9 +247,9 @@ class SavingsSolver:
                 break
 
         final_routes_list = list(routes.values())
-        logger.info(
-            f"--- Savings Solver Finished. Found {len(final_routes_list)} routes. ---"
-        )
+        logger.info(f"--- Savings Solver Finished. Found {len(final_routes_list)} routes. ---")
         
-        metrics = calculate_route_metrics(self.graph, final_routes_list, self.depot_id, self.vehicle_capacity)
-        return final_routes_list, metrics
+        # The metrics are calculated outside the solver to allow for inflation
+        # metrics = calculate_route_metrics(self.graph, final_routes_list, self.depot_id, self.vehicle_capacity)
+        return final_routes_list, {} # Return empty dict for metrics, as they're calculated in main
+

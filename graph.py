@@ -1,7 +1,12 @@
-# graph.py
+import math
+from node import Node
+from edge import Edge
 
-from node import Node, compute_euclidean_tau # Import Node and the helper function
-from edge import Edge # Import Edge
+def compute_euclidean_tau(node1: Node, node2: Node) -> float:
+    """
+    Computes the Euclidean travel time (distance) between two nodes.
+    """
+    return math.sqrt((node1.x - node2.x)**2 + (node1.y - node2.y)**2)
 
 class Graph:
     """
@@ -70,3 +75,4 @@ class Graph:
     def get_all_edges_for_node(self, node_id):
         """Returns a list of edge objects connected to a given node."""
         return [edge for edge in self.edges if edge.u_id == node_id or edge.v_id == node_id]
+
