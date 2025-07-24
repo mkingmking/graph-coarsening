@@ -137,6 +137,24 @@ def compute_euclidean_tau(node1: Node, node2: Node) -> float:
     """
     return math.sqrt((node1.x - node2.x)**2 + (node1.y - node2.y)**2)
 
+# --- Robust float parsing helper ---
+def parse_float(value: str) -> float:
+    """Safely parse a float from a potentially malformed string.
+
+    The Solomon datasets occasionally contain extra whitespace or stray
+    characters within numeric fields (e.g. "0.00    1").  This helper
+    extracts the first numeric value it can find in the string and
+    converts it to ``float``.  If no valid number is found a ``ValueError``
+    is raised.
+    """
+    try:
+        return float(value)
+    except ValueError:
+        match = re.search(r"[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?", value)
+        if match:
+            return float(match.group(0))
+        raise
+
 # --- Helper function to calculate route metrics ---
 def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_capacity: float):
     """
@@ -1038,13 +1056,13 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
 
                 try:
                     # Use the solomon_headers directly as keys for consistency with DictReader
-                    node_id = cleaned_row[solomon_headers[0]] # CUST NO.
-                    x = float(cleaned_row[solomon_headers[1]]) # XCOORD.
-                    y = float(cleaned_row[solomon_headers[2]]) # YCOORD.
-                    demand = float(cleaned_row[solomon_headers[3]]) # DEMAND
-                    e = float(cleaned_row[solomon_headers[4]]) # READY TIME
-                    l = float(cleaned_row[solomon_headers[5]]) # DUE DATE
-                    s = float(cleaned_row[solomon_headers[6]]) # SERVICE TIME
+                    node_id = cleaned_row[solomon_headers[0]]  # CUST NO.
+                    x = parse_float(cleaned_row[solomon_headers[1]])  # XCOORD.
+                    y = parse_float(cleaned_row[solomon_headers[2]])  # YCOORD.
+                    demand = parse_float(cleaned_row[solomon_headers[3]])  # DEMAND
+                    e = parse_float(cleaned_row[solomon_headers[4]])  # READY TIME
+                    l = parse_float(cleaned_row[solomon_headers[5]])  # DUE DATE
+                    s = parse_float(cleaned_row[solomon_headers[6]])  # SERVICE TIME
                     
                     node = Node(node_id, x, y, s, e, l, demand)
                     graph.add_node(node)
