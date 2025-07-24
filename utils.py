@@ -124,22 +124,25 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
     }
 
 def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
-    """
-    Loads graph data from a Solomon VRPTW CSV file.
-    Assumes a specific Solomon format with header lines before the data.
-    
+    """Load a Solomon VRPTW instance from a CSV file.
+
+    Older versions of this helper expected several header lines and attempted
+    to extract the vehicle capacity from line four. The CSV files bundled with
+    this repository, however, only contain a single header line followed by the
+    data rows. The previous logic consequently skipped the first eight customers
+    and misread the vehicle capacity. This implementation simply parses the CSV
+    from the start and assumes the standard Solomon capacity of ``200``.
+
     Args:
-        file_path (str): The path to the CSV file.
-        
+        file_path: Path to the CSV file.
+
     Returns:
-        tuple: A tuple containing:
-            - Graph: The loaded graph object.
-            - str: The ID of the depot node.
-            - float: The vehicle capacity extracted from the file.
+        ``(graph, depot_id, vehicle_capacity)`` where ``depot_id`` is the ID of
+        the first node in the file.
     """
     graph = Graph()
     depot_id = None
-    vehicle_capacity = None # Will be read from file
+    vehicle_capacity = 200.0
 
     # Define the actual column headers found in Solomon datasets
     solomon_headers = [
@@ -147,93 +150,34 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
     ]
 
     try:
-        with open(file_path, mode='r', newline='') as f:
-            # Read all lines to parse header and then use StringIO for DictReader
-            lines = f.readlines()
-            
-            # --- Parse Vehicle Capacity ---
-            # Solomon files typically have capacity on line 4 (index 3)
-            # The format is like '  25         200' or '3,45,70,30,825,870,90'
-            if len(lines) >= 4:
-                capacity_line = lines[3].strip()
-                
-                # Try to parse as comma-separated first (common for some Solomon variants)
-                parts = capacity_line.split(',')
-                if len(parts) >= 2:
-                    try:
-                        # Capacity is typically the second value in the comma-separated line (index 1)
-                        vehicle_capacity = float(parts[1].strip())
-                    except ValueError:
-                        # If parsing as float fails, it's not the expected comma-separated format
-                        pass
-                
-                # If not found or failed, try the space-separated regex (for other Solomon variants)
-                if vehicle_capacity is None:
-                    # Regex to find the second number in the line, which is usually the capacity.
-                    # This pattern looks for one or more digits, followed by one or more spaces,
-                    # then captures one or more digits (the capacity).
-                    capacity_match = re.search(r'\s*\d+\s+(\d+\.?\d*)', capacity_line)
-                    if capacity_match:
-                        vehicle_capacity = float(capacity_match.group(1))
-                
-                if vehicle_capacity is None:
-                    raise ValueError(f"Could not parse vehicle capacity from line 4: '{capacity_line}'")
-            else:
-                raise ValueError("File is too short to contain vehicle capacity information (expected at least 4 lines).")
+        with open(file_path, newline="") as f:
+            reader = csv.DictReader(f)
 
-            # --- Prepare data for DictReader ---
-            # The actual data starts from line 10 (index 9), so we skip lines 0-8.
-            # The header line is line 9 (index 8). We will explicitly provide the headers.
-            if len(lines) < 10: # Data starts from line 10 (index 9)
-                raise ValueError("File is too short to contain customer data.")
-            
-            # The actual data rows start from line 10 (index 9)
-            data_lines = lines[9:] # From the first data line onwards
-            data_io = io.StringIO("".join(data_lines))
-
-            # Use DictReader with explicitly provided fieldnames and COMMA as delimiter
-            # The previous error "Found: ['8,40,66,20,170,225,90']" strongly suggests data rows are comma-separated.
-            reader = csv.DictReader(data_io, fieldnames=solomon_headers, delimiter=',', skipinitialspace=True)
-
-            # --- Process Customer Data ---
             for i, row in enumerate(reader):
-                # Clean row data: strip spaces from keys and values, filter out empty keys/values
-                # Ensure both k and v are not None before stripping
-                cleaned_row = {}
-                for k, v in row.items():
-                    if k is not None and v is not None:
-                        stripped_k = k.strip()
-                        stripped_v = v.strip()
-                        if stripped_k != '' and stripped_v != '':
-                            cleaned_row[stripped_k] = stripped_v
-
-                # Check if the cleaned_row is empty, which can happen if a row is entirely whitespace or malformed
-                if not cleaned_row:
-                    continue # Skip empty rows
+                if not row:
+                    continue
 
                 try:
-                    # Use the solomon_headers directly as keys for consistency with DictReader
-                    node_id = cleaned_row[solomon_headers[0]] # CUST NO.
-                    x = float(cleaned_row[solomon_headers[1]]) # XCOORD.
-                    y = float(cleaned_row[solomon_headers[2]]) # YCOORD.
-                    demand = float(cleaned_row[solomon_headers[3]]) # DEMAND
-                    e = float(cleaned_row[solomon_headers[4]]) # READY TIME
-                    l = float(cleaned_row[solomon_headers[5]]) # DUE DATE
-                    s = float(cleaned_row[solomon_headers[6]]) # SERVICE TIME
-                    
+                    node_id = row[solomon_headers[0]].strip()
+                    x = float(row[solomon_headers[1]])
+                    y = float(row[solomon_headers[2]])
+                    demand = float(row[solomon_headers[3]])
+                    e = float(row[solomon_headers[4]])
+                    l = float(row[solomon_headers[5]])
+                    s = float(row[solomon_headers[6]])
+
                     node = Node(node_id, x, y, s, e, l, demand)
                     graph.add_node(node)
-                    
-                    if i == 0: # The first node in the data section is the depot
+
+                    if i == 0:
                         depot_id = node_id
                 except (ValueError, KeyError) as data_error:
-                    # Provide more context for data parsing errors
-                    raise ValueError(f"Error processing data in row {i+1} of {file_path}. Row content: {cleaned_row}. Details: {data_error}") from data_error
-                
+                    raise ValueError(
+                        f"Error processing data in row {i+1} of {file_path}. Row content: {row}. Details: {data_error}"
+                    ) from data_error
+
         if depot_id is None:
             raise ValueError("No nodes found in CSV data or depot not identified.")
-        if vehicle_capacity is None:
-            raise ValueError("Vehicle capacity could not be determined from the file.")
 
         # Add edges between all nodes (assuming a complete graph for simplicity)
         node_ids = list(graph.nodes.keys())
