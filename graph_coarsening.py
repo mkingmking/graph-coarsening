@@ -293,11 +293,14 @@ class SpatioTemporalGraphCoarsener:
         """
         tau_ij = compute_euclidean_tau(node_i, node_j) # Use the global helper
 
-        # feas_i_to_j = [e_i <= l_j - s_j - tau_ij - s_i]
-        feas_i_to_j = (node_i.e <= node_j.l - node_j.s - tau_ij - node_i.s)
-        
-        # feas_j_to_i = [e_j <= l_i - s_i - tau_ij - s_j]
-        feas_j_to_i = (node_j.e <= node_i.l - node_i.s - tau_ij - node_j.s)
+        # Correct feasibility based on service **start** times
+        # Earliest service start at j when visiting i first is
+        #    node_i.e + node_i.s + tau_ij
+        # This must be less than or equal to j's latest start time l_j.
+        feas_i_to_j = (node_i.e + node_i.s + tau_ij <= node_j.l)
+
+        # Symmetric check for visiting j before i
+        feas_j_to_i = (node_j.e + node_j.s + tau_ij <= node_i.l)
         
         return feas_i_to_j, feas_j_to_i
 
@@ -309,11 +312,12 @@ class SpatioTemporalGraphCoarsener:
         """
         tau_ij = compute_euclidean_tau(node_i, node_j) # Use the global helper
 
-        # slack_i_to_j = (l_j - s_j - tau_ij) - (e_i + s_i)
-        slack_i_to_j = (node_j.l - node_j.s - tau_ij) - (node_i.e + node_i.s)
+        # Slack based on service **start** times.
+        # Earliest possible start at j after i: node_i.e + node_i.s + tau_ij
+        slack_i_to_j = node_j.l - (node_i.e + node_i.s + tau_ij)
 
-        # slack_j_to_i = (l_i - s_i - tau_ij) - (e_j + s_j)
-        slack_j_to_i = (node_i.l - node_i.s - tau_ij) - (node_j.e + node_j.s)
+        # Earliest possible start at i after j: node_j.e + node_j.s + tau_ij
+        slack_j_to_i = node_i.l - (node_j.e + node_j.s + tau_ij)
 
         if slack_i_to_j >= slack_j_to_i:
             return f"{node_i.id} -> {node_j.id}", slack_i_to_j
@@ -330,12 +334,15 @@ class SpatioTemporalGraphCoarsener:
         # Parse pi_order to determine which node comes first
         first_node_id, _, second_node_id = pi_order.split(' ')
         
-        if first_node_id == node_i.id: # Order is i -> j
+        if first_node_id == node_i.id:  # Order is i -> j
+            # Earliest start of the super-node must respect both nodes' windows
             e_prime = max(node_i.e, node_j.e - (node_i.s + tau_ij))
-            l_prime = min(node_i.l + node_j.s + tau_ij, node_j.l)
-        else: # Order is j -> i
+
+            # Latest start is limited by latest start of i and the time to start j
+            l_prime = min(node_i.l, node_j.l - node_i.s - tau_ij)
+        else:  # Order is j -> i
             e_prime = max(node_j.e, node_i.e - (node_j.s + tau_ij))
-            l_prime = min(node_j.l + node_i.s + tau_ij, node_i.l)
+            l_prime = min(node_j.l, node_i.l - node_j.s - tau_ij)
             
         return e_prime, l_prime
 

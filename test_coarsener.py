@@ -36,19 +36,18 @@ def test_evaluate_feasibility_ab(simple_ab_graph):
     A = simple_ab_graph.nodes["A"]
     B = simple_ab_graph.nodes["B"]
     feas_a_b, feas_b_a = coarsener._evaluate_feasibility(simple_ab_graph, A, B)
-    # feas A->B: 0 <= 15 - 2 - 5 - 1 => 0 <= 7  => True
-    # feas B->A: 3 <= 10 - 1 - 5 - 2 => 3 <= 2 => False
+    # With start-time windows both directions are feasible
     assert feas_a_b is True
-    assert feas_b_a is False
+    assert feas_b_a is True
 
 def test_compute_slacks_and_order_ab(simple_ab_graph):
     coarsener = SpatioTemporalGraphCoarsener(simple_ab_graph, alpha=1, beta=1, P=0.5, radiusCoeff=1, depot_id="D")
     A = simple_ab_graph.nodes["A"]
     B = simple_ab_graph.nodes["B"]
     order, slack = coarsener._compute_slacks_and_order(simple_ab_graph, A, B)
-    # slack_A->B = (15-2-5) - (0+1) = 8 -1 =7
+    # slack_A->B = 15 - (0+1+5) = 9
     assert order == "A -> B"
-    assert pytest.approx(slack) == 7.0
+    assert pytest.approx(slack) == 9.0
 
 def test_compute_new_window_ab(simple_ab_graph):
     coarsener = SpatioTemporalGraphCoarsener(simple_ab_graph, alpha=1, beta=1, P=0.5, radiusCoeff=1, depot_id="D")
@@ -57,9 +56,9 @@ def test_compute_new_window_ab(simple_ab_graph):
     pi_order = "A -> B"
     e_prime, l_prime = coarsener._compute_new_window(simple_ab_graph, A, B, pi_order)
     # e' = max(e_A, e_B - (s_A + tau)) = max(0, 3-(1+5)) = 0
-    # l' = min(l_A + s_B + tau, l_B) = min(10+2+5,15) = 15
+    # l' = min(l_A, l_B - s_A - tau) = min(10, 15-1-5) = 9
     assert pytest.approx(e_prime) == 0.0
-    assert pytest.approx(l_prime) == 15.0
+    assert pytest.approx(l_prime) == 9.0
 
 def test_reconnect_neighbors_conservatively():
     # Build a little graph where A and B both connect to C
