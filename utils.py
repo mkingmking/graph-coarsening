@@ -4,8 +4,11 @@ import csv
 import os
 import re
 import io
-from graph import Graph, compute_euclidean_tau # Import Graph and helper
-from node import Node # Import Node
+import logging
+from graph import Graph, compute_euclidean_tau  # Import Graph and helper
+from node import Node  # Import Node
+
+logger = logging.getLogger(__name__)
 
 def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_capacity: float):
     """
@@ -243,20 +246,22 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
                 tau = compute_euclidean_tau(node1, node2)
                 graph.add_edge(id1, id2, tau)
 
-        print(f"Successfully loaded graph from {file_path}. Depot ID: {depot_id}, Vehicle Capacity: {vehicle_capacity}")
+        logger.info(
+            f"Successfully loaded graph from {file_path}. Depot ID: {depot_id}, Vehicle Capacity: {vehicle_capacity}"
+        )
         return graph, depot_id, vehicle_capacity
 
     except FileNotFoundError:
-        print(f"Error: CSV file not found at {file_path}")
+        logger.error(f"Error: CSV file not found at {file_path}")
         # Re-raise the original exception for the calling code to handle
         raise
     except ValueError as e:
-        print(f"Error processing CSV data: {e}")
+        logger.error(f"Error processing CSV data: {e}")
         # Re-raise the original exception for the calling code to handle
         raise
     except Exception as e:
-        print(f"An unexpected error occurred while loading CSV: {e}")
+        logger.exception(f"An unexpected error occurred while loading CSV: {e}")
         import traceback
-        traceback.print_exc() # Print full traceback for unexpected errors
+        traceback.print_exc()  # Print full traceback for unexpected errors
         # Re-raise the original exception for the calling code to handle
         raise
