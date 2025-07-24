@@ -1,7 +1,10 @@
 # greedy_solver.py
 
-from graph import Graph, compute_euclidean_tau # Import Graph and helper
-from utils import calculate_route_metrics # Import the utility function
+from graph import Graph, compute_euclidean_tau  # Import Graph and helper
+from utils import calculate_route_metrics  # Import the utility function
+import logging
+
+logger = logging.getLogger(__name__)
 
 class GreedySolver:
     """
@@ -30,7 +33,7 @@ class GreedySolver:
         all_customers = {node_id for node_id in self.graph.nodes.keys() if node_id != self.depot_id}
         unvisited_customers = set(all_customers) # Customers remaining to be visited
 
-        print(f"\n--- Starting Greedy Solver on graph with depot {self.depot_id} ---")
+        logger.info(f"\n--- Starting Greedy Solver on graph with depot {self.depot_id} ---")
         
         vehicle_count = 0
         while unvisited_customers:
@@ -40,7 +43,9 @@ class GreedySolver:
             current_time = self.graph.nodes[self.depot_id].e # Each vehicle starts at depot's earliest time window
             current_load = 0.0 # Current load of the vehicle
 
-            print(f"  Dispatching Vehicle {vehicle_count}. Initial state: Current Node={current_node_id}, Current Time={current_time:.2f}, Load={current_load:.2f}")
+            logger.info(
+                f"  Dispatching Vehicle {vehicle_count}. Initial state: Current Node={current_node_id}, Current Time={current_time:.2f}, Load={current_load:.2f}"
+            )
 
             vehicle_made_progress_in_this_route = False # Flag to track if the current vehicle adds any customers
 
@@ -62,10 +67,17 @@ class GreedySolver:
                     travel_time_to_candidate = compute_euclidean_tau(current_node, candidate_node)
                     arrival_time_at_candidate = current_time + travel_time_to_candidate
                     service_start_time_at_candidate = max(arrival_time_at_candidate, candidate_node.e)
-                    
-                    # Check time window (service must START by candidate_node.l)
+
+                    # Check time window for starting service
                     if service_start_time_at_candidate <= candidate_node.l:
-                        feasible_candidates.append((travel_time_to_candidate, candidate_node_id))
+                        finish_time_at_candidate = service_start_time_at_candidate + candidate_node.s
+                        depot_node = self.graph.nodes[self.depot_id]
+                        travel_back_to_depot = compute_euclidean_tau(candidate_node, depot_node)
+                        arrival_back_to_depot = finish_time_at_candidate + travel_back_to_depot
+
+                        # Ensure vehicle can return to depot within its time window
+                        if arrival_back_to_depot <= depot_node.l:
+                            feasible_candidates.append((travel_time_to_candidate, candidate_node_id))
                 
                 if feasible_candidates:
                     # Sort feasible candidates by travel time to find the closest
@@ -86,9 +98,13 @@ class GreedySolver:
                     unvisited_customers.remove(best_next_node_id)
                     current_node_id = best_next_node_id
                     vehicle_made_progress_in_this_route = True # Customer added!
-                    print(f"    Vehicle {vehicle_count}: Visited {best_next_node_id}. Current Node={current_node_id}, Current Time={current_time:.2f}, Load={current_load:.2f}")
+                    logger.info(
+                        f"    Vehicle {vehicle_count}: Visited {best_next_node_id}. Current Node={current_node_id}, Current Time={current_time:.2f}, Load={current_load:.2f}"
+                    )
                 else:
-                    print(f"    Vehicle {vehicle_count}: No more feasible unvisited customers from {current_node_id}. Ending current route.")
+                    logger.info(
+                        f"    Vehicle {vehicle_count}: No more feasible unvisited customers from {current_node_id}. Ending current route."
+                    )
                     break 
             
             # Current vehicle returns to depot
@@ -102,9 +118,13 @@ class GreedySolver:
                 # Assuming depot service time is 0 for simplicity, so arrival time is effectively service start time
                 if arrival_time_at_depot <= depot_node.l: 
                     current_route.append(self.depot_id)
-                    print(f"    Vehicle {vehicle_count}: Returned to depot. Route: {current_route}")
+                    logger.info(
+                        f"    Vehicle {vehicle_count}: Returned to depot. Route: {current_route}"
+                    )
                 else:
-                    print(f"    Vehicle {vehicle_count}: Warning: Cannot return to depot within its time window. Route ends at {current_node_id}. Final time: {arrival_time_at_depot:.2f} (Depot L: {depot_node.l:.2f})")
+                    logger.warning(
+                        f"    Vehicle {vehicle_count}: Warning: Cannot return to depot within its time window. Route ends at {current_node_id}. Final time: {arrival_time_at_depot:.2f} (Depot L: {depot_node.l:.2f})"
+                    )
                     current_route.append(self.depot_id) # Still append for route completeness, but note infeasibility
             else:
                 # If the current_node_id is already the depot (e.g., if no customers were visited by this vehicle)
@@ -118,16 +138,22 @@ class GreedySolver:
             # Check for infinite loop condition: if a vehicle was dispatched but visited no customers,
             # and there are still unvisited customers, it means we are stuck.
             if not vehicle_made_progress_in_this_route and unvisited_customers:
-                print(f"  Stuck: Vehicle {vehicle_count} dispatched but could not visit any customer. {len(unvisited_customers)} customers remaining. Breaking to prevent infinite loop.")
+                logger.warning(
+                    f"  Stuck: Vehicle {vehicle_count} dispatched but could not visit any customer. {len(unvisited_customers)} customers remaining. Breaking to prevent infinite loop."
+                )
                 break # Break the outer loop to prevent infinite vehicle dispatch
 
             if not unvisited_customers:
-                print("  All customers visited.")
+                logger.info("  All customers visited.")
                 break
             else:
-                print(f"  {len(unvisited_customers)} customers remaining. Dispatching new vehicle.")
+                logger.info(f"  {len(unvisited_customers)} customers remaining. Dispatching new vehicle.")
         
-        print(f"--- Greedy Solver Finished ---")
+        logger.info(f"--- Greedy Solver Finished ---")
         
-        metrics = calculate_route_metrics(self.graph, all_routes, self.depot_id, self.vehicle_capacity)
+        metrics = calculate_route_metrics(
+            self.graph, all_routes, self.depot_id, self.vehicle_capacity
+        )
+        if unvisited_customers:
+            metrics["is_feasible"] = False
         return all_routes, metrics
