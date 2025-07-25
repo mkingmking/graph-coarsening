@@ -1,12 +1,12 @@
+
 import pytest
-from graph_coarsening import (
-    Node,
-    Graph,
-    compute_euclidean_tau,
-    GreedySolver,
-    SavingsSolver,
-    calculate_route_metrics,
-)
+from node import Node
+from edge import Edge
+from graph import Graph
+from utils import compute_euclidean_tau
+from coarsener import SpatioTemporalGraphCoarsener
+from savings_solver import SavingsSolver
+from greedy_solver import GreedySolver
 
 @pytest.fixture
 def simple_chain_graph():

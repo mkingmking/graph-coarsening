@@ -1,7 +1,13 @@
 import math
 import pytest
-from graph_coarsening import Node, Edge, Graph, compute_euclidean_tau, calculate_route_metrics
-
+from node import Node
+from edge import Edge
+from graph import Graph
+from utils import compute_euclidean_tau
+from utils import calculate_route_metrics
+from coarsener import SpatioTemporalGraphCoarsener
+from savings_solver import SavingsSolver
+from greedy_solver import GreedySolver
 # --- Node tests ---
 
 def test_node_initialization_and_t_calculation():
