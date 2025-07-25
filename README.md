@@ -13,8 +13,10 @@ How to Use:
 Clone the repository:
 
 
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/mkingmking/graph-coarsening
+
+cd graph-coarsening
+
 Ensure Python 3 is installed.
 
 Run the main script:
@@ -22,6 +24,7 @@ Run the main script:
 
 
 python3 main.py
+
 The script will automatically process the CSV files in the solomon_dataset/ directory, apply the coarsening algorithm, solve the VRPTW using the implemented heuristics, and print performance metrics to the console.
 
 
