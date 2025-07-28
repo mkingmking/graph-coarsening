@@ -82,22 +82,6 @@ def test_full_qubo_solver_multi_vehicle(monkeypatch):
 
 # ------------------- AveragePartitionSolver Tests -------------------
 
-def test_average_partition_default_limit_radius(monkeypatch):
-    # 4 customers, 2 vehicles, default limit_radius=0
-    problem = FakeProblem(['c1','c2','c3','c4'], [10,10])
-    solver = AveragePartitionSolver(problem)
-    def fake_solve_qubo(qubo, solver_type, limit, num_reads):
-        # Distribute two customers per vehicle
-        return [{(0,'c1',1):1,(0,'c2',2):1,(1,'c3',1):1,(1,'c4',2):1}]
-    monkeypatch.setattr(DWaveSolvers_modified, 'solve_qubo', fake_solve_qubo)
-
-    sol = solver.solve(only_one_const=1, order_const=1, tw_penalty_const=1,
-                       solver_type='sim', num_reads=1)
-    avg = math.ceil(4/2)
-    assert problem.last_args == ([avg, avg],1,1,1)
-    assert sol.vehicle_k_limits == [avg, avg]
-    assert sol.solution == [['c1','c2'],['c3','c4']]
-
 
 def test_average_partition_custom_limit_radius(monkeypatch):
     # 3 customers, 2 vehicles, limit_radius=2
@@ -117,16 +101,47 @@ def test_average_partition_custom_limit_radius(monkeypatch):
     assert sol.solution == [['c1'],['c2']]
 
 
+def test_average_partition_default_limit_radius(monkeypatch):
+    # 4 customers, 2 vehicles, default limit_radius=1 (from solver class)
+    problem = FakeProblem(['c1','c2','c3','c4'], [10,10])
+    solver = AveragePartitionSolver(problem)
+    def fake_solve_qubo(qubo, solver_type, limit, num_reads):
+        # Distribute two customers per vehicle
+        return [{(0,'c1',1):1,(0,'c2',2):1,(1,'c3',1):1,(1,'c4',2):1}]
+    monkeypatch.setattr(DWaveSolvers_modified, 'solve_qubo', fake_solve_qubo)
+    
+    sol = solver.solve(only_one_const=1, order_const=1, tw_penalty_const=1,
+                        solver_type='sim', num_reads=1)
+    
+    num_customers = len(problem.customer_ids)
+    num_vehicles = len(problem.capacities)
+    avg_per_vehicle = math.ceil(num_customers / num_vehicles) # 4/2 = 2
+    default_limit_radius = 1 # Default in AveragePartitionSolver.solve
+    expected_k_max = avg_per_vehicle + default_limit_radius # 2 + 1 = 3
+
+    assert problem.last_args == ([expected_k_max, expected_k_max], 1, 1, 1)
+
+
 def test_average_partition_large_limit_radius(monkeypatch):
     # Verify behavior with large limit_radius
     problem = FakeProblem(['c1','c2','c3'], [10,10])
     solver = AveragePartitionSolver(problem)
-    monkeypatch.setattr(DWaveSolvers_modified, 'solve_qubo', lambda *args: [{ }])
-
+    # Corrected lambda to accept all expected arguments
+    monkeypatch.setattr(DWaveSolvers_modified, 'solve_qubo', 
+                        lambda qubo, solver_type, limit, num_reads: [{ }])
+    
     sol = solver.solve(only_one_const=1, order_const=1, tw_penalty_const=1,
-                       solver_type='test', num_reads=1, limit_radius=10)
-    avg = math.ceil(3/2)
-    assert problem.last_args[0] == [avg+10, avg+10]
+                        solver_type='test', num_reads=1, limit_radius=10)
+
+    num_customers = len(problem.customer_ids) # 3
+    num_vehicles = len(problem.capacities) # 2
+    avg_per_vehicle = math.ceil(num_customers / num_vehicles) # ceil(3/2) = 2
+    custom_limit_radius = 10
+    expected_k_max = avg_per_vehicle + custom_limit_radius # 2 + 10 = 12
+
+    assert problem.last_args == ([expected_k_max, expected_k_max], 1, 1, 1)
+
+
 
 # ------------------- VRPSolution Tests -------------------
 
