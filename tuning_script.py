@@ -1,4 +1,4 @@
-
+# In your main.py or a new tuning_script.py
 
 import os
 import logging
@@ -9,7 +9,7 @@ import random # For random search
 logging.basicConfig(level=logging.WARNING, format='%(levelname)s: %(message)s') # Set to WARNING to reduce console output during tuning
 logger = logging.getLogger(__name__)
 
-
+# Import your classes and functions
 from graph import Graph
 from utils import load_graph_from_csv, calculate_route_metrics
 from coarsener import SpatioTemporalGraphCoarsener
@@ -44,8 +44,8 @@ def run_evaluation(initial_graph, depot_id, vehicle_capacity, alpha, beta, P, ra
         
         metrics = calculate_route_metrics(initial_graph, final_inflated_routes, depot_id, vehicle_capacity)
 
-        # Defining the objective function here.
-        
+        # Define your objective function here.
+        # Example: Minimize total distance, heavily penalize violations.
         objective_score = metrics["total_distance"]
         if not metrics["is_feasible"]:
             objective_score += 1000000 # Large penalty for infeasible solutions
@@ -95,7 +95,7 @@ if __name__ == "__main__":
         best_params = None
         best_metrics = None
 
-        # --- Grid Search ---
+        # --- Grid Search Example ---
         # for alpha, beta, P, radiusCoeff in itertools.product(alpha_values, beta_values, P_values, radiusCoeff_values):
         #     score, metrics = run_evaluation(initial_graph, depot_id, VEHICLE_CAPACITY, alpha, beta, P, radiusCoeff, solver_type='Greedy')
         #     if score < best_score:
@@ -104,7 +104,7 @@ if __name__ == "__main__":
         #         best_metrics = metrics
         #     logger.info(f"  Tried: {best_params} Score: {score:.2f}")
 
-        # --- Random Search ---
+        # --- Random Search Example ---
         for _ in range(num_random_trials):
             alpha = random.uniform(0.1, 0.9)
             beta = random.uniform(0.1, 0.9)
