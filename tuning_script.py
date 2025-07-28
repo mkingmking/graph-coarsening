@@ -1,63 +1,17 @@
-# In your main.py or a new tuning_script.py
-
 import os
 import logging
-import itertools # For grid search
 import random # For random search
 
 # Configure logging
-logging.basicConfig(level=logging.WARNING, format='%(levelname)s: %(message)s') # Set to WARNING to reduce console output during tuning
+# Set to WARNING to reduce console output during tuning trials,
+# but INFO will be enabled for the final summary.
+logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 
-# Import your classes and functions
+# Import classes and functions from separate files
 from graph import Graph
-from utils import load_graph_from_csv, calculate_route_metrics
-from coarsener import SpatioTemporalGraphCoarsener
-from greedy_solver import GreedySolver
-from savings_solver import SavingsSolver
-
-def run_evaluation(initial_graph, depot_id, vehicle_capacity, alpha, beta, P, radiusCoeff, solver_type='Greedy'):
-    """
-    Runs the coarsening and solving process for a given set of parameters.
-    Returns the objective metric (e.g., total distance) or a penalty if infeasible.
-    """
-    try:
-        coarsener = SpatioTemporalGraphCoarsener(
-            graph=initial_graph,
-            alpha=alpha,
-            beta=beta,
-            P=P,
-            radiusCoeff=radiusCoeff,
-            depot_id=depot_id
-        )
-        coarsened_graph, merge_layers = coarsener.coarsen()
-
-        if solver_type == 'Greedy':
-            solver = GreedySolver(coarsened_graph, depot_id, vehicle_capacity)
-        elif solver_type == 'Savings':
-            solver = SavingsSolver(coarsened_graph, depot_id, vehicle_capacity)
-        else:
-            raise ValueError("Invalid solver_type. Choose 'Greedy' or 'Savings'.")
-
-        coarsened_routes, _ = solver.solve()
-        final_inflated_routes = coarsener.inflate_route(coarsened_routes)
-        
-        metrics = calculate_route_metrics(initial_graph, final_inflated_routes, depot_id, vehicle_capacity)
-
-        # Define your objective function here.
-        # Example: Minimize total distance, heavily penalize violations.
-        objective_score = metrics["total_distance"]
-        if not metrics["is_feasible"]:
-            objective_score += 1000000 # Large penalty for infeasible solutions
-        objective_score += metrics["time_window_violations"] * 1000 # Penalty per violation
-        objective_score += metrics["capacity_violations"] * 1000 # Penalty per violation
-        objective_score += metrics["num_vehicles"] * 100 # Penalty per vehicle
-
-        return objective_score, metrics
-
-    except Exception as e:
-        logger.error(f"Error during evaluation for params ({alpha}, {beta}, {P}, {radiusCoeff}): {e}")
-        return float('inf'), {} # Return a very high score for errors/failures
+from utils import load_graph_from_csv
+from quantum_solvers.solver_evaluation_pipeline import run_evaluation # Import the evaluation pipeline
 
 if __name__ == "__main__":
     base_dataset_dir = 'solomon_dataset'
@@ -69,16 +23,22 @@ if __name__ == "__main__":
                 all_csv_file_paths.append(full_path)
     all_csv_file_paths.sort()
 
-    # Define parameter search space
-    # For Grid Search:
-    alpha_values = [0.1, 0.3, 0.5, 0.7, 0.9]
-    beta_values = [0.1, 0.3, 0.5, 0.7, 0.9]
+    # Define parameter search space for Coarsening
+    alpha_values = [0.1, 0.5, 0.9]
+    beta_values = [0.1, 0.5, 0.9]
     P_values = [0.3, 0.5, 0.7] # Target percentage of nodes remaining
-    radiusCoeff_values = [0.5, 1.0, 1.5, 2.0]
+    radiusCoeff_values = [0.5, 1.0, 1.5]
 
-    # For Random Search (define ranges and number of trials):
-    num_random_trials = 50 # Number of random combinations to try
-    
+    # QUBO Solver specific parameters
+    qubo_only_one_const = 1000 # Penalty for 'exactly one' constraints
+    qubo_order_const = 1 # Weight for objective function (travel cost)
+    qubo_tw_penalty_const = 1000 # New: Penalty for time window violations in QUBO
+    qubo_num_reads = 10 # Number of reads for D-Wave solver (or mock)
+    qubo_solver_types = ['FullQubo', 'AveragePartition'] # Which QUBO solvers to test
+
+    # Random Search parameters for overall tuning
+    num_random_trials_per_file = 20 # Number of random combinations to try for coarsening params
+
     best_params_per_file = {}
 
     for csv_file_path in all_csv_file_paths:
@@ -91,51 +51,78 @@ if __name__ == "__main__":
             logger.error(f"Skipping {csv_file_path} due to error loading graph: {e}")
             continue
 
-        best_score = float('inf')
-        best_params = None
-        best_metrics = None
+        best_score_for_file = float('inf')
+        best_params_for_file = None
+        best_metrics_for_file = None
+        # best_solver_type_for_file = None # This is now part of best_params_for_file
 
-        # --- Grid Search Example ---
-        # for alpha, beta, P, radiusCoeff in itertools.product(alpha_values, beta_values, P_values, radiusCoeff_values):
-        #     score, metrics = run_evaluation(initial_graph, depot_id, VEHICLE_CAPACITY, alpha, beta, P, radiusCoeff, solver_type='Greedy')
-        #     if score < best_score:
-        #         best_score = score
-        #         best_params = {'alpha': alpha, 'beta': beta, 'P': P, 'radiusCoeff': radiusCoeff}
-        #         best_metrics = metrics
-        #     logger.info(f"  Tried: {best_params} Score: {score:.2f}")
-
-        # --- Random Search Example ---
-        for _ in range(num_random_trials):
+        # --- Random Search for Coarsening Parameters + QUBO Solver Type ---
+        for _ in range(num_random_trials_per_file):
             alpha = random.uniform(0.1, 0.9)
             beta = random.uniform(0.1, 0.9)
             P = random.uniform(0.3, 0.7)
             radiusCoeff = random.uniform(0.5, 2.0)
+            solver_type = random.choice(qubo_solver_types) # Randomly choose between FullQubo and AveragePartition
 
-            score, metrics = run_evaluation(initial_graph, depot_id, VEHICLE_CAPACITY, alpha, beta, P, radiusCoeff, solver_type='Greedy')
-            if score < best_score:
-                best_score = score
-                best_params = {'alpha': alpha, 'beta': beta, 'P': P, 'radiusCoeff': radiusCoeff}
-                best_metrics = metrics
-            # logger.info(f"  Tried: alpha={alpha:.2f}, beta={beta:.2f}, P={P:.2f}, radiusCoeff={radiusCoeff:.2f} Score: {score:.2f}")
+            score, metrics = run_evaluation(
+                initial_graph, depot_id, VEHICLE_CAPACITY,
+                alpha, beta, P, radiusCoeff,
+                solver_type=solver_type, # This is the QUBO solver type
+                only_one_const=qubo_only_one_const,
+                order_const=qubo_order_const,
+                tw_penalty_const=qubo_tw_penalty_const, # Pass the new TW penalty constant
+                num_reads=qubo_num_reads
+            )
+
+            if score < best_score_for_file:
+                best_score_for_file = score
+                best_params_for_file = {
+                    'alpha': alpha,
+                    'beta': beta,
+                    'P': P,
+                    'radiusCoeff': radiusCoeff,
+                    'qubo_solver_type': solver_type # Store which QUBO solver was best
+                }
+                best_metrics_for_file = metrics
+            # logger.info(f"  Tried: alpha={alpha:.2f}, beta={beta:.2f}, P={P:.2f}, radiusCoeff={radiusCoeff:.2f}, solver={solver_type} Score: {score:.2f}")
 
 
-        if best_params:
+        if best_params_for_file:
             best_params_per_file[file_name_only] = {
-                'params': best_params,
-                'score': best_score,
-                'metrics': best_metrics
+                'params': best_params_for_file,
+                'score': best_score_for_file,
+                'metrics': best_metrics_for_file
             }
-            logger.info(f"Best params for {file_name_only}: {best_params} with score {best_score:.2f}")
-            if best_metrics:
-                logger.info(f"  Total Distance: {best_metrics['total_distance']:.2f}, Num Vehicles: {best_metrics['num_vehicles']}, Feasible: {best_metrics['is_feasible']}")
+            logger.info(f"Best params for {file_name_only}: {best_params_for_file} with score {best_score_for_file:.2f}")
+            if best_metrics_for_file:
+                logger.info(f"  Total Distance: {best_metrics_for_file['total_distance']:.2f}, Num Vehicles: {best_metrics_for_file['num_vehicles']}, Feasible: {best_metrics_for_file['is_feasible']}")
         else:
             logger.warning(f"No feasible parameters found for {file_name_only}")
 
-    logger.info("\n\n--- Summary of Best Parameters per File ---")
+    # Ensure INFO level logging is enabled for the final summary
+    logger.setLevel(logging.INFO)
+
+    logger.info("\n\n=====================================================================================")
+    logger.info("======================== FINAL SUMMARY OF TUNING RESULTS =============================")
+    logger.info("=====================================================================================")
+
     for file_name, result in best_params_per_file.items():
         logger.info(f"File: {file_name}")
-        logger.info(f"  Best Parameters: {result['params']}")
-        logger.info(f"  Best Score (Objective): {result['score']:.2f}")
+        logger.info(f"  Best Coarsening Params: {result['params']}")
+        logger.info(f"  Best Objective Score: {result['score']:.2f}")
         if result['metrics']:
-            logger.info(f"  Resulting Metrics: Total Distance={result['metrics']['total_distance']:.2f}, Num Vehicles={result['metrics']['num_vehicles']}, Feasible={result['metrics']['is_feasible']}")
-        logger.info("-" * 30)
+            logger.info(f"  Resulting Metrics (on Original Graph after Inflation):")
+            for key, value in result['metrics'].items():
+                if isinstance(value, float):
+                    logger.info(f"    {key.replace('_', ' ').title()}: {value:.2f}")
+                else:
+                    logger.info(f"    {key.replace('_', ' ').title()}: {value}")
+        logger.info("-" * 80)
+
+    logger.info("\nIMPORTANT NOTE ON TIME WINDOWS:")
+    logger.info("The QUBO formulation now includes penalty terms for time window violations.")
+    logger.info("However, due to the inherent complexity of exact time window modeling in QUBO,")
+    logger.info("solutions are still not guaranteed to be perfectly time-window feasible without very high penalties.")
+    logger.info("The 'Time Window Violations' metric in the final results indicates how well the solution")
+    logger.info("adheres to time windows when evaluated on the original graph.")
+

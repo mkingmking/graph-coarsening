@@ -1,4 +1,4 @@
-from qubo import Qubo
+from quantum_solvers.qubo import Qubo
 from itertools import product
 
 class VRPProblem:

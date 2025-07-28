@@ -8,9 +8,9 @@ from utils import calculate_route_metrics
 from coarsener import SpatioTemporalGraphCoarsener
 
 # Import the new VRP/QUBO related classes
-from vrp_problem_qubo import VRPProblem
-from vrp_solution import VRPSolution
-from vrp_solvers import FullQuboSolver, AveragePartitionSolver
+from quantum_solvers.vrp_problem_qubo import VRPProblem
+from quantum_solvers.vrp_solution import VRPSolution
+from quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
 
 logger = logging.getLogger(__name__)
 

@@ -1,10 +1,10 @@
 import math
 # You will need to replace this mock with your actual DWaveSolvers_modified import
 # from DWaveSolvers_modified import solve_qubo
-from mock_dwave_solvers import MockDWaveSolvers as DWaveSolvers_modified # For local testing
+from quantum_solvers.mock_dwave_solvers import MockDWaveSolvers as DWaveSolvers_modified # For local testing
 
-from vrp_problem_qubo import VRPProblem
-from vrp_solution import VRPSolution
+from quantum_solvers.vrp_problem_qubo import VRPProblem
+from quantum_solvers.vrp_solution import VRPSolution
 
 class VRPSolver:
     def __init__(self, problem: VRPProblem):
