@@ -25,118 +25,118 @@ def parse_float(value: str) -> float:
             return float(match.group(0))
         raise
 
-def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_capacity: float):
+import math
+from graph import Graph, compute_euclidean_tau
+
+def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_capacity: float) -> dict:
     """
-    Calculates various metrics for a list of routes on a specified graph.
+    Calculates various metrics for a set of VRP routes.
     
     Args:
-        graph (Graph): The graph (original or coarsened) on which the routes exist.
-        routes (list): A list of lists of node IDs, where each inner list is a route.
+        graph (Graph): The graph containing all nodes (depot and customers).
+        routes (list): A list of lists, where each inner list represents a route
+                       (e.g., ['D', 'C1', 'C2', 'D']).
         depot_id (str): The ID of the depot node.
         vehicle_capacity (float): The maximum capacity of a vehicle.
         
     Returns:
-        dict: A dictionary containing aggregated calculated metrics.
+        dict: A dictionary containing calculated metrics.
     """
     total_distance = 0.0
     total_service_time = 0.0
     total_waiting_time = 0.0
-    total_route_duration = 0.0 # Sum of individual route durations
+    total_route_duration = 0.0
+    total_demand_served = 0.0
     time_window_violations = 0
     capacity_violations = 0
     num_vehicles = len(routes)
-    all_feasible = True
-    total_demand_served = 0.0
+    is_feasible = True # Assume feasible initially based on *generated routes*
 
-    if not routes:
-        return {
-            "total_distance": 0.0,
-            "total_service_time": 0.0,
-            "total_waiting_time": 0.0,
-            "total_route_duration": 0.0,
-            "time_window_violations": 0,
-            "capacity_violations": 0,
-            "is_feasible": False,
-            "num_vehicles": 0,
-            "total_demand_served": 0.0,
-            "routes_list": routes # For debugging, if needed
-        }
+    customers_served_by_routes = set() # To track unique customers visited by any route
+
+    # Get all actual customer nodes in the graph (excluding depot)
+    all_customers_in_graph = {node_id for node_id in graph.nodes if node_id != depot_id}
 
     for route in routes:
-        if not route or len(route) < 2:
-            continue # Skip empty or invalid routes
+        # Skip empty routes or routes that are just [depot, depot]
+        if not route or (len(route) == 2 and route[0] == depot_id and route[1] == depot_id):
+            continue
 
-        current_time = graph.nodes[depot_id].e # Each vehicle starts at depot's earliest time
+        current_time = graph.nodes[depot_id].e # Each vehicle starts at depot's earliest time window
         current_load = 0.0
-        
         route_distance = 0.0
-        route_service_time = 0.0
-        route_waiting_time = 0.0
-        route_feasible = True # Feasibility for this specific route
+        route_start_time = current_time # For calculating this route's total duration
 
-        for i in range(len(route) - 1):
-            from_node_id = route[i]
-            to_node_id = route[i+1]
+        # Ensure route starts and ends with depot for consistent simulation
+        simulated_path = list(route)
+        if simulated_path[0] != depot_id:
+            simulated_path.insert(0, depot_id)
+        if simulated_path[-1] != depot_id:
+            simulated_path.append(depot_id)
+        
+        # Simulate each segment of the route
+        for i in range(len(simulated_path) - 1):
+            from_node_id = simulated_path[i]
+            to_node_id = simulated_path[i+1]
 
             from_node = graph.nodes[from_node_id]
             to_node = graph.nodes[to_node_id]
 
-            # Capacity check (only for customer nodes)
+            travel_time = compute_euclidean_tau(from_node, to_node)
+            
+            # Update current_time for arrival at to_node
+            current_time += travel_time
+            route_distance += travel_time
+
+            # If arriving at a customer node (not depot)
             if to_node_id != depot_id:
+                # Capacity check
                 current_load += to_node.demand
                 if current_load > vehicle_capacity:
                     capacity_violations += 1
-                    route_feasible = False
-                    all_feasible = False
-                    # logger.info(f"  Violation: Route exceeds capacity at node {to_node_id}. Current load {current_load:.2f} > Capacity {vehicle_capacity:.2f}")
+                    is_feasible = False # Route is infeasible due to capacity
 
-            # Travel time between current and next node
-            travel_time = compute_euclidean_tau(from_node, to_node)
-            total_distance += travel_time # Accumulate to total distance
-            route_distance += travel_time
-
-            # Arrival time at the next node
-            arrival_time_at_to_node = current_time + travel_time
-            
-            # Service start time at the next node
-            service_start_time_at_to_node = max(arrival_time_at_to_node, to_node.e)
-
-            # Check for time window violation (service starts too late)
-            if service_start_time_at_to_node > to_node.l:
-                time_window_violations += 1
-                route_feasible = False # This specific route is not feasible
-                all_feasible = False # Overall solution is not feasible
-                # logger.info(f"  Violation: Node {to_node_id} service starts too late. Expected by {to_node.l:.2f}, service start {service_start_time_at_to_node:.2f}")
-
-            # Calculate waiting time
-            waiting_time = max(0, to_node.e - arrival_time_at_to_node)
-            total_waiting_time += waiting_time # Accumulate to total waiting time
-            route_waiting_time += waiting_time
-
-            # Update current time after service at the current node
-            current_time = service_start_time_at_to_node + to_node.s
-
-            # Accumulate service time for customer nodes (not depot on return)
-            if to_node_id != depot_id: # Assuming depot service time is 0 and not counted in total_service_time
-                total_service_time += to_node.s # Accumulate to total service time
-                route_service_time += to_node.s
+                # Time window check (arrival vs. earliest) and waiting time
+                if current_time < to_node.e:
+                    total_waiting_time += (to_node.e - current_time)
+                    current_time = to_node.e # Wait until earliest service time
+                
+                # Time window check (arrival vs. latest)
+                if current_time > to_node.l:
+                    time_window_violations += 1
+                    is_feasible = False # Route is infeasible due to time window violation
+                
+                # Add service time
+                current_time += to_node.s
+                total_service_time += to_node.s
                 total_demand_served += to_node.demand
-            
-        # After a route is completed, add its duration to the total
-        total_route_duration += current_time # The time when this vehicle finishes its route
+                customers_served_by_routes.add(to_node_id)
+            else: # Arriving at depot (final segment of a route)
+                # Check if returning to depot within its time window
+                if current_time > to_node.l:
+                    time_window_violations += 1
+                    is_feasible = False # Route is infeasible if depot return is late
 
-    return {
+        total_distance += route_distance
+        total_route_duration += (current_time - route_start_time) # Duration of this specific route
+
+    # The `is_feasible` flag now only reflects if the *generated routes* themselves
+    # have any time window or capacity violations. It does NOT check if all customers
+    # in the original problem were served. That's a separate aspect.
+
+    metrics = {
         "total_distance": total_distance,
         "total_service_time": total_service_time,
         "total_waiting_time": total_waiting_time,
         "total_route_duration": total_route_duration,
+        "total_demand_served": total_demand_served,
         "time_window_violations": time_window_violations,
         "capacity_violations": capacity_violations,
-        "is_feasible": all_feasible,
         "num_vehicles": num_vehicles,
-        "total_demand_served": total_demand_served,
-        "routes_list": routes # Return the list of routes for inspection
+        "is_feasible": is_feasible # Reflects feasibility of generated routes only
     }
+    return metrics
+
 
 def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
     """

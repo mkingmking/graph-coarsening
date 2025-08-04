@@ -1,5 +1,6 @@
 import logging
 from graph import Graph, compute_euclidean_tau
+from utils import calculate_route_metrics # Import calculate_route_metrics
 
 logger = logging.getLogger(__name__)
 
@@ -249,7 +250,6 @@ class SavingsSolver:
         final_routes_list = list(routes.values())
         logger.info(f"--- Savings Solver Finished. Found {len(final_routes_list)} routes. ---")
         
-        # The metrics are calculated outside the solver to allow for inflation
-        # metrics = calculate_route_metrics(self.graph, final_routes_list, self.depot_id, self.vehicle_capacity)
-        return final_routes_list, {} # Return empty dict for metrics, as they're calculated in main
+        metrics = calculate_route_metrics(self.graph, final_routes_list, self.depot_id, self.vehicle_capacity)
+        return final_routes_list, metrics
 

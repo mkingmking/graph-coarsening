@@ -103,7 +103,7 @@ class SpatioTemporalGraphCoarsener:
         if first_node_id == node_i.id: # Order is i -> j
             # e_prime: Super-node must not start before i.e. Also, if SN starts at S_SN,
             # i finishes at S_SN + s_i, j arrives at S_SN + s_i + tau_ij.
-            # j must start by j.e, so S_SN + s_i + tau_ij >= j.e => S_SN >= j.e - s_i - tau_ij
+            # j must start by j.e, so S_SN >= j.e - s_i - tau_ij
             e_prime = max(node_i.e, node_j.e - (node_i.s + tau_ij))
             
             # l_prime: Super-node must start by i.l. Also, if SN starts at S_SN,
@@ -113,7 +113,7 @@ class SpatioTemporalGraphCoarsener:
         else: # Order is j -> i
             # e_prime: Super-node must not start before j.e. Also, if SN starts at S_SN,
             # j finishes at S_SN + s_j, i arrives at S_SN + s_j + tau_ji.
-            # i must start by i.e, so S_SN + s_j + tau_ji >= i.e => S_SN >= i.e - s_j - tau_ji
+            # i must start by i.e, so S_SN >= i.e - s_j - tau_ji
             e_prime = max(node_j.e, node_i.e - (node_j.s + tau_ij)) # Note: tau_ji is same as tau_ij
             
             # l_prime: Super-node must start by j.l. Also, if SN starts at S_SN,
