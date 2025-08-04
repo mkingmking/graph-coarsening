@@ -14,6 +14,8 @@ from quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
 # Mock D-Wave solver for local testing
 from quantum_solvers.mock_dwave_solvers import MockDWaveSolvers as DWaveSolvers_modified
 from visualisation import visualize_routes
+from or_tools_solver import ORToolsSolver
+
 
 def convert_graph_to_vrp_problem_inputs(graph: Graph, depot_id: str, vehicle_capacity: float) -> VRPProblem:
     costs_matrix = {u: {} for u in graph.nodes}
@@ -43,6 +45,20 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
                 if len(tmp) > 2: formatted.append(tmp)
             routes = coarsener.inflate_route(formatted)
             metrics = calculate_route_metrics(coarsener.graph, routes, depot_id, vehicle_capacity)
+    elif solver_name == 'ortools':
+        num_customers = len(graph.nodes) - 1
+        NUM_VEHICLES = num_customers
+        solver =    ORToolsSolver(graph, depot_id, vehicle_capacity, NUM_VEHICLES)
+        routes, metrics = solver.solve()
+        if coarsener:
+            formatted = []
+            for r in routes:
+                if not r: continue
+                tmp = [depot_id] + r + [depot_id]
+                if len(tmp) > 2: formatted.append(tmp)
+            routes = coarsener.inflate_route(formatted)
+            metrics = calculate_route_metrics(coarsener.graph, routes, depot_id, vehicle_capacity)
+    
     else:
         vrp = convert_graph_to_vrp_problem_inputs(graph, depot_id, vehicle_capacity)
         solver = FullQuboSolver(vrp) if solver_name == 'FullQubo' else AveragePartitionSolver(vrp)
@@ -111,7 +127,8 @@ def log_solver_results(prefix: str, routes: list, metrics: dict):
 
 def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dict:
     results = {}
-    for name in ('Greedy', 'Savings', 'FullQubo', 'AveragePartition'):
+    #for name in ('Greedy', 'Savings', 'FullQubo', 'AveragePartition'):
+    for name in ('Greedy', 'Savings', 'ortools'):
         logger.info(f"\n--- Running UNCOARSENED {name} Solver ---")
         routes, metrics = run_solver_pipeline(graph, depot_id, capacity, name)
         key = f"Uncoarsened {name}"
@@ -125,7 +142,9 @@ def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dic
 
 def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Graph, depot_id: str, capacity: float, initial_graph) -> dict:
     results = {}
-    for name in ('Greedy', 'Savings', 'FullQubo', 'AveragePartition'):
+    #for name in ('Greedy', 'Savings', 'FullQubo', 'AveragePartition'):
+    for name in ('Greedy', 'Savings', 'ortools'):
+
         logger.info(f"\n--- Running INFLATED {name} Solver ---")
         routes, metrics = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener)
         key = f"Inflated {name}"
@@ -135,6 +154,9 @@ def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Gra
     visualize_routes(initial_graph, routes, depot_id, "coarsened Solution")
 
     return results
+
+
+
 
 
 def final_summary(all_results: dict):

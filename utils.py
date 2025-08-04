@@ -25,114 +25,129 @@ def parse_float(value: str) -> float:
             return float(match.group(0))
         raise
 
-import math
-from graph import Graph, compute_euclidean_tau
 
-def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_capacity: float) -> dict:
+
+
+def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_capacity: float):
     """
-    Calculates various metrics for a set of VRP routes.
+    Calculates various metrics for a list of routes on a specified graph.
     
     Args:
-        graph (Graph): The graph containing all nodes (depot and customers).
-        routes (list): A list of lists, where each inner list represents a route
-                       (e.g., ['D', 'C1', 'C2', 'D']).
+        graph (Graph): The graph (original or coarsened) on which the routes exist.
+        routes (list): A list of lists of node IDs, where each inner list is a route.
         depot_id (str): The ID of the depot node.
         vehicle_capacity (float): The maximum capacity of a vehicle.
         
     Returns:
-        dict: A dictionary containing calculated metrics.
+        dict: A dictionary containing aggregated calculated metrics.
     """
     total_distance = 0.0
     total_service_time = 0.0
     total_waiting_time = 0.0
     total_route_duration = 0.0
-    total_demand_served = 0.0
     time_window_violations = 0
     capacity_violations = 0
-    num_vehicles = len(routes)
-    is_feasible = True # Assume feasible initially based on *generated routes*
+    num_vehicles = 0 # Initialize to 0, increment only for valid routes
+    all_feasible = True
+    total_demand_served = 0.0
 
-    customers_served_by_routes = set() # To track unique customers visited by any route
-
-    # Get all actual customer nodes in the graph (excluding depot)
-    all_customers_in_graph = {node_id for node_id in graph.nodes if node_id != depot_id}
+    if not routes:
+        return {
+            "total_distance": 0.0,
+            "total_service_time": 0.0,
+            "total_waiting_time": 0.0,
+            "total_route_duration": 0.0,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": False,
+            "num_vehicles": 0,
+            "total_demand_served": 0.0,
+            "routes_list": routes
+        }
 
     for route in routes:
-        # Skip empty routes or routes that are just [depot, depot]
-        if not route or (len(route) == 2 and route[0] == depot_id and route[1] == depot_id):
+        if not route or len(route) < 2 or (len(route) == 2 and route[0] == depot_id and route[1] == depot_id):
             continue
 
-        current_time = graph.nodes[depot_id].e # Each vehicle starts at depot's earliest time window
-        current_load = 0.0
-        route_distance = 0.0
-        route_start_time = current_time # For calculating this route's total duration
+        num_vehicles += 1
 
-        # Ensure route starts and ends with depot for consistent simulation
-        simulated_path = list(route)
-        if simulated_path[0] != depot_id:
-            simulated_path.insert(0, depot_id)
-        if simulated_path[-1] != depot_id:
-            simulated_path.append(depot_id)
+        current_load = 0.0
+        current_time = graph.nodes[depot_id].e
         
-        # Simulate each segment of the route
-        for i in range(len(simulated_path) - 1):
-            from_node_id = simulated_path[i]
-            to_node_id = simulated_path[i+1]
+        route_distance = 0.0
+        route_service_time = 0.0
+        route_waiting_time = 0.0
+        route_feasible = True
+
+        for i in range(len(route) - 1):
+            from_node_id = route[i]
+            to_node_id = route[i+1]
 
             from_node = graph.nodes[from_node_id]
             to_node = graph.nodes[to_node_id]
 
-            travel_time = compute_euclidean_tau(from_node, to_node)
-            
-            # Update current_time for arrival at to_node
-            current_time += travel_time
-            route_distance += travel_time
-
-            # If arriving at a customer node (not depot)
             if to_node_id != depot_id:
-                # Capacity check
                 current_load += to_node.demand
                 if current_load > vehicle_capacity:
                     capacity_violations += 1
-                    is_feasible = False # Route is infeasible due to capacity
+                    route_feasible = False
+                    all_feasible = False
 
-                # Time window check (arrival vs. earliest) and waiting time
-                if current_time < to_node.e:
-                    total_waiting_time += (to_node.e - current_time)
-                    current_time = to_node.e # Wait until earliest service time
-                
-                # Time window check (arrival vs. latest)
-                if current_time > to_node.l:
-                    time_window_violations += 1
-                    is_feasible = False # Route is infeasible due to time window violation
-                
-                # Add service time
-                current_time += to_node.s
+            travel_time = compute_euclidean_tau(from_node, to_node)
+            total_distance += travel_time
+            route_distance += travel_time
+
+            arrival_time_at_to_node = current_time + travel_time
+            
+            service_start_time_at_to_node = max(arrival_time_at_to_node, to_node.e)
+
+            if service_start_time_at_to_node > to_node.l:
+                time_window_violations += 1
+                route_feasible = False
+                all_feasible = False
+
+            waiting_time = max(0, to_node.e - arrival_time_at_to_node)
+            total_waiting_time += waiting_time
+            route_waiting_time += waiting_time
+
+            current_time = service_start_time_at_to_node + to_node.s
+
+            if to_node_id != depot_id:
                 total_service_time += to_node.s
+                route_service_time += to_node.s
                 total_demand_served += to_node.demand
-                customers_served_by_routes.add(to_node_id)
-            else: # Arriving at depot (final segment of a route)
-                # Check if returning to depot within its time window
-                if current_time > to_node.l:
-                    time_window_violations += 1
-                    is_feasible = False # Route is infeasible if depot return is late
+            
+        if route[-1] == depot_id:
+            last_customer_node_id = route[-2] if len(route) > 1 else depot_id
+            last_customer_node = graph.nodes[last_customer_node_id]
+            depot_node = graph.nodes[depot_id]
+            travel_time_to_depot = compute_euclidean_tau(last_customer_node, depot_node)
+            final_arrival_at_depot = current_time + travel_time_to_depot
 
-        total_distance += route_distance
-        total_route_duration += (current_time - route_start_time) # Duration of this specific route
+            if final_arrival_at_depot > depot_node.l:
+                time_window_violations += 1
+                route_feasible = False
+                all_feasible = False
+            total_route_duration += final_arrival_at_depot
+        else:
+            route_feasible = False
+            all_feasible = False
+            print(f"Warning: Route {route} does not end at depot {depot_id}. Considered infeasible.")
 
-    
-    metrics = {
+    all_feasible = all_feasible and (capacity_violations == 0) and (time_window_violations == 0)
+
+    return {
         "total_distance": total_distance,
         "total_service_time": total_service_time,
         "total_waiting_time": total_waiting_time,
         "total_route_duration": total_route_duration,
-        "total_demand_served": total_demand_served,
         "time_window_violations": time_window_violations,
         "capacity_violations": capacity_violations,
+        "is_feasible": all_feasible,
         "num_vehicles": num_vehicles,
-        "is_feasible": is_feasible 
+        "total_demand_served": total_demand_served,
+        "routes_list": routes
     }
-    return metrics
 
 
 def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
