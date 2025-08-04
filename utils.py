@@ -120,10 +120,7 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
         total_distance += route_distance
         total_route_duration += (current_time - route_start_time) # Duration of this specific route
 
-    # The `is_feasible` flag now only reflects if the *generated routes* themselves
-    # have any time window or capacity violations. It does NOT check if all customers
-    # in the original problem were served. That's a separate aspect.
-
+    
     metrics = {
         "total_distance": total_distance,
         "total_service_time": total_service_time,
@@ -133,7 +130,7 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
         "time_window_violations": time_window_violations,
         "capacity_violations": capacity_violations,
         "num_vehicles": num_vehicles,
-        "is_feasible": is_feasible # Reflects feasibility of generated routes only
+        "is_feasible": is_feasible 
     }
     return metrics
 
@@ -273,4 +270,6 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
         import traceback
         traceback.print_exc()
         raise
+
+
 
