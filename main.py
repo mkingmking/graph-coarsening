@@ -234,7 +234,7 @@ def final_summary(all_results: dict):
                 inflated_service = inflated_metrics.get('total_service_time', 0)
                 if uncoarsened_service > 0:
                     service_improvement = ((uncoarsened_service - inflated_service) / uncoarsened_service) * 100
-                    logger.info(f"  Service Time Reduction: {service_improvement:.2f}%")
+                    logger.info(f"  Service Time Change: {service_improvement:.2f}%")
                 
                 uncoarsened_tw_violations = uncoarsened_metrics.get('time_window_violations', 0)
                 inflated_tw_violations = inflated_metrics.get('time_window_violations', 0)
@@ -243,7 +243,7 @@ def final_summary(all_results: dict):
                     tw_reduction = 0
                     if uncoarsened_tw_violations > 0:
                        tw_reduction = ((uncoarsened_tw_violations - inflated_tw_violations) / uncoarsened_tw_violations) * 100
-                    logger.info(f"  Time Window Violation Reduction: {tw_reduction:.2f}%")
+                    logger.info(f"  Time Window Violation Change: {tw_reduction:.2f}%")
 
                 uncoarsened_cap_violations = uncoarsened_metrics.get('capacity_violations', 0)
                 inflated_cap_violations = inflated_metrics.get('capacity_violations', 0)
