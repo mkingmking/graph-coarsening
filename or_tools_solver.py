@@ -161,7 +161,7 @@ class ORToolsSolver:
         search_parameters.local_search_metaheuristic = (
             routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
         )
-        search_parameters.time_limit.seconds = 120 # Set a time limit for larger problems
+        search_parameters.time_limit.seconds = 30 # Set a time limit for larger problems
 
         # Solve the problem
         solution = model.SolveWithParameters(search_parameters)
