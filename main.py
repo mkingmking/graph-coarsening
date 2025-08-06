@@ -2,7 +2,7 @@ import os
 import logging
 
 
-
+from multiprocessing import Process
 from graph import Graph, compute_euclidean_tau
 from utils import load_graph_from_csv, calculate_route_metrics
 from greedy_solver import GreedySolver
@@ -136,6 +136,8 @@ def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dic
         log_solver_results(key, routes, metrics)
     # Visualize uncoarsened routes
     #visualize_routes(graph, routes, depot_id, "Uncoarsened Solution")
+    p = Process(target=visualize_routes, args=(graph, routes, depot_id, f"Uncoarsened {name} Solution"))
+    p.start()
 
     return results
 
@@ -152,6 +154,9 @@ def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Gra
         log_solver_results(key, routes, metrics)
     # Visualize coarsened routes
     #visualize_routes(initial_graph, routes, depot_id, "coarsened Solution")
+    p = Process(target=visualize_routes, args=(initial_graph, routes, depot_id, f"Inflated {name} Solution"))
+    p.start()
+
 
     return results
 
