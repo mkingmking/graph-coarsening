@@ -4,7 +4,7 @@ import logging
 import random
 
 # Import necessary classes and functions from your project
-from graph_coarsening.graph import Graph
+from graph import Graph
 from utils import load_graph_from_csv, calculate_route_metrics
 from coarsener import SpatioTemporalGraphCoarsener
 from greedy_solver import GreedySolver
