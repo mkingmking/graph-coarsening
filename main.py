@@ -128,14 +128,14 @@ def log_solver_results(prefix: str, routes: list, metrics: dict):
 def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dict:
     results = {}
     #for name in ('Greedy', 'Savings', 'FullQubo', 'AveragePartition'):
-    for name in ('Greedy', 'Savings', 'ortools'):
+    for name in ('Greedy', 'Savings'):
         logger.info(f"\n--- Running UNCOARSENED {name} Solver ---")
         routes, metrics = run_solver_pipeline(graph, depot_id, capacity, name)
         key = f"Uncoarsened {name}"
         results[key] = metrics
         log_solver_results(key, routes, metrics)
     # Visualize uncoarsened routes
-    visualize_routes(graph, routes, depot_id, "Uncoarsened Solution")
+    #visualize_routes(graph, routes, depot_id, "Uncoarsened Solution")
 
     return results
 
@@ -143,7 +143,7 @@ def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dic
 def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Graph, depot_id: str, capacity: float, initial_graph) -> dict:
     results = {}
     #for name in ('Greedy', 'Savings', 'FullQubo', 'AveragePartition'):
-    for name in ('Greedy', 'Savings', 'ortools'):
+    for name in ('Greedy', 'Savings'):
 
         logger.info(f"\n--- Running INFLATED {name} Solver ---")
         routes, metrics = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener)
@@ -151,7 +151,7 @@ def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Gra
         results[key] = metrics
         log_solver_results(key, routes, metrics)
     # Visualize coarsened routes
-    visualize_routes(initial_graph, routes, depot_id, "coarsened Solution")
+    #visualize_routes(initial_graph, routes, depot_id, "coarsened Solution")
 
     return results
 
@@ -187,7 +187,9 @@ def process_file(csv_file_path: str) -> dict:
         logger.error(f"Error loading {csv_file_path}: {e}")
         return {}
     log_graph_info(graph, depot_id)
-    coarsener = SpatioTemporalGraphCoarsener(graph=graph, alpha=0.5, beta=0.5, P=0.5, radiusCoeff=1.0, depot_id=depot_id)
+
+    #### parameter configuration  ####
+    coarsener = SpatioTemporalGraphCoarsener(graph=graph, alpha=0, beta=0.8, P=0.3, radiusCoeff=2.0, depot_id=depot_id)
     coarsened_graph, merge_layers = coarsener.coarsen()
     log_coarsening_info(coarsener, coarsened_graph, merge_layers)
     uncoars = run_uncoarsened_solvers(graph, depot_id, capacity)

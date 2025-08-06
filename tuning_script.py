@@ -24,10 +24,10 @@ if __name__ == "__main__":
     all_csv_file_paths.sort()
 
     # Define parameter search space for Coarsening
-    alpha_values = [0.1, 0.5, 0.9]
+    alpha_values = [0,0.1, 0.5, 0.9]
     beta_values = [0.1, 0.5, 0.9]
     P_values = [0.3, 0.5, 0.7] # Target percentage of nodes remaining
-    radiusCoeff_values = [0.5, 1.0, 1.5]
+    radiusCoeff_values = [0.5, 1.0, 1.5, 2]
 
     # QUBO Solver specific parameters
     qubo_only_one_const = 1000 # Penalty for 'exactly one' constraints
@@ -54,7 +54,7 @@ if __name__ == "__main__":
         best_score_for_file = float('inf')
         best_params_for_file = None
         best_metrics_for_file = None
-        # best_solver_type_for_file = None # This is now part of best_params_for_file
+        
 
         # --- Random Search for Coarsening Parameters + QUBO Solver Type ---
         for _ in range(num_random_trials_per_file):
@@ -84,7 +84,7 @@ if __name__ == "__main__":
                     'qubo_solver_type': solver_type # Store which QUBO solver was best
                 }
                 best_metrics_for_file = metrics
-            # logger.info(f"  Tried: alpha={alpha:.2f}, beta={beta:.2f}, P={P:.2f}, radiusCoeff={radiusCoeff:.2f}, solver={solver_type} Score: {score:.2f}")
+                logger.info(f"  Tried: alpha={alpha:.2f}, beta={beta:.2f}, P={P:.2f}, radiusCoeff={radiusCoeff:.2f}, solver={solver_type} Score: {score:.2f}")
 
 
         if best_params_for_file:
