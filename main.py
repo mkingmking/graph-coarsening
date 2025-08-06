@@ -160,23 +160,102 @@ def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Gra
 
 
 def final_summary(all_results: dict):
+    """
+    Generates a final summary, filtering out zero solutions and
+    calculating optimization metrics for the coarsening process.
+    """
     logger.info("\n\n=== FINAL SUMMARY ACROSS ALL FILES ===")
+    
+    # List of metrics to display
     metrics_list = [
         "total_distance", "total_service_time", "total_waiting_time",
         "total_route_duration", "total_demand_served", "time_window_violations",
         "capacity_violations", "num_vehicles", "is_feasible"
     ]
-    header = "Metric".ljust(25) + " | " + " | ".join([f"{h:<20}" for h in all_results[next(iter(all_results))].keys()])
-    logger.info(header)
-    logger.info("-" * len(header))
+    
     for fname, res in sorted(all_results.items()):
         logger.info(f"\n--- Results for {fname} ---")
-        for m in metrics_list:
-            vals = [r.get(m, 'N/A') for r in res.values()]
-            formatted = [f"{v:.2f}" if isinstance(v, float) else str(v) for v in vals]
-            row = m.replace('_',' ').title().ljust(25) + " | " + " | ".join([f"{fv:<20}" for fv in formatted])
-            logger.info(row)
-    logger.info("\nNote: 'Is Feasible' indicates if any time window or capacity violations were found.")
+        
+        # Solvers to compare
+        solver_names = ('Greedy', 'Savings', 'ortools')
+        
+        for solver_name in solver_names:
+            uncoarsened_key = f"Uncoarsened {solver_name}"
+            inflated_key = f"Inflated {solver_name}"
+            
+            uncoarsened_metrics = res.get(uncoarsened_key, {})
+            inflated_metrics = res.get(inflated_key, {})
+            
+            has_uncoarsened_solution = uncoarsened_metrics.get('num_vehicles', 0) > 0
+            has_inflated_solution = inflated_metrics.get('num_vehicles', 0) > 0
+            
+            if has_uncoarsened_solution:
+                logger.info(f"\n- {uncoarsened_key} Solution -")
+                for m in metrics_list:
+                    val = uncoarsened_metrics.get(m, 'N/A')
+                    if isinstance(val, float):
+                        logger.info(f"  {m.replace('_',' ').title()}: {val:.2f}")
+                    else:
+                        logger.info(f"  {m.replace('_',' ').title()}: {val}")
+                        
+            if has_inflated_solution:
+                logger.info(f"\n- {inflated_key} Solution -")
+                for m in metrics_list:
+                    val = inflated_metrics.get(m, 'N/A')
+                    if isinstance(val, float):
+                        logger.info(f"  {m.replace('_',' ').title()}: {val:.2f}")
+                    else:
+                        logger.info(f"  {m.replace('_',' ').title()}: {val}")
+            
+            # Calculate and display optimization if both solutions exist and are valid
+            if has_uncoarsened_solution and has_inflated_solution:
+                logger.info(f"\n-- Coarsening Optimization for {solver_name} --")
+                
+                uncoarsened_dist = uncoarsened_metrics.get('total_distance', 0)
+                inflated_dist = inflated_metrics.get('total_distance', 0)
+                if uncoarsened_dist > 0:
+                    dist_improvement = ((uncoarsened_dist - inflated_dist) / uncoarsened_dist) * 100
+                    logger.info(f"  Distance Improvement: {dist_improvement:.2f}%")
+                
+                uncoarsened_duration = uncoarsened_metrics.get('total_route_duration', 0)
+                inflated_duration = inflated_metrics.get('total_route_duration', 0)
+                if uncoarsened_duration > 0:
+                    duration_improvement = ((uncoarsened_duration - inflated_duration) / uncoarsened_duration) * 100
+                    logger.info(f"  Duration Improvement: {duration_improvement:.2f}%")
+
+                uncoarsened_vehicles = uncoarsened_metrics.get('num_vehicles', 0)
+                inflated_vehicles = inflated_metrics.get('num_vehicles', 0)
+                if uncoarsened_vehicles > 0:
+                    vehicles_reduction = ((uncoarsened_vehicles - inflated_vehicles) / uncoarsened_vehicles) * 100
+                    logger.info(f"  Vehicle Reduction: {vehicles_reduction:.2f}%")
+
+                # New metrics for service time, time window violations, and capacity violations
+                uncoarsened_service = uncoarsened_metrics.get('total_service_time', 0)
+                inflated_service = inflated_metrics.get('total_service_time', 0)
+                if uncoarsened_service > 0:
+                    service_improvement = ((uncoarsened_service - inflated_service) / uncoarsened_service) * 100
+                    logger.info(f"  Service Time Reduction: {service_improvement:.2f}%")
+                
+                uncoarsened_tw_violations = uncoarsened_metrics.get('time_window_violations', 0)
+                inflated_tw_violations = inflated_metrics.get('time_window_violations', 0)
+                # Note: We don't check for > 0 here, as the metric can be 0 initially.
+                if uncoarsened_tw_violations != 0 or inflated_tw_violations != 0:
+                    tw_reduction = 0
+                    if uncoarsened_tw_violations > 0:
+                       tw_reduction = ((uncoarsened_tw_violations - inflated_tw_violations) / uncoarsened_tw_violations) * 100
+                    logger.info(f"  Time Window Violation Reduction: {tw_reduction:.2f}%")
+
+                uncoarsened_cap_violations = uncoarsened_metrics.get('capacity_violations', 0)
+                inflated_cap_violations = inflated_metrics.get('capacity_violations', 0)
+                # Note: We don't check for > 0 here, as the metric can be 0 initially.
+                if uncoarsened_cap_violations != 0 or inflated_cap_violations != 0:
+                    cap_reduction = 0
+                    if uncoarsened_cap_violations > 0:
+                        cap_reduction = ((uncoarsened_cap_violations - inflated_cap_violations) / uncoarsened_cap_violations) * 100
+                    logger.info(f"  Capacity Violation Reduction: {cap_reduction:.2f}%")
+                    
+        logger.info("\n" + "="*30 + "\n")
+
 
 
 def process_file(csv_file_path: str) -> dict:
