@@ -15,7 +15,7 @@ Clone the repository:
 
 git clone https://github.com/mkingmking/graph-coarsening
 
-cd graph-coarsening
+cd graph_coarsening
 
 Ensure Python 3 is installed.
 
