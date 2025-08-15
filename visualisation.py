@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt 
 import numpy as np 
 import os
-from graph import Graph
+from .graph import Graph
 
 def visualize_routes(graph: Graph, routes: list, depot_id: str, title: str = "VRPTW Solution", filename: str = None):
     """

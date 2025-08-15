@@ -2,9 +2,9 @@
 import math
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
-from graph import Graph
-from node import Node
-from utils import compute_euclidean_tau, calculate_route_metrics
+from .graph import Graph
+from .node import Node
+from .utils import compute_euclidean_tau, calculate_route_metrics
 
 class ORToolsSolver:
     """

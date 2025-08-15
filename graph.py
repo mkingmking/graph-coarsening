@@ -1,6 +1,6 @@
 import math
-from node import Node
-from edge import Edge
+from . node import Node
+from .edge import Edge
 
 def compute_euclidean_tau(node1: Node, node2: Node) -> float:
     """

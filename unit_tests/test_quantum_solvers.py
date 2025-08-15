@@ -3,7 +3,7 @@ import pytest
 from quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver, DWaveSolvers_modified
 from quantum_solvers.vrp_solution import VRPSolution
 from quantum_solvers.vrp_problem_qubo import VRPProblem
-from quantum_solvers.qubo import Qubo
+from quantum_solvers.qubo_solver import Qubo
 
 # Helper classes for testing
 class FakeProblem:

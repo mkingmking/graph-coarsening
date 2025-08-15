@@ -3,18 +3,20 @@ import logging
 
 import random
 from multiprocessing import Process
-from graph import Graph, compute_euclidean_tau
-from utils import load_graph_from_csv, calculate_route_metrics
-from greedy_solver import GreedySolver
-from savings_solver import SavingsSolver
-from coarsener import SpatioTemporalGraphCoarsener
-from quantum_solvers.vrp_problem_qubo import VRPProblem
-from quantum_solvers.vrp_solution import VRPSolution
-from quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
+from . graph import Graph, compute_euclidean_tau
+from . utils import load_graph_from_csv, calculate_route_metrics
+from .greedy_solver import GreedySolver
+from . savings_solver import SavingsSolver
+from . coarsener import SpatioTemporalGraphCoarsener
+from .quantum_solvers.vrp_problem import VRPProblem
+from .quantum_solvers.vrp_solution import VRPSolution
+from .quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
 # Mock D-Wave solver for local testing
-from quantum_solvers.mock_dwave_solvers import MockDWaveSolvers as DWaveSolvers_modified
-from visualisation import visualize_routes
-from or_tools_solver import ORToolsSolver
+#from quantum_solvers.DWaveSolvers_modified import MockDWaveSolvers as DWaveSolvers_modified
+from .visualisation import visualize_routes
+from .or_tools_solver import ORToolsSolver
+from pathlib import Path
+import argparse
 
 _visualisation_counter_uncoarsened = {}
 _visualisation_counter_coarsened = {}
@@ -300,16 +302,49 @@ def process_file(csv_file_path: str) -> dict:
 
 
 
+
+
 def main():
-    base_dir = 'solomon_dataset'
-    files = find_csv_files(base_dir)
+    logger = configure_logging()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data", type=str, default=None,
+                        help="Directory with Solomon CSV files (default: ./solomon_dataset next to main.py)")
+    parser.add_argument("--file", type=str, default=None,
+                        help="Run a single CSV file instead of scanning the directory")
+    args = parser.parse_args()
+
+    script_dir = Path(__file__).resolve().parent
+    base_dir = Path(args.data) if args.data else script_dir / "solomon_dataset"
+
+    if args.file:
+        csv = Path(args.file)
+        if not csv.is_file():
+            logger.error(f"CSV not found: {csv}")
+            return
+        logger.info(f"Processing single file: {csv}")
+        results = process_file(str(csv))
+        logger.info("Done.")
+        return
+
+    if not base_dir.exists():
+        logger.warning(f"Data directory not found: {base_dir}")
+        return
+
+    files = [str(p) for p in sorted(base_dir.rglob("*.csv"))]
+    logger.info(f"Found {len(files)} CSV file(s) under {base_dir}")
+
+    if not files:
+        logger.warning("No CSV files found. Place Solomon instances into this folder or pass --file/--data.")
+        return
+
     all_results = {}
     for path in files:
+        logger.info(f"Processing: {path}")
         res = process_file(path)
-        if res:
-            all_results[os.path.basename(path)] = res
-    if all_results:
-        final_summary(all_results)
+        all_results[path] = res
+
+    final_summary(all_results)
+    logger.info("All done.")
 
 
 if __name__ == "__main__":
