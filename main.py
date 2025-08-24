@@ -132,15 +132,16 @@ i  = 1
 def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dict:
     results = {}
     #for name in ('Greedy', 'Savings', 'FullQubo', 'AveragePartition'):
-    for i, name in enumerate(('Greedy', 'Savings'), start=1):
+    for i, name in enumerate(('Greedy', 'Savings', 'FullQubo'), start=1):
         logger.info(f"\n--- Running UNCOARSENED {name} Solver ---")
         routes, metrics = run_solver_pipeline(graph, depot_id, capacity, name)
         key = f"Uncoarsened {name}"
         results[key] = metrics
         log_solver_results(key, routes, metrics)
-    # Visualize uncoarsened routes
 
-    
+
+
+    # Visualize uncoarsened routes
     count = _visualisation_counter_uncoarsened.get(name, 0) + 1
     _visualisation_counter_uncoarsened[name] = count
 
