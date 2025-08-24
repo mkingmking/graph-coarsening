@@ -27,4 +27,6 @@ python3 -m graph_coarsening.main
 
 The script will automatically process the CSV files in the solomon_dataset/ directory, apply the coarsening algorithm, solve the VRPTW using the implemented heuristics, and print performance metrics to the console.
 
+test
+
 
