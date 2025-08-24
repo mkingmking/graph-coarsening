@@ -189,8 +189,8 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
                 if len(parts) >= 2:
                     try:
                         # Capacity is typically the second value in the comma-separated line (index 1)
-                        vehicle_capacity = float(parts[1].strip())
-                        #vehicle_capacity = 20000
+                        #vehicle_capacity = float(parts[1].strip())
+                        vehicle_capacity = 20000
                     except ValueError:
                         # If parsing as float fails, it's not the expected comma-separated format
                         pass

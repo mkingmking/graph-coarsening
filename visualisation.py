@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np 
 import os
 from .graph import Graph
+from pathlib import Path
 
 def visualize_routes(graph: Graph, routes: list, depot_id: str, title: str = "VRPTW Solution", filename: str = None):
     """
@@ -18,8 +19,9 @@ def visualize_routes(graph: Graph, routes: list, depot_id: str, title: str = "VR
     fig, ax = plt.subplots(figsize=(14, 14))
 
     # Create output directory if it doesn't exist
-    output_dir = "visualisation_routes"
-    os.makedirs(output_dir, exist_ok=True)
+    base_dir = Path(__file__).resolve().parent
+    output_dir = base_dir / "visualisation_routes"
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     # Get coordinates for all nodes
     node_coords_map = {node_id: (node.x, node.y) for node_id, node in graph.nodes.items()}
