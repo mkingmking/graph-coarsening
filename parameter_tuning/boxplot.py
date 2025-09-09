@@ -46,7 +46,7 @@ def main():
         logger.info(f"Successfully loaded {len(df)} experiment results.")
         
     except FileNotFoundError:
-        logger.error(f"Error: Results file '{results_file}' not found. Please run main.py first.")
+        logger.error(f"Error: Results file '{results_file}' not found. Please run tuning_classical_solvers first.")
         return
     except json.JSONDecodeError:
         logger.error(f"Error: Could not decode JSON from '{results_file}'. The file may be corrupted.")

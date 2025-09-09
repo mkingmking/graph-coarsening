@@ -166,6 +166,8 @@ if __name__ == "__main__":
     if not base_dataset_dir.exists():
         raise FileNotFoundError(f"Dataset folder not found: {base_dataset_dir}")
     
+    all_flat_results = []
+    
     # Use rglob for a more efficient way to find all CSV files
     all_csv_file_paths = sorted(str(p) for p in base_dataset_dir.rglob("*.csv"))
 
@@ -179,7 +181,7 @@ if __name__ == "__main__":
     classical_solvers = ['Greedy', 'Savings']
 
     # Random Search parameters for overall tuning
-    num_random_trials_per_file = 1 # Number of random combinations to try
+    num_random_trials_per_file = 20 # Number of random combinations to try
 
     best_params_per_file = {}
 
@@ -246,7 +248,7 @@ if __name__ == "__main__":
                     "time_window_violations": metrics.get("time_window_violations"),
                     "is_feasible": metrics.get("is_feasible")
                 })
-            flat_results.append(row)
+            all_flat_results.append(row)
 
             if score < best_score_for_file:
                 best_score_for_file = score
@@ -261,16 +263,13 @@ if __name__ == "__main__":
                 logger.info(f"  Best so far: alpha={alpha:.2f}, beta={beta:.2f}, P={P:.2f}, radiusCoeff={radiusCoeff:.2f}, solver={solver_type} Score: {score:.2f}")
 
 
-        # --- Save results_for_plots to JSON (NEW) ---
-        json_results = {k: dict(v) for k, v in results_for_plots.items()}
-        os.makedirs("results_json", exist_ok=True)
-        json_path = os.path.join("results_json", f"{os.path.splitext(file_name_only)[0]}_results.json")
-        with open(json_path, "w") as f:
-            json.dump(json_results, f, indent=4)
-        logger.info(f"Results saved to JSON: {json_path}")
-            
+        combined_json_path = "results.json"  # aligns with your plotting script
+        with open(combined_json_path, "w") as f:
+            json.dump(all_flat_results, f, indent=4)
+        logger.info(f"Combined results from all datasets saved to: {combined_json_path}")
+                
         # Generate boxplots for the current file for each parameter
-        for param_name, param_results in results_for_plots.items():
+        """for param_name, param_results in results_for_plots.items():
             if param_results:
                 plot_data = []
                 for value, scores in param_results.items():
@@ -278,7 +277,7 @@ if __name__ == "__main__":
                         plot_data.append({'value': value, 'score': score})
                 create_boxplots(plot_data, file_name_only, param_name)
                 # You can also generate scatterplots if desired by uncommenting the line below
-                create_scatterplots(plot_data, file_name_only, param_name)
+                create_scatterplots(plot_data, file_name_only, param_name)"""
 
 
     logger.info("\n\n=====================================================================================")
