@@ -1,6 +1,6 @@
 import os
 import logging
-
+import json
 import random
 from multiprocessing import Process
 from . graph import Graph, compute_euclidean_tau
@@ -182,8 +182,14 @@ def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Gra
     return results
 
 
-
-
+def save_results_to_json(data: dict, file_path: str):
+    """Saves the all_results dictionary to a JSON file."""
+    try:
+        with open(file_path, 'w') as f:
+            json.dump(data, f, indent=4)
+        logger.info(f"Results successfully saved to {file_path}")
+    except Exception as e:
+        logger.error(f"Error saving results to {file_path}: {e}")
 
 def final_summary(all_results: dict):
     """
@@ -312,6 +318,8 @@ def main():
                         help="Directory with Solomon CSV files (default: ./solomon_dataset next to main.py)")
     parser.add_argument("--file", type=str, default=None,
                         help="Run a single CSV file instead of scanning the directory")
+    parser.add_argument("--output", type=str, default=None,
+                        help="Path to a JSON file to save the results")
     args = parser.parse_args()
 
     script_dir = Path(__file__).resolve().parent
@@ -343,6 +351,9 @@ def main():
         logger.info(f"Processing: {path}")
         res = process_file(path)
         all_results[path] = res
+    
+    if args.output:
+        save_results_to_json(all_results, args.output)
 
     final_summary(all_results)
     logger.info("All done.")

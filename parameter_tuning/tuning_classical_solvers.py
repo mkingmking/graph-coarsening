@@ -1,14 +1,19 @@
-# tuning_classical_solvers.py
 import os
 import logging
 import random
+import matplotlib.pyplot as plt
+import seaborn as sns
+from collections import defaultdict
+from pathlib import Path
+import pandas as pd
+import json
 
 # Import necessary classes and functions from your project
-from graph import Graph
-from utils import load_graph_from_csv, calculate_route_metrics
-from coarsener import SpatioTemporalGraphCoarsener
-from greedy_solver import GreedySolver
-from savings_solver import SavingsSolver
+from graph_coarsening.graph import Graph
+from graph_coarsening.utils import load_graph_from_csv, calculate_route_metrics
+from graph_coarsening.coarsener import SpatioTemporalGraphCoarsener
+from graph_coarsening.greedy_solver import GreedySolver
+from graph_coarsening.savings_solver import SavingsSolver
 
 
 # Configure logging for the tuning process
@@ -63,8 +68,6 @@ def run_evaluation_classical(
 
         # 5. Calculate a single objective score to optimize
         # This score heavily penalizes violations and the number of vehicles
-
-        #### Hyperparameter selection ####
         score = (
             metrics['total_distance'] +
             1000 * metrics['num_vehicles'] +
@@ -78,15 +81,93 @@ def run_evaluation_classical(
         return float('inf'), {}
 
 
+def create_boxplots(results_for_plots: list, file_name_only: str, param_name: str):
+    """
+    Creates boxplots from the tuning results for a single parameter.
+    
+    Args:
+        results_for_plots (list): A list of dictionaries, where each dictionary
+                                  represents a single run and contains 'value' and 'score'.
+        file_name_only (str): The base name of the file to save the plot.
+        param_name (str): The name of the parameter being plotted.
+    """
+    if not results_for_plots:
+        logger.warning(f"No data to plot for {param_name} on {file_name_only}. Skipping boxplot creation.")
+        return
+
+    # Convert the list of results to a pandas DataFrame
+    plot_data = pd.DataFrame(results_for_plots)
+
+    if plot_data.empty:
+        logger.warning(f"DataFrame is empty for {param_name} on {file_name_only}. Skipping boxplot creation.")
+        return
+
+    # Ensure the required columns exist
+    if 'value' not in plot_data.columns or 'score' not in plot_data.columns:
+        logger.error(f"Required columns 'value' or 'score' not found in data for {param_name}.")
+        return
+
+    plt.figure(figsize=(12, 8))
+    ax = sns.boxplot(x='value', y='score', data=plot_data, palette='coolwarm')
+    ax.set_title(f'Performance Scores for {param_name} on {file_name_only}')
+    ax.set_xlabel(f'{param_name.title()} Value')
+    ax.set_ylabel('Score')
+    ax.tick_params(axis='x', rotation=45)
+    plt.tight_layout()
+    plot_path = os.path.join("plots", f"{os.path.splitext(file_name_only)[0]}_{param_name}_boxplot.png")
+    os.makedirs(os.path.dirname(plot_path), exist_ok=True)
+    plt.savefig(plot_path)
+    logger.info(f"Boxplot saved to {plot_path}")
+    plt.close()
+
+
+def create_scatterplots(results_for_plots: list, file_name_only: str, param_name: str):
+    """
+    Creates scatterplots from the tuning results for a single parameter.
+    
+    Args:
+        results_for_plots (list): A list of dictionaries, where each dictionary
+                                  represents a single run and contains 'value' and 'score'.
+        file_name_only (str): The base name of the file to save the plot.
+        param_name (str): The name of the parameter being plotted.
+    """
+    if not results_for_plots:
+        logger.warning(f"No data to plot for {param_name} on {file_name_only}. Skipping scatterplot creation.")
+        return
+
+    plot_data = pd.DataFrame(results_for_plots)
+    
+    if plot_data.empty:
+        logger.warning(f"DataFrame is empty for {param_name} on {file_name_only}. Skipping scatterplot creation.")
+        return
+
+    if 'value' not in plot_data.columns or 'score' not in plot_data.columns:
+        logger.error(f"Required columns 'value' or 'score' not found in data for {param_name}.")
+        return
+
+    plt.figure(figsize=(12, 8))
+    ax = sns.scatterplot(x='value', y='score', data=plot_data, hue='score', palette='viridis', legend=False)
+    ax.set_title(f'Performance Scores for {param_name} on {file_name_only}')
+    ax.set_xlabel(f'{param_name.title()} Value')
+    ax.set_ylabel('Score')
+    ax.tick_params(axis='x', rotation=45)
+    plt.tight_layout()
+    plot_path = os.path.join("plots", f"{os.path.splitext(file_name_only)[0]}_{param_name}_scatterplot.png")
+    os.makedirs(os.path.dirname(plot_path), exist_ok=True)
+    plt.savefig(plot_path)
+    logger.info(f"Scatterplot saved to {plot_path}")
+    plt.close()
+
+
 if __name__ == "__main__":
-    base_dataset_dir = 'solomon_dataset'
-    all_csv_file_paths = []
-    for root, _, files in os.walk(base_dataset_dir):
-        for file in files:
-            if file.endswith('.csv'):
-                full_path = os.path.join(root, file)
-                all_csv_file_paths.append(full_path)
-    all_csv_file_paths.sort()
+    ROOT = Path(__file__).resolve().parents[1]  # graph_coarsening/
+    base_dataset_dir = ROOT / "solomon_dataset"
+
+    if not base_dataset_dir.exists():
+        raise FileNotFoundError(f"Dataset folder not found: {base_dataset_dir}")
+    
+    # Use rglob for a more efficient way to find all CSV files
+    all_csv_file_paths = sorted(str(p) for p in base_dataset_dir.rglob("*.csv"))
 
     # Define parameter search space for Coarsening
     alpha_values = [0.1, 0.5, 0.9]
@@ -98,7 +179,7 @@ if __name__ == "__main__":
     classical_solvers = ['Greedy', 'Savings']
 
     # Random Search parameters for overall tuning
-    num_random_trials_per_file = 20 # Number of random combinations to try
+    num_random_trials_per_file = 1 # Number of random combinations to try
 
     best_params_per_file = {}
 
@@ -115,7 +196,16 @@ if __name__ == "__main__":
         best_score_for_file = float('inf')
         best_params_for_file = None
         best_metrics_for_file = None
-        
+
+        # Dictionary to store all trial results for plotting
+        results_for_plots = {
+            'alpha': defaultdict(list),
+            'beta': defaultdict(list),
+            'P': defaultdict(list),
+            'radiusCoeff': defaultdict(list),
+            'solver_type': defaultdict(list)
+        }
+        flat_results = []
         # --- Random Search for Coarsening Parameters + Solver Type ---
         for _ in range(num_random_trials_per_file):
             alpha = random.choice(alpha_values)
@@ -129,6 +219,34 @@ if __name__ == "__main__":
                 alpha, beta, P, radiusCoeff,
                 solver_name=solver_type
             )
+            
+            # Store results for boxplot/scatterplot generation
+            results_for_plots['alpha'][alpha].append(score)
+            results_for_plots['beta'][beta].append(score)
+            results_for_plots['P'][P].append(score)
+            results_for_plots['radiusCoeff'][radiusCoeff].append(score)
+            results_for_plots['solver_type'][solver_type].append(score)
+
+            # --- Add one row into flat_results for JSON ---
+            row = {
+                "file": file_name_only,
+                "alpha": alpha,
+                "beta": beta,
+                "P": P,
+                "radiusCoeff": radiusCoeff,
+                "solver_type": solver_type,
+                "score": score
+            }
+            if metrics:
+                # Add route metrics with clear prefixes
+                row.update({
+                    "inflated_total_distance": metrics.get("total_distance"),
+                    "num_vehicles": metrics.get("num_vehicles"),
+                    "capacity_violations": metrics.get("capacity_violations"),
+                    "time_window_violations": metrics.get("time_window_violations"),
+                    "is_feasible": metrics.get("is_feasible")
+                })
+            flat_results.append(row)
 
             if score < best_score_for_file:
                 best_score_for_file = score
@@ -143,17 +261,24 @@ if __name__ == "__main__":
                 logger.info(f"  Best so far: alpha={alpha:.2f}, beta={beta:.2f}, P={P:.2f}, radiusCoeff={radiusCoeff:.2f}, solver={solver_type} Score: {score:.2f}")
 
 
-        if best_params_for_file:
-            best_params_per_file[file_name_only] = {
-                'params': best_params_for_file,
-                'score': best_score_for_file,
-                'metrics': best_metrics_for_file
-            }
-            logger.info(f"Best params for {file_name_only}: {best_params_for_file} with score {best_score_for_file:.2f}")
-            if best_metrics_for_file:
-                logger.info(f"  Total Distance: {best_metrics_for_file['total_distance']:.2f}, Num Vehicles: {best_metrics_for_file['num_vehicles']}, Feasible: {best_metrics_for_file['is_feasible']}")
-        else:
-            logger.warning(f"No feasible parameters found for {file_name_only}")
+        # --- Save results_for_plots to JSON (NEW) ---
+        json_results = {k: dict(v) for k, v in results_for_plots.items()}
+        os.makedirs("results_json", exist_ok=True)
+        json_path = os.path.join("results_json", f"{os.path.splitext(file_name_only)[0]}_results.json")
+        with open(json_path, "w") as f:
+            json.dump(json_results, f, indent=4)
+        logger.info(f"Results saved to JSON: {json_path}")
+            
+        # Generate boxplots for the current file for each parameter
+        for param_name, param_results in results_for_plots.items():
+            if param_results:
+                plot_data = []
+                for value, scores in param_results.items():
+                    for score in scores:
+                        plot_data.append({'value': value, 'score': score})
+                create_boxplots(plot_data, file_name_only, param_name)
+                # You can also generate scatterplots if desired by uncommenting the line below
+                create_scatterplots(plot_data, file_name_only, param_name)
 
 
     logger.info("\n\n=====================================================================================")

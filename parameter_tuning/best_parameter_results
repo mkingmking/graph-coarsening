@@ -1,0 +1,844 @@
+=====================================================================================
+INFO: ======================== FINAL SUMMARY OF CLASSICAL TUNING RESULTS =============================
+INFO: =====================================================================================
+INFO: File: C101.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C102.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.5, 'P': 0.5, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C103.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.7, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C104.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C105.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.5, 'P': 0.5, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C106.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C107.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.5, 'P': 0.5, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C108.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.9, 'P': 0.5, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C109.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.1, 'P': 0.5, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C201.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C202.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.9, 'P': 0.5, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C203.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C204.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: C205.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.9, 'P': 0.5, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 1011.31
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 11.31
+INFO:     Total Service Time: 90.00
+INFO:     Total Waiting Time: 90.34
+INFO:     Total Route Duration: 3094.31
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: True
+INFO:     Num Vehicles: 1
+INFO:     Total Demand Served: 20.00
+INFO:     Routes List: [['9', '22', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: C206.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.5, 'P': 0.3, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 1018.14
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 18.14
+INFO:     Total Service Time: 180.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 2947.22
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: True
+INFO:     Num Vehicles: 1
+INFO:     Total Demand Served: 20.00
+INFO:     Routes List: [['9', '12', '11', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: C207.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 5397.21
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 397.21
+INFO:     Total Service Time: 2250.00
+INFO:     Total Waiting Time: 345.66
+INFO:     Total Route Duration: 11631.87
+INFO:     Time Window Violations: 1
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 4
+INFO:     Total Demand Served: 430.00
+INFO:     Routes List: [['9', '26', '10', '12', '11', '91', '9'], ['9', '20', '16', '19', '18', '17', '15', '13', '14', '9'], ['9', '46', '53', '52', '51', '48', '44', '43', '42', '9'], ['9', '77', '72', '71', '74', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: C208.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 2141.46
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 141.46
+INFO:     Total Service Time: 630.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 6292.04
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: True
+INFO:     Num Vehicles: 2
+INFO:     Total Demand Served: 90.00
+INFO:     Routes List: [['9', '12', '11', '22', '49', '9'], ['9', '88', '97', '91', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: R101.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.7, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R102.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.7, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R103.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.1, 'P': 0.5, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R104.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.1, 'P': 0.7, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R105.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.9, 'P': 0.5, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R106.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.5, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R107.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.9, 'P': 0.7, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R108.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.9, 'P': 0.5, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R109.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.1, 'P': 0.5, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R110.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 1035.06
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 35.06
+INFO:     Total Service Time: 20.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 136.50
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: True
+INFO:     Num Vehicles: 1
+INFO:     Total Demand Served: 21.00
+INFO:     Routes List: [['9', '53', '19', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: R111.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R112.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 3079.99
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 79.99
+INFO:     Total Service Time: 60.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 209.42
+INFO:     Time Window Violations: 2
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 1
+INFO:     Total Demand Served: 101.00
+INFO:     Routes List: [['9', '48', '37', '83', '49', '46', '47', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: R201.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.9, 'P': 0.5, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R202.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R203.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R204.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R205.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 1018.87
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 18.87
+INFO:     Total Service Time: 10.00
+INFO:     Total Waiting Time: 119.57
+INFO:     Total Route Duration: 490.87
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: True
+INFO:     Num Vehicles: 1
+INFO:     Total Demand Served: 1.00
+INFO:     Routes List: [['9', '47', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: R206.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 3229.32
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 229.32
+INFO:     Total Service Time: 120.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 1077.97
+INFO:     Time Window Violations: 1
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 2
+INFO:     Total Demand Served: 170.00
+INFO:     Routes List: [['9', '12', '20', '65', '50', '9'], ['9', '74', '22', '23', '42', '41', '54', '13', '27', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: R207.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 4425.44
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 425.44
+INFO:     Total Service Time: 210.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 2093.81
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: True
+INFO:     Num Vehicles: 4
+INFO:     Total Demand Served: 340.00
+INFO:     Routes List: [['9', '12', '20', '65', '50', '9'], ['9', '45', '15', '39', '87', '17', '62', '92', '86', '9'], ['9', '23', '42', '74', '22', '9'], ['9', '25', '30', '55', '13', '27', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: R208.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 15035.59
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 1035.59
+INFO:     Total Service Time: 570.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 4878.58
+INFO:     Time Window Violations: 5
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 9
+INFO:     Total Demand Served: 862.00
+INFO:     Routes List: [['9', '37', '48', '47', '46', '49', '83', '85', '18', '84', '61', '9'], ['9', '70', '29', '28', '19', '53', '9'], ['9', '12', '20', '65', '50', '9'], ['9', '63', '11', '89', '32', '33', '91', '64', '9'], ['9', '45', '15', '39', '87', '92', '17', '62', '9'], ['9', '25', '30', '69', '81', '55', '13', '27', '9'], ['9', '66', '36', '72', '67', '21', '31', '71', '9'], ['9', '10', '52', '82', '34', '35', '79', '9'], ['9', '24', '68', '40', '57', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: R209.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 5435.32
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 435.32
+INFO:     Total Service Time: 250.00
+INFO:     Total Waiting Time: 77.91
+INFO:     Total Route Duration: 2076.84
+INFO:     Time Window Violations: 1
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 4
+INFO:     Total Demand Served: 429.00
+INFO:     Routes List: [['9', '53', '19', '46', '85', '18', '9'], ['9', '48', '37', '12', '20', '65', '50', '9'], ['9', '17', '62', '86', '94', '15', '45', '39', '87', '9'], ['9', '24', '68', '40', '57', '26', '56', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: R210.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.5, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: R211.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.1, 'P': 0.7, 'radiusCoeff': 1.5, 'solver_type': 'Savings'}
+INFO:   Best Objective Score: 15220.43
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 1220.43
+INFO:     Total Service Time: 920.00
+INFO:     Total Waiting Time: 663.81
+INFO:     Total Route Duration: 5095.30
+INFO:     Time Window Violations: 6
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 8
+INFO:     Total Demand Served: 1366.00
+INFO:     Routes List: [['9', '22', '74', '73', '57', '68', '24', '40', '56', '26', '41', '54', '9'], ['9', '96', '95', '76', '75', '23', '42', '14', '59', '98', '90', '9'], ['9', '32', '89', '34', '82', '52', '10', '67', '66', '72', '36', '79', '35', '9'], ['9', '53', '19', '29', '28', '70', '13', '77', '51', '69', '81', '30', '25', '80', '78', '9'], ['9', '48', '37', '12', '20', '65', '50', '63', '11', '64', '91', '33', '31', '21', '71', '9'], ['9', '86', '94', '99', '38', '93', '60', '100', '97', '84', '61', '9'], ['9', '46', '17', '62', '39', '87', '45', '15', '44', '16', '58', '43', '88', '101', '92', '85', '18', '9'], ['9', '47', '83', '49', '27', '55', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC101.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.9, 'P': 0.7, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC102.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC103.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC104.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC105.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.3, 'radiusCoeff': 0.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC106.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.5, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC107.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.5, 'P': 0.5, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC108.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC201.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.5, 'P': 0.3, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC202.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC203.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.5, 'P': 0.3, 'radiusCoeff': 1.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC204.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.9, 'P': 0.3, 'radiusCoeff': 1.5, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 3081.72
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 81.72
+INFO:     Total Service Time: 60.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 521.72
+INFO:     Time Window Violations: 2
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 1
+INFO:     Total Demand Served: 99.00
+INFO:     Routes List: [['9', '80', '61', '74', '79', '46', '47', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC205.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.1, 'P': 0.7, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC206.csv
+INFO:   Best Coarsening Params: {'alpha': 0.1, 'beta': 0.1, 'P': 0.5, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 0.00
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 0.00
+INFO:     Total Service Time: 0.00
+INFO:     Total Waiting Time: 0.00
+INFO:     Total Route Duration: 0.00
+INFO:     Time Window Violations: 0
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 0
+INFO:     Total Demand Served: 0.00
+INFO:     Routes List: []
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC207.csv
+INFO:   Best Coarsening Params: {'alpha': 0.9, 'beta': 0.5, 'P': 0.3, 'radiusCoeff': 2.0, 'solver_type': 'Greedy'}
+INFO:   Best Objective Score: 4409.21
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 409.21
+INFO:     Total Service Time: 160.00
+INFO:     Total Waiting Time: 84.91
+INFO:     Total Route Duration: 1599.60
+INFO:     Time Window Violations: 1
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 3
+INFO:     Total Demand Served: 207.00
+INFO:     Routes List: [['9', '46', '71', '101', '47', '9'], ['9', '83', '66', '15', '13', '53', '100', '88', '54', '9'], ['9', '77', '52', '86', '85', '9']]
+INFO: --------------------------------------------------------------------------------
+INFO: File: RC208.csv
+INFO:   Best Coarsening Params: {'alpha': 0.5, 'beta': 0.5, 'P': 0.5, 'radiusCoeff': 0.5, 'solver_type': 'Savings'}
+INFO:   Best Objective Score: 16565.91
+INFO:   Resulting Metrics (on Original Graph after Inflation):
+INFO:     Total Distance: 1565.91
+INFO:     Total Service Time: 920.00
+INFO:     Total Waiting Time: 339.66
+INFO:     Total Route Duration: 5106.53
+INFO:     Time Window Violations: 7
+INFO:     Capacity Violations: 0
+INFO:     Is Feasible: False
+INFO:     Num Vehicles: 8
+INFO:     Total Demand Served: 1554.00
+INFO:     Routes List: [['9', '68', '63', '51', '77', '90', '64', '86', '52', '85', '96', '57', '9'], ['9', '53', '100', '58', '26', '22', '24', '20', '19', '49', '9'], ['9', '72', '73', '32', '30', '31', '28', '29', '27', '34', '33', '35', '93', '92', '81', '9'], ['9', '13', '15', '76', '78', '59', '23', '21', '50', '25', '9'], ['9', '66', '91', '83', '54', '65', '84', '67', '95', '94', '97', '55', '62', '82', '71', '101', '69', '9'], ['9', '12', '11', '10', '14', '99', '70', '89', '56', '9'], ['9', '74', '79', '80', '16', '17', '48', '18', '98', '60', '88', '87', '75', '61', '9'], ['9', '46', '47', '37', '36', '39', '40', '41', '38', '45', '43', '42', '44', '9']]
+INFO: --------------------------------------------------------------------------------
+(myenv) (base) MUSTAFAMERT@Mustafa-MacBook-Air graph-coarsening % 

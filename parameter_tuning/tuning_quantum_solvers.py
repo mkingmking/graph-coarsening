@@ -9,8 +9,8 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 
 # Import classes and functions from separate files
-from graph import Graph
-from utils import load_graph_from_csv
+from graph_coarsening.graph import Graph
+from graph_coarsening.utils import load_graph_from_csv
 from quantum_solvers.solver_evaluation_pipeline import run_evaluation # Import the evaluation pipeline
 
 if __name__ == "__main__":

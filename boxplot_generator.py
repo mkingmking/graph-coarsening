@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 import os
 import argparse
 
+
+
+#### python plot_results.py results.json ####
+
 def load_results(file_path: str) -> dict:
     """Loads the results from a JSON file."""
     if not os.path.exists(file_path):
