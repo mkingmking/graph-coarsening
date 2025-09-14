@@ -37,7 +37,7 @@ The script will automatically process the CSV files in the solomon_dataset/ dire
 - `results.json` – sample output metrics from experiments.
 - `savings_solver.py` – Clarke & Wright savings heuristic.
 - `visualisation.py` – draws route visualisations.
-- - `utils.py` – helpers for parsing datasets and computing route metrics.
+-  `utils.py` – helpers for parsing datasets and computing route metrics.
 
 
 
