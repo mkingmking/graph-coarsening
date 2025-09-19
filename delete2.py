@@ -3,8 +3,8 @@ import csv
 import io
 import logging
 
-from . graph import Graph, compute_euclidean_tau
-from . node import Node
+from .graph import Graph, compute_euclidean_tau
+from .node import Node
 
 logger = logging.getLogger(__name__)
 
@@ -27,8 +27,7 @@ def parse_float(value: str) -> float:
 
 
 
-
-def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_capacity: float):
+def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_capacity: float) -> dict:
     """
     Calculates various metrics for a list of routes on a specified graph.
     
@@ -44,109 +43,75 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
     total_distance = 0.0
     total_service_time = 0.0
     total_waiting_time = 0.0
-    total_route_duration = 0.0
-    time_window_violations = 0
-    capacity_violations = 0
-    num_vehicles = 0 # Initialize to 0, increment only for valid routes
-    all_feasible = True
-    total_demand_served = 0.0
-
-    if not routes:
-        return {
-            "total_distance": 0.0,
-            "total_service_time": 0.0,
-            "total_waiting_time": 0.0,
-            "total_route_duration": 0.0,
-            "time_window_violations": 0,
-            "capacity_violations": 0,
-            "is_feasible": False,
-            "num_vehicles": 0,
-            "total_demand_served": 0.0,
-            "routes_list": routes
-        }
+    total_duration = 0.0
+    num_vehicles = len(routes)
+    
+    tw_violations = 0
+    cap_violations = 0
 
     for route in routes:
-        if not route or len(route) < 2 or (len(route) == 2 and route[0] == depot_id and route[1] == depot_id):
+        if not route or len(route) < 2:
             continue
-
-        num_vehicles += 1
-
-        current_load = 0.0
-        current_time = graph.nodes[depot_id].e
-        
-        route_distance = 0.0
-        route_service_time = 0.0
-        route_waiting_time = 0.0
-        route_feasible = True
+            
+        current_distance = 0.0
+        current_time = 0.0
+        current_capacity = 0.0
 
         for i in range(len(route) - 1):
-            from_node_id = route[i]
-            to_node_id = route[i+1]
-
-            from_node = graph.nodes[from_node_id]
-            to_node = graph.nodes[to_node_id]
-
-            if to_node_id != depot_id:
-                current_load += to_node.demand
-                if current_load > vehicle_capacity:
-                    capacity_violations += 1
-                    route_feasible = False
-                    all_feasible = False
-
-            travel_time = compute_euclidean_tau(from_node, to_node)
-            total_distance += travel_time
-            route_distance += travel_time
-
-            arrival_time_at_to_node = current_time + travel_time
+            current_node_id = route[i]
+            next_node_id = route[i+1]
             
-            service_start_time_at_to_node = max(arrival_time_at_to_node, to_node.e)
+            current_node = graph.nodes[current_node_id]
+            next_node = graph.nodes[next_node_id]
 
-            if service_start_time_at_to_node > to_node.l:
-                time_window_violations += 1
-                route_feasible = False
-                all_feasible = False
+            # Travel time/distance
+            travel_time = compute_euclidean_tau(current_node, next_node)
+            current_distance += travel_time
+            current_time += travel_time
 
-            waiting_time = max(0, to_node.e - arrival_time_at_to_node)
-            total_waiting_time += waiting_time
-            route_waiting_time += waiting_time
+            # Update for next node
+            if current_node_id != depot_id:
+                # Add service time from the *previous* node
+                current_time += current_node.s
+                total_service_time += current_node.s
 
-            current_time = service_start_time_at_to_node + to_node.s
-
-            if to_node_id != depot_id:
-                total_service_time += to_node.s
-                route_service_time += to_node.s
-                total_demand_served += to_node.demand
+            # Time window and waiting time
+            if current_time < next_node.e:
+                waiting_time = next_node.e - current_time
+                current_time = next_node.e
+                total_waiting_time += waiting_time
             
-        if route[-1] == depot_id:
-            last_customer_node_id = route[-2] if len(route) > 1 else depot_id
-            last_customer_node = graph.nodes[last_customer_node_id]
-            depot_node = graph.nodes[depot_id]
-            travel_time_to_depot = compute_euclidean_tau(last_customer_node, depot_node)
-            final_arrival_at_depot = current_time + travel_time_to_depot
+            # Check time window violation
+            if current_time > next_node.l:
+                tw_violations += 1
+            
+            # Update capacity
+            if next_node_id != depot_id:
+                current_capacity += next_node.demand
 
-            if final_arrival_at_depot > depot_node.l:
-                time_window_violations += 1
-                route_feasible = False
-                all_feasible = False
-            total_route_duration += final_arrival_at_depot
-        else:
-            route_feasible = False
-            all_feasible = False
-            print(f"Warning: Route {route} does not end at depot {depot_id}. Considered infeasible.")
+        # Add service time for the last node before returning to depot
+        if route[-1] != depot_id:
+            current_time += graph.nodes[route[-1]].s
+            total_service_time += graph.nodes[route[-1]].s
 
-    all_feasible = all_feasible and (capacity_violations == 0) and (time_window_violations == 0)
+        total_distance += current_distance
+        total_duration += current_time
+        
+        # Check capacity violation for the entire route
+        if current_capacity > vehicle_capacity:
+            cap_violations += 1
 
+    is_feasible = (tw_violations == 0 and cap_violations == 0)
+    
     return {
         "total_distance": total_distance,
+        "num_vehicles": num_vehicles,
+        "total_duration": total_duration,
         "total_service_time": total_service_time,
         "total_waiting_time": total_waiting_time,
-        "total_route_duration": total_route_duration,
-        "time_window_violations": time_window_violations,
-        "capacity_violations": capacity_violations,
-        "is_feasible": all_feasible,
-        "num_vehicles": num_vehicles,
-        "total_demand_served": total_demand_served,
-        "routes_list": routes
+        "tw_violations_count": tw_violations,
+        "cap_violations_count": cap_violations,
+        "feasible": is_feasible
     }
 
 
@@ -175,37 +140,38 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
 
     try:
         with open(file_path, mode='r', newline='') as f:
-            # Read all lines to parse header and then use StringIO for DictReader
             lines = f.readlines()
             
             # --- Parse Vehicle Capacity ---
-            # Solomon files typically have capacity on line 4 (index 3)
-            # The format is like '  25         200' or '3,45,70,30,825,870,90'
+            # Solomon files typically have capacity on line 4 (index 3).
+            # The format is often space-separated, e.g., '  25         200'.
+            # Some variants may be comma-separated. We'll try both.
             if len(lines) >= 4:
                 capacity_line = lines[3].strip()
                 
-                # Try to parse as comma-separated first (common for some Solomon variants)
-                parts = capacity_line.split(',')
+                # Try to parse space-separated format first
+                parts = capacity_line.split()
                 if len(parts) >= 2:
                     try:
-                        # Capacity is typically the second value in the comma-separated line (index 1)
-                        #vehicle_capacity = float(parts[1].strip())
-                        vehicle_capacity = 200
-                    except ValueError:
-                        # If parsing as float fails, it's not the expected comma-separated format
+                        # Capacity is typically the second value in the space-separated line
+                        vehicle_capacity = float(parts[1].strip())
+                    except (ValueError, IndexError):
                         pass
-                
-                # If not found or failed, try the space-separated regex (for other Solomon variants)
+
+                # If not found or failed, try comma-separated
                 if vehicle_capacity is None:
-                    # Regex to find the second number in the line, which is usually the capacity.
-                    # This pattern looks for one or more digits, followed by one or more spaces,
-                    # then captures one or more digits (the capacity).
-                    capacity_match = re.search(r'\s*\d+\s+(\d+\.?\d*)', capacity_line)
-                    if capacity_match:
-                        vehicle_capacity = float(capacity_match.group(1))
+                    parts = capacity_line.split(',')
+                    if len(parts) >= 2:
+                        try:
+                            # Capacity is typically the second value in the comma-separated line
+                            vehicle_capacity = float(parts[1].strip())
+                        except (ValueError, IndexError):
+                            pass
                 
                 if vehicle_capacity is None:
-                    raise ValueError(f"Could not parse vehicle capacity from line 4: '{capacity_line}'")
+                    # Fallback to hardcoded value if parsing fails
+                    logger.warning("Could not parse vehicle capacity from file. Using default value 200.")
+                    vehicle_capacity = 200.0
             else:
                 raise ValueError("File is too short to contain vehicle capacity information (expected at least 4 lines).")
 
@@ -215,7 +181,6 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
             if len(lines) < 10: # Data starts from line 10 (index 9)
                 raise ValueError("File is too short to contain customer data.")
             
-            # The actual data rows start from line 10 (index 9)
             data_lines = lines[9:] # From the first data line onwards
             data_io = io.StringIO("".join(data_lines))
 
@@ -286,6 +251,3 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
         import traceback
         traceback.print_exc()
         raise
-
-
-
