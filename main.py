@@ -2,6 +2,7 @@ import os
 import logging
 import json
 import random
+import time
 from multiprocessing import Process
 from . graph import Graph, compute_euclidean_tau
 from . utils import load_graph_from_csv, calculate_route_metrics
@@ -37,6 +38,7 @@ def convert_graph_to_vrp_problem_inputs(graph: Graph, depot_id: str, vehicle_cap
 
 
 def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, solver_name: str, coarsener: SpatioTemporalGraphCoarsener = None):
+    start_time = time.perf_counter()
     qubo_params = dict(only_one=1000, order=1, tw_penalty=1000, reads=10, backend='simulated')
     if solver_name in ('Greedy', 'Savings'):
         solver = GreedySolver(graph, depot_id, vehicle_capacity) if solver_name == 'Greedy' else SavingsSolver(graph, depot_id, vehicle_capacity)
@@ -52,7 +54,7 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
     elif solver_name == 'ortools':
         num_customers = len(graph.nodes) - 1
         NUM_VEHICLES = num_customers
-        solver =    ORToolsSolver(graph, depot_id, vehicle_capacity, NUM_VEHICLES)
+        solver = ORToolsSolver(graph, depot_id, vehicle_capacity, NUM_VEHICLES)
         routes, metrics = solver.solve()
         if coarsener:
             formatted = []
@@ -62,7 +64,6 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
                 if len(tmp) > 2: formatted.append(tmp)
             routes = coarsener.inflate_route(formatted)
             metrics = calculate_route_metrics(coarsener.graph, routes, depot_id, vehicle_capacity)
-    
     else:
         vrp = convert_graph_to_vrp_problem_inputs(graph, depot_id, vehicle_capacity)
         solver = FullQuboSolver(vrp) if solver_name == 'FullQubo' else AveragePartitionSolver(vrp)
@@ -74,12 +75,27 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
             if len(tmp) > 2: formatted.append(tmp)
         routes = formatted if not coarsener else coarsener.inflate_route(formatted)
         metrics = calculate_route_metrics(coarsener.graph if coarsener else graph, routes, depot_id, vehicle_capacity)
-    return routes, metrics
-
+    end_time = time.perf_counter()
+    duration = end_time - start_time
+    return routes, metrics, duration
 
 def configure_logging(level=logging.INFO):
     logging.basicConfig(level=level, format='%(levelname)s: %(message)s')
     return logging.getLogger(__name__)
+
+# New function to configure a dedicated file logger for the report
+def configure_file_logger(report_path: str):
+    """Configures a logger to write a clean report to a file."""
+    file_logger = logging.getLogger('report_logger')
+    file_logger.setLevel(logging.INFO)
+    file_logger.propagate = False
+    if file_logger.hasHandlers():
+        file_logger.handlers.clear()
+    handler = logging.FileHandler(report_path, mode='w')
+    formatter = logging.Formatter('%(message)s') # Use a clean format
+    handler.setFormatter(formatter)
+    file_logger.addHandler(handler)
+    return file_logger
 
 logger = configure_logging()
 
@@ -91,7 +107,6 @@ def find_csv_files(base_dir: str) -> list:
                 paths.append(os.path.join(root, f))
     return sorted(paths)
 
-
 def log_graph_info(graph: Graph, depot_id: str, limit: int = 5):
     logger.info("\n--- Initial Graph Nodes (first %d) ---" % limit)
     for nid, node in list(graph.nodes.items())[:limit]:
@@ -101,7 +116,6 @@ def log_graph_info(graph: Graph, depot_id: str, limit: int = 5):
     for edge in graph.edges[:limit]:
         logger.info(edge)
     logger.info(f"Total initial edges: {len(graph.edges)}")
-
 
 def log_coarsening_info(coarsener: SpatioTemporalGraphCoarsener, coarsened_graph: Graph, merge_layers: list, limit: int = 5):
     logger.info("\n\n=== Coarsening Process ===")
@@ -119,71 +133,52 @@ def log_coarsening_info(coarsener: SpatioTemporalGraphCoarsener, coarsened_graph
         logger.info(f"Super-node: {super_id} from {i_id}, {j_id} order {order}")
     logger.info(f"... and {len(merge_layers) - limit} more merge layers.")
 
-
 def log_solver_results(prefix: str, routes: list, metrics: dict):
     logger.info(f"  {prefix} Routes: {routes}")
     for k, v in metrics.items():
         if isinstance(v, float):
-            logger.info(f"    {k.replace('_',' ').title()}: {v:.2f}")
+            if k == 'computation_time':
+                logger.info(f"    Computation Time: {v:.4f} seconds")
+            else:
+                logger.info(f"    {k.replace('_',' ').title()}: {v:.2f}")
         else:
             logger.info(f"    {k.replace('_',' ').title()}: {v}")
 
-i  = 1
 def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dict:
     results = {}
-    #for name in ('Greedy', 'Savings', 'FullQubo', 'AveragePartition'):
-    for i, name in enumerate(('Greedy', 'Savings'), start=1):
+    #for i, name in enumerate(('Greedy', 'Savings'), start=1):
+    for i, name in enumerate(('FQS'), start=1):
+    
         logger.info(f"\n--- Running UNCOARSENED {name} Solver ---")
-        routes, metrics = run_solver_pipeline(graph, depot_id, capacity, name)
+        routes, metrics, duration = run_solver_pipeline(graph, depot_id, capacity, name)
+        metrics['computation_time'] = duration
         key = f"Uncoarsened {name}"
         results[key] = metrics
         log_solver_results(key, routes, metrics)
-
-
-
-    # Visualize uncoarsened routes
     count = _visualisation_counter_uncoarsened.get(name, 0) + 1
     _visualisation_counter_uncoarsened[name] = count
-
-    
     filename = f"{name}{count}"
     visualize_routes(graph, routes, depot_id, "Uncoarsened Solution", filename = "Uncoarsened Solution" + filename)
-    
-    #p = Process(target=visualize_routes, args=(graph, routes, depot_id, f"Uncoarsened {name} Solution"))
-    #p.start()
-
     return results
-
 
 def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Graph, depot_id: str, capacity: float, initial_graph) -> dict:
     results = {}
-    #for name in ('Greedy', 'Savings', 'FullQubo', 'AveragePartition'):
-    for i, name in enumerate(('Greedy', 'Savings'), start=1):
-
-
+    #for i, name in enumerate(('Greedy', 'Savings'), start=1):
+    for i, name in enumerate(('FullQuboSolver'), start=1):
+    
         logger.info(f"\n--- Running INFLATED {name} Solver ---")
-        routes, metrics = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener)
+        routes, metrics, duration = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener)
+        metrics['computation_time'] = duration
         key = f"Inflated {name}"
         results[key] = metrics
         log_solver_results(key, routes, metrics)
-        # Visualize coarsened routes
-
     count = _visualisation_counter_coarsened.get(name, 0) + 1
     _visualisation_counter_coarsened[name] = count
-
-    
     filename = f"{name}{count}"
-    
     visualize_routes(initial_graph, routes, depot_id, "coarsened Solution", filename= "coarsened Solution" + filename)
-    #p = Process(target=visualize_routes, args=(initial_graph, routes, depot_id, f"Inflated {name} Solution"))
-    #p.start()
-
-
     return results
 
-
 def save_results_to_json(data: dict, file_path: str):
-    """Saves the all_results dictionary to a JSON file."""
     try:
         with open(file_path, 'w') as f:
             json.dump(data, f, indent=4)
@@ -191,104 +186,113 @@ def save_results_to_json(data: dict, file_path: str):
     except Exception as e:
         logger.error(f"Error saving results to {file_path}: {e}")
 
-def final_summary(all_results: dict):
+# Modified function to handle both console and file logging
+def final_summary(all_results: dict, file_logger=None):
     """
-    Generates a final summary, filtering out zero solutions and
-    calculating optimization metrics for the coarsening process.
+    Generates a final summary for the console and optionally writes a detailed
+    report to a file.
     """
-    logger.info("\n\n=== FINAL SUMMARY ACROSS ALL FILES ===")
+    # Define a writer function that writes to console and/or file
+    def write_output(message, level='info'):
+        # Always log to the console
+        getattr(logger, level)(message)
+        # Log to file if a file_logger is provided
+        if file_logger:
+            getattr(file_logger, level)(message)
+
+    write_output("\n\n=== FINAL SUMMARY ACROSS ALL FILES ===")
     
-    # List of metrics to display
     metrics_list = [
         "total_distance", "total_service_time", "total_waiting_time",
         "total_route_duration", "total_demand_served", "time_window_violations",
-        "capacity_violations", "num_vehicles", "is_feasible"
+        "capacity_violations", "num_vehicles", "is_feasible", "computation_time"
     ]
     
     for fname, res in sorted(all_results.items()):
-        logger.info(f"\n--- Results for {fname} ---")
-        
-        # Solvers to compare
+        write_output(f"\n--- Results for {fname} ---")
         solver_names = ('Greedy', 'Savings')
-        
         for solver_name in solver_names:
             uncoarsened_key = f"Uncoarsened {solver_name}"
             inflated_key = f"Inflated {solver_name}"
-            
             uncoarsened_metrics = res.get(uncoarsened_key, {})
             inflated_metrics = res.get(inflated_key, {})
-            
             has_uncoarsened_solution = uncoarsened_metrics.get('num_vehicles', 0) > 0
             has_inflated_solution = inflated_metrics.get('num_vehicles', 0) > 0
             
             if has_uncoarsened_solution:
-                logger.info(f"\n- {uncoarsened_key} Solution -")
+                write_output(f"\n- {uncoarsened_key} Solution -")
                 for m in metrics_list:
                     val = uncoarsened_metrics.get(m, 'N/A')
                     if isinstance(val, float):
-                        logger.info(f"  {m.replace('_',' ').title()}: {val:.2f}")
+                        if m == 'computation_time':
+                           write_output(f"  Computation Time: {val:.4f} seconds")
+                        else:
+                           write_output(f"  {m.replace('_',' ').title()}: {val:.2f}")
                     else:
-                        logger.info(f"  {m.replace('_',' ').title()}: {val}")
+                        write_output(f"  {m.replace('_',' ').title()}: {val}")
                         
             if has_inflated_solution:
-                logger.info(f"\n- {inflated_key} Solution -")
+                write_output(f"\n- {inflated_key} Solution -")
                 for m in metrics_list:
                     val = inflated_metrics.get(m, 'N/A')
                     if isinstance(val, float):
-                        logger.info(f"  {m.replace('_',' ').title()}: {val:.2f}")
+                        if m == 'computation_time':
+                           write_output(f"  Computation Time: {val:.4f} seconds")
+                        else:
+                           write_output(f"  {m.replace('_',' ').title()}: {val:.2f}")
                     else:
-                        logger.info(f"  {m.replace('_',' ').title()}: {val}")
+                        write_output(f"  {m.replace('_',' ').title()}: {val}")
             
-            # Calculate and display optimization if both solutions exist and are valid
             if has_uncoarsened_solution and has_inflated_solution:
-                logger.info(f"\n-- Coarsening Optimization for {solver_name} --")
+                write_output(f"\n-- Coarsening Optimization for {solver_name} --")
                 
                 uncoarsened_dist = uncoarsened_metrics.get('total_distance', 0)
                 inflated_dist = inflated_metrics.get('total_distance', 0)
                 if uncoarsened_dist > 0:
                     dist_improvement = ((uncoarsened_dist - inflated_dist) / uncoarsened_dist) * 100
-                    logger.info(f"  Distance Improvement: {dist_improvement:.2f}%")
+                    write_output(f"  Distance Improvement: {dist_improvement:.2f}%")
                 
                 uncoarsened_duration = uncoarsened_metrics.get('total_route_duration', 0)
                 inflated_duration = inflated_metrics.get('total_route_duration', 0)
                 if uncoarsened_duration > 0:
                     duration_improvement = ((uncoarsened_duration - inflated_duration) / uncoarsened_duration) * 100
-                    logger.info(f"  Duration Improvement: {duration_improvement:.2f}%")
+                    write_output(f"  Duration Improvement: {duration_improvement:.2f}%")
 
                 uncoarsened_vehicles = uncoarsened_metrics.get('num_vehicles', 0)
                 inflated_vehicles = inflated_metrics.get('num_vehicles', 0)
                 if uncoarsened_vehicles > 0:
                     vehicles_reduction = ((uncoarsened_vehicles - inflated_vehicles) / uncoarsened_vehicles) * 100
-                    logger.info(f"  Vehicle Reduction: {vehicles_reduction:.2f}%")
+                    write_output(f"  Vehicle Reduction: {vehicles_reduction:.2f}%")
 
-                # New metrics for service time, time window violations, and capacity violations
+                uncoarsened_time = uncoarsened_metrics.get('computation_time', 0)
+                inflated_time = inflated_metrics.get('computation_time', 0)
+                if uncoarsened_time > 0:
+                    time_change = ((uncoarsened_time - inflated_time) / uncoarsened_time) * 100
+                    write_output(f"  Computation Time Change: {time_change:.2f}%")
+
                 uncoarsened_service = uncoarsened_metrics.get('total_service_time', 0)
                 inflated_service = inflated_metrics.get('total_service_time', 0)
                 if uncoarsened_service > 0:
                     service_improvement = ((uncoarsened_service - inflated_service) / uncoarsened_service) * 100
-                    logger.info(f"  Service Time Change: {service_improvement:.2f}%")
+                    write_output(f"  Service Time Change: {service_improvement:.2f}%")
                 
                 uncoarsened_tw_violations = uncoarsened_metrics.get('time_window_violations', 0)
                 inflated_tw_violations = inflated_metrics.get('time_window_violations', 0)
-                # Note: We don't check for > 0 here, as the metric can be 0 initially.
                 if uncoarsened_tw_violations != 0 or inflated_tw_violations != 0:
                     tw_reduction = 0
                     if uncoarsened_tw_violations > 0:
                        tw_reduction = ((uncoarsened_tw_violations - inflated_tw_violations) / uncoarsened_tw_violations) * 100
-                    logger.info(f"  Time Window Violation Change: {tw_reduction:.2f}%")
+                    write_output(f"  Time Window Violation Change: {tw_reduction:.2f}%")
 
                 uncoarsened_cap_violations = uncoarsened_metrics.get('capacity_violations', 0)
                 inflated_cap_violations = inflated_metrics.get('capacity_violations', 0)
-                # Note: We don't check for > 0 here, as the metric can be 0 initially.
                 if uncoarsened_cap_violations != 0 or inflated_cap_violations != 0:
                     cap_reduction = 0
                     if uncoarsened_cap_violations > 0:
                         cap_reduction = ((uncoarsened_cap_violations - inflated_cap_violations) / uncoarsened_cap_violations) * 100
-                    logger.info(f"  Capacity Violation Reduction: {cap_reduction:.2f}%")
+                    write_output(f"  Capacity Violation Reduction: {cap_reduction:.2f}%")
                     
-        logger.info("\n" + "="*30 + "\n")
-
-
+        write_output("\n" + "="*30 + "\n")
 
 def process_file(csv_file_path: str) -> dict:
     logger.info(f"\n\n=== Processing file: {csv_file_path} ===")
@@ -298,18 +302,12 @@ def process_file(csv_file_path: str) -> dict:
         logger.error(f"Error loading {csv_file_path}: {e}")
         return {}
     log_graph_info(graph, depot_id)
-
-    #### parameter configuration  ####
     coarsener = SpatioTemporalGraphCoarsener(graph=graph, alpha=0.8, beta=0.4, P=0.5, radiusCoeff=2.0, depot_id=depot_id)
     coarsened_graph, merge_layers = coarsener.coarsen()
     log_coarsening_info(coarsener, coarsened_graph, merge_layers)
     uncoars = run_uncoarsened_solvers(graph, depot_id, capacity)
     inflated = run_inflated_solvers(coarsener, coarsened_graph, depot_id, capacity, graph)
     return {**uncoars, **inflated}
-
-
-
-
 
 def main():
     logger = configure_logging()
@@ -320,7 +318,16 @@ def main():
                         help="Run a single CSV file instead of scanning the directory")
     parser.add_argument("--output", type=str, default=None,
                         help="Path to a JSON file to save the results")
+    # Added argument for the report file
+    parser.add_argument("--report", type=str, default=None,
+                        help="Path to a text file to save the final summary report")
     args = parser.parse_args()
+
+    # Configure file logger if the report path is provided
+    file_logger = None
+    if args.report:
+        file_logger = configure_file_logger(args.report)
+        logger.info(f"Summary report will be saved to: {args.report}")
 
     script_dir = Path(__file__).resolve().parent
     base_dir = Path(args.data) if args.data else script_dir / "solomon_dataset"
@@ -331,7 +338,11 @@ def main():
             logger.error(f"CSV not found: {csv}")
             return
         logger.info(f"Processing single file: {csv}")
-        results = process_file(str(csv))
+        # Note: In single-file mode, we need to manually create the results dict
+        res = process_file(str(csv))
+        all_results = {str(csv): res}
+        # Pass the file logger to the final summary function
+        final_summary(all_results, file_logger=file_logger)
         logger.info("Done.")
         return
 
@@ -355,9 +366,9 @@ def main():
     if args.output:
         save_results_to_json(all_results, args.output)
 
-    final_summary(all_results)
+    # Pass the file logger to the final summary function
+    final_summary(all_results, file_logger=file_logger)
     logger.info("All done.")
-
 
 if __name__ == "__main__":
     main()

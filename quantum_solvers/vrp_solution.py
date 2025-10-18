@@ -10,137 +10,98 @@ class VRPSolution:
             temp_routes = {i: [] for i in range(num_vehicles)}
 
             for var, val in sample.items():
-                if val == 1:
+                # FIX: This now checks that the variable is a valid routing variable
+                # (a tuple of 3 integers) and explicitly ignores other variable types,
+                # such as the slack variables ('s', i, m) from the capacity constraint.
+                if val == 1 and isinstance(var, tuple) and len(var) == 3 and isinstance(var[0], int):
                     i, j, k = var
-                    temp_routes[i].append((k, j))
+                    # Safety check to ensure the vehicle index is valid
+                    if i < num_vehicles:
+                        temp_routes[i].append((k, j))
 
             final_routes = []
             for i in range(num_vehicles):
+                # Sort visits by step 'k' to form the route
                 sorted_visits = sorted(temp_routes[i], key=lambda x: x[0])
                 route = [j for k, j in sorted_visits]
-                final_routes.append(route)
+                if route:
+                    final_routes.append(route)
             
             self.solution = final_routes
-
+    
     def check(self):
         capacities = self.problem.capacities
         weights = self.problem.weights
         time_windows = self.problem.time_windows
         service_times = self.problem.service_times
+        costs = self.problem.costs
 
-        # --- Check for duplicate visits ---
-        all_visited_dests_list = [dest for route in self.solution for dest in route]
-        
-        # 1. Did we visit the correct number of locations?
-        if len(all_visited_dests_list) != len(self.problem.dests):
-            print(f"Warning: Incorrect number of total visits. Required: {len(self.problem.dests)}, Found: {len(all_visited_dests_list)}")
-            return False
-            
-        # 2. Are there any duplicate visits across all routes?
-        if len(set(all_visited_dests_list)) != len(all_visited_dests_list):
-            print(f"Warning: Duplicate customer visits found in solution.")
-            return False
-
-        # 3. Capacity Check
+        visited_customers = set()
         for i, route in enumerate(self.solution):
-            vehicle_load = sum(weights[dest] for dest in route)
-            if vehicle_load > capacities[i]:
-                print(f"Warning: Vehicle {i} exceeds capacity. Load: {vehicle_load}, Capacity: {capacities[i]}")
+            for customer in route:
+                if customer in visited_customers:
+                    print(f"Error: Customer {customer} visited more than once.")
+                    return False
+                visited_customers.add(customer)
+            
+            current_load = sum(weights.get(dest, 0) for dest in route)
+            if current_load > capacities[i]:
+                print(f"Error: Vehicle {i} exceeds capacity. Load: {current_load}, Capacity: {capacities[i]}")
                 return False
 
-        # 4. Time Window Check
-        costs = self.problem.costs
-        for i, route in enumerate(self.solution):
-            if not route:
-                continue
-
-            current_time = 0
+            if not route: continue
             
-            # Travel from depot to first customer
+            current_time = 0.0
             current_time += costs[self.depot][route[0]]
             
-            # Check time window for first customer
             ready_time, due_date = time_windows[route[0]]
             if current_time > due_date:
-                print(f"Warning: Vehicle {i} arrives at customer {route[0]} too late. Arrival: {current_time}, Due Date: {due_date}")
+                print(f"Error: Vehicle {i} late for first stop {route[0]}. Arrival: {current_time}, Due: {due_date}")
                 return False
-            
-            # Wait if necessary
             current_time = max(current_time, ready_time)
-            
-            # Service time at first customer
             current_time += service_times[route[0]]
-            
-            for j in range(len(route) - 1):
-                # Travel from current customer to next customer
-                current_time += costs[route[j]][route[j+1]]
+
+            for stop_idx in range(len(route) - 1):
+                from_node, to_node = route[stop_idx], route[stop_idx+1]
+                current_time += costs[from_node][to_node]
                 
-                # Check time window for next customer
-                ready_time, due_date = time_windows[route[j+1]]
+                ready_time, due_date = time_windows[to_node]
                 if current_time > due_date:
-                    print(f"Warning: Vehicle {i} arrives at customer {route[j+1]} too late. Arrival: {current_time}, Due Date: {due_date}")
+                    print(f"Error: Vehicle {i} late for stop {to_node}. Arrival: {current_time}, Due: {due_date}")
                     return False
-                
-                # Wait if necessary
                 current_time = max(current_time, ready_time)
-                
-                # Service time at next customer
-                current_time += service_times[route[j+1]]
+                current_time += service_times[to_node]
+
+        # FIX: Added a check to ensure all required customers have been visited.
+        # This is the crucial step that was missing.
+        required_customers = set(self.problem.dests)
+        if visited_customers != required_customers:
+            missing = required_customers - visited_customers
+            print(f"Error: Solution is incomplete. Missing customers: {missing}")
+            return False
 
         return True
 
     def total_cost(self):
-        costs = self.problem.costs
-        depot = self.depot
         total_cost = 0
-
         for route in self.solution:
-            if not route:
-                continue
+            if not route: continue
             
-            # Calculate total travel time and waiting time
-            current_time = 0
-            total_waiting_time = 0
-            
-            # Travel from depot to first customer
-            travel_time_first = costs[depot][route[0]]
-            arrival_time_first = current_time + travel_time_first
-            
-            # Waiting time at first customer
-            waiting_time_first = max(0, self.problem.time_windows[route[0]][0] - arrival_time_first)
-            
-            # Update current time after service
-            current_time = max(arrival_time_first, self.problem.time_windows[route[0]][0]) + self.problem.service_times[route[0]]
-            
-            total_waiting_time += waiting_time_first
-            
-            current_cost = travel_time_first
+            route_cost = self.problem.costs[self.depot][route[0]]
             
             for i in range(len(route) - 1):
-                travel_time = costs[route[i]][route[i+1]]
-                current_cost += travel_time
-                
-                arrival_time = current_time + travel_time
-                waiting_time = max(0, self.problem.time_windows[route[i+1]][0] - arrival_time)
-                
-                current_time = max(arrival_time, self.problem.time_windows[route[i+1]][0]) + self.problem.service_times[route[i+1]]
-                
-                total_waiting_time += waiting_time
-
-            # Return to depot
-            current_cost += costs[route[-1]][depot]
+                route_cost += self.problem.costs[route[i]][route[i+1]]
             
-            total_cost += current_cost + total_waiting_time
+            route_cost += self.problem.costs[route[-1]][self.depot]
             
+            total_cost += route_cost
         return total_cost
 
     def description(self):
         print("Solution Routes:")
         for i, route in enumerate(self.solution):
-            if route:
-                full_path = [self.depot] + route + [self.depot]
-                print(f"  Vehicle {i}: {' -> '.join(map(str, full_path))}")
-            else:
-                print(f"  Vehicle {i}: Not used")
+            path_str = " -> ".join(map(str, [self.depot] + route + [self.depot]))
+            print(f"  Vehicle {i}: {path_str}")
         print(f"\nTotal Cost: {self.total_cost():.2f}")
-        print(f"Is Solution Valid: {self.check()}")
+        print(f"Is Solution Valid (Capacity/TW): {self.check()}")
+

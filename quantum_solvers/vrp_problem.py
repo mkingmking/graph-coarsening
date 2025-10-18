@@ -1,10 +1,9 @@
+import math
 from .qubo_solver import Qubo
-from itertools import product
-import numpy as np
 
 class VRPProblem:
-    def __init__(self, sources, costs, time_costs, capacities, dests, weights, time_windows, service_times):
-        self.source_depot = 0
+    def __init__(self, source_depot, costs, time_costs, capacities, dests, weights, time_windows, service_times):
+        self.source_depot = source_depot
         self.costs = costs
         self.time_costs = time_costs
         self.capacities = capacities
@@ -13,90 +12,99 @@ class VRPProblem:
         self.time_windows = time_windows
         self.service_times = service_times
 
-    def get_qubo(self, vehicle_k_limits, only_one_const, order_const, time_window_const):
+    def get_qubo(self, vehicle_k_limits, only_one_const, order_const, capacity_penalty, time_window_penalty, vehicle_start_cost):
         """
         Generates the QUBO for the CVRPTW.
-        Variables are tuples (i, j, k): vehicle i, destination j, step k.
+        This model now includes penalties for vehicle capacity and time window violations.
         """
         num_vehicles = len(self.capacities)
         customer_nodes = self.dests
-        num_nodes = len(self.weights)
 
         qubo = Qubo()
 
-        # ======================================================================
-        # CONSTRAINT 1: Each customer is visited exactly once.
-        # ======================================================================
+        # --- Base Constraints ---
+        # 1. Each customer is visited exactly once (globally).
         for j in customer_nodes:
-            variables_for_dest_j = []
-            for i in range(num_vehicles):
-                k_max = vehicle_k_limits[i]
-                for k in range(1, k_max + 1):
-                    variables_for_dest_j.append((i, j, k))
-            qubo.add_only_one_constraint(variables_for_dest_j, only_one_const)
+            variables = [(i, j, k) for i in range(num_vehicles) for k in range(vehicle_k_limits[i])]
+            qubo.add_only_one_constraint(variables, only_one_const)
 
-        # ======================================================================
-        # CONSTRAINT 2: Each vehicle is in at most one location at each step.
-        # ======================================================================
+        # 2. Each vehicle is in at most one location at each step.
+        for i in range(num_vehicles):
+            for k in range(vehicle_k_limits[i]):
+                variables = [(i, j, k) for j in customer_nodes]
+                qubo.add_at_most_one_constraint(variables, only_one_const)
+        
+        # --- NEW: A vehicle cannot visit the same customer more than once. ---
+        # This is a critical addition to prevent routes like (C4 -> C4).
+        for i in range(num_vehicles):
+            for j in customer_nodes:
+                # For a given vehicle 'i' and customer 'j', only one 'k' (step) can be chosen.
+                variables = [(i, j, k) for k in range(vehicle_k_limits[i])]
+                qubo.add_at_most_one_constraint(variables, only_one_const)
+
+
+        # --- Capacity Constraint ---
+        # For each vehicle, sum of demands + slack variables must equal capacity.
+        for i in range(num_vehicles):
+            capacity = self.capacities[i]
+            if capacity <= 0: continue
+            
+            num_slack_bits = math.floor(math.log2(capacity)) + 1
+            slack_vars = [('s', i, m) for m in range(num_slack_bits)]
+            
+            constraint_expr = []
+            for j in customer_nodes:
+                demand = self.weights.get(j, 0)
+                for k in range(vehicle_k_limits[i]):
+                    constraint_expr.append((demand, (i, j, k)))
+            for m in range(num_slack_bits):
+                constraint_expr.append((2**m, slack_vars[m]))
+            
+            qubo.add_quadratic_equality_constraint(constraint_expr, -capacity, capacity_penalty)
+
+        # --- Time Window Constraint ---
+        # Penalize transitions between customers that are impossible due to time windows.
         for i in range(num_vehicles):
             k_max = vehicle_k_limits[i]
-            for k in range(1, k_max + 1):
-                variables_for_vehicle_step = [(i, j, k) for j in customer_nodes]
-                qubo.add_only_one_constraint(variables_for_vehicle_step, only_one_const)
-   
-        # ======================================================================
-        # CONSTRAINT 3: A vehicle cannot visit the same customer twice.
-        # ======================================================================
+            for j1 in customer_nodes:
+                depot_ready_time = self.time_windows[self.source_depot][0]
+                depot_service_time = self.service_times[self.source_depot]
+                travel_time_to_j1 = self.time_costs[self.source_depot][j1]
+                earliest_arrival_j1 = depot_ready_time + depot_service_time + travel_time_to_j1
+                if earliest_arrival_j1 > self.time_windows[j1][1]:
+                    qubo.add(((i, j1, 0), (i, j1, 0)), time_window_penalty)
+                
+                for j2 in customer_nodes:
+                    if j1 == j2: continue
+                    earliest_finish_j1 = self.time_windows[j1][0] + self.service_times[j1]
+                    travel_time_j1_j2 = self.time_costs[j1][j2]
+                    earliest_arrival_j2 = earliest_finish_j1 + travel_time_j1_j2
+                    
+                    if earliest_arrival_j2 > self.time_windows[j2][1]:
+                        for k in range(k_max - 1):
+                            var1 = (i, j1, k)
+                            var2 = (i, j2, k + 1)
+                            qubo.add((var1, var2), time_window_penalty)
+
+        # --- Objective Function ---
+        # Minimize total travel distance + vehicle usage cost.
         for i in range(num_vehicles):
             k_max = vehicle_k_limits[i]
             for j in customer_nodes:
-                variables_for_vehicle_dest = [(i, j, k) for k in range(1, k_max + 1)]
-                for k1_idx in range(len(variables_for_vehicle_dest)):
-                    for k2_idx in range(k1_idx + 1, len(variables_for_vehicle_dest)):
-                        var1 = variables_for_vehicle_dest[k1_idx]
-                        var2 = variables_for_vehicle_dest[k2_idx]
-                        qubo.add((var1, var2), only_one_const)
+                cost_from_depot = self.costs[self.source_depot][j]
+                qubo.add(((i, j, 0), (i, j, 0)), cost_from_depot * order_const + vehicle_start_cost)
+                
+                cost_to_depot = self.costs[j][self.source_depot]
+                qubo.add(((i, j, k_max - 1), (i, j, k_max - 1)), cost_to_depot * order_const)
 
-        # ======================================================================
-        # OBJECTIVE FUNCTION C: Minimize travel distance BETWEEN CUSTOMERS.
-        # ======================================================================
-        for i in range(num_vehicles):
-            k_max = vehicle_k_limits[i]
-            # --- Cost between intermediate stops (step k to k+1) ---
-            for k in range(1, k_max): # from step 1 up to k_max-1
+            for k in range(k_max - 1):
                 for j1 in customer_nodes:
                     for j2 in customer_nodes:
                         if j1 == j2: continue
                         var1 = (i, j1, k)
-                        var2 = (i, j2, k+1)
+                        var2 = (i, j2, k + 1)
                         cost = self.costs[j1][j2]
                         qubo.add((var1, var2), cost * order_const)
 
-        # ======================================================================
-        # NEW CONSTRAINT: Time Window Constraint
-        # This is a soft constraint. It penalizes solutions that violate time windows.
-        # Note: The QUBO formulation of this constraint can be complex and may require
-        # a different approach, e.g., a time-expanded network.
-        # Here, we will formulate a simplified penalty based on a single step.
-        # ======================================================================
-        for i in range(num_vehicles):
-            k_max = vehicle_k_limits[i]
-            for k in range(1, k_max + 1):
-                # The total time accumulated up to step k
-                # This is a simplified approximation and a more rigorous approach
-                # would be needed for a precise QUBO formulation.
-                # However, for a simple penalty, we can use the k value as a proxy for time.
-                for j in customer_nodes:
-                    arrival_time = self.costs[self.source_depot][j] * k # a very rough approximation
-                    
-                    ready_time = self.time_windows[j][0]
-                    due_date = self.time_windows[j][1]
-                    
-                    if arrival_time < ready_time:
-                        penalty = (ready_time - arrival_time)
-                        qubo.add((i, j, k), penalty * time_window_const)
-                    elif arrival_time > due_date:
-                        penalty = (arrival_time - due_date)
-                        qubo.add((i, j, k), penalty * time_window_const)
-        
         return qubo
+
