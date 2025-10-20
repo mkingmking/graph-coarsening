@@ -83,7 +83,7 @@ def configure_logging(level=logging.INFO):
     logging.basicConfig(level=level, format='%(levelname)s: %(message)s')
     return logging.getLogger(__name__)
 
-# New function to configure a dedicated file logger for the report
+#function to configure a dedicated file logger for the report
 def configure_file_logger(report_path: str):
     """Configures a logger to write a clean report to a file."""
     file_logger = logging.getLogger('report_logger')
@@ -92,7 +92,7 @@ def configure_file_logger(report_path: str):
     if file_logger.hasHandlers():
         file_logger.handlers.clear()
     handler = logging.FileHandler(report_path, mode='w')
-    formatter = logging.Formatter('%(message)s') # Use a clean format
+    formatter = logging.Formatter('%(message)s') 
     handler.setFormatter(formatter)
     file_logger.addHandler(handler)
     return file_logger
@@ -146,9 +146,8 @@ def log_solver_results(prefix: str, routes: list, metrics: dict):
 
 def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dict:
     results = {}
-    #for i, name in enumerate(('Greedy', 'Savings'), start=1):
-    for i, name in enumerate(('FQS'), start=1):
-    
+    for i, name in enumerate(('Greedy', 'Savings'), start=1):
+
         logger.info(f"\n--- Running UNCOARSENED {name} Solver ---")
         routes, metrics, duration = run_solver_pipeline(graph, depot_id, capacity, name)
         metrics['computation_time'] = duration
@@ -163,8 +162,7 @@ def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dic
 
 def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Graph, depot_id: str, capacity: float, initial_graph) -> dict:
     results = {}
-    #for i, name in enumerate(('Greedy', 'Savings'), start=1):
-    for i, name in enumerate(('FullQuboSolver'), start=1):
+    for i, name in enumerate(('Greedy', 'Savings'), start=1):
     
         logger.info(f"\n--- Running INFLATED {name} Solver ---")
         routes, metrics, duration = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener)
@@ -186,7 +184,7 @@ def save_results_to_json(data: dict, file_path: str):
     except Exception as e:
         logger.error(f"Error saving results to {file_path}: {e}")
 
-# Modified function to handle both console and file logging
+#function to handle both console and file logging
 def final_summary(all_results: dict, file_logger=None):
     """
     Generates a final summary for the console and optionally writes a detailed
@@ -309,7 +307,8 @@ def process_file(csv_file_path: str) -> dict:
     inflated = run_inflated_solvers(coarsener, coarsened_graph, depot_id, capacity, graph)
     return {**uncoars, **inflated}
 
-def main():
+def main(): 
+    #arguments that the file can take
     logger = configure_logging()
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", type=str, default=None,
@@ -318,7 +317,6 @@ def main():
                         help="Run a single CSV file instead of scanning the directory")
     parser.add_argument("--output", type=str, default=None,
                         help="Path to a JSON file to save the results")
-    # Added argument for the report file
     parser.add_argument("--report", type=str, default=None,
                         help="Path to a text file to save the final summary report")
     args = parser.parse_args()
@@ -338,10 +336,8 @@ def main():
             logger.error(f"CSV not found: {csv}")
             return
         logger.info(f"Processing single file: {csv}")
-        # Note: In single-file mode, we need to manually create the results dict
         res = process_file(str(csv))
         all_results = {str(csv): res}
-        # Pass the file logger to the final summary function
         final_summary(all_results, file_logger=file_logger)
         logger.info("Done.")
         return
@@ -366,7 +362,6 @@ def main():
     if args.output:
         save_results_to_json(all_results, args.output)
 
-    # Pass the file logger to the final summary function
     final_summary(all_results, file_logger=file_logger)
     logger.info("All done.")
 

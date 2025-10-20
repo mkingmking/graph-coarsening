@@ -24,7 +24,7 @@ def convert_graph_to_vrp_problem_inputs(graph: Graph, depot_id: str, vehicle_cap
     Converts the project's Graph object into the format required by VRPProblem,
     using integer indices for nodes.
     """
-    # MODIFICATION: Removed `key=int` to allow sorting of non-numeric super-node IDs from the coarsened graph.
+    # Sorting handles both numeric and string-based super-node IDs
     customer_ids = sorted([nid for nid in graph.nodes if nid != depot_id])
     int_to_id_map = [depot_id] + customer_ids
     id_to_int_map = {nid: i for i, nid in enumerate(int_to_id_map)}
@@ -194,9 +194,10 @@ def process_file(csv_file_path: str, num_customers: int) -> dict:
     file_results = {}
     solvers_to_run = ('FullQubo', 'AveragePartitionSolver')
     
-    # Create the directory for quantum visualizations
-    save_dir = "quantum_visualisations"
-    os.makedirs(save_dir, exist_ok=True)
+    #Define an absolute path for the visualization save directory
+    script_dir = Path(__file__).resolve().parent
+    save_dir = script_dir / "quantum_visualisations"
+    save_dir.mkdir(exist_ok=True)
 
     # Run UNCOARSENED solvers
     for name in solvers_to_run:
@@ -209,11 +210,12 @@ def process_file(csv_file_path: str, num_customers: int) -> dict:
         base_filename = Path(csv_file_path).stem
         count = _visualisation_counter_uncoarsened_quantum.get(name, 0) + 1
         _visualisation_counter_uncoarsened_quantum[name] = count
-        filename = f"{base_filename}_{name}_uncoarsened_{count}"
+        filename = f"{base_filename}_{name}_uncoarsened_{count}.png"
+        absolute_filepath = save_dir / filename
         visualize_routes(
             subgraph, routes, depot_id, 
             title=f"{base_filename} Uncoarsened - {name}", 
-            filename=os.path.join(save_dir, filename)
+            filename=str(absolute_filepath)
         )
 
     # Run COARSENED solvers
@@ -225,15 +227,16 @@ def process_file(csv_file_path: str, num_customers: int) -> dict:
         file_results[f"Inflated {name}"] = metrics
         log_solver_results(f"Inflated {name}", routes, metrics, duration)
 
-        # Visualize coarsened (inflated) solution
+        # Visualize coarsened (inflated) solution 
         base_filename = Path(csv_file_path).stem
         count = _visualisation_counter_coarsened_quantum.get(name, 0) + 1
         _visualisation_counter_coarsened_quantum[name] = count
-        filename = f"{base_filename}_{name}_coarsened_{count}"
+        filename = f"{base_filename}_{name}_coarsened_{count}.png"
+        absolute_filepath = save_dir / filename
         visualize_routes(
             subgraph, routes, depot_id, 
             title=f"{base_filename} Coarsened - {name}", 
-            filename=os.path.join(save_dir, filename)
+            filename=str(absolute_filepath)
         )
         
     return file_results
@@ -242,7 +245,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run Quantum VRP Solvers with and without Graph Coarsening.")
     parser.add_argument("--file", type=str, default=None, help="Path to a single Solomon CSV file to process.")
     parser.add_argument("--data", type=str, default=None, help="Directory containing Solomon CSV files.")
-    parser.add_argument("--customers", type=int, default=10, help="Number of customers to include in the sub-problem.")
+    parser.add_argument("--customers", type=int, default=7, help="Number of customers to include in the sub-problem.")
     parser.add_argument("--output", type=str, help="Path to a JSON file to save the detailed results.")
     args = parser.parse_args()
 

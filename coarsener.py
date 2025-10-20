@@ -54,10 +54,10 @@ class SpatioTemporalGraphCoarsener:
         """
         tau_ij = compute_euclidean_tau(node_i, node_j) # Use the global helper
 
-        # Corrected feasibility for i -> j: earliest start at j must be <= l_j
+        #feasibility for i -> j: earliest start at j must be <= l_j
         feas_i_to_j = (node_i.e + node_i.s + tau_ij <= node_j.l)
         
-        # Corrected feasibility for j -> i: earliest start at i must be <= l_i
+        #feasibility for j -> i: earliest start at i must be <= l_i
         feas_j_to_i = (node_j.e + node_j.s + tau_ij <= node_i.l)
         
         return feas_i_to_j, feas_j_to_i
@@ -72,12 +72,12 @@ class SpatioTemporalGraphCoarsener:
         Slack (i -> j): Latest possible service start at j (l_j) - Earliest possible service start at j (if coming from i)
         Earliest possible service start at j (from i): node_i.e + node_i.s + tau_ij
         """
-        tau_ij = compute_euclidean_tau(node_i, node_j) # Use the global helper
+        tau_ij = compute_euclidean_tau(node_i, node_j) 
 
-        # Corrected slack for i -> j
+        #slack for i -> j
         slack_i_to_j = node_j.l - (node_i.e + node_i.s + tau_ij)
 
-        # Corrected slack for j -> i
+        #slack for j -> i
         slack_j_to_i = node_i.l - (node_j.e + node_j.s + tau_ij)
 
         if slack_i_to_j >= slack_j_to_i:
@@ -95,7 +95,7 @@ class SpatioTemporalGraphCoarsener:
         e'_SN = max(e_A, e_B - (s_A + tau_AB))
         l'_SN = min(l_A, l_B - (s_A + tau_AB))
         """
-        tau_ij = compute_euclidean_tau(node_i, node_j) # Use the global helper
+        tau_ij = compute_euclidean_tau(node_i, node_j) 
         
         # Parse pi_order to determine which node comes first
         first_node_id, _, second_node_id = pi_order.split(' ')

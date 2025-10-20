@@ -47,7 +47,7 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
     total_route_duration = 0.0
     time_window_violations = 0
     capacity_violations = 0
-    num_vehicles = 0 # Initialize to 0, increment only for valid routes
+    num_vehicles = 0 
     all_feasible = True
     total_demand_served = 0.0
 
@@ -153,7 +153,6 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
 def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
     """
     Loads graph data from a Solomon VRPTW CSV file.
-    Assumes a specific Solomon format with header lines before the data.
     
     Args:
         file_path (str): The path to the CSV file.
@@ -168,7 +167,7 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
     depot_id = None
     vehicle_capacity = None # Will be read from file
 
-    # Define the actual column headers found in Solomon datasets
+    
     solomon_headers = [
         'CUST NO.', 'XCOORD.', 'YCOORD.', 'DEMAND', 'READY TIME', 'DUE DATE', 'SERVICE TIME'
     ]
@@ -179,23 +178,19 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
             lines = f.readlines()
             
             # --- Parse Vehicle Capacity ---
-            # Solomon files typically have capacity on line 4 (index 3)
-            # The format is like '  25         200' or '3,45,70,30,825,870,90'
             if len(lines) >= 4:
                 capacity_line = lines[3].strip()
                 
-                # Try to parse as comma-separated first (common for some Solomon variants)
+                # Try to parse as comma-separated first 
                 parts = capacity_line.split(',')
                 if len(parts) >= 2:
-                    try:
-                        # Capacity is typically the second value in the comma-separated line (index 1)
-                        #vehicle_capacity = float(parts[1].strip())
+                    try: #hardcoded value here
                         vehicle_capacity = 200
                     except ValueError:
                         # If parsing as float fails, it's not the expected comma-separated format
                         pass
                 
-                # If not found or failed, try the space-separated regex (for other Solomon variants)
+                # If not found or failed, try the space-separated regex 
                 if vehicle_capacity is None:
                     # Regex to find the second number in the line, which is usually the capacity.
                     # This pattern looks for one or more digits, followed by one or more spaces,
@@ -210,16 +205,14 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
                 raise ValueError("File is too short to contain vehicle capacity information (expected at least 4 lines).")
 
             # --- Prepare data for DictReader ---
-            # The actual data starts from line 10 (index 9), so we skip lines 0-8.
-            # The header line is line 9 (index 8). We will explicitly provide the headers.
-            if len(lines) < 10: # Data starts from line 10 (index 9)
+            if len(lines) < 10: 
                 raise ValueError("File is too short to contain customer data.")
             
             # The actual data rows start from line 10 (index 9)
-            data_lines = lines[9:] # From the first data line onwards
+            data_lines = lines[9:] 
             data_io = io.StringIO("".join(data_lines))
 
-            # Use DictReader with explicitly provided fieldnames and COMMA as delimiter
+            
             reader = csv.DictReader(data_io, fieldnames=solomon_headers, delimiter=',', skipinitialspace=True)
 
             # --- Process Customer Data ---
@@ -253,7 +246,7 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
                     if i == 0: # The first node in the data section is the depot
                         depot_id = node_id
                 except (ValueError, KeyError) as data_error:
-                    # Provide more context for data parsing errors
+                    
                     raise ValueError(f"Error processing data in row {i+1} of {file_path}. Row content: {cleaned_row}. Details: {data_error}") from data_error
                 
         if depot_id is None:
@@ -261,7 +254,7 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
         if vehicle_capacity is None:
             raise ValueError("Vehicle capacity could not be determined from the file.")
 
-        # Add edges between all nodes (assuming a complete graph for simplicity)
+        # Add edges between all nodes (a complete graph)
         node_ids = list(graph.nodes.keys())
         for i in range(len(node_ids)):
             for j in range(i + 1, len(node_ids)):
