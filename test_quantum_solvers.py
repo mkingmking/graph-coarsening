@@ -40,7 +40,7 @@ def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(current_dir, "C101.csv")
     
-    num_customers_to_test = 7  # A feasible number for this solver
+    num_customers_to_test = 15  # modify this number
 
     print(f"--- Loading full graph from {file_path} ---")
     try:
