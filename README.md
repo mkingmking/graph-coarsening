@@ -4,7 +4,7 @@ Repository Contents:
 
 solomon_dataset/: Directory containing the Solomon VRPTW benchmark datasets in CSV format (e.g., ``C101.csv`` or ``R101.csv``).  The files list the depot and customers with coordinates, demands and time windows.  Vehicle capacity is not stored in the files, so the loaders assume the standard Solomon capacity of ``200``.
 
-This Python script implements the core spatio-temporal graph coarsening algorithm, including node and edge definitions, graph operations, and the multilevel coarsening and inflation procedures. It also integrates Greedy and Clarke and Wright Savings heuristics for solving VRPTW instances on both original and coarsened graphs.
+This Python script implements the core spatio-temporal graph coarsening algorithm, including node and edge definitions, graph operations, and the multilevel coarsening and inflation procedures. It also integrates Full Qubo Solver, Average Partitioning Solver algorithms; Greedy and Clarke and Wright Savings heuristics for solving VRPTW instances on both original and coarsened graphs.
 
 
 
@@ -38,6 +38,8 @@ The script will automatically process the CSV files in the solomon_dataset/ dire
 - `savings_solver.py` – Clarke & Wright savings heuristic.
 - `visualisation.py` – draws route visualisations.
 -  `utils.py` – helpers for parsing datasets and computing route metrics.
+-  `main_quantum.py` – secondary pipeline: load data, coarsen, solve with quantum solvers and visualise.
+-  `quantum_solvers` – folder with necessary scripts to run APS and FQS.
 
 
 
