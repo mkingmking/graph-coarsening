@@ -1,4 +1,4 @@
-This repository contains the implementation and evaluation of a spatio-temporal graph coarsening algorithm designed for solving the Vehicle Routing Problem with Time Windows (VRPTW).
+This repository contains the implementation and evaluation of a spatio-temporal graph coarsening algorithm designed for solving the Capacitated Vehicle Routing Problem with Time Windows (CVRPTW).
 
 Repository Contents:
 
