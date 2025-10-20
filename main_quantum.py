@@ -242,7 +242,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run Quantum VRP Solvers with and without Graph Coarsening.")
     parser.add_argument("--file", type=str, default=None, help="Path to a single Solomon CSV file to process.")
     parser.add_argument("--data", type=str, default=None, help="Directory containing Solomon CSV files.")
-    parser.add_argument("--customers", type=int, default=7, help="Number of customers to include in the sub-problem.")
+    parser.add_argument("--customers", type=int, default=10, help="Number of customers to include in the sub-problem.")
     parser.add_argument("--output", type=str, help="Path to a JSON file to save the detailed results.")
     args = parser.parse_args()
 
