@@ -33,7 +33,6 @@ The script will automatically process the CSV files in the solomon_dataset/ dire
 - `boxplot_generator.py` – builds box plots from `results.json` metrics.
 - `greedy_solver.py` – greedy heuristic solver for VRPTW.
 - `main.py` – primary pipeline: load data, coarsen, solve and visualise.
-- `or_tools_solver.py` – VRPTW solver using Google OR-Tools.
 - `results.json` – sample output metrics from experiments.
 - `savings_solver.py` – Clarke & Wright savings heuristic.
 - `visualisation.py` – draws route visualisations.
