@@ -1,7 +1,7 @@
 import pytest
-from graph import Graph, compute_euclidean_tau
-from node import Node
-from utils import calculate_route_metrics
+from graph_coarsening.graph import Graph, compute_euclidean_tau
+from graph_coarsening.node import Node
+from graph_coarsening.utils import calculate_route_metrics
 
 @pytest.fixture
 def sample_graph():

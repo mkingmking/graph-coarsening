@@ -1,9 +1,9 @@
 import pytest
-from graph import Graph, compute_euclidean_tau
-from node import Node
-from greedy_solver import GreedySolver
-from savings_solver import SavingsSolver
-from utils import calculate_route_metrics # Ensure this is imported for metrics calculation
+from graph_coarsening.graph import Graph, compute_euclidean_tau
+from graph_coarsening.node import Node
+from graph_coarsening.greedy_solver import GreedySolver
+from graph_coarsening.savings_solver import SavingsSolver
+from graph_coarsening.utils import calculate_route_metrics # Ensure this is imported for metrics calculation
 
 @pytest.fixture
 def simple_chain_graph():

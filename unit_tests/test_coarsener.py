@@ -1,8 +1,8 @@
 import pytest
 import math
-from graph import Graph, compute_euclidean_tau
-from node import Node
-from coarsener import SpatioTemporalGraphCoarsener
+from graph_coarsening.graph import Graph, compute_euclidean_tau
+from graph_coarsening.node import Node
+from graph_coarsening.coarsener import SpatioTemporalGraphCoarsener
 
 @pytest.fixture
 def simple_ab_graph():
