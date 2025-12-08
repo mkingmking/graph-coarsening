@@ -1,24 +1,39 @@
 import pytest
 
-from quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver, DWaveSolvers_modified
+from quantum_solvers import DWaveSolvers_modified
+from quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
 from quantum_solvers.vrp_solution import VRPSolution
-from quantum_solvers.vrp_problem_qubo import VRPProblem
+from quantum_solvers.vrp_problem import VRPProblem
 from quantum_solvers.qubo_solver import Qubo
 
 # Helper classes for testing
 class FakeProblem:
     def __init__(self, customer_ids, capacities):
-        self.customer_ids = customer_ids
+        self.dests = customer_ids
         self.capacities = capacities
+        self.source_depot = "depot"
+        self.weights = {cid: 1 for cid in customer_ids}
+        self.time_windows = {cid: (0, 100) for cid in customer_ids}
+        self.time_windows["depot"] = (0, 100)
+        self.service_times = {cid: 0 for cid in customer_ids}
+        self.service_times["depot"] = 0
+        self.costs = {"depot": {cid: 1 for cid in customer_ids}}
+        self.costs.update({cid: {"depot": 1} for cid in customer_ids})
         self.get_qubo_called = False
         self.last_args = None
 
-    def get_qubo(self, vehicle_k_limits, only_one_const, order_const, tw_penalty_const):
+    def get_qubo(self, vehicle_k_limits, only_one_const, order_const, capacity_penalty, tw_penalty_const, vehicle_start_cost):
         # Record that get_qubo was called with these parameters
         self.get_qubo_called = True
-        self.last_args = (vehicle_k_limits, only_one_const, order_const, tw_penalty_const)
-        # Return a dummy QUBO object
+        self.last_args = (vehicle_k_limits, only_one_const, order_const, capacity_penalty, tw_penalty_const, vehicle_start_cost)
+
         return 'dummy_qubo'
+
+
+def build_problem(nodes, depot_id, costs, time_costs, capacities, customer_ids, demands):
+    time_windows = {nid: (node.e, node.l) for nid, node in nodes.items()}
+    service_times = {nid: node.s for nid, node in nodes.items()}
+    return VRPProblem(depot_id, costs, time_costs, capacities, customer_ids, demands, time_windows, service_times)
 
 
 def test_full_qubo_solver_calls_get_qubo_and_returns_solution(monkeypatch):
@@ -39,16 +54,16 @@ def test_full_qubo_solver_calls_get_qubo_and_returns_solution(monkeypatch):
     monkeypatch.setattr(DWaveSolvers_modified, 'solve_qubo', fake_solve_qubo)
 
     # Call solve and verify behavior
-    sol = solver.solve(only_one_const=0.1, order_const=0.2, tw_penalty_const=0.3,
+    sol = solver.solve(only_one_const=0.1, order_const=0.2, capacity_penalty=0.0,
+                       time_window_penalty=0.3, vehicle_start_cost=0.0,
                        solver_type='simulated', num_reads=5)
 
     # Ensure get_qubo was called with correct arguments
     assert problem.get_qubo_called
-    assert problem.last_args == ([1], 0.1, 0.2, 0.3)
+    assert problem.last_args == ([1], 0.1, 0.2, 0.0, 0.3, 0.0)
 
     # Verify the returned solution
     assert isinstance(sol, VRPSolution)
-    assert sol.vehicle_k_limits == [1]
     assert sol.solution == [['c1']]
 
 
@@ -61,13 +76,13 @@ def test_full_qubo_solver_empty_samples(monkeypatch):
     monkeypatch.setattr(DWaveSolvers_modified, 'solve_qubo', lambda qubo, solver_type, limit, num_reads: [])
 
     # Call solve
-    sol = solver.solve(only_one_const=1, order_const=2, tw_penalty_const=3,
+    sol = solver.solve(only_one_const=1, order_const=2, capacity_penalty=0,
+                       time_window_penalty=3, vehicle_start_cost=0,
                        solver_type='any', num_reads=1)
 
     # For FQS, k_max should equal number of customers (2)
-    assert sol.vehicle_k_limits == [2, 2]
-    # Solution routes should be empty for each vehicle
-    assert sol.solution == [[], []]
+    # With no samples, the solver returns an empty solution list.
+    assert sol.solution == []
 
 
 def test_average_partition_solver(monkeypatch):
@@ -83,16 +98,16 @@ def test_average_partition_solver(monkeypatch):
     monkeypatch.setattr(DWaveSolvers_modified, 'solve_qubo', fake_solve_qubo)
 
     # Call solve with a custom limit_radius
-    sol = solver.solve(only_one_const=1, order_const=2, tw_penalty_const=3,
+    sol = solver.solve(only_one_const=1, order_const=2, capacity_penalty=0,
+                       time_window_penalty=3, vehicle_start_cost=0,
                        solver_type='local', num_reads=10, limit_radius=2)
 
     # avg_per_vehicle = ceil(3/2) = 2, so k_max = 2 + 2 = 4
     assert problem.get_qubo_called
-    assert problem.last_args == ([4, 4], 1, 2, 3)
+    assert problem.last_args == ([4, 4], 1, 2, 0, 3, 0)
 
     # Verify the returned solution
     assert isinstance(sol, VRPSolution)
-    assert sol.vehicle_k_limits == [4, 4]
     assert sol.solution == [['c1'], ['c2']]
 
 # Additional tests for edge cases and metrics
@@ -120,7 +135,7 @@ def test_vrpsolution_total_cost():
     customer_ids = ['c1', 'c2']
     demands = {'c1': 1, 'c2': 1}
 
-    problem = VRPProblem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
+    problem = build_problem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
     # Construct a sample where vehicle visits c1 then c2
     sample = {(0, 'c1', 1): 1, (0, 'c2', 2): 1}
     sol = VRPSolution(problem, sample, [2])
@@ -146,7 +161,7 @@ def test_vrpsolution_check_valid():
     customer_ids = ['c1']
     demands = {'c1': 1}
 
-    problem = VRPProblem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
+    problem = build_problem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
     sample = {(0, 'c1', 1): 1}
     sol = VRPSolution(problem, sample, [1])
     assert sol.check() is True
@@ -167,7 +182,7 @@ def test_vrpsolution_check_capacity_violation():
     customer_ids = ['c1']
     demands = {'c1': 5}
 
-    problem = VRPProblem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
+    problem = build_problem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
     sample = {(0, 'c1', 1): 1}
     sol = VRPSolution(problem, sample, [1])
     assert sol.check() is False
@@ -188,7 +203,7 @@ def test_vrpsolution_check_duplicate_visit():
     customer_ids = ['c1']
     demands = {'c1': 1}
 
-    problem = VRPProblem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
+    problem = build_problem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
     # Mark same variable twice
     sample = {(0, 'c1', 1): 1, (0, 'c1', 1): 1}
     sol = VRPSolution(problem, sample, [1])
@@ -216,7 +231,7 @@ def test_vrpsolution_check_time_window_violation():
     customer_ids = ['c1','c2']
     demands = {'c1': 1, 'c2': 1}
 
-    problem = VRPProblem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
+    problem = build_problem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
     sample = {(0, 'c1', 1): 1, (0, 'c2', 2): 1}
     sol = VRPSolution(problem, sample, [2])
     assert sol.check() is False
@@ -252,9 +267,10 @@ def test_get_qubo_time_window_penalties():
     customer_ids = ['j1','j2']
     demands = {'j1': 1, 'j2': 1}
 
-    problem = VRPProblem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
+    problem = build_problem(nodes, 'depot', costs, time_costs, capacities, customer_ids, demands)
     tw_penalty = 5
-    qubo = problem.get_qubo([2], only_one_const=0, order_const=0, tw_penalty_const=tw_penalty)
+    qubo = problem.get_qubo([2], only_one_const=0, order_const=0, capacity_penalty=0,
+                           time_window_penalty=tw_penalty, vehicle_start_cost=0)
 
     # Expected penalties:
 
@@ -264,7 +280,7 @@ def test_get_qubo_time_window_penalties():
     #    tau_j1_j2 = 10
     #    earliest_arrival_at_j2_from_j1 = j1.e + j1.s + tau_j1_j2 = 0 + 0 + 10 = 10
     #    Since 10 > j2.l (0), this transition should incur a penalty.
-    assert qubo.dict[((0, 'j1', 1), (0, 'j2', 2))] == tw_penalty
+    assert qubo.dict[((0, 'j1', 0), (0, 'j2', 1))] == tw_penalty
 
     # 2. Penalty for depot -> j2 transition (depot-to-customer)
     #    Depot: e=0, s=0, l=100
@@ -272,7 +288,7 @@ def test_get_qubo_time_window_penalties():
     #    tau_depot_j2 = 1
     #    arrival_at_j2_from_depot = depot.e + tau_depot_j2 = 0 + 1 = 1
     #    Since 1 > j2.l (0), this should incur a linear penalty on x_{0,j2,1}.
-    diag_key_j2 = ((0, 'j2', 1), (0, 'j2', 1))
+    diag_key_j2 = ((0, 'j2', 0), (0, 'j2', 0))
     assert diag_key_j2 in qubo.dict and qubo.dict[diag_key_j2] == tw_penalty
 
     # 3. Check for depot -> j1 transition (depot-to-customer)
@@ -281,21 +297,21 @@ def test_get_qubo_time_window_penalties():
     #    tau_depot_j1 = 1
     #    arrival_at_j1_from_depot = depot.e + tau_depot_j1 = 0 + 1 = 1
     #    Since 1 > j1.l (0), this should also incur a linear penalty on x_{0,j1,1}.
-    diag_key_j1 = ((0, 'j1', 1), (0, 'j1', 1))
+    diag_key_j1 = ((0, 'j1', 0), (0, 'j1', 0))
     assert diag_key_j1 in qubo.dict and qubo.dict[diag_key_j1] == tw_penalty
 
 
     # Verify no unexpected penalties for j2 -> j1 (assuming it's feasible or not considered)
     # For j2->j1: j2.e + j2.s + tau_j2_j1 = 0 + 0 + 1 = 1. This is > j1.l (0).
     # So, there should also be a penalty for j2->j1.
-    assert qubo.dict[((0, 'j2', 1), (0, 'j1', 2))] == tw_penalty
+    assert qubo.dict[((0, 'j1', 1), (0, 'j2', 0))] == tw_penalty
 
     # Verify that if only_one_const and order_const are 0, only TW penalties are present
     # Check a field that should only have TW penalty
-    assert qubo.dict.get(((0, 'j1', 1), (0, 'j2', 2)), 0) == tw_penalty
+    assert qubo.dict.get(((0, 'j1', 0), (0, 'j2', 1)), 0) == tw_penalty
     assert qubo.dict.get(diag_key_j2, 0) == tw_penalty
     assert qubo.dict.get(diag_key_j1, 0) == tw_penalty
-    assert qubo.dict.get(((0, 'j2', 1), (0, 'j1', 2)), 0) == tw_penalty
+    assert qubo.dict.get(((0, 'j1', 1), (0, 'j2', 0)), 0) == tw_penalty
 
     # Check a field that should NOT have any penalty (e.g., if it's not a TW violation)
     # For example, if we had a valid transition, it would be 0 here.
