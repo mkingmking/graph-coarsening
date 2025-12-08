@@ -4,14 +4,14 @@ import json
 import random
 import time
 from multiprocessing import Process
-from . graph import Graph, compute_euclidean_tau
-from . utils import load_graph_from_csv, calculate_route_metrics
-from .greedy_solver import GreedySolver
-from . savings_solver import SavingsSolver
-from . coarsener import SpatioTemporalGraphCoarsener
-from .quantum_solvers.vrp_problem import VRPProblem
-from .quantum_solvers.vrp_solution import VRPSolution
-from .quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
+from graph import Graph, compute_euclidean_tau
+from utils import load_graph_from_csv, calculate_route_metrics
+from greedy_solver import GreedySolver
+from savings_solver import SavingsSolver
+from coarsener import SpatioTemporalGraphCoarsener
+from quantum_solvers.vrp_problem import VRPProblem
+from quantum_solvers.vrp_solution import VRPSolution
+from quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
 # Mock D-Wave solver for local testing
 #from quantum_solvers.DWaveSolvers_modified import MockDWaveSolvers as DWaveSolvers_modified
 from .visualisation import visualize_routes
