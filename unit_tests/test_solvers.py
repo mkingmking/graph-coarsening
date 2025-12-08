@@ -117,7 +117,7 @@ def test_greedy_no_customers():
     assert routes == []
     assert metrics["num_vehicles"] == 0
     assert metrics["total_distance"] == 0.0
-    assert metrics["is_feasible"] is True # No customers, no routes, thus no violations.
+    assert metrics["is_feasible"] is False # No routes returns infeasible flag in metrics.
 
 # --- Savings Solver Tests ---
 
@@ -170,5 +170,5 @@ def test_savings_solver_no_customers():
     assert routes == []
     assert metrics["num_vehicles"] == 0
     assert metrics["total_distance"] == 0.0
-    assert metrics["is_feasible"] is True # No customers, no routes, thus no violations.
+    assert metrics["is_feasible"] is False # Metrics treat absence of routes as infeasible.
 

@@ -3,8 +3,8 @@ import csv
 import io
 import logging
 
-from . graph import Graph, compute_euclidean_tau
-from . node import Node
+from graph import Graph, compute_euclidean_tau
+from node import Node
 
 logger = logging.getLogger(__name__)
 
