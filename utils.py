@@ -3,8 +3,8 @@ import csv
 import io
 import logging
 
-from graph import Graph, compute_euclidean_tau
-from node import Node
+from .graph import Graph, compute_euclidean_tau
+from .node import Node
 
 logger = logging.getLogger(__name__)
 
@@ -150,19 +150,8 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
     }
 
 
-def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
-    """
-    Loads graph data from a Solomon VRPTW CSV file.
+"""def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
     
-    Args:
-        file_path (str): The path to the CSV file.
-        
-    Returns:
-        tuple: A tuple containing:
-            - Graph: The loaded graph object.
-            - str: The ID of the depot node.
-            - float: The vehicle capacity extracted from the file.
-    """
     graph = Graph()
     depot_id = None
     vehicle_capacity = None # Will be read from file
@@ -279,6 +268,115 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
         import traceback
         traceback.print_exc()
         raise
+"""
 
+
+def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
+    """
+    Loads graph data from a Solomon VRPTW CSV file.
+    ROBUST VERSION: Automatically detects start of data.
+    """
+    graph = Graph()
+    depot_id = None
+    vehicle_capacity = 200.0  # Default fallback if parsing fails
+
+    solomon_headers = [
+        'CUST NO.', 'XCOORD.', 'YCOORD.', 'DEMAND', 'READY TIME', 'DUE DATE', 'SERVICE TIME'
+    ]
+
+    try:
+        with open(file_path, mode='r', newline='') as f:
+            lines = f.readlines()
+            
+            # --- 1. Robust Header Detection ---
+            # Find which line contains the column headers
+            header_index = -1
+            for idx, line in enumerate(lines):
+                if 'CUST NO.' in line:
+                    header_index = idx
+                    break
+            
+            if header_index == -1:
+                # Fallback: If no header found, assume data starts at line 1 (if line 0 is header) 
+                # or line 0? Let's check if line 0 is numeric.
+                # Safer: Raise error or assume it's a raw dump.
+                # Given your file likely has headers:
+                raise ValueError("Could not find 'CUST NO.' header row in file.")
+
+            # --- 2. Vehicle Capacity Parsing (Optional) ---
+            # Only try to parse capacity from lines BEFORE the header
+            if header_index > 0:
+                for i in range(header_index):
+                    line = lines[i].strip()
+                    # Simple heuristic: look for "CAPACITY" or similar, or just distinct number
+                    # Your previous logic looked at line 4 (index 3). 
+                    # If using original solomon files, it's usually there.
+                    if "CAPACITY" in line or (i == 3 and len(line) < 20): # simplistic check
+                         match = re.search(r'\d+', line)
+                         if match:
+                             vehicle_capacity = float(match.group())
+
+            # --- 3. Parse Data ---
+            # Data starts immediately after the header line
+            data_lines = lines[header_index + 1:] 
+            data_io = io.StringIO("".join(data_lines))
+            
+            # We use the known fieldnames to ensure correct mapping
+            reader = csv.DictReader(data_io, fieldnames=solomon_headers, delimiter=',', skipinitialspace=True)
+
+            for i, row in enumerate(reader):
+                # Clean row data
+                cleaned_row = {}
+                for k, v in row.items():
+                    if k and v and k.strip() and v.strip():
+                        cleaned_row[k.strip()] = v.strip()
+
+                if not cleaned_row: continue
+
+                try:
+                    # Parse using solomon_headers keys
+                    # (Your CSV might have headers, but we force our standard keys for access)
+                    # Note: DictReader with fieldnames maps the columns in order.
+                    # Since we skipped the header line, the first data line maps to these keys.
+                    
+                    node_id = cleaned_row[solomon_headers[0]] # CUST NO.
+                    x = parse_float(cleaned_row[solomon_headers[1]])
+                    y = parse_float(cleaned_row[solomon_headers[2]])
+                    demand = parse_float(cleaned_row[solomon_headers[3]])
+                    e = parse_float(cleaned_row[solomon_headers[4]])
+                    l = parse_float(cleaned_row[solomon_headers[5]])
+                    s = parse_float(cleaned_row[solomon_headers[6]])
+                    
+                    node = Node(node_id, x, y, s, e, l, demand)
+                    graph.add_node(node)
+                    
+                    # The first node read is the depot
+                    if depot_id is None:
+                        depot_id = node_id
+                        
+                except (ValueError, KeyError) as e:
+                    # Skip lines that might be malformed or empty
+                    continue
+                
+        if depot_id is None:
+            raise ValueError("No nodes found in CSV data.")
+
+        # Add complete graph edges
+        node_ids = list(graph.nodes.keys())
+        for i in range(len(node_ids)):
+            for j in range(i + 1, len(node_ids)):
+                id1, id2 = node_ids[i], node_ids[j]
+                node1, node2 = graph.nodes[id1], graph.nodes[id2]
+                tau = compute_euclidean_tau(node1, node2)
+                graph.add_edge(id1, id2, tau)
+
+        logger.info(f"Successfully loaded graph. Depot ID: {depot_id}, Capacity: {vehicle_capacity}")
+        return graph, depot_id, vehicle_capacity
+
+    except Exception as e:
+        logger.error(f"Error loading graph: {e}")
+        import traceback
+        traceback.print_exc()
+        raise
 
 
