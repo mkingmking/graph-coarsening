@@ -135,9 +135,6 @@ class SpatioTemporalGraphCoarsener:
         
         NOTE: "Recomputing tau conservatively" is simplified here by calculating
         Euclidean distance from the super-node's midpoint to the neighbor.
-        A truly conservative approach might involve more complex logic
-        (e.g., shortest path calculations on original graph, or max travel time),
-        especially if neighbors themselves are being merged in the same level.
         """
         # Collect all unique neighbors of i and j, excluding i, j themselves, and the depot
         # These neighbors are still in the graph at this point.
@@ -150,22 +147,12 @@ class SpatioTemporalGraphCoarsener:
 
         # Add new edges from super_node to its unique neighbors
         for neighbor_id in all_neighbors_ids:
-            # Check if the neighbor_id still exists in the graph.
-            # This is crucial if `M` contains merges that affect each other's neighbors.
-            # If `neighbor_id` was already processed and removed in a prior merge in this level,
-            # we should skip it for now. A more robust solution would involve connecting
-            # to the super-node representing `neighbor_id` if it was merged.
             if neighbor_id in current_graph.nodes:
                 neighbor_node = current_graph.nodes[neighbor_id]
                 new_tau = compute_euclidean_tau(super_node, neighbor_node) # Use the global helper
                 current_graph.add_edge(super_node.id, neighbor_id, new_tau)
             else:
-                # This case indicates that the neighbor was already removed (likely merged)
-                # in a previous iteration of the 'M' loop in the current level.
-                # For a fully robust solution, one would need a mapping from original node IDs
-                # to their current super-node representation to ensure connectivity.
-                # For now, we skip adding an edge to a non-existent node.
-                pass # This is where more advanced reconnection logic would go.
+                pass
 
 
     def coarsen(self) -> tuple[Graph, list]:
@@ -195,7 +182,7 @@ class SpatioTemporalGraphCoarsener:
             num_edges_to_consider = math.floor(0.1 * len(sorted_edges) * self.radiusCoeff)
             rho = sorted_edges[min(num_edges_to_consider, len(sorted_edges) - 1)].D_ij if sorted_edges else 0
 
-            M = [] # List of merges for this iteration: (node_i_id, node_j_id, pi_order, e_prime, l_prime)
+            M = [] # List of merges for this iteration: (node_i_id, node_j_id, pi_order, e_prime, l_prime, demand_ij)
             U = {self.depot_id} # Set of used nodes (depot never merges) for this level
 
             # 4. Identify pairs for merging
@@ -251,8 +238,10 @@ class SpatioTemporalGraphCoarsener:
                 mid_x = (node_i.x + node_j.x) / 2
                 mid_y = (node_i.y + node_j.y) / 2
                 
-                # Aggregate service duration
-                s_ij = node_i.s + node_j.s
+                # --- FIX: Include travel time in service duration ---
+                tau_internal = compute_euclidean_tau(node_i, node_j)
+                s_ij = node_i.s + tau_internal + node_j.s 
+                # --------------------------------------------------
                 
                 # Calculate central time for super-node
                 t_ij = (e_prime + (l_prime - s_ij)) / 2 if (l_prime - s_ij) >= 0 else e_prime
@@ -340,4 +329,3 @@ class SpatioTemporalGraphCoarsener:
         logger.info(f"--- Inflation Finished ---")
         logger.info(f"Final inflated routes: {all_inflated_routes}")
         return all_inflated_routes
-

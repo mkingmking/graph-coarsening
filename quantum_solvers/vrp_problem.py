@@ -11,17 +11,33 @@ class VRPProblem:
         self.weights = weights
         self.time_windows = time_windows
         self.service_times = service_times
+        
+        # PRE-CALCULATION: True Earliest Possible Arrival Times
+        # No matter where you come from, you cannot arrive at J earlier than
+        # driving straight from the Depot.
+        self.true_earliest = {}
+        # Assume depot start time is the start of its window (usually 0)
+        depot_start = self.time_windows[self.source_depot][0]
+        
+        for j in self.dests:
+            travel_from_depot = self.time_costs[self.source_depot][j]
+            # You arrive at J either when it opens OR when you get there from depot
+            # whichever is LATER.
+            arrival_limit = max(self.time_windows[j][0], depot_start + travel_from_depot)
+            self.true_earliest[j] = arrival_limit
 
     def get_qubo(self, vehicle_k_limits, only_one_const, order_const, capacity_penalty, time_window_penalty, vehicle_start_cost):
         """
-        Generates the QUBO for the CVRPTW with MULTI-STEP TIME LOOKAHEAD.
+        Generates the QUBO for the CVRPTW with PHYSICS-AWARE TIME CONSTRAINTS.
         """
         num_vehicles = len(self.capacities)
         customer_nodes = self.dests
         
         qubo = Qubo()
 
-       
+        # =================================================================
+        # 1. UNIQUE VISIT CONSTRAINTS (Standard)
+        # =================================================================
         penalty_scale = only_one_const
         
         # Each customer visited exactly once
@@ -41,7 +57,9 @@ class VRPProblem:
                     for idx2 in range(idx1 + 1, len(variables)):
                         qubo.add((variables[idx1], variables[idx2]), penalty_scale)
 
-       
+        # =================================================================
+        # 2. ROUTE CONTINUITY & SELF-LOOPS
+        # =================================================================
         continuity_penalty = only_one_const * 0.1
         selfloop_penalty = only_one_const * 0.5
         
@@ -60,7 +78,9 @@ class VRPProblem:
                 for j in customer_nodes:
                     qubo.add(((i, j, k), (i, j, k + 1)), selfloop_penalty)
 
-       
+        # =================================================================
+        # 3. CAPACITY CONSTRAINT (Logarithmic Slack)
+        # =================================================================
         for i in range(num_vehicles):
             capacity = self.capacities[i]
             if capacity <= 0: continue
@@ -80,88 +100,77 @@ class VRPProblem:
             qubo.add_quadratic_equality_constraint(constraint_expr, -capacity, capacity_penalty)
 
         # =================================================================
-        # ADVANCED TIME WINDOW CONSTRAINTS
+        # 4. PHYSICS-AWARE TIME WINDOW CONSTRAINTS
         # =================================================================
         
-        # A. PAIRWISE CHECK (Step k -> Step k+1)
+        # A. DEPOT INITIAL CHECK
+        # If a customer is so far that even driving straight from depot makes them late
         for i in range(num_vehicles):
-            k_max = vehicle_k_limits[i]
-            
-            # Depot -> First Customer
             for j1 in customer_nodes:
-                # Earliest Arrival
-                depot_ready = self.time_windows[self.source_depot][0]
-                earliest_arrival = depot_ready + self.service_times[self.source_depot] + self.time_costs[self.source_depot][j1]
-                
-                if earliest_arrival > self.time_windows[j1][1]:
+                if self.true_earliest[j1] > self.time_windows[j1][1]:
                     qubo.add(((i, j1, 0), (i, j1, 0)), time_window_penalty)
 
-            # Customer -> Customer
+        # B. PAIRWISE CHECK (Step k -> Step k+1)
+        # Using TRUE EARLIEST times instead of naive window open times
+        for i in range(num_vehicles):
+            k_max = vehicle_k_limits[i]
             for j1 in customer_nodes:
                 for j2 in customer_nodes:
                     if j1 == j2: continue
                     
-                    # 1. OPTIMISTIC CHECK (Hard Constraint)
-                    
-                    earliest_leave_j1 = self.time_windows[j1][0] + self.service_times[j1]
+                    # TRUE EARLIEST LEAVE TIME
+                    # We use the pre-calculated strict lower bound
+                    # arrival_at_j1 >= self.true_earliest[j1]
+                    earliest_leave_j1 = self.true_earliest[j1] + self.service_times[j1]
                     earliest_arrival_j2 = earliest_leave_j1 + self.time_costs[j1][j2]
                     
+                    # 1. HARD CHECK
                     if earliest_arrival_j2 > self.time_windows[j2][1]:
+                        # This link is physically impossible
                         for k in range(k_max - 1):
                             qubo.add(((i, j1, k), (i, j2, k + 1)), time_window_penalty)
-                            
-                    # 2. PESSIMISTIC "RISK" CHECK (Soft Constraint)
                     
-                    latest_leave_j1 = self.time_windows[j1][1] + self.service_times[j1]
-                    latest_arrival_j2 = latest_leave_j1 + self.time_costs[j1][j2]
-                    
-                    if latest_arrival_j2 > self.time_windows[j2][1]:
-                        risk_penalty = time_window_penalty * 0.1  # 10% of full penalty
+                    # 2. RISK CHECK (Soft Constraint)
+                    # Even if possible, if it's tight, penalize it to avoid accumulated error
+                    elif earliest_arrival_j2 > self.time_windows[j2][1] * 0.9: 
+                        risk_penalty = time_window_penalty * 0.05 
                         for k in range(k_max - 1):
                             qubo.add(((i, j1, k), (i, j2, k + 1)), risk_penalty)
 
-        # B. TRIANGLE LOOKAHEAD CHECK (Step k -> Step k+2)
-        # Checks A -> B -> C to catch accumulated delays.
+        # C. TRIANGLE LOOKAHEAD (Step k -> Step k+2)
+        # Stricter version using True Earliest
         for i in range(num_vehicles):
             k_max = vehicle_k_limits[i]
-            if k_max < 3: continue  # Need at least 3 steps for A->B->C
+            if k_max < 3: continue 
             
-            for j1 in customer_nodes:      # Node at k
-                for j3 in customer_nodes:  # Node at k+2
+            for j1 in customer_nodes:      
+                for j3 in customer_nodes:  
                     if j1 == j3: continue
                     
+                    earliest_leave_j1 = self.true_earliest[j1] + self.service_times[j1]
                     
-                    min_time_j1_to_j3 = float('inf')
-                    
-                    earliest_leave_j1 = self.time_windows[j1][0] + self.service_times[j1]
-                    
-                    # Scan all possible middle nodes
+                    # Can we bridge j1 -> j2 -> j3?
                     possible_connection = False
                     for j2 in customer_nodes:
                         if j2 == j1 or j2 == j3: continue
                         
                         arrival_j2 = earliest_leave_j1 + self.time_costs[j1][j2]
+                        if arrival_j2 > self.time_windows[j2][1]: continue # Can't reach mid
                         
-                        # If j2 is unreachable from j1, skip
-                        if arrival_j2 > self.time_windows[j2][1]:
-                            continue
-                            
                         # Wait at j2 if early
-                        leave_j2 = max(arrival_j2, self.time_windows[j2][0]) + self.service_times[j2]
+                        leave_j2 = max(arrival_j2, self.true_earliest[j2]) + self.service_times[j2]
                         arrival_j3 = leave_j2 + self.time_costs[j2][j3]
                         
                         if arrival_j3 <= self.time_windows[j3][1]:
                             possible_connection = True
-                            break # Found at least one valid middle man
+                            break 
                     
-                    # If NO node j2 can bridge j1 and j3 in time:
                     if not possible_connection:
-                        # Penalize having j1 at k and j3 at k+2 simultaneously
                         for k in range(k_max - 2):
                             qubo.add(((i, j1, k), (i, j3, k + 2)), time_window_penalty)
 
         # =================================================================
-        #  OBJECTIVE FUNCTION 
+        # 5. OBJECTIVE FUNCTION (Clarke-Wright Savings)
         # =================================================================
         for i in range(num_vehicles):
             k_max = vehicle_k_limits[i]
@@ -180,15 +189,11 @@ class VRPProblem:
                 for j1 in customer_nodes:
                     for j2 in customer_nodes:
                         if j1 == j2: continue
-                        
                         var1 = (i, j1, k)
                         var2 = (i, j2, k + 1)
-                        
-                        # Savings = Cost(j1, j2) - Cost(j1, Depot) - Cost(Depot, j2)
                         savings_cost = (self.costs[j1][j2] 
                                       - self.costs[j1][self.source_depot] 
                                       - self.costs[self.source_depot][j2])
-                        
                         qubo.add((var1, var2), savings_cost * order_const)
 
         return qubo

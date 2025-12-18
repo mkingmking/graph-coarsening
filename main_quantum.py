@@ -48,7 +48,7 @@ def convert_graph_to_vrp_problem_inputs(graph: Graph, depot_id: str, vehicle_cap
             costs[u_int][v_int] = tau
             time_costs[u_int][v_int] = tau
 
-    # CRITICAL: Don't create one vehicle per customer!
+    
     # Use fewer vehicles to encourage multi-customer routes
     num_customers = len(customer_ids)
     num_vehicles = max(2, num_customers // 2)  # Half as many vehicles as customers (min 2)
@@ -70,7 +70,7 @@ def map_solution_to_original_ids(solution_routes_int: list, int_to_id_map: list)
             mapped_routes.append([int_to_id_map[i] for i in route_int])
     return mapped_routes
 
-# --- Main Solver Pipeline ---
+
 
 def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, solver_name: str, coarsener: SpatioTemporalGraphCoarsener = None):
     start_time = time.perf_counter()
@@ -81,7 +81,7 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
         'capacity_penalty': 5_000_000,    # Capacity constraints
         'time_window_penalty': 3_000_000, # Time window constraints  
         'vehicle_start_cost': 100_000,    # Encourage fewer vehicles
-        'order': 100,                     # Travel distance weight (much smaller than constraints)
+        'order': 100,                     # Travel distance weight 
         'backend': 'simulated',
         'reads': 5000                     # High quality sampling
     }

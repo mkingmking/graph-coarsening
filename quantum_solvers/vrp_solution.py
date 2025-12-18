@@ -145,13 +145,11 @@ class VRPSolution:
         for i, route in enumerate(self.solution):
             for customer in route:
                 if customer in visited_customers:
-                    print(f"Error: Customer {customer} visited more than once.")
                     return False
                 visited_customers.add(customer)
             
             current_load = sum(weights.get(dest, 0) for dest in route)
             if i < len(capacities) and current_load > capacities[i]:
-                print(f"Error: Vehicle {i} exceeds capacity. Load: {current_load}, Capacity: {capacities[i]}")
                 return False
 
             if not route: continue
@@ -168,7 +166,6 @@ class VRPSolution:
             
             ready_time, due_date = time_windows[route[0]]
             if current_time > due_date:
-                print(f"Error: Vehicle {i} late for first stop {route[0]}. Arrival: {current_time}, Due: {due_date}")
                 return False
             current_time = max(current_time, ready_time)
             current_time += service_times[route[0]]
@@ -179,7 +176,6 @@ class VRPSolution:
                 
                 ready_time, due_date = time_windows[to_node]
                 if current_time > due_date:
-                    print(f"Error: Vehicle {i} late for stop {to_node}. Arrival: {current_time:.2f}, Due: {due_date}")
                     return False
                 current_time = max(current_time, ready_time)
                 current_time += service_times[to_node]

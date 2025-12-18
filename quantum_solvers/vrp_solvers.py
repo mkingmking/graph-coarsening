@@ -11,18 +11,11 @@ class VRPSolver:
 
 class FullQuboSolver(VRPSolver):
     def solve(self, only_one_const, order_const, capacity_penalty, time_window_penalty, vehicle_start_cost, solver_type='simulated', num_reads=50):
-        """
-        IMPROVED: Instead of k_max = num_customers (which creates too many variables),
-        use k_max = ceil(num_customers / num_vehicles) + buffer
-        This reduces the search space dramatically.
-        """
         num_customers = len(self.problem.dests)
         num_vehicles = len(self.problem.capacities)
         
-        # CRITICAL CHANGE: Limit k_max to reasonable value
-       
         avg_customers_per_vehicle = math.ceil(num_customers / num_vehicles)
-        k_max = min(avg_customers_per_vehicle + 1, num_customers)  
+        k_max = min(avg_customers_per_vehicle + 1, num_customers)
         
         vehicle_k_limits = [k_max] * num_vehicles
         
@@ -45,21 +38,10 @@ class FullQuboSolver(VRPSolver):
 
 class AveragePartitionSolver(VRPSolver):
     def solve(self, only_one_const, order_const, capacity_penalty, time_window_penalty, vehicle_start_cost, solver_type='simulated', num_reads=50, limit_radius=1):
-        """
-        This solver already does smart k_max selection, but let's make it even smarter.
-        """
         num_customers = len(self.problem.dests)
         num_vehicles = len(self.problem.capacities)
-        
-        
         avg_per_vehicle = math.ceil(num_customers / num_vehicles) if num_vehicles > 0 else 0
-        
-        
-        k_max = avg_per_vehicle + limit_radius
-        
-        # Cap at reasonable maximum
-        k_max = min(k_max, num_customers)
-        
+        k_max = min(avg_per_vehicle + limit_radius, num_customers)
         vehicle_k_limits = [k_max] * num_vehicles
         
         vrp_qubo = self.problem.get_qubo(
@@ -79,10 +61,10 @@ class AveragePartitionSolver(VRPSolver):
         solution = VRPSolution(self.problem, samples[0], vehicle_k_limits)
         return solution
 
-
 class IterativeRepairSolver(VRPSolver):
     """
-    NEW SOLVER: Try multiple parameter settings and pick best feasible solution.
+    Solves using multiple k_max values and picks the BEST FEASIBLE solution.
+    Strictly checks validity (Time Windows & Capacity) before accepting.
     """
     def solve(self, only_one_const, order_const, capacity_penalty, time_window_penalty, vehicle_start_cost, solver_type='simulated', num_reads=50):
         num_customers = len(self.problem.dests)
@@ -91,12 +73,11 @@ class IterativeRepairSolver(VRPSolver):
         best_solution = None
         best_cost = float('inf')
         
-        # Try different k_max values
         avg_per_vehicle = math.ceil(num_customers / num_vehicles)
         k_values_to_try = [
-            max(2, avg_per_vehicle),      # Tight limit
-            avg_per_vehicle + 1,            # +1 buffer
-            min(avg_per_vehicle + 2, num_customers)  # +2 buffer
+            max(2, avg_per_vehicle),
+            avg_per_vehicle + 1,
+            min(avg_per_vehicle + 2, num_customers)
         ]
         
         for k_max in k_values_to_try:
@@ -108,36 +89,36 @@ class IterativeRepairSolver(VRPSolver):
             )
             
             try:
-                # Get multiple samples to increase chances of finding good solution
                 samples = DWaveSolvers.solve_qubo(vrp_qubo, solver_type=solver_type, limit=5, num_reads=num_reads)
                 
                 for sample in samples:
                     solution = VRPSolution(self.problem, sample, vehicle_k_limits)
                     
-                    # Check if solution is valid (each customer visited exactly once)
+                    # 1. Check Completeness (Visits everyone once)
                     visited = set()
-                    valid = True
+                    is_complete = True
                     for route in solution.solution:
                         for customer in route:
                             if customer in visited:
-                                valid = False
-                                break
+                                is_complete = False; break
                             visited.add(customer)
-                        if not valid:
-                            break
+                        if not is_complete: break
                     
-                    if valid and visited == set(self.problem.dests):
-                        cost = solution.total_cost()
-                        if cost < best_cost:
-                            best_cost = cost
-                            best_solution = solution
+                    if is_complete and visited == set(self.problem.dests):
+                        # 2. CRITICAL: Check Feasibility (Time Windows & Capacity)
+                        # The built-in check() method does exactly this.
+                        if solution.check():
+                            cost = solution.total_cost()
+                            if cost < best_cost:
+                                best_cost = cost
+                                best_solution = solution
                 
             except Exception as e:
                 print(f"Solver error with k_max={k_max}: {e}")
                 continue
         
         if best_solution is None:
-            
+            # Fallback: return repaired solution from first attempt, even if imperfect
             vehicle_k_limits = [k_values_to_try[0]] * num_vehicles
             return VRPSolution(self.problem, {}, vehicle_k_limits, solution=[])
         

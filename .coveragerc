@@ -1,0 +1,18 @@
+[run]
+branch = True
+source = graph_coarsening
+
+[report]
+show_missing = True
+exclude_lines =
+    pragma: no cover
+    if __name__ == "__main__":
+
+omit =
+    graph_coarsening/main.py
+    graph_coarsening/main2.py
+
+    graph_coarsening/main3.py
+
+    graph_coarsening/visualisation.py
+    graph_coarsening/parameter_tuning/*
