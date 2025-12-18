@@ -7,6 +7,8 @@ solomon_dataset/: Directory containing the Solomon VRPTW benchmark datasets in C
 This Python script implements the core spatio-temporal graph coarsening algorithm, including node and edge definitions, graph operations, and the multilevel coarsening and inflation procedures. It also integrates Full Qubo Solver, Average Partitioning Solver algorithms; Greedy and Clarke and Wright Savings heuristics for solving VRPTW instances on both original and coarsened graphs.
 
 
+Currently has %76 test coverage for core modules.
+
 
 
 ## Usage
