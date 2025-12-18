@@ -22,7 +22,7 @@ class VRPSolution:
                 if route:
                     final_routes.append(route)
             
-            # CRITICAL FIX: Repair solution to ensure each customer visited exactly once
+           
             self.solution = self._repair_solution(final_routes)
     
     def _calculate_arrival_time(self, route, candidate_node=None):
@@ -32,18 +32,18 @@ class VRPSolution:
         Returns float('inf') if any node in the chain is late.
         """
         current_time = 0.0
-        # Start at depot
+        
         last_node = self.depot
         
-        # ready_time at depot
+        
         depot_ready = self.problem.time_windows[self.depot][0]
         current_time = max(current_time, depot_ready)
         
-        # Traverse existing route
+        
         full_route = route + ([candidate_node] if candidate_node is not None else [])
         
         for node in full_route:
-            # Travel from last_node to node
+            
             travel_time = self.problem.costs[last_node][node]
             current_time += travel_time
             
@@ -53,7 +53,7 @@ class VRPSolution:
             if current_time > due_date:
                 return float('inf')  # Violation detected
             
-            # Wait if arrived early
+            
             current_time = max(current_time, ready_time)
             
             # Add service time
@@ -73,7 +73,7 @@ class VRPSolution:
         all_customers = set(self.problem.dests)
         visited = set()
         
-        # Step 1: Remove duplicates while preserving first occurrence
+        # Remove duplicates while preserving first occurrence
         repaired_routes = []
         for route in routes:
             clean_route = []
@@ -84,7 +84,7 @@ class VRPSolution:
             if clean_route:  # Only keep non-empty routes
                 repaired_routes.append(clean_route)
         
-        # Step 2: Find missing customers
+        # Find missing customers
         missing = all_customers - visited
         
         if missing:
@@ -105,7 +105,7 @@ class VRPSolution:
                     last_customer = route[-1]
                     cost = self.problem.costs[last_customer][customer]
                     
-                    # --- CHECK 1: Capacity Constraint ---
+                    # Capacity Constraint ---
                     route_demand = sum(self.problem.weights.get(c, 0) for c in route)
                     customer_demand = self.problem.weights.get(customer, 0)
                     # Handle varying vehicle capacities if they exist, else default to first
@@ -114,7 +114,7 @@ class VRPSolution:
                     if route_demand + customer_demand > vehicle_capacity:
                         continue # Skip this vehicle, it's full
 
-                    # --- CHECK 2: Time Window Constraint (NEW) ---
+                    # Time Window Constraint (NEW) ---
                     # Simulate the route with the new customer added
                     arrival_time = self._calculate_arrival_time(route, candidate_node=customer)
                     if arrival_time == float('inf'):

@@ -20,10 +20,9 @@ class FullQuboSolver(VRPSolver):
         num_vehicles = len(self.problem.capacities)
         
         # CRITICAL CHANGE: Limit k_max to reasonable value
-        # If we have 5 customers and 5 vehicles, we don't need 5 positions per vehicle
-        # Most vehicles will serve 1-2 customers
+       
         avg_customers_per_vehicle = math.ceil(num_customers / num_vehicles)
-        k_max = min(avg_customers_per_vehicle + 1, num_customers)  # +1 buffer, but cap at num_customers
+        k_max = min(avg_customers_per_vehicle + 1, num_customers)  
         
         vehicle_k_limits = [k_max] * num_vehicles
         
@@ -52,11 +51,10 @@ class AveragePartitionSolver(VRPSolver):
         num_customers = len(self.problem.dests)
         num_vehicles = len(self.problem.capacities)
         
-        # Average customers per vehicle
+        
         avg_per_vehicle = math.ceil(num_customers / num_vehicles) if num_vehicles > 0 else 0
         
-        # IMPROVED: Use smaller limit_radius by default
-        # Original used limit_radius=1, but even this might be too much
+        
         k_max = avg_per_vehicle + limit_radius
         
         # Cap at reasonable maximum
@@ -139,7 +137,7 @@ class IterativeRepairSolver(VRPSolver):
                 continue
         
         if best_solution is None:
-            # Fallback: return repaired solution from first attempt
+            
             vehicle_k_limits = [k_values_to_try[0]] * num_vehicles
             return VRPSolution(self.problem, {}, vehicle_k_limits, solution=[])
         

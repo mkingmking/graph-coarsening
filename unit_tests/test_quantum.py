@@ -10,7 +10,6 @@ if parent_dir not in sys.path:
     sys.path.insert(0, parent_dir)
 
 
-
 from graph_coarsening.quantum_solvers.qubo_solver import Qubo
 from graph_coarsening.quantum_solvers.vrp_problem import VRPProblem
 from graph_coarsening.quantum_solvers.vrp_solution import VRPSolution
@@ -104,8 +103,16 @@ class TestVRPSolution(unittest.TestCase):
         self.assertEqual(sol.solution[0], [1, 2]) 
 
     def test_validation_missing_customer(self):
-        sample = {(0, 1, 0): 1}
+        sample = {(0, 1, 0): 1} # Solution is missing customer 2
+        
+        # VRPSolution now auto-repairs in __init__.
         sol = VRPSolution(self.problem, sample, [2])
+        
+        # MANUAL BREAK: Remove a customer from the computed route to verify check() fails.
+        if sol.solution and len(sol.solution) > 0:
+            if 2 in sol.solution[0]:
+                sol.solution[0].remove(2)
+
         with patch('builtins.print'):
             self.assertFalse(sol.check())
 
@@ -119,9 +126,21 @@ class TestVRPSolvers(unittest.TestCase):
     def setUp(self):
         self.problem = MagicMock()
         self.problem.dests = [1, 2]
-        self.problem.capacities = [10]
         self.problem.source_depot = 0
-        self.problem.costs = [[0]*3]*3
+        
+        # FIX: Ensure capacities is a list of integers
+        self.problem.capacities = [10, 10, 10]
+        
+        # FIX: Use a real dictionary. It naturally returns ints.
+        self.problem.weights = {1: 1, 2: 1}
+        
+        # FIX: Ensure costs is a matrix of integers
+        self.problem.costs = [[0, 5, 5], [5, 0, 5], [5, 5, 0]]
+        
+        # Ensure time windows and service times are valid
+        self.problem.time_windows = {0: (0, 100), 1: (0, 100), 2: (0, 100)}
+        self.problem.service_times = {0: 0, 1: 0, 2: 0}
+
         self.problem.get_qubo.return_value = Qubo()
 
     
@@ -139,7 +158,6 @@ class TestVRPSolvers(unittest.TestCase):
         )
         
         self.assertIsInstance(solution, VRPSolution)
-        # If solution is empty, it means the patch didn't work or logic failed
         self.assertEqual(len(solution.solution), 1, "Solution routes list is empty")
         self.assertEqual(solution.solution[0], [1, 2])
 
@@ -156,9 +174,33 @@ class TestVRPSolvers(unittest.TestCase):
             solver_type='simulated', num_reads=1
         )
         
+        # 2 customers, 3 vehicles -> avg = 1. k_max = 1+1=2.
         args, _ = self.problem.get_qubo.call_args
         vehicle_k_limits = args[0]
-        self.assertEqual(vehicle_k_limits, [3])
+        self.assertEqual(vehicle_k_limits, [2, 2, 2])
+
+    @patch('graph_coarsening.quantum_solvers.DWaveSolvers_modified.solve_qubo')
+    def test_average_partition_solver_logic(self, mock_solve_qubo):
+        # Specific test logic to verify k_max calculation
+        # 1 vehicle, 2 customers -> avg = 2. k = 2 + 1 = 3.
+        # BUT code caps k_max at num_customers (2).
+        self.problem.capacities = [10] 
+        
+        mock_sample = {(0, 1, 0): 1}
+        mock_solve_qubo.return_value = [mock_sample]
+        
+        solver = AveragePartitionSolver(self.problem)
+        solver.solve(
+            only_one_const=1, order_const=1, capacity_penalty=1, 
+            time_window_penalty=1, vehicle_start_cost=1, 
+            solver_type='simulated', num_reads=1
+        )
+        
+        args, _ = self.problem.get_qubo.call_args
+        vehicle_k_limits = args[0]
+        
+        # FIX: The expectation is now [2] because min(3, 2 customers) = 2
+        self.assertEqual(vehicle_k_limits, [2])
 
 if __name__ == '__main__':
     unittest.main()

@@ -21,9 +21,7 @@ class VRPProblem:
         
         qubo = Qubo()
 
-        # =================================================================
-        # 1. UNIQUE VISIT CONSTRAINTS (Standard)
-        # =================================================================
+       
         penalty_scale = only_one_const
         
         # Each customer visited exactly once
@@ -43,9 +41,7 @@ class VRPProblem:
                     for idx2 in range(idx1 + 1, len(variables)):
                         qubo.add((variables[idx1], variables[idx2]), penalty_scale)
 
-        # =================================================================
-        # 2. ROUTE CONTINUITY & SELF-LOOPS
-        # =================================================================
+       
         continuity_penalty = only_one_const * 0.1
         selfloop_penalty = only_one_const * 0.5
         
@@ -64,9 +60,7 @@ class VRPProblem:
                 for j in customer_nodes:
                     qubo.add(((i, j, k), (i, j, k + 1)), selfloop_penalty)
 
-        # =================================================================
-        # 3. CAPACITY CONSTRAINT (Logarithmic Slack)
-        # =================================================================
+       
         for i in range(num_vehicles):
             capacity = self.capacities[i]
             if capacity <= 0: continue
@@ -86,7 +80,7 @@ class VRPProblem:
             qubo.add_quadratic_equality_constraint(constraint_expr, -capacity, capacity_penalty)
 
         # =================================================================
-        # 4. ADVANCED TIME WINDOW CONSTRAINTS
+        # ADVANCED TIME WINDOW CONSTRAINTS
         # =================================================================
         
         # A. PAIRWISE CHECK (Step k -> Step k+1)
@@ -108,7 +102,7 @@ class VRPProblem:
                     if j1 == j2: continue
                     
                     # 1. OPTIMISTIC CHECK (Hard Constraint)
-                    # If I leave j1 as early as possible, am I still late for j2?
+                    
                     earliest_leave_j1 = self.time_windows[j1][0] + self.service_times[j1]
                     earliest_arrival_j2 = earliest_leave_j1 + self.time_costs[j1][j2]
                     
@@ -117,8 +111,7 @@ class VRPProblem:
                             qubo.add(((i, j1, k), (i, j2, k + 1)), time_window_penalty)
                             
                     # 2. PESSIMISTIC "RISK" CHECK (Soft Constraint)
-                    # If I leave j1 as *late* as possible, will I be late for j2?
-                    # This discourages fragile links that break if there's any delay.
+                    
                     latest_leave_j1 = self.time_windows[j1][1] + self.service_times[j1]
                     latest_arrival_j2 = latest_leave_j1 + self.time_costs[j1][j2]
                     
@@ -137,9 +130,6 @@ class VRPProblem:
                 for j3 in customer_nodes:  # Node at k+2
                     if j1 == j3: continue
                     
-                    # Determine if ANY intermediate node j2 exists that makes this chain valid.
-                    # We calculate the "Fastest Possible Path" from j1 -> j3 through ANY j2.
-                    # If even the fastest path fails, then (j1, k) and (j3, k+2) are incompatible.
                     
                     min_time_j1_to_j3 = float('inf')
                     
@@ -171,7 +161,7 @@ class VRPProblem:
                             qubo.add(((i, j1, k), (i, j3, k + 2)), time_window_penalty)
 
         # =================================================================
-        # 5. OBJECTIVE FUNCTION (Clarke-Wright Savings)
+        #  OBJECTIVE FUNCTION 
         # =================================================================
         for i in range(num_vehicles):
             k_max = vehicle_k_limits[i]

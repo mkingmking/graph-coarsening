@@ -51,19 +51,7 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
                 if len(tmp) > 2: formatted.append(tmp)
             routes = coarsener.inflate_route(formatted)
             metrics = calculate_route_metrics(coarsener.graph, routes, depot_id, vehicle_capacity)
-    elif solver_name == 'ortools':
-        num_customers = len(graph.nodes) - 1
-        NUM_VEHICLES = num_customers
-        solver = ORToolsSolver(graph, depot_id, vehicle_capacity, NUM_VEHICLES)
-        routes, metrics = solver.solve()
-        if coarsener:
-            formatted = []
-            for r in routes:
-                if not r: continue
-                tmp = [depot_id] + r + [depot_id]
-                if len(tmp) > 2: formatted.append(tmp)
-            routes = coarsener.inflate_route(formatted)
-            metrics = calculate_route_metrics(coarsener.graph, routes, depot_id, vehicle_capacity)
+    
     else:
         vrp = convert_graph_to_vrp_problem_inputs(graph, depot_id, vehicle_capacity)
         solver = FullQuboSolver(vrp) if solver_name == 'FullQubo' else AveragePartitionSolver(vrp)
