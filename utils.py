@@ -74,11 +74,6 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
         current_load = 0.0
         current_time = graph.nodes[depot_id].e
         
-        route_distance = 0.0
-        route_service_time = 0.0
-        route_waiting_time = 0.0
-        route_feasible = True
-
         for i in range(len(route) - 1):
             from_node_id = route[i]
             to_node_id = route[i+1]
@@ -90,33 +85,27 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
                 current_load += to_node.demand
                 if current_load > vehicle_capacity:
                     capacity_violations += 1
-                    route_feasible = False
                     all_feasible = False
 
             travel_time = compute_euclidean_tau(from_node, to_node)
             total_distance += travel_time
-            route_distance += travel_time
 
             arrival_time_at_to_node = current_time + travel_time
-            
             service_start_time_at_to_node = max(arrival_time_at_to_node, to_node.e)
 
             if service_start_time_at_to_node > to_node.l:
                 time_window_violations += 1
-                route_feasible = False
                 all_feasible = False
 
             waiting_time = max(0, to_node.e - arrival_time_at_to_node)
             total_waiting_time += waiting_time
-            route_waiting_time += waiting_time
 
             current_time = service_start_time_at_to_node + to_node.s
 
             if to_node_id != depot_id:
                 total_service_time += to_node.s
-                route_service_time += to_node.s
                 total_demand_served += to_node.demand
-            
+
         if route[-1] == depot_id:
             last_customer_node_id = route[-2] if len(route) > 1 else depot_id
             last_customer_node = graph.nodes[last_customer_node_id]
@@ -126,11 +115,9 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
 
             if final_arrival_at_depot > depot_node.l:
                 time_window_violations += 1
-                route_feasible = False
                 all_feasible = False
             total_route_duration += final_arrival_at_depot
         else:
-            route_feasible = False
             all_feasible = False
             print(f"Warning: Route {route} does not end at depot {depot_id}. Considered infeasible.")
 

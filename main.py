@@ -1,19 +1,12 @@
 import os
 import logging
 import json
-import random
 import time
-from multiprocessing import Process
 from .graph import Graph, compute_euclidean_tau
 from .utils import load_graph_from_csv, calculate_route_metrics
 from .greedy_solver import GreedySolver
 from .savings_solver import SavingsSolver
 from .coarsener import SpatioTemporalGraphCoarsener
-from .quantum_solvers.vrp_problem import VRPProblem
-from .quantum_solvers.vrp_solution import VRPSolution
-from .quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
-# Mock D-Wave solver for local testing
-#from quantum_solvers.DWaveSolvers_modified import MockDWaveSolvers as DWaveSolvers_modified
 from .visualisation import visualize_routes
 
 from pathlib import Path
@@ -22,24 +15,9 @@ import argparse
 _visualisation_counter_uncoarsened = {}
 _visualisation_counter_coarsened = {}
 
-def convert_graph_to_vrp_problem_inputs(graph: Graph, depot_id: str, vehicle_capacity: float) -> VRPProblem:
-    costs_matrix = {u: {} for u in graph.nodes}
-    time_costs_matrix = {u: {} for u in graph.nodes}
-    for u_id, u_node in graph.nodes.items():
-        for v_id, v_node in graph.nodes.items():
-            tau = 0.0 if u_id == v_id else compute_euclidean_tau(u_node, v_node)
-            costs_matrix[u_id][v_id] = tau
-            time_costs_matrix[u_id][v_id] = tau
-    num_vehicles = 3
-    capacities = [vehicle_capacity] * num_vehicles
-    customer_ids = [nid for nid in graph.nodes if nid != depot_id]
-    customer_demands = {nid: graph.nodes[nid].demand for nid in customer_ids}
-    return VRPProblem(graph.nodes, depot_id, costs_matrix, time_costs_matrix, capacities, customer_ids, customer_demands)
-
 
 def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, solver_name: str, coarsener: SpatioTemporalGraphCoarsener = None):
     start_time = time.perf_counter()
-    qubo_params = dict(only_one=1000, order=1, tw_penalty=1000, reads=10, backend='simulated')
     if solver_name in ('Greedy', 'Savings'):
         solver = GreedySolver(graph, depot_id, vehicle_capacity) if solver_name == 'Greedy' else SavingsSolver(graph, depot_id, vehicle_capacity)
         routes, metrics = solver.solve()
@@ -52,17 +30,6 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
             routes = coarsener.inflate_route(formatted)
             metrics = calculate_route_metrics(coarsener.graph, routes, depot_id, vehicle_capacity)
     
-    else:
-        vrp = convert_graph_to_vrp_problem_inputs(graph, depot_id, vehicle_capacity)
-        solver = FullQuboSolver(vrp) if solver_name == 'FullQubo' else AveragePartitionSolver(vrp)
-        sol = solver.solve(qubo_params['only_one'], qubo_params['order'], qubo_params['tw_penalty'], qubo_params['backend'], qubo_params['reads'])
-        formatted = []
-        for r in sol.solution:
-            if not r: continue
-            tmp = [depot_id] + r + [depot_id]
-            if len(tmp) > 2: formatted.append(tmp)
-        routes = formatted if not coarsener else coarsener.inflate_route(formatted)
-        metrics = calculate_route_metrics(coarsener.graph if coarsener else graph, routes, depot_id, vehicle_capacity)
     end_time = time.perf_counter()
     duration = end_time - start_time
     return routes, metrics, duration
@@ -142,26 +109,26 @@ def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dic
         key = f"Uncoarsened {name}"
         results[key] = metrics
         log_solver_results(key, routes, metrics)
-    count = _visualisation_counter_uncoarsened.get(name, 0) + 1
-    _visualisation_counter_uncoarsened[name] = count
-    filename = f"{name}{count}"
-    visualize_routes(graph, routes, depot_id, "Uncoarsened Solution", filename = "Uncoarsened Solution" + filename)
+        count = _visualisation_counter_uncoarsened.get(name, 0) + 1
+        _visualisation_counter_uncoarsened[name] = count
+        filename = f"{name}{count}"
+        visualize_routes(graph, routes, depot_id, "Uncoarsened Solution", filename = "Uncoarsened Solution" + filename)
     return results
 
 def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Graph, depot_id: str, capacity: float, initial_graph) -> dict:
     results = {}
     for i, name in enumerate(('Greedy', 'Savings'), start=1):
-    
+
         logger.info(f"\n--- Running INFLATED {name} Solver ---")
         routes, metrics, duration = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener)
         metrics['computation_time'] = duration
         key = f"Inflated {name}"
         results[key] = metrics
         log_solver_results(key, routes, metrics)
-    count = _visualisation_counter_coarsened.get(name, 0) + 1
-    _visualisation_counter_coarsened[name] = count
-    filename = f"{name}{count}"
-    visualize_routes(initial_graph, routes, depot_id, "coarsened Solution", filename= "coarsened Solution" + filename)
+        count = _visualisation_counter_coarsened.get(name, 0) + 1
+        _visualisation_counter_coarsened[name] = count
+        filename = f"{name}{count}"
+        visualize_routes(initial_graph, routes, depot_id, "coarsened Solution", filename= "coarsened Solution" + filename)
     return results
 
 def save_results_to_json(data: dict, file_path: str):

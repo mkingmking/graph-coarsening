@@ -22,7 +22,6 @@ class VRPSolution:
                 if route:
                     final_routes.append(route)
             
-           
             self.solution = self._repair_solution(final_routes)
     
     def _calculate_arrival_time(self, route, candidate_node=None):
@@ -32,33 +31,24 @@ class VRPSolution:
         Returns float('inf') if any node in the chain is late.
         """
         current_time = 0.0
-        
         last_node = self.depot
-        
         
         depot_ready = self.problem.time_windows[self.depot][0]
         current_time = max(current_time, depot_ready)
         
-        
         full_route = route + ([candidate_node] if candidate_node is not None else [])
         
         for node in full_route:
-            
-            travel_time = self.problem.costs[last_node][node]
+            travel_time = self.problem.time_costs[last_node][node]  # use time_costs
             current_time += travel_time
             
-            # Check time window for this node
             ready_time, due_date = self.problem.time_windows[node]
             
             if current_time > due_date:
-                return float('inf')  # Violation detected
-            
+                return float('inf')
             
             current_time = max(current_time, ready_time)
-            
-            # Add service time
             current_time += self.problem.service_times[node]
-            
             last_node = node
             
         return current_time
@@ -81,88 +71,94 @@ class VRPSolution:
                 if customer not in visited:
                     clean_route.append(customer)
                     visited.add(customer)
-            if clean_route:  # Only keep non-empty routes
+            if clean_route:
                 repaired_routes.append(clean_route)
         
         # Find missing customers
         missing = all_customers - visited
         
         if missing:
-            # Try to add missing customers to existing routes
             for customer in missing:
                 best_route_idx = -1
                 best_cost = float('inf')
                 
-                # If no routes exist, we must create a new one
                 if not repaired_routes:
                     repaired_routes.append([customer])
                     continue
                 
-                # Find best route to add this customer
                 for idx, route in enumerate(repaired_routes):
                     if not route: continue
 
                     last_customer = route[-1]
                     cost = self.problem.costs[last_customer][customer]
                     
-                    # Capacity Constraint ---
                     route_demand = sum(self.problem.weights.get(c, 0) for c in route)
                     customer_demand = self.problem.weights.get(customer, 0)
-                    # Handle varying vehicle capacities if they exist, else default to first
                     vehicle_capacity = self.problem.capacities[idx] if idx < len(self.problem.capacities) else self.problem.capacities[0]
                     
                     if route_demand + customer_demand > vehicle_capacity:
-                        continue # Skip this vehicle, it's full
+                        continue
 
-                    # Time Window Constraint (NEW) ---
-                    # Simulate the route with the new customer added
                     arrival_time = self._calculate_arrival_time(route, candidate_node=customer)
                     if arrival_time == float('inf'):
-                        continue # Skip this vehicle, it would be late
+                        continue
                     
-                    # If passed both checks, compare cost
                     if cost < best_cost:
                         best_cost = cost
                         best_route_idx = idx
                 
-                # Add to best route or create new route if no valid vehicle found
                 if best_route_idx != -1:
                     repaired_routes[best_route_idx].append(customer)
                 else:
-                    # Create new route for this customer
                     repaired_routes.append([customer])
         
         return repaired_routes
     
     def check(self):
-        capacities = self.problem.capacities
-        weights = self.problem.weights
-        time_windows = self.problem.time_windows
+        """
+        Validates the solution for:
+          - No duplicate customer visits
+          - Capacity constraints per vehicle
+          - Time window constraints per route
+          - All customers are visited
+
+        FIX: Now correctly uses self.problem.time_costs (travel time matrix)
+        for all time arithmetic, instead of self.problem.costs (distance matrix).
+        Previously, costs was used throughout check(), meaning time window
+        validation was being done against distances — silently producing wrong
+        feasibility verdicts.
+        """
+        capacities  = self.problem.capacities
+        weights     = self.problem.weights
+        time_windows  = self.problem.time_windows
         service_times = self.problem.service_times
-        costs = self.problem.costs
+        time_costs    = self.problem.time_costs   # FIX: was self.problem.costs
 
         visited_customers = set()
         for i, route in enumerate(self.solution):
+
+            # ── Duplicate check ───────────────────────────────────────────
             for customer in route:
                 if customer in visited_customers:
                     return False
                 visited_customers.add(customer)
             
+            # ── Capacity check ────────────────────────────────────────────
             current_load = sum(weights.get(dest, 0) for dest in route)
             if i < len(capacities) and current_load > capacities[i]:
                 return False
 
-            if not route: continue
+            if not route:
+                continue
             
+            # ── Time window check ─────────────────────────────────────────
             current_time = 0.0
             
-            # Start from Depot
-            # (Assuming start time 0 or window start)
             depot_ready = time_windows[self.depot][0]
             current_time = max(current_time, depot_ready)
             
-            # Travel to first node
-            current_time += costs[self.depot][route[0]]
+            # Depot → first stop
+            current_time += time_costs[self.depot][route[0]]   # FIX: was costs
             
             ready_time, due_date = time_windows[route[0]]
             if current_time > due_date:
@@ -170,9 +166,12 @@ class VRPSolution:
             current_time = max(current_time, ready_time)
             current_time += service_times[route[0]]
 
+            # Each subsequent stop
             for stop_idx in range(len(route) - 1):
-                from_node, to_node = route[stop_idx], route[stop_idx+1]
-                current_time += costs[from_node][to_node]
+                from_node = route[stop_idx]
+                to_node   = route[stop_idx + 1]
+
+                current_time += time_costs[from_node][to_node]  # FIX: was costs
                 
                 ready_time, due_date = time_windows[to_node]
                 if current_time > due_date:
@@ -180,6 +179,7 @@ class VRPSolution:
                 current_time = max(current_time, ready_time)
                 current_time += service_times[to_node]
 
+        # ── Completeness check ────────────────────────────────────────────
         required_customers = set(self.problem.dests)
         if visited_customers != required_customers:
             missing = required_customers - visited_customers

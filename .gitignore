@@ -52,3 +52,5 @@ delete2.py
 delete3.py
 main2.py
 main3.py
+main_only_coarsened_quantum.py
+run_p_experiment.py
