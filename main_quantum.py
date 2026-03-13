@@ -9,7 +9,7 @@ from .graph import Graph, compute_euclidean_tau
 from .utils import load_graph_from_csv, calculate_route_metrics
 from .coarsener import SpatioTemporalGraphCoarsener
 from .quantum_solvers.vrp_problem import VRPProblem
-from .quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver, IterativeRepairSolver
+from .quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
 from .visualisation import visualize_routes
 
 # --- Visualization Counters ---
@@ -92,8 +92,6 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
         solver = FullQuboSolver(vrp)
     elif solver_name == 'AveragePartitionSolver':
         solver = AveragePartitionSolver(vrp)
-    elif solver_name == 'IterativeRepairSolver':
-        solver = IterativeRepairSolver(vrp)
     else:
         raise ValueError(f"Unknown solver: {solver_name}")
 
@@ -172,7 +170,7 @@ def final_summary(all_results: dict):
     
     for fname, res in sorted(all_results.items()):
         logger.info(f"\n--- Results for {Path(fname).name} ---")
-        for solver_name in ('FullQubo', 'AveragePartitionSolver', 'IterativeRepairSolver'):
+        for solver_name in ('FullQubo', 'AveragePartitionSolver'):
             uncoarsened_key = f"Uncoarsened {solver_name}"
             inflated_key = f"Inflated {solver_name}"
             
@@ -222,7 +220,7 @@ def process_file(csv_file_path: str, num_customers: int) -> dict:
     subgraph = create_subgraph(full_graph, depot_id, num_customers)
     
     file_results = {}
-    solvers_to_run = ('FullQubo', 'AveragePartitionSolver', 'IterativeRepairSolver')
+    solvers_to_run = ('FullQubo', 'AveragePartitionSolver')
     
     script_dir = Path(__file__).resolve().parent
     save_dir = script_dir / "quantum_visualisations"
@@ -247,7 +245,7 @@ def process_file(csv_file_path: str, num_customers: int) -> dict:
         )
 
     # Run COARSENED solvers
-    coarsener = SpatioTemporalGraphCoarsener(graph=subgraph, alpha=0.8, beta=0.4, P=0.5, radiusCoeff=2.0, depot_id=depot_id)
+    coarsener = SpatioTemporalGraphCoarsener(graph=subgraph, alpha=1, beta=1, P=0.5, radiusCoeff=2.0, depot_id=depot_id)
     coarsened_graph, _ = coarsener.coarsen()
     for name in solvers_to_run:
         routes, metrics, duration = run_solver_pipeline(coarsened_graph, depot_id, capacity, name, coarsener)
@@ -293,13 +291,7 @@ def main():
             return
 
     logger.info("\n" + "="*60)
-    logger.info("IMPROVED QUBO VRP SOLVER")
-    logger.info("Key improvements:")
-    logger.info("  - Reduced k_max to minimize search space")
-    logger.info("  - Solution repair for constraint violations")
-    logger.info("  - Fewer vehicles to encourage consolidation")
-    logger.info("  - New IterativeRepairSolver for better solutions")
-    logger.info("="*60)
+    
 
     all_results = {}
     for csv_path in files_to_process:
