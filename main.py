@@ -6,6 +6,7 @@ from .graph import Graph, compute_euclidean_tau
 from .utils import load_graph_from_csv, calculate_route_metrics
 from .greedy_solver import GreedySolver
 from .savings_solver import SavingsSolver
+from .ortools_solver import ORToolsVRPTWSolver
 from .coarsener import SpatioTemporalGraphCoarsener
 from .visualisation import visualize_routes
 
@@ -18,8 +19,13 @@ _visualisation_counter_coarsened = {}
 
 def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, solver_name: str, coarsener: SpatioTemporalGraphCoarsener = None):
     start_time = time.perf_counter()
-    if solver_name in ('Greedy', 'Savings'):
-        solver = GreedySolver(graph, depot_id, vehicle_capacity) if solver_name == 'Greedy' else SavingsSolver(graph, depot_id, vehicle_capacity)
+    if solver_name in ('Greedy', 'Savings', 'ORTools'):
+        if solver_name == 'Greedy':
+            solver = GreedySolver(graph, depot_id, vehicle_capacity)
+        elif solver_name == 'Savings':
+            solver = SavingsSolver(graph, depot_id, vehicle_capacity)
+        else:
+            solver = ORToolsVRPTWSolver(graph, depot_id, vehicle_capacity)
         routes, metrics = solver.solve()
         if coarsener:
             formatted = []
@@ -101,7 +107,7 @@ def log_solver_results(prefix: str, routes: list, metrics: dict):
 
 def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dict:
     results = {}
-    for i, name in enumerate(('Greedy', 'Savings'), start=1):
+    for i, name in enumerate(('Greedy', 'Savings', 'ORTools'), start=1):
 
         logger.info(f"\n--- Running UNCOARSENED {name} Solver ---")
         routes, metrics, duration = run_solver_pipeline(graph, depot_id, capacity, name)
@@ -117,7 +123,7 @@ def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dic
 
 def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Graph, depot_id: str, capacity: float, initial_graph) -> dict:
     results = {}
-    for i, name in enumerate(('Greedy', 'Savings'), start=1):
+    for i, name in enumerate(('Greedy', 'Savings', 'ORTools'), start=1):
 
         logger.info(f"\n--- Running INFLATED {name} Solver ---")
         routes, metrics, duration = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener)
@@ -163,7 +169,7 @@ def final_summary(all_results: dict, file_logger=None):
     
     for fname, res in sorted(all_results.items()):
         write_output(f"\n--- Results for {fname} ---")
-        solver_names = ('Greedy', 'Savings')
+        solver_names = ('Greedy', 'Savings', 'ORTools')
         for solver_name in solver_names:
             uncoarsened_key = f"Uncoarsened {solver_name}"
             inflated_key = f"Inflated {solver_name}"

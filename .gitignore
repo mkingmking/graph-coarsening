@@ -15,6 +15,8 @@ venv/
 ENV/
 .env/
 
+.claude/
+
 # Pytest & coverage
 .pytest_cache/
 .coverage
@@ -58,3 +60,4 @@ hyperparam_search_results.json
 run_hyperparam_search.py
 output10customer.json
 main.tex
+run_wilcoxon_test.py
