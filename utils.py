@@ -2,6 +2,7 @@ import re
 import csv
 import io
 import logging
+from pathlib import Path
 
 from .graph import Graph, compute_euclidean_tau
 from .node import Node
@@ -258,14 +259,58 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
 """
 
 
+def _solomon_capacity(file_path: str) -> float | None:
+    """
+    Returns the known vehicle capacity for a Solomon benchmark instance based on
+    the filename, ignoring whatever the CSV header may (or may not) contain.
+
+    Families and their capacities:
+      C1  (C101–C109)   : 200
+      C2  (C201–C208)   : 700
+      R1  (R101–R112)   : 200
+      R2  (R201–R211)   : 1000
+      RC1 (RC101–RC108) : 200
+      RC2 (RC201–RC208) : 1000
+
+    Returns None if the filename does not match any known Solomon pattern,
+    leaving the caller to use the value parsed from the file.
+    """
+    stem = Path(file_path).stem.lower()  # e.g. "c101", "rc208"
+
+    _CAPACITY_MAP = {
+        'c1': 200.0,
+        'c2': 700.0,
+        'r1': 200.0,
+        'r2': 1000.0,
+        'rc1': 200.0,
+        'rc2': 1000.0,
+    }
+
+    for prefix, cap in _CAPACITY_MAP.items():
+        if stem.startswith(prefix) and len(stem) > len(prefix) and stem[len(prefix)].isdigit():
+            return cap
+
+    return None
+
+
 def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
     """
     Loads graph data from a Solomon VRPTW CSV file.
     ROBUST VERSION: Automatically detects start of data.
+
+    Vehicle capacity is resolved exclusively from the Solomon family map
+    (_solomon_capacity). The CSV header is never used for capacity.
+    Raises ValueError if the filename does not match a known Solomon instance.
     """
+    vehicle_capacity = _solomon_capacity(file_path)
+    if vehicle_capacity is None:
+        raise ValueError(
+            f"Unknown Solomon instance '{Path(file_path).stem}': cannot determine vehicle capacity. "
+            "Add the instance to _solomon_capacity() if it is a new benchmark family."
+        )
+
     graph = Graph()
     depot_id = None
-    vehicle_capacity = 200.0  # Default fallback if parsing fails
 
     solomon_headers = [
         'CUST NO.', 'XCOORD.', 'YCOORD.', 'DEMAND', 'READY TIME', 'DUE DATE', 'SERVICE TIME'
@@ -274,36 +319,18 @@ def load_graph_from_csv(file_path: str) -> tuple[Graph, str, float]:
     try:
         with open(file_path, mode='r', newline='') as f:
             lines = f.readlines()
-            
+
             # --- 1. Robust Header Detection ---
-            # Find which line contains the column headers
             header_index = -1
             for idx, line in enumerate(lines):
                 if 'CUST NO.' in line:
                     header_index = idx
                     break
-            
+
             if header_index == -1:
-                # Fallback: If no header found, assume data starts at line 1 (if line 0 is header) 
-                # or line 0? Let's check if line 0 is numeric.
-                # Safer: Raise error or assume it's a raw dump.
-                # Given your file likely has headers:
                 raise ValueError("Could not find 'CUST NO.' header row in file.")
 
-            # --- 2. Vehicle Capacity Parsing (Optional) ---
-            # Only try to parse capacity from lines BEFORE the header
-            if header_index > 0:
-                for i in range(header_index):
-                    line = lines[i].strip()
-                    # Simple heuristic: look for "CAPACITY" or similar, or just distinct number
-                    # Your previous logic looked at line 4 (index 3). 
-                    # If using original solomon files, it's usually there.
-                    if "CAPACITY" in line or (i == 3 and len(line) < 20): # simplistic check
-                         match = re.search(r'\d+', line)
-                         if match:
-                             vehicle_capacity = float(match.group())
-
-            # --- 3. Parse Data ---
+            # --- 2. Parse Data ---
             # Data starts immediately after the header line
             data_lines = lines[header_index + 1:] 
             data_io = io.StringIO("".join(data_lines))

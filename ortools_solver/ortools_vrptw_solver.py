@@ -223,15 +223,14 @@ class ORToolsVRPTWSolver:
         )
         params.log_search = False
 
-        # Apply stopping criteria. solution_limit is preferred for timing
-        # experiments because OR-Tools exits immediately when reached, so
-        # the wall-clock time accurately reflects actual solver effort.
+        # Apply stopping criteria.
+        # If neither is set, no limit is imposed — OR-Tools runs until it
+        # proves optimality or exhausts its search space. This is the correct
+        # mode for matching SOTA/best-known solutions.
         if self.solution_limit is not None:
             params.solution_limit = self.solution_limit
         if self.time_limit_seconds is not None:
             params.time_limit.seconds = self.time_limit_seconds
-        if self.solution_limit is None and self.time_limit_seconds is None:
-            params.time_limit.seconds = 300  # safety cap
 
         # ---- 9. Optionally inject a warm-start solution ----
         initial_assignment = None

@@ -7,20 +7,21 @@ the results to a JSON file.
 
 Stopping criteria
 -----------------
-By default the solver stops after --solution-limit improving solutions
-(default 5). OR-Tools exits immediately when this limit is reached, so
-time.perf_counter() gives the TRUE solve time — not a pre-set budget.
+By default no stopping criterion is imposed — OR-Tools runs until it
+proves optimality or exhausts its search. This is required to match
+SOTA / best-known Solomon solutions.
 
-Use --time-limit (seconds) instead for a hard wall-clock cap (useful as
-a safety net for hard instances, but note the solver will always run until
-the limit expires, making timing comparisons less meaningful).
+Use --time-limit (seconds) to cap each instance if needed (e.g. for
+quick experiments). Use --solution-limit N to stop after N improving
+solutions (useful for timing experiments; OR-Tools exits immediately
+so perf_counter gives the true elapsed time).
 
 Usage
 -----
-    python -m graph_coarsening.run_ortools                    # solution_limit=5
-    python -m graph_coarsening.run_ortools --solution-limit 1 # first feasible only
-    python -m graph_coarsening.run_ortools --time-limit 30    # fixed 30s budget
-    python -m graph_coarsening.run_ortools --file C101.csv
+    python -m graph_coarsening.run_ortools                     # no limit (to optimality)
+    python -m graph_coarsening.run_ortools --time-limit 300    # 5-min cap per instance
+    python -m graph_coarsening.run_ortools --solution-limit 1  # first feasible only
+    python -m graph_coarsening.run_ortools --file C1/C101.csv
     python -m graph_coarsening.run_ortools --output my_results.json
 
 Output JSON format (mirrors results_classical.json)
@@ -67,9 +68,9 @@ def process_file(
     time_limit: int = None,
 ) -> dict:
     """
-    solution_limit : stop after N improving solutions (measures actual time).
-    time_limit     : hard cap in seconds (solver always runs to the limit).
-    At least one must be set; both can be combined.
+    solution_limit : stop after N improving solutions (None = no limit).
+    time_limit     : hard cap in seconds (None = no limit).
+    When both are None, OR-Tools runs to proven optimality.
     """
     instance_name = Path(csv_path).stem
     logger.info(f"\n=== {instance_name} ===")
@@ -143,13 +144,13 @@ def process_file(
     )
 
     # Step 4: warm-start repair on original graph.
-    # Uses solution_limit=1 so OR-Tools just verifies/accepts the warm-start
-    # solution with minimal extra search, keeping total pipeline time low.
-    logger.info(f"  Step 4 — Warm-start repair on original graph (solution_limit=1)...")
+    # Uses the same stopping criteria as the uncoarsened run so that
+    # OR-Tools can fully optimise from the inflated warm-start.
+    logger.info(f"  Step 4 — Warm-start repair on original graph ({stop_desc or 'no limit'})...")
     solver_w = ORToolsVRPTWSolver(
         graph, depot_id, capacity,
         time_limit_seconds=time_limit,
-        solution_limit=1,
+        solution_limit=solution_limit,
     )
     final_routes, metrics_inf = solver_w.solve(initial_routes=inflated_routes)
     metrics_inf["computation_time"] = time.perf_counter() - t0
@@ -235,18 +236,17 @@ def main() -> None:
         help="Path for the output JSON file"
     )
     parser.add_argument(
-        "--solution-limit", type=int, default=5,
-        help="Stop after N improving solutions (default: 5). "
-             "OR-Tools exits immediately so actual time is measurable. "
-             "Set to 0 to disable."
+        "--solution-limit", type=int, default=None,
+        help="Stop after N improving solutions (default: no limit). "
+             "OR-Tools exits immediately so actual time is measurable."
     )
     parser.add_argument(
         "--time-limit", type=int, default=None,
-        help="Hard wall-clock cap in seconds per instance (optional). "
-             "Combine with --solution-limit for a quality/time tradeoff."
+        help="Hard wall-clock cap in seconds per instance (default: no limit). "
+             "Use when you need a quick run; omit to find optimal solutions."
     )
     args = parser.parse_args()
-    solution_limit = args.solution_limit if args.solution_limit > 0 else None
+    solution_limit = args.solution_limit
 
     script_dir = Path(__file__).resolve().parent
 
