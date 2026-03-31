@@ -211,7 +211,14 @@ class SpatioTemporalGraphCoarsener:
 
                 # Compute new time window
                 e_prime, l_prime = self._compute_new_window(G_prime, node_i, node_j, pi_order) # Pass G_prime
-                
+
+                # Skip merge if the resulting window is inverted (e > l).
+                # This happens when the two nodes have incompatible time windows
+                # whose intersection is empty.  Proceeding would create a
+                # super-node that no solver can feasibly visit.
+                if l_prime < e_prime:
+                    continue
+
                 # Aggregate demand for super-node
                 demand_ij = node_i.demand + node_j.demand
 

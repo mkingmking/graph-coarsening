@@ -299,6 +299,7 @@ def main():
         all_results[csv_path] = results
     
     if args.output:
+        Path(args.output).parent.mkdir(parents=True, exist_ok=True)
         with open(args.output, 'w') as f:
             json.dump(all_results, f, indent=4)
         logger.info(f"\nResults saved to {args.output}")

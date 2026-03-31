@@ -139,6 +139,7 @@ def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Gra
 
 def save_results_to_json(data: dict, file_path: str):
     try:
+        Path(file_path).parent.mkdir(parents=True, exist_ok=True)
         with open(file_path, 'w') as f:
             json.dump(data, f, indent=4)
         logger.info(f"Results successfully saved to {file_path}")

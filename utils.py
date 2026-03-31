@@ -9,6 +9,76 @@ from .node import Node
 
 logger = logging.getLogger(__name__)
 
+# ---------------------------------------------------------------------------
+# Reference total demand served for every Solomon benchmark instance.
+# Values are taken from the OR-Tools baseline run (100 % customer coverage,
+# all solutions feasible).  Used by check_coverage() to detect solvers that
+# silently drop customers.
+# ---------------------------------------------------------------------------
+_ORTOOLS_DEMAND: dict[str, float] = {
+    "C101": 1810.0, "C102": 1810.0, "C103": 1810.0, "C104": 1810.0,
+    "C105": 1810.0, "C106": 1810.0, "C107": 1810.0, "C108": 1810.0,
+    "C109": 1810.0, "C201": 1810.0, "C202": 1810.0, "C203": 1810.0,
+    "C204": 1810.0, "C205": 1810.0, "C206": 1810.0, "C207": 1810.0,
+    "C208": 1810.0,
+    "R101": 1458.0, "R102": 1458.0, "R103": 1458.0, "R104": 1458.0,
+    "R105": 1458.0, "R106": 1458.0, "R107": 1458.0, "R108": 1458.0,
+    "R109": 1458.0, "R110": 1458.0, "R111": 1458.0, "R112": 1458.0,
+    "R201": 1458.0, "R202": 1458.0, "R203": 1458.0, "R204": 1458.0,
+    "R205": 1458.0, "R206": 1458.0, "R207": 1458.0, "R208": 1458.0,
+    "R209": 1458.0, "R210": 1458.0, "R211": 1458.0,
+    "RC101": 1724.0, "RC102": 1724.0, "RC103": 1724.0, "RC104": 1724.0,
+    "RC105": 1724.0, "RC106": 1724.0, "RC107": 1724.0, "RC108": 1724.0,
+    "RC201": 1724.0, "RC202": 1724.0, "RC203": 1724.0, "RC204": 1724.0,
+    "RC205": 1724.0, "RC206": 1724.0, "RC207": 1724.0, "RC208": 1724.0,
+}
+
+
+def check_coverage(instance_name: str, metrics: dict) -> bool:
+    """Check that a solver's solution serves every customer.
+
+    Compares ``metrics['total_demand_served']`` against the OR-Tools
+    reference value stored in ``_ORTOOLS_DEMAND``.
+
+    Parameters
+    ----------
+    instance_name:
+        Solomon benchmark name, e.g. ``"C101"`` or ``"RC205"``.
+        Case-insensitive; leading path components and ``.csv`` suffix
+        are stripped automatically so callers may pass a raw file path.
+    metrics:
+        Dict returned by ``calculate_route_metrics``.
+
+    Returns
+    -------
+    bool
+        ``True`` if demand served matches the reference (full coverage),
+        ``False`` otherwise.  Always returns ``True`` when the instance is
+        not in the reference dictionary (unknown benchmark) so that callers
+        are not blocked on unsupported instances.
+    """
+    # Normalise: strip path and extension, upper-case
+    key = Path(instance_name).stem.upper()
+
+    expected = _ORTOOLS_DEMAND.get(key)
+    if expected is None:
+        logger.warning(
+            f"check_coverage: '{key}' not in reference dictionary — skipping check."
+        )
+        return True
+
+    served = metrics.get("total_demand_served", 0.0)
+    if abs(served - expected) > 1e-6:
+        pct = served / expected * 100
+        logger.error(
+            f"COVERAGE FAILURE [{key}]: served {served:.1f} / {expected:.1f} "
+            f"({pct:.1f}%) — {expected - served:.1f} demand units dropped."
+        )
+        return False
+
+    logger.info(f"check_coverage [{key}]: OK ({served:.1f} / {expected:.1f})")
+    return True
+
 def parse_float(value: str) -> float:
     """Safely parse a float from a potentially malformed string.
 

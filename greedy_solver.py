@@ -117,7 +117,17 @@ class GreedySolver:
                 print("  All customers visited.")
                 break
             if not vehicle_made_progress_in_this_route and unvisited_customers:
-                print(f"  Stuck: Vehicle {vehicle_count} dispatched but could not visit any new customer. {len(unvisited_customers)} customers remaining. Breaking to prevent infinite loop.")
+                # No feasible multi-stop route exists for any remaining customer
+                # (e.g. coarsened super-nodes whose service windows are too tight
+                # to satisfy alongside other stops).  Create a forced singleton
+                # route for each one so that every customer is covered — mirroring
+                # how the Savings solver guarantees full coverage.
+                print(f"  Stuck: Vehicle {vehicle_count} made no progress. "
+                      f"Creating forced singleton routes for {len(unvisited_customers)} remaining customer(s).")
+                for remaining_id in list(unvisited_customers):
+                    forced_route = [self.depot_id, remaining_id, self.depot_id]
+                    all_routes.append(forced_route)
+                    unvisited_customers.remove(remaining_id)
                 break
             else:
                 print(f"  {len(unvisited_customers)} customers remaining. Dispatching new vehicle.")

@@ -1,0 +1,3414 @@
+{
+    "C101": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 42.41983891815495,
+                "total_service_time": 450.0,
+                "total_waiting_time": 533.2617027741144,
+                "total_route_duration": 1025.6815416922693,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.013613624993013
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 58.32595327336471,
+                "total_service_time": 900.0,
+                "total_waiting_time": 67.35558841890457,
+                "total_route_duration": 1025.6815416922693,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "8",
+                        "9",
+                        "11",
+                        "10",
+                        "7",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000957459007623
+            }
+        }
+    },
+    "C102": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 42.41983891815495,
+                "total_service_time": 450.0,
+                "total_waiting_time": 522.7129070322666,
+                "total_route_duration": 1015.1327459504215,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "3",
+                        "5",
+                        "4",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000878541992279
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 57.24996285655929,
+                "total_service_time": 900.0,
+                "total_waiting_time": 245.09388564479016,
+                "total_route_duration": 1202.3438485013496,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "8",
+                        "9",
+                        "11",
+                        "10",
+                        "7",
+                        "5",
+                        "3",
+                        "2",
+                        "4",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001037040987285
+            }
+        }
+    },
+    "C103": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 42.41983891815495,
+                "total_service_time": 450.0,
+                "total_waiting_time": 522.7129070322666,
+                "total_route_duration": 1015.1327459504215,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "3",
+                        "5",
+                        "4",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000909791997401
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 57.24996285655929,
+                "total_service_time": 900.0,
+                "total_waiting_time": 245.09388564479016,
+                "total_route_duration": 1202.3438485013496,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "8",
+                        "9",
+                        "11",
+                        "10",
+                        "7",
+                        "5",
+                        "3",
+                        "2",
+                        "4",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.002801499998895
+            }
+        }
+    },
+    "C104": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 42.41983891815495,
+                "total_service_time": 450.0,
+                "total_waiting_time": 522.7129070322666,
+                "total_route_duration": 1015.1327459504215,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "3",
+                        "5",
+                        "4",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001098709006328
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 56.407466195335516,
+                "total_service_time": 900.0,
+                "total_waiting_time": 245.93638230601394,
+                "total_route_duration": 1202.3438485013496,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "11",
+                        "8",
+                        "9",
+                        "10",
+                        "7",
+                        "5",
+                        "3",
+                        "2",
+                        "4",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001007874991046
+            }
+        }
+    },
+    "C105": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 42.41983891815495,
+                "total_service_time": 450.0,
+                "total_waiting_time": 510.26170277411444,
+                "total_route_duration": 1002.6815416922694,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000814917002572
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 58.32595327336471,
+                "total_service_time": 900.0,
+                "total_waiting_time": 44.355588418904574,
+                "total_route_duration": 1002.6815416922694,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "8",
+                        "9",
+                        "11",
+                        "10",
+                        "7",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00112420800724
+            }
+        }
+    },
+    "C106": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 42.41983891815495,
+                "total_service_time": 450.0,
+                "total_waiting_time": 524.2617027741144,
+                "total_route_duration": 1016.6815416922694,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000866708025569
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 58.32595327336471,
+                "total_service_time": 900.0,
+                "total_waiting_time": 58.355588418904574,
+                "total_route_duration": 1016.6815416922694,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "8",
+                        "9",
+                        "11",
+                        "10",
+                        "7",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000953208014835
+            }
+        }
+    },
+    "C107": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 42.41983891815495,
+                "total_service_time": 450.0,
+                "total_waiting_time": 466.86725404957843,
+                "total_route_duration": 959.2870929677334,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000874332996318
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 58.32595327336471,
+                "total_service_time": 900.0,
+                "total_waiting_time": 0.961139694368569,
+                "total_route_duration": 959.2870929677334,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "8",
+                        "9",
+                        "11",
+                        "10",
+                        "7",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001365167001495
+            }
+        }
+    },
+    "C108": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 42.41983891815495,
+                "total_service_time": 450.0,
+                "total_waiting_time": 464.26170277411444,
+                "total_route_duration": 956.6815416922694,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00086141601787
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 57.49752614861852,
+                "total_service_time": 900.0,
+                "total_waiting_time": 0.0,
+                "total_route_duration": 957.4975261486187,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "8",
+                        "11",
+                        "9",
+                        "10",
+                        "7",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000981458986644
+            }
+        }
+    },
+    "C109": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 42.41983891815495,
+                "total_service_time": 450.0,
+                "total_waiting_time": 376.86725404957843,
+                "total_route_duration": 869.2870929677334,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000874749996001
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 57.49752614861852,
+                "total_service_time": 900.0,
+                "total_waiting_time": 0.0,
+                "total_route_duration": 957.4975261486187,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "8",
+                        "11",
+                        "9",
+                        "10",
+                        "7",
+                        "5",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000965124985669
+            }
+        }
+    },
+    "C201": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 70.44597512719547,
+                "total_service_time": 450.0,
+                "total_waiting_time": 856.1665218225359,
+                "total_route_duration": 1376.6124969497314,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "2",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00085399998352
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 194.66481471966767,
+                "total_service_time": 900.0,
+                "total_waiting_time": 1894.0798516003213,
+                "total_route_duration": 2988.744666319989,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "2",
+                        "7",
+                        "8",
+                        "4",
+                        "5",
+                        "10",
+                        "11",
+                        "9",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001016124995658
+            }
+        }
+    },
+    "C202": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 70.44597512719547,
+                "total_service_time": 450.0,
+                "total_waiting_time": 856.166521822536,
+                "total_route_duration": 1376.6124969497314,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "2",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000837166007841
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 144.98724348640485,
+                "total_service_time": 900.0,
+                "total_waiting_time": 1943.7574228335839,
+                "total_route_duration": 2988.744666319989,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "5",
+                        "4",
+                        "8",
+                        "2",
+                        "3",
+                        "10",
+                        "11",
+                        "9",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000972875015577
+            }
+        }
+    },
+    "C203": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 70.44597512719547,
+                "total_service_time": 450.0,
+                "total_waiting_time": 856.166521822536,
+                "total_route_duration": 1376.6124969497314,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "2",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000870916992426
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 144.98724348640485,
+                "total_service_time": 900.0,
+                "total_waiting_time": 1943.7574228335839,
+                "total_route_duration": 2988.744666319989,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "5",
+                        "4",
+                        "8",
+                        "2",
+                        "3",
+                        "10",
+                        "11",
+                        "9",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001024583005346
+            }
+        }
+    },
+    "C204": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 70.44597512719547,
+                "total_service_time": 450.0,
+                "total_waiting_time": 856.166521822536,
+                "total_route_duration": 1376.6124969497314,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "2",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00089691701578
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 133.13397544252499,
+                "total_service_time": 900.0,
+                "total_waiting_time": 2084.6200899615374,
+                "total_route_duration": 3117.754065404063,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "5",
+                        "4",
+                        "8",
+                        "2",
+                        "3",
+                        "6",
+                        "11",
+                        "10",
+                        "9",
+                        "7",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000991708016954
+            }
+        }
+    },
+    "C205": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 70.44597512719547,
+                "total_service_time": 450.0,
+                "total_waiting_time": 776.1665218225359,
+                "total_route_duration": 1296.6124969497314,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "2",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000856916012708
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 192.78093566794513,
+                "total_service_time": 900.0,
+                "total_waiting_time": 1919.6051296597348,
+                "total_route_duration": 3012.38606532768,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "2",
+                        "3",
+                        "7",
+                        "8",
+                        "4",
+                        "5",
+                        "11",
+                        "10",
+                        "9",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000900584011106
+            }
+        }
+    },
+    "C206": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 70.44597512719547,
+                "total_service_time": 450.0,
+                "total_waiting_time": 749.166521822536,
+                "total_route_duration": 1269.6124969497314,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "2",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000828250020277
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 170.68444177904453,
+                "total_service_time": 900.0,
+                "total_waiting_time": 1858.7016235486353,
+                "total_route_duration": 2929.38606532768,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "7",
+                        "3",
+                        "2",
+                        "8",
+                        "4",
+                        "5",
+                        "11",
+                        "10",
+                        "9",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001010916981613
+            }
+        }
+    },
+    "C207": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 70.44597512719547,
+                "total_service_time": 450.0,
+                "total_waiting_time": 842.166521822536,
+                "total_route_duration": 1362.6124969497314,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "2",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.0008452499751
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 170.68444177904453,
+                "total_service_time": 900.0,
+                "total_waiting_time": 1541.7016235486353,
+                "total_route_duration": 2612.38606532768,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "7",
+                        "3",
+                        "2",
+                        "8",
+                        "4",
+                        "5",
+                        "11",
+                        "10",
+                        "9",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00097024999559
+            }
+        }
+    },
+    "C208": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 70.44597512719547,
+                "total_service_time": 450.0,
+                "total_waiting_time": 616.166521822536,
+                "total_route_duration": 1136.6124969497314,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 70.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "2",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000920665974263
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 146.36958026332258,
+                "total_service_time": 900.0,
+                "total_waiting_time": 1806.016485064357,
+                "total_route_duration": 2852.38606532768,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 150.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "3",
+                        "2",
+                        "8",
+                        "4",
+                        "5",
+                        "11",
+                        "10",
+                        "9",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001007457991363
+            }
+        }
+    },
+    "R101": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 156.3510612611215,
+                "total_service_time": 50.0,
+                "total_waiting_time": 163.88048495060633,
+                "total_route_duration": 370.23154621172785,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "4",
+                        "2",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "3",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000902917003259
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 269.533140900765,
+                "total_service_time": 100.0,
+                "total_waiting_time": 260.1275546952752,
+                "total_route_duration": 629.6606955960401,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 4,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "9",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "10",
+                        "4",
+                        "5",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "3",
+                        "7",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "8",
+                        "11",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001184082997497
+            }
+        }
+    },
+    "R102": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 130.60198069901526,
+                "total_service_time": 50.0,
+                "total_waiting_time": 26.621767717141424,
+                "total_route_duration": 207.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001474874996347
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 229.76853317906046,
+                "total_service_time": 100.0,
+                "total_waiting_time": 192.23970368073594,
+                "total_route_duration": 522.0082368597964,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 3,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "9",
+                        "11",
+                        "8",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "2",
+                        "10",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "7",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001617041998543
+            }
+        }
+    },
+    "R103": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 130.60198069901526,
+                "total_service_time": 50.0,
+                "total_waiting_time": 26.621767717141424,
+                "total_route_duration": 207.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001288750005187
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 229.76853317906046,
+                "total_service_time": 100.0,
+                "total_waiting_time": 192.23970368073594,
+                "total_route_duration": 522.0082368597964,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 3,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "9",
+                        "11",
+                        "8",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "2",
+                        "10",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "7",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000904582993826
+            }
+        }
+    },
+    "R104": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 130.60198069901526,
+                "total_service_time": 50.0,
+                "total_waiting_time": 26.621767717141424,
+                "total_route_duration": 207.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000872541975696
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 198.21230541476098,
+                "total_service_time": 100.0,
+                "total_waiting_time": 93.85523180882427,
+                "total_route_duration": 392.06753722358525,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "10",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000960917008342
+            }
+        }
+    },
+    "R105": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 141.84544319328486,
+                "total_service_time": 50.0,
+                "total_waiting_time": 158.38610301844295,
+                "total_route_duration": 350.23154621172785,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "4",
+                        "2",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000861042004544
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 253.07149730807546,
+                "total_service_time": 100.0,
+                "total_waiting_time": 119.35210308980243,
+                "total_route_duration": 472.42360039787786,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 3,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "7",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "6",
+                        "8",
+                        "9",
+                        "11",
+                        "2",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "10",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000943042017752
+            }
+        }
+    },
+    "R106": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 54.30700257200189,
+                "total_route_duration": 223.79176599028887,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000891040981514
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 229.38697971400833,
+                "total_service_time": 100.0,
+                "total_waiting_time": 62.66431760443872,
+                "total_route_duration": 392.05129731844704,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "10",
+                        "11",
+                        "8",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "6",
+                        "9",
+                        "7",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00131799999508
+            }
+        }
+    },
+    "R107": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 54.30700257200189,
+                "total_route_duration": 223.79176599028887,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000870374991791
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 229.38697971400833,
+                "total_service_time": 100.0,
+                "total_waiting_time": 62.66431760443872,
+                "total_route_duration": 392.05129731844704,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "10",
+                        "11",
+                        "8",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "6",
+                        "9",
+                        "7",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000954666989855
+            }
+        }
+    },
+    "R108": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 54.30700257200189,
+                "total_route_duration": 223.79176599028887,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000853417004691
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 198.21230541476098,
+                "total_service_time": 100.0,
+                "total_waiting_time": 73.85523180882427,
+                "total_route_duration": 372.06753722358525,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "10",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001014249981381
+            }
+        }
+    },
+    "R109": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 150.6412542347822,
+                "total_service_time": 50.0,
+                "total_waiting_time": 9.561230141427032,
+                "total_route_duration": 210.20248437620924,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000851874996442
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 251.35361190167657,
+                "total_service_time": 100.0,
+                "total_waiting_time": 43.93307568065045,
+                "total_route_duration": 395.28668758232703,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "8",
+                        "10",
+                        "4",
+                        "5",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "7",
+                        "9",
+                        "11",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00103787498665
+            }
+        }
+    },
+    "R110": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 0.0,
+                "total_route_duration": 169.48476341828697,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000813958991785
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 213.74654862637647,
+                "total_service_time": 100.0,
+                "total_waiting_time": 39.23233517857089,
+                "total_route_duration": 352.9788838049474,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "5",
+                        "4",
+                        "10",
+                        "2",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "7",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001217124983668
+            }
+        }
+    },
+    "R111": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 53.30700257200189,
+                "total_route_duration": 222.79176599028887,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000814125000034
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 223.32889836815764,
+                "total_service_time": 100.0,
+                "total_waiting_time": 80.34843184541903,
+                "total_route_duration": 403.6773302135766,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "7",
+                        "9",
+                        "11",
+                        "8",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "2",
+                        "10",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000972707988694
+            }
+        }
+    },
+    "R112": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 0.0,
+                "total_route_duration": 169.48476341828697,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000926499982597
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 198.21230541476098,
+                "total_service_time": 100.0,
+                "total_waiting_time": 62.59591169634437,
+                "total_route_duration": 360.80821711110536,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "5",
+                        "4",
+                        "10",
+                        "2",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001014042005409
+            }
+        }
+    },
+    "R201": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 150.6412542347822,
+                "total_service_time": 50.0,
+                "total_waiting_time": 583.5612301414269,
+                "total_route_duration": 784.2024843762092,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000937250006245
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 253.86523777658698,
+                "total_service_time": 100.0,
+                "total_waiting_time": 430.33724659962235,
+                "total_route_duration": 784.2024843762092,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "8",
+                        "9",
+                        "7",
+                        "10",
+                        "4",
+                        "11",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000973416987108
+            }
+        }
+    },
+    "R202": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 603.2082340097112,
+                "total_route_duration": 772.6929974279981,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00086212498718
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 226.2925677442794,
+                "total_service_time": 100.0,
+                "total_waiting_time": 409.93118067187737,
+                "total_route_duration": 736.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "4",
+                        "10",
+                        "8",
+                        "9",
+                        "6",
+                        "7",
+                        "11",
+                        "2",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001211750000948
+            }
+        }
+    },
+    "R203": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 603.2082340097112,
+                "total_route_duration": 772.6929974279981,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00086770899361
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 226.2925677442794,
+                "total_service_time": 100.0,
+                "total_waiting_time": 409.93118067187737,
+                "total_route_duration": 736.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "4",
+                        "10",
+                        "8",
+                        "9",
+                        "6",
+                        "7",
+                        "11",
+                        "2",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000979999982519
+            }
+        }
+    },
+    "R204": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 603.2082340097112,
+                "total_route_duration": 772.6929974279981,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000901708001038
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 182.0458814136303,
+                "total_service_time": 100.0,
+                "total_waiting_time": 454.17786700252634,
+                "total_route_duration": 736.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "10",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001050165999914
+            }
+        }
+    },
+    "R205": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 535.3070025720019,
+                "total_route_duration": 704.7917659902889,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000912624993362
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 209.8145495192673,
+                "total_service_time": 100.0,
+                "total_waiting_time": 425.38793485694197,
+                "total_route_duration": 735.2024843762092,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "7",
+                        "9",
+                        "8",
+                        "11",
+                        "10",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000904166983673
+            }
+        }
+    },
+    "R206": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 545.2082340097112,
+                "total_route_duration": 714.6929974279981,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000795875006588
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 173.04201082117333,
+                "total_service_time": 100.0,
+                "total_waiting_time": 405.1817375949833,
+                "total_route_duration": 678.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "2",
+                        "10",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00112000000081
+            }
+        }
+    },
+    "R207": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 545.2082340097112,
+                "total_route_duration": 714.6929974279981,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001042874995619
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 173.04201082117333,
+                "total_service_time": 100.0,
+                "total_waiting_time": 405.1817375949833,
+                "total_route_duration": 678.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "2",
+                        "10",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000893332995474
+            }
+        }
+    },
+    "R208": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 545.2082340097112,
+                "total_route_duration": 714.6929974279981,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000857792008901
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 173.04201082117333,
+                "total_service_time": 100.0,
+                "total_waiting_time": 405.1817375949834,
+                "total_route_duration": 678.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "2",
+                        "10",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00098833400989
+            }
+        }
+    },
+    "R209": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 491.7467827934408,
+                "total_route_duration": 661.2315462117278,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000918417004868
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 196.4410031382758,
+                "total_service_time": 100.0,
+                "total_waiting_time": 416.7614812379334,
+                "total_route_duration": 713.2024843762092,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "10",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000910625007236
+            }
+        }
+    },
+    "R210": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 604.2082340097111,
+                "total_route_duration": 773.6929974279981,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "6",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000863124994794
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 202.05615060764114,
+                "total_service_time": 100.0,
+                "total_waiting_time": 435.1675978085155,
+                "total_route_duration": 737.2237484161567,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "10",
+                        "11",
+                        "2",
+                        "4",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000954957999056
+            }
+        }
+    },
+    "R211": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 119.48476341828696,
+                "total_service_time": 50.0,
+                "total_waiting_time": 392.3070025720019,
+                "total_route_duration": 561.7917659902889,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 75.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "6",
+                        "3",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000949333014432
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 183.0391419843744,
+                "total_service_time": 100.0,
+                "total_waiting_time": 295.3217010164945,
+                "total_route_duration": 578.360843000869,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 124.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "7",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "2",
+                        "10",
+                        "4",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000979167001788
+            }
+        }
+    },
+    "RC101": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 89.13046319518966,
+                "total_service_time": 50.0,
+                "total_waiting_time": 68.9961173713157,
+                "total_route_duration": 208.12658056650537,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000844666996272
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 185.90787650875717,
+                "total_service_time": 100.0,
+                "total_waiting_time": 89.65313673600443,
+                "total_route_duration": 375.5610132447616,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "8",
+                        "7",
+                        "9",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "10",
+                        "11",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00089745898731
+            }
+        }
+    },
+    "RC102": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 84.26987393795277,
+                "total_service_time": 50.0,
+                "total_waiting_time": 62.92113447068046,
+                "total_route_duration": 197.19100840863325,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000846916984301
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 169.6832312507175,
+                "total_service_time": 100.0,
+                "total_waiting_time": 117.10364127817579,
+                "total_route_duration": 386.7868725288933,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "10",
+                        "11",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "8",
+                        "7",
+                        "9",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000941749982303
+            }
+        }
+    },
+    "RC103": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 84.26987393795277,
+                "total_service_time": 50.0,
+                "total_waiting_time": 62.92113447068046,
+                "total_route_duration": 197.19100840863325,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000849083007779
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 169.6832312507175,
+                "total_service_time": 100.0,
+                "total_waiting_time": 117.10364127817579,
+                "total_route_duration": 386.7868725288933,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "10",
+                        "11",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "8",
+                        "7",
+                        "9",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00089024999761
+            }
+        }
+    },
+    "RC104": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 84.26987393795277,
+                "total_service_time": 50.0,
+                "total_waiting_time": 62.92113447068046,
+                "total_route_duration": 197.19100840863325,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000857375009218
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 166.0485053949989,
+                "total_service_time": 100.0,
+                "total_waiting_time": 97.57137979681748,
+                "total_route_duration": 363.61988519181637,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "7",
+                        "8",
+                        "9",
+                        "5",
+                        "6",
+                        "4",
+                        "2",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "11",
+                        "10",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000941124977544
+            }
+        }
+    },
+    "RC105": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 87.30166286504917,
+                "total_service_time": 50.0,
+                "total_waiting_time": 59.753849889590725,
+                "total_route_duration": 197.0555127546399,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001027332997182
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 179.30555124171454,
+                "total_service_time": 100.0,
+                "total_waiting_time": 82.37273811460915,
+                "total_route_duration": 361.6782893563237,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "4",
+                        "2",
+                        "9",
+                        "7",
+                        "8",
+                        "5",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "10",
+                        "11",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00127191701904
+            }
+        }
+    },
+    "RC106": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 89.13046319518966,
+                "total_service_time": 50.0,
+                "total_waiting_time": 53.996117371315705,
+                "total_route_duration": 193.12658056650537,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000926542008528
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 178.08794184831893,
+                "total_service_time": 100.0,
+                "total_waiting_time": 86.91710815063193,
+                "total_route_duration": 365.0050499989509,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "9",
+                        "8",
+                        "7",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "11",
+                        "10",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00102183301351
+            }
+        }
+    },
+    "RC107": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 84.26987393795278,
+                "total_service_time": 50.0,
+                "total_waiting_time": 38.80899159136678,
+                "total_route_duration": 173.07886552931956,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "5",
+                        "6",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000895540986676
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 168.16728824405018,
+                "total_service_time": 100.0,
+                "total_waiting_time": 69.57137979681748,
+                "total_route_duration": 337.73866804086765,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "7",
+                        "8",
+                        "9",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "11",
+                        "10",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00107216599281
+            }
+        }
+    },
+    "RC108": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 84.26987393795277,
+                "total_service_time": 50.0,
+                "total_waiting_time": 43.92113447068046,
+                "total_route_duration": 178.19100840863325,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000870624993695
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 166.0485053949989,
+                "total_service_time": 100.0,
+                "total_waiting_time": 89.57137979681748,
+                "total_route_duration": 355.61988519181637,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 2,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "7",
+                        "8",
+                        "9",
+                        "5",
+                        "6",
+                        "4",
+                        "2",
+                        "1"
+                    ],
+                    [
+                        "1",
+                        "11",
+                        "10",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000887625006726
+            }
+        }
+    },
+    "RC201": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 89.13046319518966,
+                "total_service_time": 50.0,
+                "total_waiting_time": 596.9961173713157,
+                "total_route_duration": 736.1265805665055,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00079525000183
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 194.56621120457748,
+                "total_service_time": 100.0,
+                "total_waiting_time": 441.56036936192794,
+                "total_route_duration": 736.1265805665055,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "9",
+                        "8",
+                        "7",
+                        "10",
+                        "11",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00092529199901
+            }
+        }
+    },
+    "RC202": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 84.26987393795277,
+                "total_service_time": 50.0,
+                "total_waiting_time": 565.9211344706805,
+                "total_route_duration": 700.1910084086333,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000992250017589
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 179.90792258348552,
+                "total_service_time": 100.0,
+                "total_waiting_time": 452.170942945834,
+                "total_route_duration": 732.0788655293195,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "9",
+                        "8",
+                        "10",
+                        "11",
+                        "3",
+                        "5",
+                        "6",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00095329200849
+            }
+        }
+    },
+    "RC203": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 84.26987393795277,
+                "total_service_time": 50.0,
+                "total_waiting_time": 565.9211344706805,
+                "total_route_duration": 700.1910084086333,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00087820799672
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 179.90792258348552,
+                "total_service_time": 100.0,
+                "total_waiting_time": 452.170942945834,
+                "total_route_duration": 732.0788655293195,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "7",
+                        "9",
+                        "8",
+                        "10",
+                        "11",
+                        "3",
+                        "5",
+                        "6",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000920499995118
+            }
+        }
+    },
+    "RC204": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 84.26987393795277,
+                "total_service_time": 50.0,
+                "total_waiting_time": 565.9211344706805,
+                "total_route_duration": 700.1910084086333,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.00087583300774
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 137.7768098368935,
+                "total_service_time": 100.0,
+                "total_waiting_time": 462.4141985717397,
+                "total_route_duration": 700.1910084086333,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "10",
+                        "11",
+                        "7",
+                        "8",
+                        "9",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001014958019368
+            }
+        }
+    },
+    "RC205": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 87.30166286504917,
+                "total_service_time": 50.0,
+                "total_waiting_time": 582.7538498895907,
+                "total_route_duration": 720.05551275464,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000852791999932
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 225.9774893998819,
+                "total_service_time": 100.0,
+                "total_waiting_time": 424.48654093657206,
+                "total_route_duration": 750.464030336454,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "10",
+                        "9",
+                        "6",
+                        "7",
+                        "3",
+                        "11",
+                        "8",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000990500004264
+            }
+        }
+    },
+    "RC206": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 89.13046319518966,
+                "total_service_time": 50.0,
+                "total_waiting_time": 536.9961173713157,
+                "total_route_duration": 676.1265805665055,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000931707996642
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 186.071640752208,
+                "total_service_time": 100.0,
+                "total_waiting_time": 375.00722477711156,
+                "total_route_duration": 661.0788655293195,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "9",
+                        "8",
+                        "11",
+                        "10",
+                        "7",
+                        "5",
+                        "4",
+                        "2",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001048666017596
+            }
+        }
+    },
+    "RC207": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 89.13046319518966,
+                "total_service_time": 50.0,
+                "total_waiting_time": 514.9961173713157,
+                "total_route_duration": 654.1265805665055,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000822624977445
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 179.2982141797304,
+                "total_service_time": 100.0,
+                "total_waiting_time": 421.62668648999545,
+                "total_route_duration": 700.924900669726,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "10",
+                        "3",
+                        "7",
+                        "8",
+                        "9",
+                        "6",
+                        "4",
+                        "2",
+                        "5",
+                        "11",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000992042012513
+            }
+        }
+    },
+    "RC208": {
+        "N5": {
+            "Uncoarsened ORTools": {
+                "total_distance": 84.26987393795277,
+                "total_service_time": 50.0,
+                "total_waiting_time": 349.92113447068044,
+                "total_route_duration": 484.19100840863325,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 120.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "2",
+                        "4",
+                        "6",
+                        "5",
+                        "3",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.000870791001944
+            }
+        },
+        "N10": {
+            "Uncoarsened ORTools": {
+                "total_distance": 137.7768098368935,
+                "total_service_time": 100.0,
+                "total_waiting_time": 378.80899159136675,
+                "total_route_duration": 616.5858014282603,
+                "time_window_violations": 0,
+                "capacity_violations": 0,
+                "is_feasible": true,
+                "num_vehicles": 1,
+                "total_demand_served": 220.0,
+                "routes_list": [
+                    [
+                        "1",
+                        "3",
+                        "5",
+                        "2",
+                        "4",
+                        "6",
+                        "9",
+                        "8",
+                        "7",
+                        "11",
+                        "10",
+                        "1"
+                    ]
+                ],
+                "solver_status": "feasible",
+                "computation_time": 10.001142333989264
+            }
+        }
+    }
+}
