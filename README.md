@@ -2,9 +2,11 @@ This repository contains the implementation and evaluation of a spatio-temporal 
 
 Repository Contents:
 
-solomon_dataset/: Directory containing the Solomon VRPTW benchmark datasets in CSV format (e.g., ``C101.csv`` or ``R101.csv``).  The files list the depot and customers with coordinates, demands and time windows.  Vehicle capacity is not stored in the files, so the loaders assume the standard Solomon capacity of ``200``.
+solomon_dataset/: Directory containing the Solomon CVRPTW benchmark datasets in CSV format (e.g., ``C101.csv`` or ``R101.csv``).  The files list the depot and customers with coordinates, demands and time windows.  Vehicle capacity is not stored in the files, they are added appropriately via main files.
 
-This Python script implements the core spatio-temporal graph coarsening algorithm, including node and edge definitions, graph operations, and the multilevel coarsening and inflation procedures. It also integrates Full Qubo Solver, Average Partitioning Solver algorithms; Greedy and Clarke and Wright Savings heuristics for solving VRPTW instances on both original and coarsened graphs.
+This Python script implements the core spatio-temporal graph coarsening algorithm, including node and edge definitions, graph operations, and the multilevel coarsening and inflation procedures. It also integrates Full Qubo Solver, Average Partitioning Solver algorithms; Greedy and Clarke and Wright Savings heuristics for solving CVRPTW instances on both original and coarsened graphs.
+
+ORTOOLS solver is added as a SOTA benchmark.
 
 
 Currently has %76 test coverage for core modules.
@@ -19,9 +21,10 @@ Clone the repository and run the pipeline:
 git clone https://github.com/mkingmking/graph-coarsening
 cd graph-coarsening
 python3 -m graph_coarsening.main
+python3 -m graph_coarsening.main_quantum
 ```
 
-The script will automatically process the CSV files in the solomon_dataset/ directory, apply the coarsening algorithm, solve the VRPTW using the implemented heuristics, and print performance metrics to the console.
+The script will automatically process the CSV files in the solomon_dataset/ directory, apply the coarsening algorithm, solve the CVRPTW using the implemented heuristics, and print performance metrics to the console.
 
 
 
@@ -41,6 +44,7 @@ The script will automatically process the CSV files in the solomon_dataset/ dire
 -  `utils.py` – helpers for parsing datasets and computing route metrics.
 -  `main_quantum.py` – secondary pipeline: load data, coarsen, solve with quantum solvers and visualise.
 -  `quantum_solvers` – folder with necessary scripts to run APS and FQS.
+-`ortools_solver` - folder with necessary scripts to run ORTOOLS solver.
 
 
 

@@ -9,6 +9,8 @@ metrics dict produced by calculate_route_metrics, so it plugs directly
 into the existing pipeline (coarsening, inflation, comparisons).
 """
 
+import warnings
+
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 
@@ -224,9 +226,16 @@ class ORToolsVRPTWSolver:
         params.log_search = False
 
         # Apply stopping criteria.
-        # If neither is set, no limit is imposed — OR-Tools runs until it
-        # proves optimality or exhausts its search space. This is the correct
-        # mode for matching SOTA/best-known solutions.
+        # GUIDED_LOCAL_SEARCH has no natural termination condition, so it will
+        # run indefinitely unless at least one stopping criterion is set.
+        if self.time_limit_seconds is None and self.solution_limit is None:
+            warnings.warn(
+                "GUIDED_LOCAL_SEARCH specified without time_limit_seconds or "
+                "solution_limit — solve() may run indefinitely. "
+                "Pass time_limit_seconds to cap wall-clock time.",
+                RuntimeWarning,
+                stacklevel=2,
+            )
         if self.solution_limit is not None:
             params.solution_limit = self.solution_limit
         if self.time_limit_seconds is not None:

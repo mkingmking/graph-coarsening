@@ -74,7 +74,8 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
 
         current_load = 0.0
         current_time = graph.nodes[depot_id].e
-        
+        depot_arrival_time = None  # set when the closing depot is reached in the loop
+
         for i in range(len(route) - 1):
             from_node_id = route[i]
             to_node_id = route[i+1]
@@ -106,18 +107,18 @@ def calculate_route_metrics(graph: Graph, routes: list, depot_id: str, vehicle_c
             if to_node_id != depot_id:
                 total_service_time += to_node.s
                 total_demand_served += to_node.demand
+            else:
+                # Record actual arrival time at closing depot (before service).
+                # This is used for route duration; do NOT recompute after the
+                # loop — that would double-count the travel time.
+                depot_arrival_time = arrival_time_at_to_node
 
         if route[-1] == depot_id:
-            last_customer_node_id = route[-2] if len(route) > 1 else depot_id
-            last_customer_node = graph.nodes[last_customer_node_id]
-            depot_node = graph.nodes[depot_id]
-            travel_time_to_depot = compute_euclidean_tau(last_customer_node, depot_node)
-            final_arrival_at_depot = current_time + travel_time_to_depot
-
-            if final_arrival_at_depot > depot_node.l:
-                time_window_violations += 1
-                all_feasible = False
-            total_route_duration += final_arrival_at_depot
+            if depot_arrival_time is not None:
+                total_route_duration += depot_arrival_time
+            # TW check for the closing depot was already performed inside the
+            # loop above (service_start_time_at_to_node > to_node.l). No
+            # re-check here — that would double-count violations.
         else:
             all_feasible = False
             print(f"Warning: Route {route} does not end at depot {depot_id}. Considered infeasible.")
