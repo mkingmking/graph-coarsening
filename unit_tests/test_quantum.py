@@ -90,6 +90,7 @@ class TestVRPSolution(unittest.TestCase):
         self.problem.time_windows = {0: (0, 100), 1: (0, 100), 2: (0, 100)}
         self.problem.service_times = {0: 0, 1: 10, 2: 10}
         self.problem.costs = [[0, 5, 5], [5, 0, 5], [5, 5, 0]]
+        self.problem.time_costs = self.problem.costs
 
     def test_solution_parsing_and_slack_filtering(self):
         sample = {
@@ -105,10 +106,9 @@ class TestVRPSolution(unittest.TestCase):
     def test_validation_missing_customer(self):
         sample = {(0, 1, 0): 1} # Solution is missing customer 2
         
-        # VRPSolution now auto-repairs in __init__.
         sol = VRPSolution(self.problem, sample, [2])
         
-        # MANUAL BREAK: Remove a customer from the computed route to verify check() fails.
+        # Remove a customer after construction to verify check() catches incomplete routes.
         if sol.solution and len(sol.solution) > 0:
             if 2 in sol.solution[0]:
                 sol.solution[0].remove(2)
@@ -128,14 +128,12 @@ class TestVRPSolvers(unittest.TestCase):
         self.problem.dests = [1, 2]
         self.problem.source_depot = 0
         
-        # FIX: Ensure capacities is a list of integers
         self.problem.capacities = [10, 10, 10]
         
-        # FIX: Use a real dictionary. It naturally returns ints.
         self.problem.weights = {1: 1, 2: 1}
         
-        # FIX: Ensure costs is a matrix of integers
         self.problem.costs = [[0, 5, 5], [5, 0, 5], [5, 5, 0]]
+        self.problem.time_costs = self.problem.costs
         
         # Ensure time windows and service times are valid
         self.problem.time_windows = {0: (0, 100), 1: (0, 100), 2: (0, 100)}
@@ -199,7 +197,7 @@ class TestVRPSolvers(unittest.TestCase):
         args, _ = self.problem.get_qubo.call_args
         vehicle_k_limits = args[0]
         
-        # FIX: The expectation is now [2] because min(3, 2 customers) = 2
+        # k_max is capped at the number of customers.
         self.assertEqual(vehicle_k_limits, [2])
 
 if __name__ == '__main__':

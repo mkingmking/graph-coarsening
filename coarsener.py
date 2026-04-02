@@ -245,10 +245,9 @@ class SpatioTemporalGraphCoarsener:
                 mid_x = (node_i.x + node_j.x) / 2
                 mid_y = (node_i.y + node_j.y) / 2
                 
-                # --- FIX: Include travel time in service duration ---
+                # The super-node service duration includes the internal travel between merged nodes.
                 tau_internal = compute_euclidean_tau(node_i, node_j)
                 s_ij = node_i.s + tau_internal + node_j.s 
-                # --------------------------------------------------
                 
                 # Calculate central time for super-node
                 t_ij = (e_prime + (l_prime - s_ij)) / 2 if (l_prime - s_ij) >= 0 else e_prime

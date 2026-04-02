@@ -62,8 +62,7 @@ def create_subgraph(original_graph: Graph, depot_id: str, num_customers: int) ->
 
 def convert_graph_to_vrp_problem_inputs(graph: Graph, depot_id: str, vehicle_capacity: float) -> tuple[VRPProblem, list]:
     """
-    Updated conversion logic from the new script.
-    Includes dynamic vehicle sizing to encourage consolidation.
+    Convert a graph into VRPProblem inputs and size the fleet dynamically.
     """
     customer_ids = sorted([nid for nid in graph.nodes if nid != depot_id])
     int_to_id_map = [depot_id] + customer_ids
@@ -89,7 +88,6 @@ def convert_graph_to_vrp_problem_inputs(graph: Graph, depot_id: str, vehicle_cap
             costs[u_int][v_int] = tau
             time_costs[u_int][v_int] = tau
 
-    # --- IMPROVEMENT: Optimized Vehicle Count ---
     num_customers = len(customer_ids)
     num_vehicles = max(2, num_customers // 2)  # Half as many vehicles as customers (min 2)
     capacities = [vehicle_capacity] * num_vehicles
@@ -140,7 +138,7 @@ def run_evaluation_quantum(
         # 2. Convert to VRP input
         vrp, int_to_id_map = convert_graph_to_vrp_problem_inputs(coarsened_graph, depot_id, vehicle_capacity)
 
-        # 3. Initialize Solver (Now includes IterativeRepairSolver)
+        # 3. Initialize solver
         if solver_name == 'FullQuboSolver':
             solver = FullQuboSolver(vrp)
         elif solver_name == 'AveragePartitionSolver':

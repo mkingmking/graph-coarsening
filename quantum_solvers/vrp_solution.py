@@ -22,7 +22,8 @@ class VRPSolution:
                 if route:
                     final_routes.append(route)
             
-            self.solution = self._repair_solution(final_routes)
+            repaired = self._repair_solution(final_routes)
+            self.solution = self._repair_time_windows(repaired)
     
     def _calculate_arrival_time(self, route, candidate_node=None):
         """
@@ -80,40 +81,120 @@ class VRPSolution:
         if missing:
             for customer in missing:
                 best_route_idx = -1
+                best_pos = -1
                 best_cost = float('inf')
-                
+
                 if not repaired_routes:
                     repaired_routes.append([customer])
                     continue
-                
-                for idx, route in enumerate(repaired_routes):
-                    if not route: continue
 
-                    last_customer = route[-1]
-                    cost = self.problem.costs[last_customer][customer]
-                    
+                customer_demand = self.problem.weights.get(customer, 0)
+
+                for idx, route in enumerate(repaired_routes):
                     route_demand = sum(self.problem.weights.get(c, 0) for c in route)
-                    customer_demand = self.problem.weights.get(customer, 0)
-                    vehicle_capacity = self.problem.capacities[idx] if idx < len(self.problem.capacities) else self.problem.capacities[0]
-                    
+                    vehicle_capacity = (self.problem.capacities[idx]
+                                        if idx < len(self.problem.capacities)
+                                        else self.problem.capacities[0])
                     if route_demand + customer_demand > vehicle_capacity:
                         continue
 
-                    arrival_time = self._calculate_arrival_time(route, candidate_node=customer)
-                    if arrival_time == float('inf'):
-                        continue
-                    
-                    if cost < best_cost:
-                        best_cost = cost
-                        best_route_idx = idx
-                
+                    # Try every insertion position: before index 0, between each pair, after last
+                    for pos in range(len(route) + 1):
+                        candidate_route = route[:pos] + [customer] + route[pos:]
+
+                        # Check TW feasibility of the full candidate route
+                        if self._count_route_tw_violations(candidate_route) > 0:
+                            continue
+
+                        # Compute insertion cost delta: remove direct edge, add two edges via customer
+                        prev_node = self.depot if pos == 0 else route[pos - 1]
+                        next_node = self.depot if pos == len(route) else route[pos]
+                        delta = (self.problem.costs[prev_node][customer]
+                                 + self.problem.costs[customer][next_node]
+                                 - self.problem.costs[prev_node][next_node])
+
+                        if delta < best_cost:
+                            best_cost = delta
+                            best_route_idx = idx
+                            best_pos = pos
+
                 if best_route_idx != -1:
-                    repaired_routes[best_route_idx].append(customer)
+                    route = repaired_routes[best_route_idx]
+                    repaired_routes[best_route_idx] = route[:best_pos] + [customer] + route[best_pos:]
                 else:
                     repaired_routes.append([customer])
         
         return repaired_routes
     
+    def _count_route_tw_violations(self, route):
+        """Count TW violations along a single route (depot → route → depot)."""
+        if not route:
+            return 0
+        violations = 0
+        current_time = max(0.0, self.problem.time_windows[self.depot][0])
+        current_time += self.problem.time_costs[self.depot][route[0]]
+        ready, due = self.problem.time_windows[route[0]]
+        if current_time > due:
+            violations += 1
+        current_time = max(current_time, ready) + self.problem.service_times[route[0]]
+        for idx in range(len(route) - 1):
+            current_time += self.problem.time_costs[route[idx]][route[idx + 1]]
+            ready, due = self.problem.time_windows[route[idx + 1]]
+            if current_time > due:
+                violations += 1
+            current_time = max(current_time, ready) + self.problem.service_times[route[idx + 1]]
+        return violations
+
+    def _repair_time_windows(self, routes):
+        """
+        Post-processing pass: for each route with TW violations, try all
+        permutations of customers (tractable for ≤8 stops) or pairwise swaps
+        (for larger routes) to find an ordering with fewer violations.
+        Capacity feasibility is preserved — only the visit order changes.
+        """
+        from itertools import permutations as _perms
+
+        repaired = []
+        for route in routes:
+            if len(route) <= 1:
+                repaired.append(route)
+                continue
+
+            best_route = list(route)
+            best_viols = self._count_route_tw_violations(best_route)
+
+            if best_viols == 0:
+                repaired.append(best_route)
+                continue
+
+            if len(route) <= 8:
+                # Exhaustive: try every permutation
+                for perm in _perms(route):
+                    v = self._count_route_tw_violations(list(perm))
+                    if v < best_viols:
+                        best_viols = v
+                        best_route = list(perm)
+                        if best_viols == 0:
+                            break
+            else:
+                # Heuristic: repeated pairwise-swap hill-climb
+                current = list(route)
+                improved = True
+                while improved:
+                    improved = False
+                    for a in range(len(current)):
+                        for b in range(a + 1, len(current)):
+                            candidate = current[:]
+                            candidate[a], candidate[b] = candidate[b], candidate[a]
+                            if self._count_route_tw_violations(candidate) < self._count_route_tw_violations(current):
+                                current = candidate
+                                improved = True
+                best_route = current
+
+            repaired.append(best_route)
+
+        return repaired
+
     def check(self):
         """
         Validates the solution for:
@@ -121,18 +202,12 @@ class VRPSolution:
           - Capacity constraints per vehicle
           - Time window constraints per route
           - All customers are visited
-
-        FIX: Now correctly uses self.problem.time_costs (travel time matrix)
-        for all time arithmetic, instead of self.problem.costs (distance matrix).
-        Previously, costs was used throughout check(), meaning time window
-        validation was being done against distances — silently producing wrong
-        feasibility verdicts.
         """
         capacities  = self.problem.capacities
         weights     = self.problem.weights
         time_windows  = self.problem.time_windows
         service_times = self.problem.service_times
-        time_costs    = self.problem.time_costs   # FIX: was self.problem.costs
+        time_costs    = self.problem.time_costs
 
         visited_customers = set()
         for i, route in enumerate(self.solution):
@@ -158,7 +233,7 @@ class VRPSolution:
             current_time = max(current_time, depot_ready)
             
             # Depot → first stop
-            current_time += time_costs[self.depot][route[0]]   # FIX: was costs
+            current_time += time_costs[self.depot][route[0]]
             
             ready_time, due_date = time_windows[route[0]]
             if current_time > due_date:
@@ -171,7 +246,7 @@ class VRPSolution:
                 from_node = route[stop_idx]
                 to_node   = route[stop_idx + 1]
 
-                current_time += time_costs[from_node][to_node]  # FIX: was costs
+                current_time += time_costs[from_node][to_node]
                 
                 ready_time, due_date = time_windows[to_node]
                 if current_time > due_date:

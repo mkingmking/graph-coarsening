@@ -68,7 +68,7 @@ def test_calculate_route_metrics_basic(sample_graph):
 
     assert pytest.approx(metrics["total_service_time"]) == 8.0 # C1.s + C2.s = 5 + 3 = 8
     assert pytest.approx(metrics["total_waiting_time"]) == 0.0 # No waiting at customers
-    assert pytest.approx(metrics["total_route_duration"]) == 68.0
+    assert pytest.approx(metrics["total_route_duration"]) == 48.0
     assert pytest.approx(metrics["total_demand_served"]) == 15.0 # C1.demand + C2.demand = 10 + 5 = 15
 
 def test_capacity_violation(sample_graph):
@@ -90,7 +90,7 @@ def test_time_window_violation_late_arrival(sample_graph):
 
     # Modify C2's time window to be very tight, causing a late arrival
     sample_graph.nodes["C2"].e = 10
-    sample_graph.nodes["C2"].l = 20 # Original was 15,25. Now 10,20.
+    sample_graph.nodes["C2"].l = 20
     # D-C1-C2-D simulation:
     # Arrive C2 at 25. C2.l is now 20. 25 > 20 -> violation.
 
@@ -106,11 +106,11 @@ def test_time_window_violation_depot_return_late(sample_graph):
     vehicle_capacity = 20
 
     # Modify depot's latest time to be very tight
-    sample_graph.nodes["D"].l = 40 # Original was 100. Vehicle arrives at D at 48. 48 > 40 -> violation.
+    sample_graph.nodes["D"].l = 40  # Vehicle arrives at D at 48, so this route violates the depot time window.
 
     metrics = calculate_route_metrics(sample_graph, routes, depot_id, vehicle_capacity)
 
-    assert metrics["time_window_violations"] == 2
+    assert metrics["time_window_violations"] == 1
     assert metrics["is_feasible"] is False # Should be false due to depot return violation
 
 def test_multiple_routes(sample_graph):
@@ -146,7 +146,7 @@ def test_multiple_routes(sample_graph):
     assert pytest.approx(metrics["total_distance"]) == 80.0
     assert pytest.approx(metrics["total_service_time"]) == 5 + 3 + 2 # C1.s + C2.s + C3.s = 10
     assert pytest.approx(metrics["total_waiting_time"]) == 0.0 # No waiting
-    assert pytest.approx(metrics["total_route_duration"]) == 130.0
+    assert pytest.approx(metrics["total_route_duration"]) == 90.0
     assert pytest.approx(metrics["total_demand_served"]) == 10 + 5 + 20 # C1+C2+C3 = 35
 
 def test_empty_routes(sample_graph):
@@ -191,7 +191,7 @@ def test_time_window_waiting_time(sample_graph):
     vehicle_capacity = 20
 
     # Modify C1's earliest time to force waiting
-    sample_graph.nodes["C1"].e = 15 # Original was 10. Arrive C1 at 10, must wait until 15.
+    sample_graph.nodes["C1"].e = 15  # Arrival is at 10, so the vehicle must wait.
     # D -> C1:
     # Arrive C1: 10. Service Start C1: max(10, C1.e=15) = 15.
     # Waiting time at C1: 15 - 10 = 5.
@@ -243,9 +243,9 @@ def test_multiple_time_window_violations(sample_graph):
 
     # Force violations
     # C1: Arrive 10. Service Start 10. If C1.l = 9, then 10 > 9 -> violation.
-    sample_graph.nodes["C1"].l = 9 # Original 20. Now 9.
+    sample_graph.nodes["C1"].l = 9
     # C2: Arrive 20. Service Start 20. If C2.l = 19, then 20 > 19 -> violation.
-    sample_graph.nodes["C2"].l = 19 # Original 25. Now 19.
+    sample_graph.nodes["C2"].l = 19
 
     metrics = calculate_route_metrics(sample_graph, routes, depot_id, vehicle_capacity)
 
@@ -300,4 +300,3 @@ def test_partial_customers_served(sample_graph):
     # Total demand served: C1(10) + C2(5) = 15
     assert pytest.approx(metrics["total_demand_served"]) == 15.0
     assert metrics["is_feasible"] is True # The routes themselves are feasible, even if not all customers were served.
-

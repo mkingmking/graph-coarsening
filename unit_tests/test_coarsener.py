@@ -39,7 +39,6 @@ def test_evaluate_feasibility_ab(simple_ab_graph):
 
     # feas B->A: (B.e + B.s + tau_ba) <= A.l
     # (3 + 2 + 5) <= 10  => 10 <= 10 => True
-    # (Previous test expectation was False, but with corrected formula, it's True)
     assert feas_b_a is True
 
 def test_compute_slacks_and_order_ab(simple_ab_graph):
@@ -54,7 +53,7 @@ def test_compute_slacks_and_order_ab(simple_ab_graph):
     #            = 10 - (3 + 2 + 5) = 10 - 10 = 0
     order, slack = coarsener._compute_slacks_and_order(simple_ab_graph, A, B)
     assert order == "A -> B"
-    assert pytest.approx(slack) == 9.0 # Corrected expected slack
+    assert pytest.approx(slack) == 9.0
 
 def test_compute_new_window_ab(simple_ab_graph):
     coarsener = SpatioTemporalGraphCoarsener(simple_ab_graph, alpha=1, beta=1, P=0.5, radiusCoeff=1, depot_id="D")
@@ -69,5 +68,4 @@ def test_compute_new_window_ab(simple_ab_graph):
     #       = min(10, 15 - (1 + 5)) = min(10, 15 - 6) = min(10, 9) = 9
     e_prime, l_prime = coarsener._compute_new_window(simple_ab_graph, A, B, pi_order)
     assert pytest.approx(e_prime) == 0.0
-    assert pytest.approx(l_prime) == 9.0 # Corrected expected l_prime
-
+    assert pytest.approx(l_prime) == 9.0

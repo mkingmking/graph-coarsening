@@ -111,31 +111,40 @@ class VRPProblem:
                     qubo.add(((i, j1, 0), (i, j1, 0)), time_window_penalty)
 
         # B. PAIRWISE CHECK (Step k -> Step k+1)
-        # Using TRUE EARLIEST times instead of naive window open times
+        # Two-tier penalty: hard for always-infeasible, scaled medium for tight transitions.
         for i in range(num_vehicles):
             k_max = vehicle_k_limits[i]
             for j1 in customer_nodes:
                 for j2 in customer_nodes:
                     if j1 == j2: continue
-                    
-                    # TRUE EARLIEST LEAVE TIME
-                    # We use the pre-calculated strict lower bound
-                    # arrival_at_j1 >= self.true_earliest[j1]
-                    earliest_leave_j1 = self.true_earliest[j1] + self.service_times[j1]
-                    earliest_arrival_j2 = earliest_leave_j1 + self.time_costs[j1][j2]
-                    
-                    # 1. HARD CHECK
-                    if earliest_arrival_j2 > self.time_windows[j2][1]:
-                        # This link is physically impossible
+
+                    # Tier 1 — Always infeasible:
+                    # Even under best-case timing (direct from depot, earliest service start),
+                    # arriving at j2 after j1 already misses j2's deadline.
+                    earliest_dep_j1 = self.true_earliest[j1] + self.service_times[j1]
+                    earliest_arr_j2 = earliest_dep_j1 + self.time_costs[j1][j2]
+
+                    if earliest_arr_j2 > self.time_windows[j2][1]:
+                        # Impossible regardless of route position — hard penalty
                         for k in range(k_max - 1):
                             qubo.add(((i, j1, k), (i, j2, k + 1)), time_window_penalty)
-                    
-                    # 2. RISK CHECK (Soft Constraint)
-                    # Even if possible, if it's tight, penalize it to avoid accumulated error
-                    elif earliest_arrival_j2 > self.time_windows[j2][1] * 0.9: 
-                        risk_penalty = time_window_penalty * 0.05 
-                        for k in range(k_max - 1):
-                            qubo.add(((i, j1, k), (i, j2, k + 1)), risk_penalty)
+
+                    else:
+                        # Tier 2 — Tight transition:
+                        # If j1 is served near its latest allowed time, j2's window may be missed.
+                        # latest departure from j1 = l_j1 + s_j1  (service starts at deadline)
+                        latest_dep_j1 = self.time_windows[j1][1] + self.service_times[j1]
+                        latest_arr_j2 = latest_dep_j1 + self.time_costs[j1][j2]
+
+                        if latest_arr_j2 > self.time_windows[j2][1]:
+                            # Feasible only if j1 is served early enough.
+                            # Penalise proportionally to the infeasible fraction of j1's window.
+                            j1_window_span = max(1.0, self.time_windows[j1][1] - self.time_windows[j1][0])
+                            infeasible_span = latest_arr_j2 - self.time_windows[j2][1]
+                            infeasible_fraction = min(1.0, infeasible_span / j1_window_span)
+                            tight_penalty = time_window_penalty * infeasible_fraction * 0.5
+                            for k in range(k_max - 1):
+                                qubo.add(((i, j1, k), (i, j2, k + 1)), tight_penalty)
 
         # C. TRIANGLE LOOKAHEAD (Step k -> Step k+2)
         # Stricter version using True Earliest
@@ -158,7 +167,7 @@ class VRPProblem:
                         if arrival_j2 > self.time_windows[j2][1]: continue # Can't reach mid
                         
                         # Wait at j2 if early
-                        leave_j2 = max(arrival_j2, self.true_earliest[j2]) + self.service_times[j2]
+                        leave_j2 = max(arrival_j2, self.time_windows[j2][0]) + self.service_times[j2]
                         arrival_j3 = leave_j2 + self.time_costs[j2][j3]
                         
                         if arrival_j3 <= self.time_windows[j3][1]:

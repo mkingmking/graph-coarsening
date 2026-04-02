@@ -100,14 +100,13 @@ def test_greedy_stuck_when_no_feasible_next(simple_chain_graph):
     routes, metrics = solver.solve()
     
     # First vehicle visits A then cannot feasibly reach B and return to D, so it returns from A.
-    # Second vehicle: tries B but can't (no feasible path to B and return), so it gets stuck.
-    # The solver should then break the outer loop, leaving B unvisited.
+    # After that, the solver falls back to forced singleton routes for any remaining customers.
     
-    assert len(routes) == 1
-    assert routes[0] == ["D", "A", "D"] # Only A is visited
-    assert metrics["is_feasible"] is True # Route D-A-D is feasible (no TW/capacity violations on this route)
-    assert metrics["total_demand_served"] == g.nodes["A"].demand
-    # Note: total_demand_served will not equal total problem demand, but the generated route is feasible.
+    assert len(routes) == 2
+    assert {tuple(r) for r in routes} == {("D", "A", "D"), ("D", "B", "D")}
+    assert metrics["is_feasible"] is False
+    assert metrics["time_window_violations"] == 1
+    assert metrics["total_demand_served"] == g.nodes["A"].demand + g.nodes["B"].demand
 
 def test_greedy_no_customers():
     graph = Graph()
@@ -171,4 +170,3 @@ def test_savings_solver_no_customers():
     assert metrics["num_vehicles"] == 0
     assert metrics["total_distance"] == 0.0
     assert metrics["is_feasible"] is False # Metrics treat absence of routes as infeasible.
-

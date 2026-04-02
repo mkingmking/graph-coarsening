@@ -1,4 +1,4 @@
-from dwave.system import DWaveSampler, EmbeddingComposite, LeapHybridSampler
+# from dwave.system import DWaveSampler, EmbeddingComposite, LeapHybridSampler  # uncomment for real QPU
 from dwave.samplers import SimulatedAnnealingSampler
 from dimod import ExactSolver
 
@@ -8,10 +8,10 @@ def get_solver(solver_type):
     Uses latest D-Wave Ocean SDK components.
     """
     if solver_type == 'qpu':
-        # Requires a real D-Wave account and API key
+        from dwave.system import DWaveSampler, EmbeddingComposite
         return EmbeddingComposite(DWaveSampler())
     elif solver_type == 'hybrid':
-        # Requires a real D-Wave account and API key
+        from dwave.system import LeapHybridSampler
         return LeapHybridSampler()
     elif solver_type == 'simulated':
         # Runs locally on your CPU (Classical Simulated Annealing)
