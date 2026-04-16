@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620">
+<rect x="0" y="0" width="920" height="620" fill="#ffffff"/>
+<text x="460.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700">Total Waiting Time: APS vs OR-Tools Reference (N10)</text>
+<text transform="translate(22 288.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="15">Total Waiting Time</text>
+<line x1="96" y1="500.0" x2="886" y2="500.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="504.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">0</text>
+<line x1="96" y1="394.0" x2="886" y2="394.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="398.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">2,000</text>
+<line x1="96" y1="288.0" x2="886" y2="288.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="292.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">4,000</text>
+<line x1="96" y1="182.0" x2="886" y2="182.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="186.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">6,000</text>
+<line x1="96" y1="76.0" x2="886" y2="76.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="80.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">8,000</text>
+<line x1="96" y1="76" x2="96" y2="500" stroke="#333333" stroke-width="1.2"/>
+<line x1="96" y1="500" x2="886" y2="500" stroke="#333333" stroke-width="1.2"/>
+<line x1="227.7" y1="421.4" x2="227.7" y2="495.4" stroke="#333333" stroke-width="1.2"/>
+<line x1="211.4" y1="421.4" x2="243.9" y2="421.4" stroke="#333333" stroke-width="1.2"/>
+<line x1="211.4" y1="495.4" x2="243.9" y2="495.4" stroke="#333333" stroke-width="1.2"/>
+<rect x="202.7" y="441.2" width="50.0" height="50.3" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="202.7" y1="458.5" x2="252.7" y2="458.5" stroke="#111111" stroke-width="2"/>
+<circle cx="227.7" cy="354.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="227.7" cy="267.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="227.7" cy="244.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="227.7" cy="243.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="227.7" cy="241.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="227.7" cy="207.8" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="227.7" cy="187.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="227.7" cy="102.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="227.7" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(223.7 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Uncoarsened APS</text>
+<line x1="491.0" y1="387.9" x2="491.0" y2="498.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="474.8" y1="387.9" x2="507.2" y2="387.9" stroke="#333333" stroke-width="1.2"/>
+<line x1="474.8" y1="498.1" x2="507.2" y2="498.1" stroke="#333333" stroke-width="1.2"/>
+<rect x="466.0" y="450.5" width="50.0" height="43.7" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="466.0" y1="459.3" x2="516.0" y2="459.3" stroke="#111111" stroke-width="2"/>
+<circle cx="491.0" cy="355.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="491.0" cy="341.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="491.0" cy="332.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="491.0" cy="324.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="491.0" cy="310.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="491.0" cy="299.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="491.0" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(487.0 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Coarsened APS</text>
+<line x1="754.3" y1="475.5" x2="754.3" y2="500.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="738.1" y1="475.5" x2="770.6" y2="475.5" stroke="#333333" stroke-width="1.2"/>
+<line x1="738.1" y1="500.0" x2="770.6" y2="500.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="729.3" y="477.1" width="50.0" height="18.5" fill="#54A24B" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="729.3" y1="486.6" x2="779.3" y2="486.6" stroke="#111111" stroke-width="2"/>
+<circle cx="754.3" cy="418.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="754.3" cy="404.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="754.3" cy="401.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="754.3" cy="399.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="754.3" cy="398.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="754.3" cy="397.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="754.3" cy="397.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="754.3" cy="389.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="754.3" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(750.3 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Uncoarsened OR-Tools</text>
+</svg>

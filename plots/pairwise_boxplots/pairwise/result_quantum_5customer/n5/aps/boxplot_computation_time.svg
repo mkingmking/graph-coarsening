@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620">
+<rect x="0" y="0" width="920" height="620" fill="#ffffff"/>
+<text x="460.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700">Computation Time (s): Uncoarsened vs Coarsened APS</text>
+<text transform="translate(22 288.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="15">Computation Time (s)</text>
+<line x1="96" y1="500.0" x2="886" y2="500.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="504.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">0</text>
+<line x1="96" y1="394.0" x2="886" y2="394.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="398.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">2</text>
+<line x1="96" y1="288.0" x2="886" y2="288.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="292.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">4</text>
+<line x1="96" y1="182.0" x2="886" y2="182.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="186.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">6</text>
+<line x1="96" y1="76.0" x2="886" y2="76.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="80.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">8</text>
+<line x1="96" y1="76" x2="96" y2="500" stroke="#333333" stroke-width="1.2"/>
+<line x1="96" y1="500" x2="886" y2="500" stroke="#333333" stroke-width="1.2"/>
+<line x1="293.5" y1="82.7" x2="293.5" y2="164.7" stroke="#333333" stroke-width="1.2"/>
+<line x1="277.2" y1="82.7" x2="309.8" y2="82.7" stroke="#333333" stroke-width="1.2"/>
+<line x1="277.2" y1="164.7" x2="309.8" y2="164.7" stroke="#333333" stroke-width="1.2"/>
+<rect x="268.5" y="90.5" width="50.0" height="53.1" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="268.5" y1="138.7" x2="318.5" y2="138.7" stroke="#111111" stroke-width="2"/>
+<text x="293.5" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(289.5 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Uncoarsened APS</text>
+<line x1="688.5" y1="109.0" x2="688.5" y2="397.5" stroke="#333333" stroke-width="1.2"/>
+<line x1="672.2" y1="109.0" x2="704.8" y2="109.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="672.2" y1="397.5" x2="704.8" y2="397.5" stroke="#333333" stroke-width="1.2"/>
+<rect x="663.5" y="260.6" width="50.0" height="131.9" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="663.5" y1="354.2" x2="713.5" y2="354.2" stroke="#111111" stroke-width="2"/>
+<text x="688.5" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(684.5 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Coarsened APS</text>
+</svg>

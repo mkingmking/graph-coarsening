@@ -62,3 +62,6 @@ run_hyperparam_search.py
 output10customer.json
 main.tex
 run_wilcoxon_test.py
+generate_quantum-boxplot.py
+graphics_classical.py
+graphics_quantum.py

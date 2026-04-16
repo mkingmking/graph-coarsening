@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="620" viewBox="0 0 2400 620">
+<rect x="0" y="0" width="2400" height="620" fill="#ffffff"/>
+<text x="1200.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700">Total Waiting Time - All Output Files</text>
+<text transform="translate(22 233.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="15">Total Waiting Time</text>
+<line x1="96" y1="390.0" x2="2366" y2="390.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="394.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">0</text>
+<line x1="96" y1="285.3" x2="2366" y2="285.3" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="289.3" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">10,000</text>
+<line x1="96" y1="180.7" x2="2366" y2="180.7" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="184.7" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">20,000</text>
+<line x1="96" y1="76.0" x2="2366" y2="76.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="80.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">30,000</text>
+<line x1="96" y1="76" x2="96" y2="390" stroke="#333333" stroke-width="1.2"/>
+<line x1="96" y1="390" x2="2366" y2="390" stroke="#333333" stroke-width="1.2"/>
+<line x1="152.8" y1="295.1" x2="152.8" y2="387.5" stroke="#333333" stroke-width="1.2"/>
+<line x1="136.5" y1="295.1" x2="169.0" y2="295.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="136.5" y1="387.5" x2="169.0" y2="387.5" stroke="#333333" stroke-width="1.2"/>
+<rect x="127.8" y="345.5" width="50.0" height="35.0" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="127.8" y1="360.6" x2="177.8" y2="360.6" stroke="#111111" stroke-width="2"/>
+<circle cx="152.8" cy="282.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="152.8" cy="271.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="152.8" cy="252.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="152.8" cy="248.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="152.8" cy="236.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="152.8" cy="232.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="152.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(148.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_classical | Inflated Greedy</text>
+<line x1="266.2" y1="365.0" x2="266.2" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="250.0" y1="365.0" x2="282.5" y2="365.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="250.0" y1="390.0" x2="282.5" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="241.2" y="373.3" width="50.0" height="11.4" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="241.2" y1="380.5" x2="291.2" y2="380.5" stroke="#111111" stroke-width="2"/>
+<circle cx="266.2" cy="350.8" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="266.2" cy="347.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="266.2" cy="346.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="266.2" cy="339.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="266.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(262.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_classical | Inflated ORTools</text>
+<line x1="379.8" y1="311.5" x2="379.8" y2="387.3" stroke="#333333" stroke-width="1.2"/>
+<line x1="363.5" y1="311.5" x2="396.0" y2="311.5" stroke="#333333" stroke-width="1.2"/>
+<line x1="363.5" y1="387.3" x2="396.0" y2="387.3" stroke="#333333" stroke-width="1.2"/>
+<rect x="354.8" y="344.3" width="50.0" height="35.2" fill="#54A24B" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="354.8" y1="365.9" x2="404.8" y2="365.9" stroke="#111111" stroke-width="2"/>
+<text x="379.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(375.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_classical | Inflated Savings</text>
+<line x1="493.2" y1="275.2" x2="493.2" y2="386.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="477.0" y1="275.2" x2="509.5" y2="275.2" stroke="#333333" stroke-width="1.2"/>
+<line x1="477.0" y1="386.1" x2="509.5" y2="386.1" stroke="#333333" stroke-width="1.2"/>
+<rect x="468.2" y="330.3" width="50.0" height="44.3" fill="#E45756" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="468.2" y1="361.0" x2="518.2" y2="361.0" stroke="#111111" stroke-width="2"/>
+<circle cx="493.2" cy="249.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="493.2" cy="232.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="493.2" cy="189.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="493.2" cy="167.8" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="493.2" cy="120.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="493.2" cy="113.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="493.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(489.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_classical | Uncoarsened Greedy</text>
+<line x1="606.8" y1="377.1" x2="606.8" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="590.5" y1="377.1" x2="623.0" y2="377.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="590.5" y1="390.0" x2="623.0" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="581.8" y="384.1" width="50.0" height="5.0" fill="#72B7B2" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="581.8" y1="387.3" x2="631.8" y2="387.3" stroke="#111111" stroke-width="2"/>
+<circle cx="606.8" cy="375.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="606.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(602.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_classical | Uncoarsened ORTools</text>
+<line x1="720.2" y1="273.1" x2="720.2" y2="387.8" stroke="#333333" stroke-width="1.2"/>
+<line x1="704.0" y1="273.1" x2="736.5" y2="273.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="704.0" y1="387.8" x2="736.5" y2="387.8" stroke="#333333" stroke-width="1.2"/>
+<rect x="695.2" y="331.7" width="50.0" height="47.4" fill="#B279A2" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="695.2" y1="367.7" x2="745.2" y2="367.7" stroke="#111111" stroke-width="2"/>
+<text x="720.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(716.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_classical | Uncoarsened Savings</text>
+<line x1="833.8" y1="369.2" x2="833.8" y2="389.2" stroke="#333333" stroke-width="1.2"/>
+<line x1="817.5" y1="369.2" x2="850.0" y2="369.2" stroke="#333333" stroke-width="1.2"/>
+<line x1="817.5" y1="389.2" x2="850.0" y2="389.2" stroke="#333333" stroke-width="1.2"/>
+<rect x="808.8" y="372.9" width="50.0" height="14.7" fill="#FF9DA6" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="808.8" y1="379.1" x2="858.8" y2="379.1" stroke="#111111" stroke-width="2"/>
+<circle cx="833.8" cy="346.8" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="833.8" cy="338.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="833.8" cy="337.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="833.8" cy="337.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="833.8" cy="335.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="833.8" cy="318.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="833.8" cy="310.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="833.8" cy="298.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="833.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(829.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_only_coarsened_quantum | Inflated AveragePartitionSolver</text>
+<line x1="947.2" y1="365.0" x2="947.2" y2="389.2" stroke="#333333" stroke-width="1.2"/>
+<line x1="931.0" y1="365.0" x2="963.5" y2="365.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="931.0" y1="389.2" x2="963.5" y2="389.2" stroke="#333333" stroke-width="1.2"/>
+<rect x="922.2" y="374.4" width="50.0" height="13.2" fill="#9D755D" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="922.2" y1="379.8" x2="972.2" y2="379.8" stroke="#111111" stroke-width="2"/>
+<circle cx="947.2" cy="350.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="947.2" cy="349.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="947.2" cy="348.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="947.2" cy="330.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="947.2" cy="319.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="947.2" cy="316.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="947.2" cy="301.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="947.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(943.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_only_coarsened_quantum | Inflated FullQubo</text>
+<line x1="1060.8" y1="367.9" x2="1060.8" y2="389.6" stroke="#333333" stroke-width="1.2"/>
+<line x1="1044.5" y1="367.9" x2="1077.0" y2="367.9" stroke="#333333" stroke-width="1.2"/>
+<line x1="1044.5" y1="389.6" x2="1077.0" y2="389.6" stroke="#333333" stroke-width="1.2"/>
+<rect x="1035.8" y="380.2" width="50.0" height="8.6" fill="#BAB0AC" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="1035.8" y1="382.0" x2="1085.8" y2="382.0" stroke="#111111" stroke-width="2"/>
+<circle cx="1060.8" cy="361.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1060.8" cy="358.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1060.8" cy="357.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1060.8" cy="355.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1060.8" cy="352.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1060.8" cy="350.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="1060.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(1056.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_quantum_10customer | N10 Inflated AveragePartitionSolver</text>
+<line x1="1174.2" y1="368.5" x2="1174.2" y2="389.7" stroke="#333333" stroke-width="1.2"/>
+<line x1="1158.0" y1="368.5" x2="1190.5" y2="368.5" stroke="#333333" stroke-width="1.2"/>
+<line x1="1158.0" y1="389.7" x2="1190.5" y2="389.7" stroke="#333333" stroke-width="1.2"/>
+<rect x="1149.2" y="380.5" width="50.0" height="8.2" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="1149.2" y1="382.7" x2="1199.2" y2="382.7" stroke="#111111" stroke-width="2"/>
+<circle cx="1174.2" cy="367.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1174.2" cy="367.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1174.2" cy="360.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1174.2" cy="355.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1174.2" cy="350.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1174.2" cy="349.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="1174.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(1170.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_quantum_10customer | N10 Inflated FullQubo</text>
+<line x1="1287.8" y1="374.5" x2="1287.8" y2="389.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="1271.5" y1="374.5" x2="1304.0" y2="374.5" stroke="#333333" stroke-width="1.2"/>
+<line x1="1271.5" y1="389.1" x2="1304.0" y2="389.1" stroke="#333333" stroke-width="1.2"/>
+<rect x="1262.8" y="378.4" width="50.0" height="9.9" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="1262.8" y1="381.8" x2="1312.8" y2="381.8" stroke="#111111" stroke-width="2"/>
+<circle cx="1287.8" cy="361.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1287.8" cy="344.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1287.8" cy="339.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1287.8" cy="339.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1287.8" cy="338.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1287.8" cy="332.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1287.8" cy="328.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1287.8" cy="311.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="1287.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(1283.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_quantum_10customer | N10 Uncoarsened AveragePartitionSolver</text>
+<line x1="1401.2" y1="366.6" x2="1401.2" y2="389.7" stroke="#333333" stroke-width="1.2"/>
+<line x1="1385.0" y1="366.6" x2="1417.5" y2="366.6" stroke="#333333" stroke-width="1.2"/>
+<line x1="1385.0" y1="389.7" x2="1417.5" y2="389.7" stroke="#333333" stroke-width="1.2"/>
+<rect x="1376.2" y="376.8" width="50.0" height="11.3" fill="#54A24B" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="1376.2" y1="382.0" x2="1426.2" y2="382.0" stroke="#111111" stroke-width="2"/>
+<circle cx="1401.2" cy="349.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1401.2" cy="344.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1401.2" cy="342.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1401.2" cy="337.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1401.2" cy="337.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1401.2" cy="332.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="1401.2" cy="313.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="1401.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(1397.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_quantum_10customer | N10 Uncoarsened FullQubo</text>
+<line x1="1514.8" y1="377.0" x2="1514.8" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="1498.5" y1="377.0" x2="1531.0" y2="377.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="1498.5" y1="390.0" x2="1531.0" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="1489.8" y="381.0" width="50.0" height="7.8" fill="#E45756" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="1489.8" y1="383.7" x2="1539.8" y2="383.7" stroke="#111111" stroke-width="2"/>
+<text x="1514.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(1510.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_quantum_5customer | N5 Inflated AveragePartitionSolver</text>
+<line x1="1628.2" y1="377.0" x2="1628.2" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="1612.0" y1="377.0" x2="1644.5" y2="377.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="1612.0" y1="390.0" x2="1644.5" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="1603.2" y="382.2" width="50.0" height="6.6" fill="#72B7B2" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="1603.2" y1="383.6" x2="1653.2" y2="383.6" stroke="#111111" stroke-width="2"/>
+<text x="1628.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(1624.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_quantum_5customer | N5 Inflated FullQubo</text>
+<line x1="1741.8" y1="368.2" x2="1741.8" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="1725.5" y1="368.2" x2="1758.0" y2="368.2" stroke="#333333" stroke-width="1.2"/>
+<line x1="1725.5" y1="390.0" x2="1758.0" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="1716.8" y="379.9" width="50.0" height="8.9" fill="#B279A2" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="1716.8" y1="383.8" x2="1766.8" y2="383.8" stroke="#111111" stroke-width="2"/>
+<text x="1741.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(1737.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_quantum_5customer | N5 Uncoarsened AveragePartitionSolver</text>
+<line x1="1855.2" y1="369.9" x2="1855.2" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="1839.0" y1="369.9" x2="1871.5" y2="369.9" stroke="#333333" stroke-width="1.2"/>
+<line x1="1839.0" y1="390.0" x2="1871.5" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="1830.2" y="379.9" width="50.0" height="8.9" fill="#FF9DA6" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="1830.2" y1="383.8" x2="1880.2" y2="383.8" stroke="#111111" stroke-width="2"/>
+<text x="1855.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(1851.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">result_quantum_5customer | N5 Uncoarsened FullQubo</text>
+<line x1="1968.8" y1="377.1" x2="1968.8" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="1952.5" y1="377.1" x2="1985.0" y2="377.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="1952.5" y1="390.0" x2="1985.0" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="1943.8" y="384.1" width="50.0" height="5.0" fill="#9D755D" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="1943.8" y1="387.4" x2="1993.8" y2="387.4" stroke="#111111" stroke-width="2"/>
+<circle cx="1968.8" cy="375.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="1968.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(1964.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">results_ortools_benchmark | Inflated ORTools</text>
+<line x1="2082.2" y1="377.1" x2="2082.2" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="2066.0" y1="377.1" x2="2098.5" y2="377.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="2066.0" y1="390.0" x2="2098.5" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="2057.2" y="384.1" width="50.0" height="5.0" fill="#BAB0AC" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="2057.2" y1="387.4" x2="2107.2" y2="387.4" stroke="#111111" stroke-width="2"/>
+<circle cx="2082.2" cy="375.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="2082.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(2078.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">results_ortools_benchmark | Uncoarsened ORTools</text>
+<line x1="2195.8" y1="385.2" x2="2195.8" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="2179.5" y1="385.2" x2="2212.0" y2="385.2" stroke="#333333" stroke-width="1.2"/>
+<line x1="2179.5" y1="390.0" x2="2212.0" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="2170.8" y="385.5" width="50.0" height="3.7" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="2170.8" y1="387.4" x2="2220.8" y2="387.4" stroke="#111111" stroke-width="2"/>
+<circle cx="2195.8" cy="373.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="2195.8" cy="371.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="2195.8" cy="370.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="2195.8" cy="370.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="2195.8" cy="369.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="2195.8" cy="369.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="2195.8" cy="369.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="2195.8" cy="368.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="2195.8" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(2191.8 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">results_ortools_quantum_benchmark | N10 Uncoarsened ORTools</text>
+<line x1="2309.2" y1="381.0" x2="2309.2" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="2293.0" y1="381.0" x2="2325.5" y2="381.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="2293.0" y1="390.0" x2="2325.5" y2="390.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="2284.2" y="383.9" width="50.0" height="5.5" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="2284.2" y1="384.6" x2="2334.2" y2="384.6" stroke="#111111" stroke-width="2"/>
+<text x="2309.2" y="407" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(2305.2 423) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">results_ortools_quantum_benchmark | N5 Uncoarsened ORTools</text>
+</svg>

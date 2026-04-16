@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620">
+<rect x="0" y="0" width="920" height="620" fill="#ffffff"/>
+<text x="460.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700">Total Route Duration - result_quantum_5customer</text>
+<text transform="translate(22 270.5) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="15">Total Route Duration</text>
+<line x1="96" y1="465.0" x2="886" y2="465.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="469.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">0</text>
+<line x1="96" y1="335.3" x2="886" y2="335.3" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="339.3" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">1,000</text>
+<line x1="96" y1="205.7" x2="886" y2="205.7" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="209.7" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">2,000</text>
+<line x1="96" y1="76.0" x2="886" y2="76.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="80.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">3,000</text>
+<line x1="96" y1="76" x2="96" y2="465" stroke="#333333" stroke-width="1.2"/>
+<line x1="96" y1="465" x2="886" y2="465" stroke="#333333" stroke-width="1.2"/>
+<line x1="194.8" y1="230.8" x2="194.8" y2="438.2" stroke="#333333" stroke-width="1.2"/>
+<line x1="178.5" y1="230.8" x2="211.0" y2="230.8" stroke="#333333" stroke-width="1.2"/>
+<line x1="178.5" y1="438.2" x2="211.0" y2="438.2" stroke="#333333" stroke-width="1.2"/>
+<rect x="169.8" y="304.5" width="50.0" height="117.5" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="169.8" y1="359.3" x2="219.8" y2="359.3" stroke="#111111" stroke-width="2"/>
+<text x="194.8" y="482" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(190.8 498) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">N5 Inflated AveragePartitionSolver</text>
+<line x1="392.2" y1="230.8" x2="392.2" y2="443.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="376.0" y1="230.8" x2="408.5" y2="230.8" stroke="#333333" stroke-width="1.2"/>
+<line x1="376.0" y1="443.0" x2="408.5" y2="443.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="367.2" y="305.4" width="50.0" height="116.3" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="367.2" y1="359.1" x2="417.2" y2="359.1" stroke="#111111" stroke-width="2"/>
+<text x="392.2" y="482" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(388.2 498) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">N5 Inflated FullQubo</text>
+<line x1="589.8" y1="119.7" x2="589.8" y2="438.2" stroke="#333333" stroke-width="1.2"/>
+<line x1="573.5" y1="119.7" x2="606.0" y2="119.7" stroke="#333333" stroke-width="1.2"/>
+<line x1="573.5" y1="438.2" x2="606.0" y2="438.2" stroke="#333333" stroke-width="1.2"/>
+<rect x="564.8" y="298.6" width="50.0" height="123.6" fill="#54A24B" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="564.8" y1="360.2" x2="614.8" y2="360.2" stroke="#111111" stroke-width="2"/>
+<text x="589.8" y="482" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(585.8 498) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">N5 Uncoarsened AveragePartitionSolver</text>
+<line x1="787.2" y1="140.5" x2="787.2" y2="444.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="771.0" y1="140.5" x2="803.5" y2="140.5" stroke="#333333" stroke-width="1.2"/>
+<line x1="771.0" y1="444.1" x2="803.5" y2="444.1" stroke="#333333" stroke-width="1.2"/>
+<rect x="762.2" y="290.4" width="50.0" height="130.2" fill="#E45756" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="762.2" y1="358.3" x2="812.2" y2="358.3" stroke="#111111" stroke-width="2"/>
+<text x="787.2" y="482" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(783.2 498) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">N5 Uncoarsened FullQubo</text>
+</svg>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620">
+<rect x="0" y="0" width="920" height="620" fill="#ffffff"/>
+<text x="460.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700">Total Waiting Time - result_only_coarsened_quantum</text>
+<text transform="translate(22 283.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="15">Total Waiting Time</text>
+<line x1="96" y1="490.0" x2="886" y2="490.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="494.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">0</text>
+<line x1="96" y1="407.2" x2="886" y2="407.2" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="411.2" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">2,000</text>
+<line x1="96" y1="324.4" x2="886" y2="324.4" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="328.4" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">4,000</text>
+<line x1="96" y1="241.6" x2="886" y2="241.6" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="245.6" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">6,000</text>
+<line x1="96" y1="158.8" x2="886" y2="158.8" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="162.8" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">8,000</text>
+<line x1="96" y1="76.0" x2="886" y2="76.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="86" y="80.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">10,000</text>
+<line x1="96" y1="76" x2="96" y2="490" stroke="#333333" stroke-width="1.2"/>
+<line x1="96" y1="490" x2="886" y2="490" stroke="#333333" stroke-width="1.2"/>
+<line x1="293.5" y1="407.6" x2="293.5" y2="486.9" stroke="#333333" stroke-width="1.2"/>
+<line x1="277.2" y1="407.6" x2="309.8" y2="407.6" stroke="#333333" stroke-width="1.2"/>
+<line x1="277.2" y1="486.9" x2="309.8" y2="486.9" stroke="#333333" stroke-width="1.2"/>
+<rect x="268.5" y="422.4" width="50.0" height="58.2" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="268.5" y1="447.0" x2="318.5" y2="447.0" stroke="#111111" stroke-width="2"/>
+<circle cx="293.5" cy="319.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="293.5" cy="286.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="293.5" cy="282.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="293.5" cy="281.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="293.5" cy="274.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="293.5" cy="207.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="293.5" cy="175.8" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="293.5" cy="128.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="293.5" y="507" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(289.5 523) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Inflated AveragePartitionSolver</text>
+<line x1="688.5" y1="390.9" x2="688.5" y2="486.9" stroke="#333333" stroke-width="1.2"/>
+<line x1="672.2" y1="390.9" x2="704.8" y2="390.9" stroke="#333333" stroke-width="1.2"/>
+<line x1="672.2" y1="486.9" x2="704.8" y2="486.9" stroke="#333333" stroke-width="1.2"/>
+<rect x="663.5" y="428.4" width="50.0" height="52.0" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="663.5" y1="449.8" x2="713.5" y2="449.8" stroke="#111111" stroke-width="2"/>
+<circle cx="688.5" cy="334.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="688.5" cy="328.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="688.5" cy="324.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="688.5" cy="254.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="688.5" cy="212.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="688.5" cy="200.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="688.5" cy="140.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="688.5" y="507" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<text transform="translate(684.5 523) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Inflated FullQubo</text>
+</svg>
