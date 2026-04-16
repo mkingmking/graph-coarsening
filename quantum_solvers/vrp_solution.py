@@ -193,7 +193,74 @@ class VRPSolution:
 
             repaired.append(best_route)
 
-        return repaired
+        return self._repair_inter_route(repaired)
+
+    def _repair_inter_route(self, routes):
+        """
+        Inter-route repair: repeatedly try moving a customer from a violated
+        route to any position in another route, accepting moves that reduce
+        total TW violations without breaking capacity. Runs until no improvement.
+        """
+        routes = [list(r) for r in routes]
+
+        def total_violations(rts):
+            return sum(self._count_route_tw_violations(r) for r in rts)
+
+        improved = True
+        while improved:
+            improved = False
+            best_delta = 0          # must strictly improve
+            best_move = None        # (src_idx, src_pos, dst_idx, dst_pos)
+
+            viol_total = total_violations(routes)
+            if viol_total == 0:
+                break
+
+            for src_idx, src_route in enumerate(routes):
+                if not src_route:
+                    continue
+                src_viols = self._count_route_tw_violations(src_route)
+                if src_viols == 0:
+                    continue  # this route is already fine
+
+                for src_pos, customer in enumerate(src_route):
+                    # Route after removing this customer
+                    src_without = src_route[:src_pos] + src_route[src_pos + 1:]
+                    src_viols_after = self._count_route_tw_violations(src_without)
+
+                    customer_demand = self.problem.weights.get(customer, 0)
+
+                    for dst_idx, dst_route in enumerate(routes):
+                        if dst_idx == src_idx:
+                            continue
+
+                        # Capacity check
+                        cap = (self.problem.capacities[dst_idx]
+                               if dst_idx < len(self.problem.capacities)
+                               else self.problem.capacities[0])
+                        dst_load = sum(self.problem.weights.get(c, 0) for c in dst_route)
+                        if dst_load + customer_demand > cap:
+                            continue
+
+                        for dst_pos in range(len(dst_route) + 1):
+                            dst_with = dst_route[:dst_pos] + [customer] + dst_route[dst_pos:]
+                            dst_viols_after = self._count_route_tw_violations(dst_with)
+
+                            # Violation delta: negative means improvement
+                            delta = (src_viols_after - src_viols) + dst_viols_after
+                            if delta < best_delta:
+                                best_delta = delta
+                                best_move = (src_idx, src_pos, dst_idx, dst_pos)
+
+            if best_move is not None:
+                src_idx, src_pos, dst_idx, dst_pos = best_move
+                customer = routes[src_idx][src_pos]
+                routes[src_idx] = routes[src_idx][:src_pos] + routes[src_idx][src_pos + 1:]
+                routes[dst_idx] = routes[dst_idx][:dst_pos] + [customer] + routes[dst_idx][dst_pos:]
+                improved = True
+
+        # Remove empty routes
+        return [r for r in routes if r]
 
     def check(self):
         """

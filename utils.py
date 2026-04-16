@@ -34,6 +34,59 @@ _ORTOOLS_DEMAND: dict[str, float] = {
 }
 
 
+# ---------------------------------------------------------------------------
+# Per-family coarsening hyperparameters.
+# Keys match the Solomon family folder names (C1, C2, R1, R2, RC1, RC2).
+# These are the best configurations found via random hyperparameter search;
+# leave RC entries as the default until the RC search is complete.
+# ---------------------------------------------------------------------------
+FAMILY_HYPERPARAMS: dict[str, dict] = {
+    "C1":  {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0},
+    "C2":  {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0},
+    "R1":  {"alpha": 1.0, "beta": 0.6, "P": 0.4, "radiusCoeff": 0.5},
+    "R2":  {"alpha": 1.0, "beta": 0.6, "P": 0.4, "radiusCoeff": 0.5},
+    "RC1": {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0},  # placeholder
+    "RC2": {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0},  # placeholder
+}
+
+DEFAULT_HYPERPARAMS: dict = {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0}
+
+
+def detect_family(file_path: str) -> str | None:
+    """Return the Solomon family (e.g. 'R1', 'C2') from a file path, or None."""
+    for family in ("RC1", "RC2", "C1", "C2", "R1", "R2"):  # RC before C/R to avoid prefix clash
+        if f"/{family}/" in file_path or f"\\{family}\\" in file_path:
+            return family
+    return None
+
+
+def resolve_coarsening_params(
+    file_path: str,
+    alpha: float | None = None,
+    beta: float | None = None,
+    P: float | None = None,
+    radiusCoeff: float | None = None,
+) -> dict:
+    """Return the coarsening hyperparameter dict to use for *file_path*.
+
+    Resolution order (highest priority first):
+    1. Any explicitly supplied keyword argument overrides the corresponding param.
+    2. If the file belongs to a known Solomon family, use that family's defaults.
+    3. Otherwise fall back to DEFAULT_HYPERPARAMS.
+    """
+    family = detect_family(file_path)
+    base = FAMILY_HYPERPARAMS.get(family, DEFAULT_HYPERPARAMS).copy()
+    if alpha is not None:
+        base["alpha"] = alpha
+    if beta is not None:
+        base["beta"] = beta
+    if P is not None:
+        base["P"] = P
+    if radiusCoeff is not None:
+        base["radiusCoeff"] = radiusCoeff
+    return base
+
+
 def check_coverage(instance_name: str, metrics: dict) -> bool:
     """Check that a solver's solution serves every customer.
 

@@ -6,7 +6,7 @@ import argparse
 from pathlib import Path
 
 from .graph import Graph, compute_euclidean_tau
-from .utils import load_graph_from_csv, calculate_route_metrics
+from .utils import load_graph_from_csv, calculate_route_metrics, resolve_coarsening_params
 from .coarsener import SpatioTemporalGraphCoarsener
 from .quantum_solvers.vrp_problem import VRPProblem
 from .quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
@@ -209,7 +209,9 @@ def create_subgraph(original_graph: Graph, depot_id: str, num_customers: int) ->
                 subgraph.add_edge(id1, id2, original_edge.tau)
     return subgraph
 
-def process_file(csv_file_path: str, num_customers: int) -> dict:
+def process_file(csv_file_path: str, num_customers: int,
+                 alpha: float = None, beta: float = None,
+                 P: float = None, radiusCoeff: float = None) -> dict:
     logger.info(f"\n\n=== Processing file: {Path(csv_file_path).name} with {num_customers} customers ===")
     try:
         full_graph, depot_id, capacity = load_graph_from_csv(csv_file_path)
@@ -218,10 +220,10 @@ def process_file(csv_file_path: str, num_customers: int) -> dict:
         return {}
 
     subgraph = create_subgraph(full_graph, depot_id, num_customers)
-    
+
     file_results = {}
     solvers_to_run = ('FullQubo', 'AveragePartitionSolver')
-    
+
     script_dir = Path(__file__).resolve().parent
     save_dir = script_dir / "quantum_visualisations"
     save_dir.mkdir(exist_ok=True)
@@ -232,20 +234,22 @@ def process_file(csv_file_path: str, num_customers: int) -> dict:
         metrics['computation_time'] = duration
         file_results[f"Uncoarsened {name}"] = metrics
         log_solver_results(f"Uncoarsened {name}", routes, metrics, duration)
-        
+
         base_filename = Path(csv_file_path).stem
         count = _visualisation_counter_uncoarsened_quantum.get(name, 0) + 1
         _visualisation_counter_uncoarsened_quantum[name] = count
         filename = f"{base_filename}_{name}_uncoarsened_{count}.png"
         absolute_filepath = save_dir / filename
         visualize_routes(
-            subgraph, routes, depot_id, 
-            title=f"{base_filename} Uncoarsened - {name}", 
+            subgraph, routes, depot_id,
+            title=f"{base_filename} Uncoarsened - {name}",
             filename=str(absolute_filepath)
         )
 
     # Run COARSENED solvers
-    coarsener = SpatioTemporalGraphCoarsener(graph=subgraph, alpha=1, beta=1, P=0.5, radiusCoeff=2.0, depot_id=depot_id)
+    params = resolve_coarsening_params(csv_file_path, alpha=alpha, beta=beta, P=P, radiusCoeff=radiusCoeff)
+    logger.info(f"Coarsening params: {params}")
+    coarsener = SpatioTemporalGraphCoarsener(graph=subgraph, depot_id=depot_id, **params)
     coarsened_graph, _ = coarsener.coarsen()
     for name in solvers_to_run:
         routes, metrics, duration = run_solver_pipeline(coarsened_graph, depot_id, capacity, name, coarsener)
@@ -272,6 +276,14 @@ def main():
     parser.add_argument("--data", type=str, default=None, help="Directory containing Solomon CSV files.")
     parser.add_argument("--customers", type=int, default=5, help="Number of customers (default: 5).")
     parser.add_argument("--output", type=str, help="Path to a JSON file to save the detailed results.")
+    parser.add_argument("--alpha", type=float, default=None,
+                        help="Coarsening spatial weight alpha (overrides per-family default).")
+    parser.add_argument("--beta", type=float, default=None,
+                        help="Coarsening temporal weight beta (overrides per-family default).")
+    parser.add_argument("--P", type=float, default=None,
+                        help="Coarsening target node fraction P (overrides per-family default).")
+    parser.add_argument("--radius", type=float, default=None,
+                        help="Coarsening radius coefficient (overrides per-family default).")
     args = parser.parse_args()
 
     if args.file:
@@ -295,7 +307,8 @@ def main():
 
     all_results = {}
     for csv_path in files_to_process:
-        results = process_file(csv_path, args.customers)
+        results = process_file(csv_path, args.customers,
+                               alpha=args.alpha, beta=args.beta, P=args.P, radiusCoeff=args.radius)
         all_results[csv_path] = results
     
     if args.output:

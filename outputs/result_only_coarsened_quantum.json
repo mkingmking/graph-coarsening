@@ -1,0 +1,5062 @@
+{
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C1/C101.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 209.73947643418586,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 954.3148644367685,
+            "total_route_duration": 2514.0543408709545,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "9",
+                    "11",
+                    "12",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "15",
+                    "13",
+                    "3",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.6448032910120673
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 211.69476385346007,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1391.3091595948254,
+            "total_route_duration": 2953.003923448285,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "9",
+                    "11",
+                    "12",
+                    "10",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.618993124982808
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C1/C102.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 259.10349316311886,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1044.4607657499807,
+            "total_route_duration": 2653.5642589130994,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "13",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "4",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "2",
+                    "9",
+                    "8",
+                    "12",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.720754374982789
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 249.92828234819183,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1242.4192413843602,
+            "total_route_duration": 2842.347523732552,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "14",
+                    "9",
+                    "8",
+                    "12",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "13",
+                    "15",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "4",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.7265133329783566
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C1/C103.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 224.2073284182491,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1076.39255571113,
+            "total_route_duration": 2650.5998841293795,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "3",
+                    "2",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "4",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "12",
+                    "10",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.719036041991785
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 252.23703669053495,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1235.965523601794,
+            "total_route_duration": 2838.2025602923286,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "14",
+                    "4",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "15",
+                    "13",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "12",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.7422063339618035
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C1/C104.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 297.2781694822386,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 985.6054397337548,
+            "total_route_duration": 2632.883609215993,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "4",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "12",
+                    "11",
+                    "3",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.707331749959849
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 287.5660784124417,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1187.0448009249826,
+            "total_route_duration": 2824.610879337424,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "4",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "10",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.727351500012446
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C1/C105.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 244.62279313178362,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1376.3203277175226,
+            "total_route_duration": 2970.9431208493065,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "14",
+                    "11",
+                    "12",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "7",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.687270207970869
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 209.59133945573652,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1014.9142516572953,
+            "total_route_duration": 2574.5055911130316,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "11",
+                    "12",
+                    "10",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "3",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.6919730830122717
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C1/C106.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 274.3391898581859,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1804.4057037450855,
+            "total_route_duration": 3428.744893603271,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "12",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.667683499981649
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 277.30418868217754,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1510.6225015703262,
+            "total_route_duration": 3137.9266902525037,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "11",
+                    "12",
+                    "10",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.656472417002078
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C1/C107.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 214.90411149767658,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1291.0390093516296,
+            "total_route_duration": 2855.9431208493065,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "14",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "12",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "7",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.6741757089621387
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 270.0084819715747,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1387.546326080729,
+            "total_route_duration": 3007.5548080523035,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "11",
+                    "12",
+                    "10",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.687712167040445
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C1/C108.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 213.84837309398142,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1441.2364114589025,
+            "total_route_duration": 3005.0847845528842,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "11",
+                    "12",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "7",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.688496667018626
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 235.26156961062085,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 714.7574075183538,
+            "total_route_duration": 2300.0189771289747,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "12",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "10",
+                    "7",
+                    "5",
+                    "3",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.705633500008844
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C1/C109.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 213.84837309398142,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1210.2364114589027,
+            "total_route_duration": 2774.0847845528842,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "11",
+                    "12",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "7",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.7186587500036694
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 243.43922854948568,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 663.0541860536497,
+            "total_route_duration": 2256.4934146031355,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "16",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "12",
+                    "10",
+                    "7",
+                    "5",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "8",
+                    "9",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.6796157500357367
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C2/C201.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 212.85664691295457,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 5700.251876252574,
+            "total_route_duration": 7263.108523165527,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "7",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "10",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "2",
+                    "8",
+                    "4",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.186862333037425
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 323.05025924059174,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 8728.16232880778,
+            "total_route_duration": 10401.212588048373,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "2",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "4",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.1944964170106687
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C2/C202.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 344.51414608243,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 7001.924016761697,
+            "total_route_duration": 8696.438162844128,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "5",
+                    "4",
+                    "2",
+                    "8",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "3",
+                    "6",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "14",
+                    "13",
+                    "10",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2063225409947336
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 291.60676222964577,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 4124.601895541553,
+            "total_route_duration": 5766.2086577712,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "5",
+                    "4",
+                    "2",
+                    "8",
+                    "16",
+                    "14",
+                    "13",
+                    "10",
+                    "12",
+                    "11",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "6",
+                    "15",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.210637249983847
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C2/C203.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 282.50952098612385,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 8450.77730166638,
+            "total_route_duration": 10083.286822652502,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "5",
+                    "4",
+                    "2",
+                    "8",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "6",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "10",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.193241916014813
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 301.04075309319376,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 7589.536103310862,
+            "total_route_duration": 9240.576856404054,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "5",
+                    "4",
+                    "2",
+                    "8",
+                    "10",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "3",
+                    "6",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.190463666978758
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C2/C204.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 271.64725055586507,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 6700.538447351578,
+            "total_route_duration": 8322.185697907444,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "3",
+                    "6",
+                    "11",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "4",
+                    "2",
+                    "8",
+                    "10",
+                    "12",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.2831317909876816
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 267.0902209563071,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 6834.187638565509,
+            "total_route_duration": 8451.277859521815,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "10",
+                    "12",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "4",
+                    "2",
+                    "8",
+                    "3",
+                    "6",
+                    "11",
+                    "9",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.281978666957002
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C2/C205.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 289.1603785726303,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 3912.463904781246,
+            "total_route_duration": 5551.624283353876,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 2,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "2",
+                    "7",
+                    "8",
+                    "4",
+                    "5",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.255052333988715
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 280.37212004459735,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 5217.864660259011,
+            "total_route_duration": 6848.236780303607,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "2",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "8",
+                    "4",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.2560420830268413
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C2/C206.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 275.4464273437836,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 3757.177856010093,
+            "total_route_duration": 5382.624283353876,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 2,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "2",
+                    "7",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "4",
+                    "5",
+                    "10",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.250362833030522
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 295.2137363399005,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 5007.023043963707,
+            "total_route_duration": 6652.236780303608,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "2",
+                    "7",
+                    "10",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "4",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.2567820840049535
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C2/C207.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 258.17614303754755,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 1778.5583264196184,
+            "total_route_duration": 3386.7344694571657,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "4",
+                    "5",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "9",
+                    "10",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.195126916980371
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 295.1873035001524,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 4925.292312946665,
+            "total_route_duration": 6570.479616446817,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "2",
+                    "9",
+                    "10",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "4",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.196015458961483
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/C2/C208.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 254.05016031606186,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 3999.872344319161,
+            "total_route_duration": 5603.922504635223,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "2",
+                    "8",
+                    "4",
+                    "5",
+                    "10",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.250546708004549
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 296.32630962047404,
+            "total_service_time": 1350.0,
+            "total_waiting_time": 5049.2073430431665,
+            "total_route_duration": 6695.533652663641,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 260.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "15",
+                    "13",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "4",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.253702833026182
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R101.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 422.1421993865937,
+            "total_service_time": 150.0,
+            "total_waiting_time": 383.94150894313987,
+            "total_route_duration": 956.0837083297336,
+            "time_window_violations": 1,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 6,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "8",
+                    "9",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "10",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 9.101858999987599
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 453.5241316947116,
+            "total_service_time": 150.0,
+            "total_waiting_time": 334.16078688596014,
+            "total_route_duration": 937.6849185806716,
+            "time_window_violations": 5,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 6,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "5",
+                    "13",
+                    "10",
+                    "4",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "11",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "1"
+                ]
+            ],
+            "computation_time": 9.190366750000976
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R102.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 377.9992717319666,
+            "total_service_time": 150.0,
+            "total_waiting_time": 148.60767863674423,
+            "total_route_duration": 676.6069503687108,
+            "time_window_violations": 6,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "3",
+                    "12",
+                    "2",
+                    "11",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.832274916989263
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 356.264728580747,
+            "total_service_time": 150.0,
+            "total_waiting_time": 224.30186744205645,
+            "total_route_duration": 730.5665960228034,
+            "time_window_violations": 3,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "2",
+                    "11",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "3",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.8076949160313234
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R103.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 426.063587464118,
+            "total_service_time": 150.0,
+            "total_waiting_time": 241.00525428609504,
+            "total_route_duration": 817.068841750213,
+            "time_window_violations": 4,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "14",
+                    "12",
+                    "2",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.761698249960318
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 401.60073528862426,
+            "total_service_time": 150.0,
+            "total_waiting_time": 325.1026324124462,
+            "total_route_duration": 876.7033677010703,
+            "time_window_violations": 3,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 5,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "2",
+                    "11",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.812214917037636
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R104.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 378.615866054354,
+            "total_service_time": 150.0,
+            "total_waiting_time": 321.0587831729083,
+            "total_route_duration": 849.6746492272622,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "6",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "2",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.746644250000827
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 329.7706675387168,
+            "total_service_time": 150.0,
+            "total_waiting_time": 118.00912765951938,
+            "total_route_duration": 597.7797951982361,
+            "time_window_violations": 3,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "8",
+                    "9",
+                    "6",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "2",
+                    "10",
+                    "4",
+                    "13",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.7472137079457752
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R105.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 392.31170504099504,
+            "total_service_time": 150.0,
+            "total_waiting_time": 111.5570786067133,
+            "total_route_duration": 653.8687836477084,
+            "time_window_violations": 5,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "13",
+                    "10",
+                    "4",
+                    "2",
+                    "3",
+                    "16",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "8",
+                    "9",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "15",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.755699832981918
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 379.3714355528538,
+            "total_service_time": 150.0,
+            "total_waiting_time": 166.9909132268839,
+            "total_route_duration": 696.3623487797378,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "13",
+                    "10",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "15",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "8",
+                    "9",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "16",
+                    "7",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.763756625005044
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R106.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 409.1698479252242,
+            "total_service_time": 150.0,
+            "total_waiting_time": 148.89366846225352,
+            "total_route_duration": 708.0635163874776,
+            "time_window_violations": 1,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "3",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "2",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.791598041949328
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 380.45122984778294,
+            "total_service_time": 150.0,
+            "total_waiting_time": 99.79269430525204,
+            "total_route_duration": 630.2439241530349,
+            "time_window_violations": 5,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "3",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "2",
+                    "11",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.7721875840215944
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R107.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 407.9597382189472,
+            "total_service_time": 150.0,
+            "total_waiting_time": 203.87804727508927,
+            "total_route_duration": 761.8377854940363,
+            "time_window_violations": 3,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "14",
+                    "16",
+                    "3",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "2",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.793843832972925
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 429.55389075793727,
+            "total_service_time": 150.0,
+            "total_waiting_time": 169.47985581076242,
+            "total_route_duration": 749.0337465686996,
+            "time_window_violations": 4,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "2",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.7963883339543827
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R108.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 356.6331084152872,
+            "total_service_time": 150.0,
+            "total_waiting_time": 145.83629952439378,
+            "total_route_duration": 652.4694079396809,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "6",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "2",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.7472780420212075
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 374.7962059418529,
+            "total_service_time": 150.0,
+            "total_waiting_time": 133.23912306040728,
+            "total_route_duration": 658.0353290022601,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "6",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "2",
+                    "10",
+                    "4",
+                    "13",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.748229374992661
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R109.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 371.11010857601866,
+            "total_service_time": 150.0,
+            "total_waiting_time": 231.19850118695507,
+            "total_route_duration": 752.3086097629737,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "14",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "16",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.779220832977444
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 367.25338994609496,
+            "total_service_time": 150.0,
+            "total_waiting_time": 168.77129341702772,
+            "total_route_duration": 686.0246833631227,
+            "time_window_violations": 2,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "16",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "14",
+                    "6",
+                    "7",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.7848303749924526
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R110.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 302.85522204864503,
+            "total_service_time": 150.0,
+            "total_waiting_time": 116.60645667690463,
+            "total_route_duration": 569.4616787255497,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "16",
+                    "15",
+                    "6",
+                    "7",
+                    "14",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 1.9327158749802038
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 330.3870487524451,
+            "total_service_time": 150.0,
+            "total_waiting_time": 129.99092854881633,
+            "total_route_duration": 610.3779773012615,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "3",
+                    "16",
+                    "15",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 1.9480729160131887
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R111.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 387.59279187573793,
+            "total_service_time": 150.0,
+            "total_waiting_time": 142.26472885968403,
+            "total_route_duration": 679.8575207354219,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "7",
+                    "6",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.740202832967043
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 381.50159770139317,
+            "total_service_time": 150.0,
+            "total_waiting_time": 142.26472885968406,
+            "total_route_duration": 673.7663265610771,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "7",
+                    "6",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.749936541018542
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R1/R112.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 338.1425518479141,
+            "total_service_time": 150.0,
+            "total_waiting_time": 75.91986073695085,
+            "total_route_duration": 564.0624125848649,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "16",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 1.939060959033668
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 318.3961930924717,
+            "total_service_time": 150.0,
+            "total_waiting_time": 75.91986073695085,
+            "total_route_duration": 544.3160538294226,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "7",
+                    "14",
+                    "3",
+                    "16",
+                    "15",
+                    "1"
+                ]
+            ],
+            "computation_time": 1.9273914590012282
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R201.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 457.974713393389,
+            "total_service_time": 150.0,
+            "total_waiting_time": 2393.0012510523597,
+            "total_route_duration": 3000.975964445749,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "10",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "15",
+                    "3",
+                    "16",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "9",
+                    "7",
+                    "4",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "8",
+                    "1"
+                ]
+            ],
+            "computation_time": 8.368307499971706
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 454.1869975396457,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1930.2448568242871,
+            "total_route_duration": 2534.431854363933,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "15",
+                    "3",
+                    "16",
+                    "12",
+                    "8",
+                    "4",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "9",
+                    "7",
+                    "1"
+                ]
+            ],
+            "computation_time": 8.468857792031486
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R202.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 384.71124390609924,
+            "total_service_time": 150.0,
+            "total_waiting_time": 698.5092470301886,
+            "total_route_duration": 1233.2204909362877,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 2,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "3",
+                    "10",
+                    "2",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "11",
+                    "5",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.3088387500029057
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 385.0488098088138,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1205.6092929993843,
+            "total_route_duration": 1740.658102808198,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "3",
+                    "10",
+                    "2",
+                    "4",
+                    "13",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.304499041987583
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R203.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 383.87025240178747,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1819.2829479743746,
+            "total_route_duration": 2353.153200376162,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "10",
+                    "2",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2989579580025747
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 422.0953744292867,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1620.4702173149008,
+            "total_route_duration": 2192.5655917441873,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "12",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "2",
+                    "4",
+                    "13",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.3257367499754764
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R204.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 401.6308752298373,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1135.2249021131247,
+            "total_route_duration": 1686.855777342962,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "10",
+                    "2",
+                    "4",
+                    "13",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "6",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2816844169865362
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 384.1440494735325,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1659.2439553328688,
+            "total_route_duration": 2193.3880048064016,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "10",
+                    "2",
+                    "4",
+                    "13",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "6",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.265902957995422
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R205.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 429.58802253252867,
+            "total_service_time": 150.0,
+            "total_waiting_time": 758.8233870210215,
+            "total_route_duration": 1338.4114095535501,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "13",
+                    "7",
+                    "11",
+                    "4",
+                    "2",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "15",
+                    "3",
+                    "16",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "8",
+                    "9",
+                    "10",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2648792500258423
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 416.58815727473143,
+            "total_service_time": 150.0,
+            "total_waiting_time": 793.3188263924593,
+            "total_route_duration": 1359.9069836671906,
+            "time_window_violations": 1,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 2,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "13",
+                    "7",
+                    "12",
+                    "8",
+                    "9",
+                    "10",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "15",
+                    "3",
+                    "16",
+                    "11",
+                    "4",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2987125409999862
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R206.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 400.32902013019526,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1236.5628744432274,
+            "total_route_duration": 1786.8918945734229,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "2",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "3",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.269737625028938
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 386.0677475740842,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1061.2831273368415,
+            "total_route_duration": 1597.350874910926,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "3",
+                    "2",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.273093042022083
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R207.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 414.34060433837806,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1673.6531237320394,
+            "total_route_duration": 2237.9937280704175,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "2",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "10",
+                    "4",
+                    "13",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2782101670163684
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 420.3532944295536,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1242.7958721282805,
+            "total_route_duration": 1813.149166557834,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "10",
+                    "4",
+                    "13",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "7",
+                    "6",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "1"
+                ],
+                [
+                    "1",
+                    "2",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.276467333023902
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R208.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 377.2059002570809,
+            "total_service_time": 150.0,
+            "total_waiting_time": 787.9744396304181,
+            "total_route_duration": 1315.180339887499,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 2,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "9",
+                    "8",
+                    "6",
+                    "7",
+                    "10",
+                    "2",
+                    "4",
+                    "13",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.262303499970585
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 351.52252559035776,
+            "total_service_time": 150.0,
+            "total_waiting_time": 849.7228667460123,
+            "total_route_duration": 1351.2453923363703,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "10",
+                    "2",
+                    "4",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "6",
+                    "7",
+                    "14",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2664009159780107
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R209.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 387.5488690472249,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1355.1777747324668,
+            "total_route_duration": 1892.7266437796918,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "15",
+                    "3",
+                    "16",
+                    "8",
+                    "9",
+                    "7",
+                    "14",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2622148749651387
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 382.2428815481827,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1757.8830629990043,
+            "total_route_duration": 2290.1259445471874,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "7",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "10",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "15",
+                    "3",
+                    "16",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2695772919687442
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R210.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 426.7498120352168,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1443.9978598811676,
+            "total_route_duration": 2020.7476719163844,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "8",
+                    "9",
+                    "6",
+                    "7",
+                    "2",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "13",
+                    "4",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.29519229097059
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 382.8201711498904,
+            "total_service_time": 150.0,
+            "total_waiting_time": 755.3503638735364,
+            "total_route_duration": 1288.170535023427,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 2,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "15",
+                    "8",
+                    "9",
+                    "6",
+                    "7",
+                    "10",
+                    "13",
+                    "4",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "2",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.2762630420038477
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/R2/R211.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 352.9018840377552,
+            "total_service_time": 150.0,
+            "total_waiting_time": 693.248975411718,
+            "total_route_duration": 1196.1508594494733,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "9",
+                    "12",
+                    "11",
+                    "7",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "6",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.3262927919859067
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 345.79555841517805,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1070.616782573477,
+            "total_route_duration": 1566.4123409886552,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 206.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "3",
+                    "6",
+                    "15",
+                    "8",
+                    "9",
+                    "12",
+                    "11",
+                    "13",
+                    "4",
+                    "10",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "7",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.326567250012886
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC1/RC101.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 324.01641890389965,
+            "total_service_time": 150.0,
+            "total_waiting_time": 80.92546133746332,
+            "total_route_duration": 554.9418802413629,
+            "time_window_violations": 1,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 3,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "12",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "8",
+                    "7",
+                    "9",
+                    "4",
+                    "2",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "11",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.551328750036191
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 405.0549116192324,
+            "total_service_time": 150.0,
+            "total_waiting_time": 228.3795980149667,
+            "total_route_duration": 783.434509634199,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.521444999962114
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC1/RC102.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 478.4741117091111,
+            "total_service_time": 150.0,
+            "total_waiting_time": 286.98402973686854,
+            "total_route_duration": 915.4581414459797,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "14",
+                    "3",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.4684470840147696
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 375.2460150622948,
+            "total_service_time": 150.0,
+            "total_waiting_time": 155.11986463227805,
+            "total_route_duration": 680.3658796945729,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "12",
+                    "10",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.480554583016783
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC1/RC103.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 386.48751378717265,
+            "total_service_time": 150.0,
+            "total_waiting_time": 130.1524369824354,
+            "total_route_duration": 666.6399507696082,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "12",
+                    "10",
+                    "5",
+                    "3",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "15",
+                    "13",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.4845289590302855
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 398.50544405962444,
+            "total_service_time": 150.0,
+            "total_waiting_time": 215.9148251878861,
+            "total_route_duration": 764.4202692475106,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "3",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "10",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.473263500025496
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC1/RC104.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 372.10549230777195,
+            "total_service_time": 150.0,
+            "total_waiting_time": 119.16288251372461,
+            "total_route_duration": 641.2683748214965,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "10",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "15",
+                    "13",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.593593541998416
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 501.00003068302914,
+            "total_service_time": 150.0,
+            "total_waiting_time": 284.85945612461046,
+            "total_route_duration": 935.8594868076397,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 6,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "15",
+                    "13",
+                    "3",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.597309916978702
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC1/RC105.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 407.70128768987695,
+            "total_service_time": 150.0,
+            "total_waiting_time": 335.42502191319994,
+            "total_route_duration": 893.1263096030768,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "3",
+                    "8",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "10",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.5967032499611378
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 408.47151730995637,
+            "total_service_time": 150.0,
+            "total_waiting_time": 287.32578110021376,
+            "total_route_duration": 845.79729841017,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "3",
+                    "8",
+                    "7",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.6008874580147676
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC1/RC106.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 460.0266161508086,
+            "total_service_time": 150.0,
+            "total_waiting_time": 225.84951260001566,
+            "total_route_duration": 835.8761287508241,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "3",
+                    "6",
+                    "4",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "10",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.670700874994509
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 452.6094529339489,
+            "total_service_time": 150.0,
+            "total_waiting_time": 228.50214785013594,
+            "total_route_duration": 831.1116007840847,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "6",
+                    "4",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.68158474995289
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC1/RC107.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 342.6000914767029,
+            "total_service_time": 150.0,
+            "total_waiting_time": 94.52752859768115,
+            "total_route_duration": 587.127620074384,
+            "time_window_violations": 5,
+            "capacity_violations": 0,
+            "is_feasible": false,
+            "num_vehicles": 3,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "10",
+                    "14",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "15",
+                    "13",
+                    "16",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.6474291660124436
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 330.2969435464421,
+            "total_service_time": 150.0,
+            "total_waiting_time": 95.17218953835378,
+            "total_route_duration": 575.4691330847959,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "10",
+                    "14",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.644207584031392
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC1/RC108.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 363.3227599234914,
+            "total_service_time": 150.0,
+            "total_waiting_time": 90.96140064183774,
+            "total_route_duration": 604.2841605653291,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "14",
+                    "12",
+                    "11",
+                    "3",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "13",
+                    "15",
+                    "16",
+                    "1"
+                ]
+            ],
+            "computation_time": 1.8445725410128944
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 358.6631577582655,
+            "total_service_time": 150.0,
+            "total_waiting_time": 90.96140064183774,
+            "total_route_duration": 599.6245584001033,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "3",
+                    "13",
+                    "15",
+                    "16",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "14",
+                    "12",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 1.846680374990683
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC2/RC201.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 376.0732627069396,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1416.4418056600082,
+            "total_route_duration": 1942.5150683669478,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "16",
+                    "12",
+                    "13",
+                    "10",
+                    "9",
+                    "4",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "5",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "11",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 7.965879583964124
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 508.6881594322059,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1846.8707628246357,
+            "total_route_duration": 2505.558922256842,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "12",
+                    "13",
+                    "11",
+                    "5",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "9",
+                    "4",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 7.980531624983996
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC2/RC202.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 419.9208014187512,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1451.8383211530775,
+            "total_route_duration": 2021.7591225718288,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "10",
+                    "9",
+                    "3",
+                    "7",
+                    "8",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "12",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.132194125035312
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 403.6897382214397,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1990.4927860545467,
+            "total_route_duration": 2544.182524275986,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 5,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "5",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "3",
+                    "7",
+                    "8",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "12",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.1223889170214534
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC2/RC203.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 362.54427278809345,
+            "total_service_time": 150.0,
+            "total_waiting_time": 350.358911914564,
+            "total_route_duration": 862.9031847026575,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 2,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "12",
+                    "15",
+                    "13",
+                    "9",
+                    "7",
+                    "8",
+                    "3",
+                    "10",
+                    "11",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ]
+            ],
+            "computation_time": 4.298042209004052
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 387.2186548917917,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1625.2040054336637,
+            "total_route_duration": 2162.4226603254556,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "10",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "7",
+                    "8",
+                    "3",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "12",
+                    "15",
+                    "13",
+                    "1"
+                ]
+            ],
+            "computation_time": 4.294534542015754
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC2/RC204.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 342.9251792764447,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1592.2095559632803,
+            "total_route_duration": 2085.134735239725,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "9",
+                    "8",
+                    "7",
+                    "3",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "12",
+                    "11",
+                    "15",
+                    "13",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.176677124982234
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 389.34503596126393,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1165.0428987373275,
+            "total_route_duration": 1704.3879346985914,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "16",
+                    "12",
+                    "11",
+                    "15",
+                    "13",
+                    "5",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "7",
+                    "3",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.18008529196959
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC2/RC205.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 419.33809557847434,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1926.7207109178623,
+            "total_route_duration": 2496.0588064963367,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "12",
+                    "9",
+                    "8",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "6",
+                    "4",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "2",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "11",
+                    "1"
+                ]
+            ],
+            "computation_time": 4.293461334018502
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 465.6348459252458,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1880.423960571091,
+            "total_route_duration": 2496.0588064963367,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "12",
+                    "3",
+                    "6",
+                    "4",
+                    "11",
+                    "1"
+                ],
+                [
+                    "1",
+                    "9",
+                    "8",
+                    "7",
+                    "1"
+                ],
+                [
+                    "1",
+                    "10",
+                    "2",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 4.280509542033542
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC2/RC206.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 380.4288746411064,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1010.2049925392027,
+            "total_route_duration": 1540.6338671803092,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 4,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "12",
+                    "10",
+                    "8",
+                    "7",
+                    "9",
+                    "4",
+                    "2",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "3",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "1"
+                ]
+            ],
+            "computation_time": 4.224704666004982
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 286.56317225106795,
+            "total_service_time": 150.0,
+            "total_waiting_time": 880.642273844757,
+            "total_route_duration": 1317.205446095825,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 2,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "3",
+                    "6",
+                    "15",
+                    "13",
+                    "16",
+                    "12",
+                    "10",
+                    "8",
+                    "7",
+                    "9",
+                    "4",
+                    "2",
+                    "5",
+                    "1"
+                ],
+                [
+                    "1",
+                    "11",
+                    "14",
+                    "1"
+                ]
+            ],
+            "computation_time": 4.186280374997295
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC2/RC207.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 308.7170264996994,
+            "total_service_time": 150.0,
+            "total_waiting_time": 842.2465481604385,
+            "total_route_duration": 1300.9635746601377,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "10",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "3",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.1391591249848716
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 310.35847115482426,
+            "total_service_time": 150.0,
+            "total_waiting_time": 1190.8547726584547,
+            "total_route_duration": 1651.213243813279,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "10",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "15",
+                    "13",
+                    "16",
+                    "3",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 3.138548917020671
+        }
+    },
+    "/Users/MUSTAFAMERT/Desktop/graph-coarsening/graph_coarsening/solomon_dataset/RC2/RC208.csv": {
+        "Inflated FullQubo": {
+            "total_distance": 312.3263954761291,
+            "total_service_time": 150.0,
+            "total_waiting_time": 656.0519157621633,
+            "total_route_duration": 1118.3783112382923,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "3",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "12",
+                    "11",
+                    "10",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "6",
+                    "4",
+                    "2",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "13",
+                    "15",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.2116160000441596
+        },
+        "Inflated AveragePartitionSolver": {
+            "total_distance": 307.91696238829314,
+            "total_service_time": 150.0,
+            "total_waiting_time": 944.4635660060757,
+            "total_route_duration": 1402.3805283943689,
+            "time_window_violations": 0,
+            "capacity_violations": 0,
+            "is_feasible": true,
+            "num_vehicles": 3,
+            "total_demand_served": 320.0,
+            "routes_list": [
+                [
+                    "1",
+                    "12",
+                    "11",
+                    "10",
+                    "14",
+                    "1"
+                ],
+                [
+                    "1",
+                    "16",
+                    "13",
+                    "15",
+                    "6",
+                    "4",
+                    "2",
+                    "3",
+                    "1"
+                ],
+                [
+                    "1",
+                    "8",
+                    "7",
+                    "9",
+                    "5",
+                    "1"
+                ]
+            ],
+            "computation_time": 2.211266624974087
+        }
+    }
+}

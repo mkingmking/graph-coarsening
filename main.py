@@ -3,7 +3,7 @@ import logging
 import json
 import time
 from .graph import Graph, compute_euclidean_tau
-from .utils import load_graph_from_csv, calculate_route_metrics
+from .utils import load_graph_from_csv, calculate_route_metrics, resolve_coarsening_params
 from .greedy_solver import GreedySolver
 from .savings_solver import SavingsSolver
 from .ortools_solver import ORToolsVRPTWSolver
@@ -254,7 +254,9 @@ def final_summary(all_results: dict, file_logger=None):
                     
         write_output("\n" + "="*30 + "\n")
 
-def process_file(csv_file_path: str, time_limit_seconds: int = None) -> dict:
+def process_file(csv_file_path: str, time_limit_seconds: int = None,
+                 alpha: float = None, beta: float = None,
+                 P: float = None, radiusCoeff: float = None) -> dict:
     logger.info(f"\n\n=== Processing file: {csv_file_path} ===")
     try:
         graph, depot_id, capacity = load_graph_from_csv(csv_file_path)
@@ -262,7 +264,9 @@ def process_file(csv_file_path: str, time_limit_seconds: int = None) -> dict:
         logger.error(f"Error loading {csv_file_path}: {e}")
         return {}
     log_graph_info(graph, depot_id)
-    coarsener = SpatioTemporalGraphCoarsener(graph=graph, alpha=0.8, beta=0.4, P=0.5, radiusCoeff=2.0, depot_id=depot_id)
+    params = resolve_coarsening_params(csv_file_path, alpha=alpha, beta=beta, P=P, radiusCoeff=radiusCoeff)
+    logger.info(f"Coarsening params: {params}")
+    coarsener = SpatioTemporalGraphCoarsener(graph=graph, depot_id=depot_id, **params)
     coarsened_graph, merge_layers = coarsener.coarsen()
     log_coarsening_info(coarsener, coarsened_graph, merge_layers)
     uncoars = run_uncoarsened_solvers(graph, depot_id, capacity, time_limit_seconds=time_limit_seconds)
@@ -285,6 +289,14 @@ def main():
                         help="Wall-clock time limit in seconds for the OR-Tools solver per instance (default: 30). "
                              "GUIDED_LOCAL_SEARCH has no natural termination, so a limit is required to prevent "
                              "the solver from running indefinitely.")
+    parser.add_argument("--alpha", type=float, default=None,
+                        help="Coarsening spatial weight alpha (overrides per-family default).")
+    parser.add_argument("--beta", type=float, default=None,
+                        help="Coarsening temporal weight beta (overrides per-family default).")
+    parser.add_argument("--P", type=float, default=None,
+                        help="Coarsening target node fraction P (overrides per-family default).")
+    parser.add_argument("--radius", type=float, default=None,
+                        help="Coarsening radius coefficient (overrides per-family default).")
     args = parser.parse_args()
 
     # Configure file logger if the report path is provided
@@ -302,7 +314,8 @@ def main():
             logger.error(f"CSV not found: {csv}")
             return
         logger.info(f"Processing single file: {csv}")
-        res = process_file(str(csv), time_limit_seconds=args.time_limit)
+        res = process_file(str(csv), time_limit_seconds=args.time_limit,
+                           alpha=args.alpha, beta=args.beta, P=args.P, radiusCoeff=args.radius)
         all_results = {str(csv): res}
         final_summary(all_results, file_logger=file_logger)
         logger.info("Done.")
@@ -322,7 +335,8 @@ def main():
     all_results = {}
     for path in files:
         logger.info(f"Processing: {path}")
-        res = process_file(path, time_limit_seconds=args.time_limit)
+        res = process_file(path, time_limit_seconds=args.time_limit,
+                           alpha=args.alpha, beta=args.beta, P=args.P, radiusCoeff=args.radius)
         all_results[path] = res
     
     if args.output:
