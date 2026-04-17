@@ -44,8 +44,8 @@ FAMILY_HYPERPARAMS: dict[str, dict] = {
     "C2":  {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0},
     "R1":  {"alpha": 1.0, "beta": 0.6, "P": 0.4, "radiusCoeff": 0.5},
     "R2":  {"alpha": 1.0, "beta": 0.6, "P": 0.4, "radiusCoeff": 0.5},
-    "RC1": {"alpha": 0.7, "beta": 0.8, "P": 0.7, "radiusCoeff": 2.0},
-    "RC2": {"alpha": 0.7, "beta": 0.8, "P": 0.7, "radiusCoeff": 2.0},
+    "RC1": {"alpha": 1.0, "beta": 0.8, "P": 0.8, "radiusCoeff": 3.0},
+    "RC2": {"alpha": 1.0, "beta": 0.8, "P": 0.8, "radiusCoeff": 3.0},
 }
 
 DEFAULT_HYPERPARAMS: dict = {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0}
