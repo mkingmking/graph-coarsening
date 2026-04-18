@@ -6,7 +6,6 @@ from .graph import Graph, compute_euclidean_tau
 from .utils import load_graph_from_csv, calculate_route_metrics, resolve_coarsening_params
 from .greedy_solver import GreedySolver
 from .savings_solver import SavingsSolver
-from .ortools_solver import ORToolsVRPTWSolver
 from .coarsener import SpatioTemporalGraphCoarsener
 from .visualisation import visualize_routes
 
@@ -17,24 +16,23 @@ _visualisation_counter_uncoarsened = {}
 _visualisation_counter_coarsened = {}
 
 
-def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, solver_name: str, coarsener: SpatioTemporalGraphCoarsener = None, time_limit_seconds: int = None):
+def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, solver_name: str, coarsener: SpatioTemporalGraphCoarsener = None):
     start_time = time.perf_counter()
-    if solver_name in ('Greedy', 'Savings', 'ORTools'):
-        if solver_name == 'Greedy':
-            solver = GreedySolver(graph, depot_id, vehicle_capacity)
-        elif solver_name == 'Savings':
-            solver = SavingsSolver(graph, depot_id, vehicle_capacity)
-        else:
-            solver = ORToolsVRPTWSolver(graph, depot_id, vehicle_capacity, time_limit_seconds=time_limit_seconds)
-        routes, metrics = solver.solve()
-        if coarsener:
-            formatted = []
-            for r in routes:
-                if not r: continue
-                tmp = [depot_id] + r + [depot_id]
-                if len(tmp) > 2: formatted.append(tmp)
-            routes = coarsener.inflate_route(formatted)
-            metrics = calculate_route_metrics(coarsener.graph, routes, depot_id, vehicle_capacity)
+    if solver_name == 'Greedy':
+        solver = GreedySolver(graph, depot_id, vehicle_capacity)
+    elif solver_name == 'Savings':
+        solver = SavingsSolver(graph, depot_id, vehicle_capacity)
+    else:
+        raise ValueError(f"Unknown solver: {solver_name}. Use 'Greedy' or 'Savings'.")
+    routes, metrics = solver.solve()
+    if coarsener:
+        formatted = []
+        for r in routes:
+            if not r: continue
+            tmp = [depot_id] + r + [depot_id]
+            if len(tmp) > 2: formatted.append(tmp)
+        routes = coarsener.inflate_route(formatted)
+        metrics = calculate_route_metrics(coarsener.graph, routes, depot_id, vehicle_capacity)
     
     end_time = time.perf_counter()
     duration = end_time - start_time
@@ -105,12 +103,12 @@ def log_solver_results(prefix: str, routes: list, metrics: dict):
         else:
             logger.info(f"    {k.replace('_',' ').title()}: {v}")
 
-def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float, time_limit_seconds: int = None) -> dict:
+def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dict:
     results = {}
-    for i, name in enumerate(('Greedy', 'Savings', 'ORTools'), start=1):
+    for i, name in enumerate(('Greedy', 'Savings'), start=1):
 
         logger.info(f"\n--- Running UNCOARSENED {name} Solver ---")
-        routes, metrics, duration = run_solver_pipeline(graph, depot_id, capacity, name, time_limit_seconds=time_limit_seconds)
+        routes, metrics, duration = run_solver_pipeline(graph, depot_id, capacity, name)
         metrics['computation_time'] = duration
         key = f"Uncoarsened {name}"
         results[key] = metrics
@@ -121,12 +119,12 @@ def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float, time_l
         visualize_routes(graph, routes, depot_id, "Uncoarsened Solution", filename = "Uncoarsened Solution" + filename)
     return results
 
-def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Graph, depot_id: str, capacity: float, initial_graph, time_limit_seconds: int = None) -> dict:
+def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Graph, depot_id: str, capacity: float, initial_graph) -> dict:
     results = {}
-    for i, name in enumerate(('Greedy', 'Savings', 'ORTools'), start=1):
+    for i, name in enumerate(('Greedy', 'Savings'), start=1):
 
         logger.info(f"\n--- Running INFLATED {name} Solver ---")
-        routes, metrics, duration = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener, time_limit_seconds=time_limit_seconds)
+        routes, metrics, duration = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener)
         metrics['computation_time'] = duration
         key = f"Inflated {name}"
         results[key] = metrics
@@ -254,7 +252,7 @@ def final_summary(all_results: dict, file_logger=None):
                     
         write_output("\n" + "="*30 + "\n")
 
-def process_file(csv_file_path: str, time_limit_seconds: int = None,
+def process_file(csv_file_path: str,
                  alpha: float = None, beta: float = None,
                  P: float = None, radiusCoeff: float = None) -> dict:
     logger.info(f"\n\n=== Processing file: {csv_file_path} ===")
@@ -269,8 +267,8 @@ def process_file(csv_file_path: str, time_limit_seconds: int = None,
     coarsener = SpatioTemporalGraphCoarsener(graph=graph, depot_id=depot_id, **params)
     coarsened_graph, merge_layers = coarsener.coarsen()
     log_coarsening_info(coarsener, coarsened_graph, merge_layers)
-    uncoars = run_uncoarsened_solvers(graph, depot_id, capacity, time_limit_seconds=time_limit_seconds)
-    inflated = run_inflated_solvers(coarsener, coarsened_graph, depot_id, capacity, graph, time_limit_seconds=time_limit_seconds)
+    uncoars = run_uncoarsened_solvers(graph, depot_id, capacity)
+    inflated = run_inflated_solvers(coarsener, coarsened_graph, depot_id, capacity, graph)
     return {**uncoars, **inflated}
 
 def main(): 
@@ -285,10 +283,6 @@ def main():
                         help="Path to a JSON file to save the results")
     parser.add_argument("--report", type=str, default=None,
                         help="Path to a text file to save the final summary report")
-    parser.add_argument("--time-limit", type=int, default=30,
-                        help="Wall-clock time limit in seconds for the OR-Tools solver per instance (default: 30). "
-                             "GUIDED_LOCAL_SEARCH has no natural termination, so a limit is required to prevent "
-                             "the solver from running indefinitely.")
     parser.add_argument("--alpha", type=float, default=None,
                         help="Coarsening spatial weight alpha (overrides per-family default).")
     parser.add_argument("--beta", type=float, default=None,
@@ -314,7 +308,7 @@ def main():
             logger.error(f"CSV not found: {csv}")
             return
         logger.info(f"Processing single file: {csv}")
-        res = process_file(str(csv), time_limit_seconds=args.time_limit,
+        res = process_file(str(csv),
                            alpha=args.alpha, beta=args.beta, P=args.P, radiusCoeff=args.radius)
         all_results = {str(csv): res}
         final_summary(all_results, file_logger=file_logger)
@@ -335,7 +329,7 @@ def main():
     all_results = {}
     for path in files:
         logger.info(f"Processing: {path}")
-        res = process_file(path, time_limit_seconds=args.time_limit,
+        res = process_file(path,
                            alpha=args.alpha, beta=args.beta, P=args.P, radiusCoeff=args.radius)
         all_results[path] = res
     
