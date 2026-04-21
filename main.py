@@ -119,20 +119,31 @@ def run_uncoarsened_solvers(graph: Graph, depot_id: str, capacity: float) -> dic
         visualize_routes(graph, routes, depot_id, "Uncoarsened Solution", filename = "Uncoarsened Solution" + filename)
     return results
 
-def run_inflated_solvers(coarsener: SpatioTemporalGraphCoarsener, cwd_graph: Graph, depot_id: str, capacity: float, initial_graph) -> dict:
+def run_inflated_solvers(graph: Graph, depot_id: str, capacity: float,
+                         file_path: str,
+                         alpha: float = None, beta: float = None,
+                         P: float = None, radiusCoeff: float = None) -> dict:
     results = {}
-    for i, name in enumerate(('Greedy', 'Savings'), start=1):
+    for name in ('Greedy', 'Savings'):
+        params = resolve_coarsening_params(
+            file_path, alpha=alpha, beta=beta, P=P, radiusCoeff=radiusCoeff,
+            solver=name.lower()
+        )
+        logger.info(f"\n--- Coarsening for {name} | params: {params} ---")
+        coarsener = SpatioTemporalGraphCoarsener(graph=graph, depot_id=depot_id, **params)
+        coarsened_graph, merge_layers = coarsener.coarsen()
+        log_coarsening_info(coarsener, coarsened_graph, merge_layers)
 
         logger.info(f"\n--- Running INFLATED {name} Solver ---")
-        routes, metrics, duration = run_solver_pipeline(cwd_graph, depot_id, capacity, name, coarsener)
+        routes, metrics, duration = run_solver_pipeline(coarsened_graph, depot_id, capacity, name, coarsener)
         metrics['computation_time'] = duration
         key = f"Inflated {name}"
         results[key] = metrics
         log_solver_results(key, routes, metrics)
         count = _visualisation_counter_coarsened.get(name, 0) + 1
         _visualisation_counter_coarsened[name] = count
-        filename = f"{name}{count}"
-        visualize_routes(initial_graph, routes, depot_id, "coarsened Solution", filename= "coarsened Solution" + filename)
+        visualize_routes(graph, routes, depot_id, "Coarsened Solution",
+                         filename=f"Coarsened Solution {name}{count}")
     return results
 
 def save_results_to_json(data: dict, file_path: str):
@@ -262,13 +273,9 @@ def process_file(csv_file_path: str,
         logger.error(f"Error loading {csv_file_path}: {e}")
         return {}
     log_graph_info(graph, depot_id)
-    params = resolve_coarsening_params(csv_file_path, alpha=alpha, beta=beta, P=P, radiusCoeff=radiusCoeff)
-    logger.info(f"Coarsening params: {params}")
-    coarsener = SpatioTemporalGraphCoarsener(graph=graph, depot_id=depot_id, **params)
-    coarsened_graph, merge_layers = coarsener.coarsen()
-    log_coarsening_info(coarsener, coarsened_graph, merge_layers)
     uncoars = run_uncoarsened_solvers(graph, depot_id, capacity)
-    inflated = run_inflated_solvers(coarsener, coarsened_graph, depot_id, capacity, graph)
+    inflated = run_inflated_solvers(graph, depot_id, capacity, csv_file_path,
+                                    alpha=alpha, beta=beta, P=P, radiusCoeff=radiusCoeff)
     return {**uncoars, **inflated}
 
 def main(): 

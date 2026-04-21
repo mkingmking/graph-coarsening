@@ -35,17 +35,44 @@ _ORTOOLS_DEMAND: dict[str, float] = {
 
 
 # ---------------------------------------------------------------------------
-# Per-family coarsening hyperparameters.
+# Per-family coarsening hyperparameters, tuned separately per solver tier.
 # Keys match the Solomon family folder names (C1, C2, R1, R2, RC1, RC2).
-# These are the best configurations found via random hyperparameter search.
+# All values found via random hyperparameter search (40–50 trials per instance).
 # ---------------------------------------------------------------------------
+
+# Quantum tier (FQS / APS) — tuned at N=10
 FAMILY_HYPERPARAMS: dict[str, dict] = {
     "C1":  {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0},
     "C2":  {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0},
     "R1":  {"alpha": 1.0, "beta": 0.6, "P": 0.4, "radiusCoeff": 0.5},
     "R2":  {"alpha": 1.0, "beta": 0.6, "P": 0.4, "radiusCoeff": 0.5},
-    "RC1": {"alpha": 1.0, "beta": 0.8, "P": 0.8, "radiusCoeff": 3.0},
+    "RC1": {"alpha": 0.7, "beta": 0.8, "P": 0.7, "radiusCoeff": 2.0},
+    "RC2": {"alpha": 0.7, "beta": 0.8, "P": 0.7, "radiusCoeff": 2.0},
+}
+
+# Greedy solver — tuned at N=100 (56 instances × 50 trials)
+FAMILY_HYPERPARAMS_GREEDY: dict[str, dict] = {
+    "C1":  {"alpha": 0.3, "beta": 0.8, "P": 0.3, "radiusCoeff": 1.0},
+    "C2":  {"alpha": 0.9, "beta": 0.6, "P": 0.3, "radiusCoeff": 2.0},
+    "R1":  {"alpha": 0.7, "beta": 0.6, "P": 0.7, "radiusCoeff": 1.0},
+    "R2":  {"alpha": 0.9, "beta": 0.8, "P": 0.5, "radiusCoeff": 5.0},
+    "RC1": {"alpha": 0.7, "beta": 0.4, "P": 0.5, "radiusCoeff": 0.5},
+    "RC2": {"alpha": 1.0, "beta": 0.6, "P": 0.4, "radiusCoeff": 0.5},
+}
+
+# Savings solver — tuned at N=100 (56 instances × 40 trials)
+FAMILY_HYPERPARAMS_SAVINGS: dict[str, dict] = {
+    "C1":  {"alpha": 1.0, "beta": 1.0, "P": 0.6, "radiusCoeff": 0.5},
+    "C2":  {"alpha": 0.9, "beta": 0.6, "P": 0.3, "radiusCoeff": 2.0},
+    "R1":  {"alpha": 1.0, "beta": 0.4, "P": 0.8, "radiusCoeff": 2.0},
+    "R2":  {"alpha": 1.0, "beta": 1.0, "P": 0.6, "radiusCoeff": 0.5},
+    "RC1": {"alpha": 0.3, "beta": 0.2, "P": 0.5, "radiusCoeff": 1.5},
     "RC2": {"alpha": 1.0, "beta": 0.8, "P": 0.8, "radiusCoeff": 3.0},
+}
+
+_SOLVER_HYPERPARAMS = {
+    "greedy":  FAMILY_HYPERPARAMS_GREEDY,
+    "savings": FAMILY_HYPERPARAMS_SAVINGS,
 }
 
 DEFAULT_HYPERPARAMS: dict = {"alpha": 1.0, "beta": 1.0, "P": 0.5, "radiusCoeff": 2.0}
@@ -65,16 +92,19 @@ def resolve_coarsening_params(
     beta: float | None = None,
     P: float | None = None,
     radiusCoeff: float | None = None,
+    solver: str | None = None,
 ) -> dict:
     """Return the coarsening hyperparameter dict to use for *file_path*.
 
     Resolution order (highest priority first):
     1. Any explicitly supplied keyword argument overrides the corresponding param.
-    2. If the file belongs to a known Solomon family, use that family's defaults.
+    2. If the file belongs to a known Solomon family, use that family's tuned defaults
+       for the given solver tier ('greedy', 'savings', or None/anything else → quantum).
     3. Otherwise fall back to DEFAULT_HYPERPARAMS.
     """
     family = detect_family(file_path)
-    base = FAMILY_HYPERPARAMS.get(family, DEFAULT_HYPERPARAMS).copy()
+    table = _SOLVER_HYPERPARAMS.get(solver, FAMILY_HYPERPARAMS)
+    base = table.get(family, DEFAULT_HYPERPARAMS).copy()
     if alpha is not None:
         base["alpha"] = alpha
     if beta is not None:

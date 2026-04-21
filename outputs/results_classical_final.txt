@@ -1,0 +1,3787 @@
+
+
+=== FINAL SUMMARY ACROSS ALL FILES ===
+
+--- Results for graph_coarsening/solomon_dataset/C1/C101.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2020.68
+  Total Service Time: 9000.00
+  Total Waiting Time: 7979.63
+  Total Route Duration: 19000.31
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 22
+  Is Feasible: True
+  Computation Time: 0.0250 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1605.89
+  Total Service Time: 9000.00
+  Total Waiting Time: 3679.04
+  Total Route Duration: 14284.93
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: True
+  Computation Time: 0.0036 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 20.53%
+  Duration Improvement: 24.82%
+  Vehicle Reduction: 27.27%
+  Computation Time Change: 85.56%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 930.12
+  Total Service Time: 9000.00
+  Total Waiting Time: 1418.80
+  Total Route Duration: 11348.92
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0220 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 901.35
+  Total Service Time: 9000.00
+  Total Waiting Time: 933.66
+  Total Route Duration: 10835.01
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0048 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: 3.09%
+  Duration Improvement: 4.53%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 78.15%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C1/C102.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2142.44
+  Total Service Time: 9000.00
+  Total Waiting Time: 7399.76
+  Total Route Duration: 18542.20
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 20
+  Is Feasible: True
+  Computation Time: 0.0416 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1777.75
+  Total Service Time: 9000.00
+  Total Waiting Time: 5116.98
+  Total Route Duration: 15894.73
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0044 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 17.02%
+  Duration Improvement: 14.28%
+  Vehicle Reduction: 5.00%
+  Computation Time Change: 89.32%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1044.34
+  Total Service Time: 9000.00
+  Total Waiting Time: 3105.68
+  Total Route Duration: 13150.02
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0242 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1339.17
+  Total Service Time: 9000.00
+  Total Waiting Time: 4021.49
+  Total Route Duration: 14360.66
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 17
+  Is Feasible: True
+  Computation Time: 0.0069 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -28.23%
+  Duration Improvement: -9.21%
+  Vehicle Reduction: -21.43%
+  Computation Time Change: 71.47%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C1/C103.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2107.15
+  Total Service Time: 9000.00
+  Total Waiting Time: 6384.44
+  Total Route Duration: 17491.59
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 18
+  Is Feasible: True
+  Computation Time: 0.0322 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1718.16
+  Total Service Time: 9000.00
+  Total Waiting Time: 4531.40
+  Total Route Duration: 15249.56
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0041 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 18.46%
+  Duration Improvement: 12.82%
+  Vehicle Reduction: -5.56%
+  Computation Time Change: 87.22%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1006.08
+  Total Service Time: 9000.00
+  Total Waiting Time: 1424.55
+  Total Route Duration: 11430.63
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0251 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1389.95
+  Total Service Time: 9000.00
+  Total Waiting Time: 3109.26
+  Total Route Duration: 13499.21
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: True
+  Computation Time: 0.0113 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -38.15%
+  Duration Improvement: -18.10%
+  Vehicle Reduction: -33.33%
+  Computation Time Change: 54.93%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C1/C104.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1706.64
+  Total Service Time: 9000.00
+  Total Waiting Time: 4943.91
+  Total Route Duration: 15650.55
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0272 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1512.16
+  Total Service Time: 9000.00
+  Total Waiting Time: 5408.60
+  Total Route Duration: 15920.76
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0036 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 11.40%
+  Duration Improvement: -1.73%
+  Vehicle Reduction: -26.67%
+  Computation Time Change: 86.62%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1007.34
+  Total Service Time: 9000.00
+  Total Waiting Time: 1609.28
+  Total Route Duration: 11616.63
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0222 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1278.85
+  Total Service Time: 9000.00
+  Total Waiting Time: 3102.89
+  Total Route Duration: 13381.74
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0093 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -26.95%
+  Duration Improvement: -15.19%
+  Vehicle Reduction: -15.38%
+  Computation Time Change: 57.87%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C1/C105.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2038.37
+  Total Service Time: 9000.00
+  Total Waiting Time: 6391.53
+  Total Route Duration: 17429.90
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 21
+  Is Feasible: True
+  Computation Time: 0.0237 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1441.43
+  Total Service Time: 9000.00
+  Total Waiting Time: 2435.13
+  Total Route Duration: 12876.57
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0033 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 29.28%
+  Duration Improvement: 26.12%
+  Vehicle Reduction: 28.57%
+  Computation Time Change: 85.88%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 931.35
+  Total Service Time: 9000.00
+  Total Waiting Time: 1278.68
+  Total Route Duration: 11210.03
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0222 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1071.88
+  Total Service Time: 9000.00
+  Total Waiting Time: 1298.64
+  Total Route Duration: 11370.51
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0044 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -15.09%
+  Duration Improvement: -1.43%
+  Vehicle Reduction: -8.33%
+  Computation Time Change: 80.17%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C1/C106.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1938.67
+  Total Service Time: 9000.00
+  Total Waiting Time: 6050.65
+  Total Route Duration: 16989.32
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 20
+  Is Feasible: True
+  Computation Time: 0.0242 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1330.50
+  Total Service Time: 9000.00
+  Total Waiting Time: 2504.21
+  Total Route Duration: 12834.71
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0035 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 31.37%
+  Duration Improvement: 24.45%
+  Vehicle Reduction: 25.00%
+  Computation Time Change: 85.50%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 942.27
+  Total Service Time: 9000.00
+  Total Waiting Time: 1174.00
+  Total Route Duration: 11116.28
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0213 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1055.26
+  Total Service Time: 9000.00
+  Total Waiting Time: 1897.64
+  Total Route Duration: 11952.90
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0047 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -11.99%
+  Duration Improvement: -7.53%
+  Vehicle Reduction: -16.67%
+  Computation Time Change: 78.11%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C1/C107.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2346.51
+  Total Service Time: 9000.00
+  Total Waiting Time: 4598.13
+  Total Route Duration: 15944.64
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0246 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1334.59
+  Total Service Time: 9000.00
+  Total Waiting Time: 2732.70
+  Total Route Duration: 13067.29
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: True
+  Computation Time: 0.0033 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 43.12%
+  Duration Improvement: 18.05%
+  Vehicle Reduction: 15.79%
+  Computation Time Change: 86.63%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 931.35
+  Total Service Time: 9000.00
+  Total Waiting Time: 1121.20
+  Total Route Duration: 11052.55
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0205 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1110.48
+  Total Service Time: 9000.00
+  Total Waiting Time: 1721.02
+  Total Route Duration: 11831.51
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0095 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -19.23%
+  Duration Improvement: -7.05%
+  Vehicle Reduction: -8.33%
+  Computation Time Change: 53.72%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C1/C108.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2127.68
+  Total Service Time: 9000.00
+  Total Waiting Time: 3804.18
+  Total Route Duration: 14931.86
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 17
+  Is Feasible: True
+  Computation Time: 0.0247 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1339.34
+  Total Service Time: 9000.00
+  Total Waiting Time: 2009.38
+  Total Route Duration: 12348.73
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0031 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 37.05%
+  Duration Improvement: 17.30%
+  Vehicle Reduction: 17.65%
+  Computation Time Change: 87.62%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 913.06
+  Total Service Time: 9000.00
+  Total Waiting Time: 378.23
+  Total Route Duration: 10291.29
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0224 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1026.02
+  Total Service Time: 9000.00
+  Total Waiting Time: 1820.20
+  Total Route Duration: 11846.22
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0083 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -12.37%
+  Duration Improvement: -15.11%
+  Vehicle Reduction: -18.18%
+  Computation Time Change: 62.75%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C1/C109.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1848.20
+  Total Service Time: 9000.00
+  Total Waiting Time: 2135.94
+  Total Route Duration: 12984.14
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0266 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1334.62
+  Total Service Time: 9000.00
+  Total Waiting Time: 1232.48
+  Total Route Duration: 11567.10
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0029 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 27.79%
+  Duration Improvement: 10.91%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 88.98%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 900.85
+  Total Service Time: 9000.00
+  Total Waiting Time: 278.18
+  Total Route Duration: 10179.04
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0210 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 921.81
+  Total Service Time: 9000.00
+  Total Waiting Time: 97.53
+  Total Route Duration: 10019.33
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0075 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -2.33%
+  Duration Improvement: 1.57%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 64.18%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C2/C201.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1807.98
+  Total Service Time: 9000.00
+  Total Waiting Time: 22323.93
+  Total Route Duration: 33131.91
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0349 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 859.96
+  Total Service Time: 9000.00
+  Total Waiting Time: 3996.35
+  Total Route Duration: 13856.31
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0027 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 52.44%
+  Duration Improvement: 58.18%
+  Vehicle Reduction: 61.54%
+  Computation Time Change: 92.36%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 751.82
+  Total Service Time: 9000.00
+  Total Waiting Time: 8567.74
+  Total Route Duration: 18319.56
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 6
+  Is Feasible: True
+  Computation Time: 0.0166 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 666.35
+  Total Service Time: 9000.00
+  Total Waiting Time: 2867.39
+  Total Route Duration: 12533.74
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 4
+  Is Feasible: True
+  Computation Time: 0.0021 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: 11.37%
+  Duration Improvement: 31.58%
+  Vehicle Reduction: 33.33%
+  Computation Time Change: 87.37%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C2/C202.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1753.21
+  Total Service Time: 9000.00
+  Total Waiting Time: 25472.25
+  Total Route Duration: 36225.45
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0379 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1279.05
+  Total Service Time: 9000.00
+  Total Waiting Time: 12133.00
+  Total Route Duration: 22412.05
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 9
+  Is Feasible: True
+  Computation Time: 0.0029 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 27.05%
+  Duration Improvement: 38.13%
+  Vehicle Reduction: 35.71%
+  Computation Time Change: 92.41%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 808.42
+  Total Service Time: 9000.00
+  Total Waiting Time: 10620.33
+  Total Route Duration: 20428.75
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0171 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 931.74
+  Total Service Time: 9000.00
+  Total Waiting Time: 4831.18
+  Total Route Duration: 14762.92
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0026 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -15.25%
+  Duration Improvement: 27.73%
+  Vehicle Reduction: 28.57%
+  Computation Time Change: 85.02%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C2/C203.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1527.49
+  Total Service Time: 9000.00
+  Total Waiting Time: 21232.59
+  Total Route Duration: 31760.08
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0416 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1440.31
+  Total Service Time: 9000.00
+  Total Waiting Time: 13557.68
+  Total Route Duration: 23997.99
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: True
+  Computation Time: 0.0037 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 5.71%
+  Duration Improvement: 24.44%
+  Vehicle Reduction: 16.67%
+  Computation Time Change: 91.02%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 828.09
+  Total Service Time: 9000.00
+  Total Waiting Time: 9882.47
+  Total Route Duration: 19710.56
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0176 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1027.16
+  Total Service Time: 9000.00
+  Total Waiting Time: 5921.19
+  Total Route Duration: 15948.34
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 6
+  Is Feasible: True
+  Computation Time: 0.0029 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -24.04%
+  Duration Improvement: 19.09%
+  Vehicle Reduction: 14.29%
+  Computation Time Change: 83.66%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C2/C204.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1458.13
+  Total Service Time: 9000.00
+  Total Waiting Time: 15091.61
+  Total Route Duration: 25549.74
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 9
+  Is Feasible: True
+  Computation Time: 0.0422 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1514.05
+  Total Service Time: 9000.00
+  Total Waiting Time: 12053.40
+  Total Route Duration: 22567.45
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 9
+  Is Feasible: True
+  Computation Time: 0.0036 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -3.84%
+  Duration Improvement: 11.67%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 91.49%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 712.83
+  Total Service Time: 9000.00
+  Total Waiting Time: 2252.75
+  Total Route Duration: 11965.58
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 4
+  Is Feasible: True
+  Computation Time: 0.0183 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1090.45
+  Total Service Time: 9000.00
+  Total Waiting Time: 5095.93
+  Total Route Duration: 15186.39
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 6
+  Is Feasible: True
+  Computation Time: 0.0027 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -52.98%
+  Duration Improvement: -26.92%
+  Vehicle Reduction: -50.00%
+  Computation Time Change: 85.09%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C2/C205.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1715.08
+  Total Service Time: 9000.00
+  Total Waiting Time: 17202.07
+  Total Route Duration: 27917.14
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0344 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1126.90
+  Total Service Time: 9000.00
+  Total Waiting Time: 10054.14
+  Total Route Duration: 20181.04
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0029 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 34.29%
+  Duration Improvement: 27.71%
+  Vehicle Reduction: 27.27%
+  Computation Time Change: 91.49%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 729.12
+  Total Service Time: 9000.00
+  Total Waiting Time: 5543.48
+  Total Route Duration: 15272.61
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0186 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 852.86
+  Total Service Time: 9000.00
+  Total Waiting Time: 4607.46
+  Total Route Duration: 14460.32
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0022 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -16.97%
+  Duration Improvement: 5.32%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 87.98%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C2/C206.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1487.72
+  Total Service Time: 9000.00
+  Total Waiting Time: 12571.36
+  Total Route Duration: 23059.08
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 9
+  Is Feasible: True
+  Computation Time: 0.0369 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1258.40
+  Total Service Time: 9000.00
+  Total Waiting Time: 8175.41
+  Total Route Duration: 18433.81
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0024 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 15.41%
+  Duration Improvement: 20.06%
+  Vehicle Reduction: 22.22%
+  Computation Time Change: 93.51%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 727.62
+  Total Service Time: 9000.00
+  Total Waiting Time: 4775.15
+  Total Route Duration: 14502.77
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0165 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 938.61
+  Total Service Time: 9000.00
+  Total Waiting Time: 4459.79
+  Total Route Duration: 14398.41
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0021 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -29.00%
+  Duration Improvement: 0.72%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 87.12%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C2/C207.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1335.73
+  Total Service Time: 9000.00
+  Total Waiting Time: 8733.22
+  Total Route Duration: 19068.95
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0386 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1185.66
+  Total Service Time: 9000.00
+  Total Waiting Time: 8668.17
+  Total Route Duration: 18853.83
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0036 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 11.23%
+  Duration Improvement: 1.13%
+  Vehicle Reduction: 12.50%
+  Computation Time Change: 90.78%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 745.11
+  Total Service Time: 9000.00
+  Total Waiting Time: 4898.19
+  Total Route Duration: 14643.30
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0171 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 817.01
+  Total Service Time: 9000.00
+  Total Waiting Time: 2306.03
+  Total Route Duration: 12123.04
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 4
+  Is Feasible: True
+  Computation Time: 0.0028 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -9.65%
+  Duration Improvement: 17.21%
+  Vehicle Reduction: 20.00%
+  Computation Time Change: 83.57%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/C2/C208.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1282.17
+  Total Service Time: 9000.00
+  Total Waiting Time: 7661.67
+  Total Route Duration: 17943.83
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0408 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1297.46
+  Total Service Time: 9000.00
+  Total Waiting Time: 9066.25
+  Total Route Duration: 19363.72
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0034 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -1.19%
+  Duration Improvement: -7.91%
+  Vehicle Reduction: -14.29%
+  Computation Time Change: 91.60%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 711.55
+  Total Service Time: 9000.00
+  Total Waiting Time: 4706.47
+  Total Route Duration: 14418.01
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0163 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 893.27
+  Total Service Time: 9000.00
+  Total Waiting Time: 2165.16
+  Total Route Duration: 12058.43
+  Total Demand Served: 1810.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 4
+  Is Feasible: True
+  Computation Time: 0.0025 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -25.54%
+  Duration Improvement: 16.37%
+  Vehicle Reduction: 20.00%
+  Computation Time Change: 84.67%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R101.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2686.66
+  Total Service Time: 1000.00
+  Total Waiting Time: 2700.79
+  Total Route Duration: 6387.45
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 38
+  Is Feasible: True
+  Computation Time: 0.0226 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2408.75
+  Total Service Time: 1000.00
+  Total Waiting Time: 2094.88
+  Total Route Duration: 5503.62
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 32
+  Is Feasible: True
+  Computation Time: 0.0110 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 10.34%
+  Duration Improvement: 13.84%
+  Vehicle Reduction: 15.79%
+  Computation Time Change: 51.03%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 2319.87
+  Total Service Time: 1000.00
+  Total Waiting Time: 3238.86
+  Total Route Duration: 6558.72
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 38
+  Is Feasible: True
+  Computation Time: 0.0515 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 2203.73
+  Total Service Time: 1000.00
+  Total Waiting Time: 1809.84
+  Total Route Duration: 5013.57
+  Total Demand Served: 1458.00
+  Time Window Violations: 3
+  Capacity Violations: 0
+  Num Vehicles: 29
+  Is Feasible: False
+  Computation Time: 0.0159 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: 5.01%
+  Duration Improvement: 23.56%
+  Vehicle Reduction: 23.68%
+  Computation Time Change: 69.10%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R102.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2519.89
+  Total Service Time: 1000.00
+  Total Waiting Time: 2473.43
+  Total Route Duration: 5993.32
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 34
+  Is Feasible: True
+  Computation Time: 0.0232 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2385.51
+  Total Service Time: 1000.00
+  Total Waiting Time: 1893.31
+  Total Route Duration: 5278.82
+  Total Demand Served: 1458.00
+  Time Window Violations: 3
+  Capacity Violations: 0
+  Num Vehicles: 30
+  Is Feasible: False
+  Computation Time: 0.0112 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 5.33%
+  Duration Improvement: 11.92%
+  Vehicle Reduction: 11.76%
+  Computation Time Change: 51.86%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1991.20
+  Total Service Time: 1000.00
+  Total Waiting Time: 2433.76
+  Total Route Duration: 5424.97
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 31
+  Is Feasible: True
+  Computation Time: 0.0420 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 2081.86
+  Total Service Time: 1000.00
+  Total Waiting Time: 2147.36
+  Total Route Duration: 5229.22
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 31
+  Is Feasible: True
+  Computation Time: 0.0161 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -4.55%
+  Duration Improvement: 3.61%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 61.77%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R103.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2024.32
+  Total Service Time: 1000.00
+  Total Waiting Time: 1947.56
+  Total Route Duration: 4971.88
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 26
+  Is Feasible: True
+  Computation Time: 0.0252 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2107.43
+  Total Service Time: 1000.00
+  Total Waiting Time: 1594.43
+  Total Route Duration: 4701.86
+  Total Demand Served: 1458.00
+  Time Window Violations: 3
+  Capacity Violations: 0
+  Num Vehicles: 26
+  Is Feasible: False
+  Computation Time: 0.0101 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -4.11%
+  Duration Improvement: 5.43%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 59.87%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1767.37
+  Total Service Time: 1000.00
+  Total Waiting Time: 2010.26
+  Total Route Duration: 4777.63
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 27
+  Is Feasible: True
+  Computation Time: 0.0375 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1931.75
+  Total Service Time: 1000.00
+  Total Waiting Time: 1870.82
+  Total Route Duration: 4802.58
+  Total Demand Served: 1458.00
+  Time Window Violations: 1
+  Capacity Violations: 0
+  Num Vehicles: 28
+  Is Feasible: False
+  Computation Time: 0.0151 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -9.30%
+  Duration Improvement: -0.52%
+  Vehicle Reduction: -3.70%
+  Computation Time Change: 59.75%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R104.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1564.85
+  Total Service Time: 1000.00
+  Total Waiting Time: 1114.46
+  Total Route Duration: 3679.30
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0269 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1733.11
+  Total Service Time: 1000.00
+  Total Waiting Time: 1292.28
+  Total Route Duration: 4025.39
+  Total Demand Served: 1458.00
+  Time Window Violations: 1
+  Capacity Violations: 0
+  Num Vehicles: 21
+  Is Feasible: False
+  Computation Time: 0.0091 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -10.75%
+  Duration Improvement: -9.41%
+  Vehicle Reduction: -10.53%
+  Computation Time Change: 66.29%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1241.78
+  Total Service Time: 1000.00
+  Total Waiting Time: 873.12
+  Total Route Duration: 3114.90
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 17
+  Is Feasible: True
+  Computation Time: 0.0264 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1599.13
+  Total Service Time: 1000.00
+  Total Waiting Time: 945.88
+  Total Route Duration: 3545.01
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 20
+  Is Feasible: True
+  Computation Time: 0.0104 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -28.78%
+  Duration Improvement: -13.81%
+  Vehicle Reduction: -17.65%
+  Computation Time Change: 60.47%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R105.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2224.63
+  Total Service Time: 1000.00
+  Total Waiting Time: 1460.86
+  Total Route Duration: 4685.49
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 27
+  Is Feasible: True
+  Computation Time: 0.0232 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2244.02
+  Total Service Time: 1000.00
+  Total Waiting Time: 1483.38
+  Total Route Duration: 4727.41
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 28
+  Is Feasible: True
+  Computation Time: 0.0090 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -0.87%
+  Duration Improvement: -0.89%
+  Vehicle Reduction: -3.70%
+  Computation Time Change: 60.95%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1666.78
+  Total Service Time: 1000.00
+  Total Waiting Time: 1321.60
+  Total Route Duration: 3988.38
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 23
+  Is Feasible: True
+  Computation Time: 0.0368 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1785.23
+  Total Service Time: 1000.00
+  Total Waiting Time: 971.54
+  Total Route Duration: 3756.76
+  Total Demand Served: 1458.00
+  Time Window Violations: 2
+  Capacity Violations: 0
+  Num Vehicles: 21
+  Is Feasible: False
+  Computation Time: 0.0121 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -7.11%
+  Duration Improvement: 5.81%
+  Vehicle Reduction: 8.70%
+  Computation Time Change: 67.05%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R106.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2124.50
+  Total Service Time: 1000.00
+  Total Waiting Time: 1684.93
+  Total Route Duration: 4809.43
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 27
+  Is Feasible: True
+  Computation Time: 0.0236 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2074.62
+  Total Service Time: 1000.00
+  Total Waiting Time: 1230.82
+  Total Route Duration: 4305.44
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 25
+  Is Feasible: True
+  Computation Time: 0.0095 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 2.35%
+  Duration Improvement: 10.48%
+  Vehicle Reduction: 7.41%
+  Computation Time Change: 59.93%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1511.27
+  Total Service Time: 1000.00
+  Total Waiting Time: 1082.28
+  Total Route Duration: 3593.55
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 20
+  Is Feasible: True
+  Computation Time: 0.0326 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1660.59
+  Total Service Time: 1000.00
+  Total Waiting Time: 988.08
+  Total Route Duration: 3648.66
+  Total Demand Served: 1458.00
+  Time Window Violations: 1
+  Capacity Violations: 0
+  Num Vehicles: 21
+  Is Feasible: False
+  Computation Time: 0.0108 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -9.88%
+  Duration Improvement: -1.53%
+  Vehicle Reduction: -5.00%
+  Computation Time Change: 66.76%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R107.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1858.32
+  Total Service Time: 1000.00
+  Total Waiting Time: 1349.80
+  Total Route Duration: 4208.13
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 22
+  Is Feasible: True
+  Computation Time: 0.0259 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1834.09
+  Total Service Time: 1000.00
+  Total Waiting Time: 989.87
+  Total Route Duration: 3823.96
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 22
+  Is Feasible: True
+  Computation Time: 0.0089 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 1.30%
+  Duration Improvement: 9.13%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 65.66%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1395.32
+  Total Service Time: 1000.00
+  Total Waiting Time: 914.59
+  Total Route Duration: 3309.91
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 18
+  Is Feasible: True
+  Computation Time: 0.0333 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1593.76
+  Total Service Time: 1000.00
+  Total Waiting Time: 862.42
+  Total Route Duration: 3456.19
+  Total Demand Served: 1458.00
+  Time Window Violations: 2
+  Capacity Violations: 0
+  Num Vehicles: 20
+  Is Feasible: False
+  Computation Time: 0.0106 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -14.22%
+  Duration Improvement: -4.42%
+  Vehicle Reduction: -11.11%
+  Computation Time Change: 68.25%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R108.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1546.30
+  Total Service Time: 1000.00
+  Total Waiting Time: 903.89
+  Total Route Duration: 3450.20
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 17
+  Is Feasible: True
+  Computation Time: 0.0378 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1567.31
+  Total Service Time: 1000.00
+  Total Waiting Time: 761.83
+  Total Route Duration: 3329.14
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 17
+  Is Feasible: True
+  Computation Time: 0.0088 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -1.36%
+  Duration Improvement: 3.51%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 76.63%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1157.23
+  Total Service Time: 1000.00
+  Total Waiting Time: 495.69
+  Total Route Duration: 2652.92
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0259 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1377.78
+  Total Service Time: 1000.00
+  Total Waiting Time: 287.33
+  Total Route Duration: 2665.11
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0096 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -19.06%
+  Duration Improvement: -0.46%
+  Vehicle Reduction: -7.14%
+  Computation Time Change: 63.13%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R109.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1695.33
+  Total Service Time: 1000.00
+  Total Waiting Time: 782.27
+  Total Route Duration: 3477.61
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0246 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1926.96
+  Total Service Time: 1000.00
+  Total Waiting Time: 695.65
+  Total Route Duration: 3622.61
+  Total Demand Served: 1458.00
+  Time Window Violations: 4
+  Capacity Violations: 0
+  Num Vehicles: 21
+  Is Feasible: False
+  Computation Time: 0.0090 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -13.66%
+  Duration Improvement: -4.17%
+  Vehicle Reduction: -10.53%
+  Computation Time Change: 63.52%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1339.91
+  Total Service Time: 1000.00
+  Total Waiting Time: 486.56
+  Total Route Duration: 2826.47
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: True
+  Computation Time: 0.0301 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1591.39
+  Total Service Time: 1000.00
+  Total Waiting Time: 589.14
+  Total Route Duration: 3180.53
+  Total Demand Served: 1458.00
+  Time Window Violations: 1
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: False
+  Computation Time: 0.0104 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -18.77%
+  Duration Improvement: -12.53%
+  Vehicle Reduction: -18.75%
+  Computation Time Change: 65.48%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R110.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1765.15
+  Total Service Time: 1000.00
+  Total Waiting Time: 966.39
+  Total Route Duration: 3731.54
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0252 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1792.84
+  Total Service Time: 1000.00
+  Total Waiting Time: 761.12
+  Total Route Duration: 3553.96
+  Total Demand Served: 1458.00
+  Time Window Violations: 2
+  Capacity Violations: 0
+  Num Vehicles: 20
+  Is Feasible: False
+  Computation Time: 0.0085 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -1.57%
+  Duration Improvement: 4.76%
+  Vehicle Reduction: -5.26%
+  Computation Time Change: 66.08%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1220.08
+  Total Service Time: 1000.00
+  Total Waiting Time: 475.71
+  Total Route Duration: 2695.79
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0274 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1479.24
+  Total Service Time: 1000.00
+  Total Waiting Time: 427.65
+  Total Route Duration: 2906.89
+  Total Demand Served: 1458.00
+  Time Window Violations: 2
+  Capacity Violations: 0
+  Num Vehicles: 17
+  Is Feasible: False
+  Computation Time: 0.0094 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -21.24%
+  Duration Improvement: -7.83%
+  Vehicle Reduction: -13.33%
+  Computation Time Change: 65.56%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R111.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1691.28
+  Total Service Time: 1000.00
+  Total Waiting Time: 989.93
+  Total Route Duration: 3681.21
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0257 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1883.51
+  Total Service Time: 1000.00
+  Total Waiting Time: 750.10
+  Total Route Duration: 3633.60
+  Total Demand Served: 1458.00
+  Time Window Violations: 3
+  Capacity Violations: 0
+  Num Vehicles: 20
+  Is Feasible: False
+  Computation Time: 0.0088 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -11.37%
+  Duration Improvement: 1.29%
+  Vehicle Reduction: -5.26%
+  Computation Time Change: 65.99%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1255.31
+  Total Service Time: 1000.00
+  Total Waiting Time: 371.46
+  Total Route Duration: 2626.77
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0282 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1495.81
+  Total Service Time: 1000.00
+  Total Waiting Time: 532.81
+  Total Route Duration: 3028.63
+  Total Demand Served: 1458.00
+  Time Window Violations: 2
+  Capacity Violations: 0
+  Num Vehicles: 17
+  Is Feasible: False
+  Computation Time: 0.0105 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -19.16%
+  Duration Improvement: -15.30%
+  Vehicle Reduction: -21.43%
+  Computation Time Change: 62.85%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R1/R112.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1370.23
+  Total Service Time: 1000.00
+  Total Waiting Time: 423.78
+  Total Route Duration: 2794.01
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0274 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1487.58
+  Total Service Time: 1000.00
+  Total Waiting Time: 378.90
+  Total Route Duration: 2866.49
+  Total Demand Served: 1458.00
+  Time Window Violations: 3
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: False
+  Computation Time: 0.0089 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -8.56%
+  Duration Improvement: -2.59%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 67.34%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1043.05
+  Total Service Time: 1000.00
+  Total Waiting Time: 209.03
+  Total Route Duration: 2252.08
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0232 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1390.59
+  Total Service Time: 1000.00
+  Total Waiting Time: 386.18
+  Total Route Duration: 2776.77
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: True
+  Computation Time: 0.0098 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -33.32%
+  Duration Improvement: -23.30%
+  Vehicle Reduction: -33.33%
+  Computation Time Change: 57.66%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R201.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2011.56
+  Total Service Time: 1000.00
+  Total Waiting Time: 5487.47
+  Total Route Duration: 8499.03
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0266 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2058.50
+  Total Service Time: 1000.00
+  Total Waiting Time: 4615.42
+  Total Route Duration: 7673.92
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0041 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -2.33%
+  Duration Improvement: 9.71%
+  Vehicle Reduction: 6.67%
+  Computation Time Change: 84.69%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1454.91
+  Total Service Time: 1000.00
+  Total Waiting Time: 11173.15
+  Total Route Duration: 13628.06
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0306 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1596.75
+  Total Service Time: 1000.00
+  Total Waiting Time: 9229.55
+  Total Route Duration: 11826.29
+  Total Demand Served: 1458.00
+  Time Window Violations: 1
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: False
+  Computation Time: 0.0097 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -9.75%
+  Duration Improvement: 13.22%
+  Vehicle Reduction: 15.79%
+  Computation Time Change: 68.30%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R202.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1824.26
+  Total Service Time: 1000.00
+  Total Waiting Time: 6818.13
+  Total Route Duration: 9642.38
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0282 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1925.38
+  Total Service Time: 1000.00
+  Total Waiting Time: 4021.88
+  Total Route Duration: 6947.26
+  Total Demand Served: 1458.00
+  Time Window Violations: 5
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: False
+  Computation Time: 0.0039 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -5.54%
+  Duration Improvement: 27.95%
+  Vehicle Reduction: 13.33%
+  Computation Time Change: 86.33%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1252.77
+  Total Service Time: 1000.00
+  Total Waiting Time: 8267.28
+  Total Route Duration: 10520.05
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0278 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1460.30
+  Total Service Time: 1000.00
+  Total Waiting Time: 8134.12
+  Total Route Duration: 10594.42
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0076 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -16.57%
+  Duration Improvement: -0.71%
+  Vehicle Reduction: -7.14%
+  Computation Time Change: 72.84%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R203.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1662.56
+  Total Service Time: 1000.00
+  Total Waiting Time: 5902.90
+  Total Route Duration: 8565.46
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0307 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1690.82
+  Total Service Time: 1000.00
+  Total Waiting Time: 2833.33
+  Total Route Duration: 5524.15
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 9
+  Is Feasible: True
+  Computation Time: 0.0036 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -1.70%
+  Duration Improvement: 35.51%
+  Vehicle Reduction: 25.00%
+  Computation Time Change: 88.43%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1039.02
+  Total Service Time: 1000.00
+  Total Waiting Time: 6427.83
+  Total Route Duration: 8466.85
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0214 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1311.19
+  Total Service Time: 1000.00
+  Total Waiting Time: 6168.41
+  Total Route Duration: 8479.60
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0060 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -26.19%
+  Duration Improvement: -0.15%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 71.82%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R204.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1381.01
+  Total Service Time: 1000.00
+  Total Waiting Time: 5263.37
+  Total Route Duration: 7644.37
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: True
+  Computation Time: 0.0356 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1430.39
+  Total Service Time: 1000.00
+  Total Waiting Time: 3441.71
+  Total Route Duration: 5872.10
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: True
+  Computation Time: 0.0037 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -3.58%
+  Duration Improvement: 23.18%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 89.73%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 857.22
+  Total Service Time: 1000.00
+  Total Waiting Time: 3581.23
+  Total Route Duration: 5438.45
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0212 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1091.35
+  Total Service Time: 1000.00
+  Total Waiting Time: 3137.86
+  Total Route Duration: 5229.21
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0042 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -27.31%
+  Duration Improvement: 3.85%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 80.35%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R205.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1519.37
+  Total Service Time: 1000.00
+  Total Waiting Time: 2671.52
+  Total Route Duration: 5190.89
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0317 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1766.06
+  Total Service Time: 1000.00
+  Total Waiting Time: 3582.34
+  Total Route Duration: 6348.40
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0035 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -16.24%
+  Duration Improvement: -22.30%
+  Vehicle Reduction: -37.50%
+  Computation Time Change: 89.01%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1146.62
+  Total Service Time: 1000.00
+  Total Waiting Time: 6492.57
+  Total Route Duration: 8639.19
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0256 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1408.57
+  Total Service Time: 1000.00
+  Total Waiting Time: 6156.98
+  Total Route Duration: 8565.54
+  Total Demand Served: 1458.00
+  Time Window Violations: 2
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: False
+  Computation Time: 0.0074 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -22.84%
+  Duration Improvement: 0.85%
+  Vehicle Reduction: -8.33%
+  Computation Time Change: 71.06%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R206.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1452.43
+  Total Service Time: 1000.00
+  Total Waiting Time: 2726.71
+  Total Route Duration: 5179.13
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0361 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1591.91
+  Total Service Time: 1000.00
+  Total Waiting Time: 2349.85
+  Total Route Duration: 4941.75
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 9
+  Is Feasible: True
+  Computation Time: 0.0033 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -9.60%
+  Duration Improvement: 4.58%
+  Vehicle Reduction: -12.50%
+  Computation Time Change: 90.83%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1103.85
+  Total Service Time: 1000.00
+  Total Waiting Time: 6240.52
+  Total Route Duration: 8344.36
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0243 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1246.42
+  Total Service Time: 1000.00
+  Total Waiting Time: 4645.29
+  Total Route Duration: 6891.70
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: True
+  Computation Time: 0.0058 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -12.92%
+  Duration Improvement: 17.41%
+  Vehicle Reduction: 16.67%
+  Computation Time Change: 76.22%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R207.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1429.51
+  Total Service Time: 1000.00
+  Total Waiting Time: 3430.56
+  Total Route Duration: 5860.07
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 9
+  Is Feasible: True
+  Computation Time: 0.0369 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1520.87
+  Total Service Time: 1000.00
+  Total Waiting Time: 2149.67
+  Total Route Duration: 4670.54
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0033 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -6.39%
+  Duration Improvement: 20.30%
+  Vehicle Reduction: 11.11%
+  Computation Time Change: 90.97%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 943.53
+  Total Service Time: 1000.00
+  Total Waiting Time: 4112.36
+  Total Route Duration: 6055.89
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0209 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1057.10
+  Total Service Time: 1000.00
+  Total Waiting Time: 2804.64
+  Total Route Duration: 4861.74
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0074 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -12.04%
+  Duration Improvement: 19.72%
+  Vehicle Reduction: 12.50%
+  Computation Time Change: 64.53%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R208.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 993.74
+  Total Service Time: 1000.00
+  Total Waiting Time: 1986.34
+  Total Route Duration: 3980.08
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0530 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1285.97
+  Total Service Time: 1000.00
+  Total Waiting Time: 1748.10
+  Total Route Duration: 4034.06
+  Total Demand Served: 1458.00
+  Time Window Violations: 4
+  Capacity Violations: 0
+  Num Vehicles: 6
+  Is Feasible: False
+  Computation Time: 0.0035 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -29.41%
+  Duration Improvement: -1.36%
+  Vehicle Reduction: -20.00%
+  Computation Time Change: 93.42%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 824.23
+  Total Service Time: 1000.00
+  Total Waiting Time: 1700.04
+  Total Route Duration: 3524.27
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0221 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 953.04
+  Total Service Time: 1000.00
+  Total Waiting Time: 2219.72
+  Total Route Duration: 4172.76
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 6
+  Is Feasible: True
+  Computation Time: 0.0073 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -15.63%
+  Duration Improvement: -18.40%
+  Vehicle Reduction: -20.00%
+  Computation Time Change: 67.25%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R209.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1471.91
+  Total Service Time: 1000.00
+  Total Waiting Time: 2472.02
+  Total Route Duration: 4943.93
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0373 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1629.02
+  Total Service Time: 1000.00
+  Total Waiting Time: 1782.18
+  Total Route Duration: 4411.20
+  Total Demand Served: 1458.00
+  Time Window Violations: 1
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: False
+  Computation Time: 0.0033 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -10.67%
+  Duration Improvement: 10.78%
+  Vehicle Reduction: 12.50%
+  Computation Time Change: 91.18%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1092.99
+  Total Service Time: 1000.00
+  Total Waiting Time: 5397.56
+  Total Route Duration: 7490.55
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0255 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1190.44
+  Total Service Time: 1000.00
+  Total Waiting Time: 2984.73
+  Total Route Duration: 5175.17
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0046 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -8.92%
+  Duration Improvement: 30.91%
+  Vehicle Reduction: 33.33%
+  Computation Time Change: 81.92%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R210.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1564.10
+  Total Service Time: 1000.00
+  Total Waiting Time: 3695.11
+  Total Route Duration: 6259.21
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 9
+  Is Feasible: True
+  Computation Time: 0.0452 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1581.71
+  Total Service Time: 1000.00
+  Total Waiting Time: 2706.93
+  Total Route Duration: 5288.64
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0035 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -1.13%
+  Duration Improvement: 15.51%
+  Vehicle Reduction: 11.11%
+  Computation Time Change: 92.29%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1062.05
+  Total Service Time: 1000.00
+  Total Waiting Time: 5651.98
+  Total Route Duration: 7714.03
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0230 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1239.83
+  Total Service Time: 1000.00
+  Total Waiting Time: 5696.17
+  Total Route Duration: 7936.00
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0098 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -16.74%
+  Duration Improvement: -2.88%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 57.54%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/R2/R211.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1268.64
+  Total Service Time: 1000.00
+  Total Waiting Time: 1021.26
+  Total Route Duration: 3289.90
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0502 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1483.86
+  Total Service Time: 1000.00
+  Total Waiting Time: 3453.96
+  Total Route Duration: 5937.82
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: True
+  Computation Time: 0.0035 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -16.96%
+  Duration Improvement: -80.49%
+  Vehicle Reduction: -100.00%
+  Computation Time Change: 93.08%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 891.66
+  Total Service Time: 1000.00
+  Total Waiting Time: 2784.34
+  Total Route Duration: 4675.99
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0212 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1051.61
+  Total Service Time: 1000.00
+  Total Waiting Time: 3639.15
+  Total Route Duration: 5690.76
+  Total Demand Served: 1458.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: True
+  Computation Time: 0.0081 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -17.94%
+  Duration Improvement: -21.70%
+  Vehicle Reduction: -25.00%
+  Computation Time Change: 61.70%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC1/RC101.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2711.30
+  Total Service Time: 1000.00
+  Total Waiting Time: 1311.58
+  Total Route Duration: 5022.88
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 27
+  Is Feasible: True
+  Computation Time: 0.0232 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2325.49
+  Total Service Time: 1000.00
+  Total Waiting Time: 912.37
+  Total Route Duration: 4237.87
+  Total Demand Served: 1724.00
+  Time Window Violations: 2
+  Capacity Violations: 0
+  Num Vehicles: 23
+  Is Feasible: False
+  Computation Time: 0.0061 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 14.23%
+  Duration Improvement: 15.63%
+  Vehicle Reduction: 14.81%
+  Computation Time Change: 73.59%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 2497.98
+  Total Service Time: 1000.00
+  Total Waiting Time: 1796.91
+  Total Route Duration: 5294.89
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 29
+  Is Feasible: True
+  Computation Time: 0.0534 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 2533.94
+  Total Service Time: 1000.00
+  Total Waiting Time: 1123.72
+  Total Route Duration: 4657.66
+  Total Demand Served: 1724.00
+  Time Window Violations: 4
+  Capacity Violations: 0
+  Num Vehicles: 26
+  Is Feasible: False
+  Computation Time: 0.0069 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -1.44%
+  Duration Improvement: 12.03%
+  Vehicle Reduction: 10.34%
+  Computation Time Change: 87.14%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC1/RC102.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2651.08
+  Total Service Time: 1000.00
+  Total Waiting Time: 1555.13
+  Total Route Duration: 5206.20
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 27
+  Is Feasible: True
+  Computation Time: 0.0232 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2478.65
+  Total Service Time: 1000.00
+  Total Waiting Time: 1156.44
+  Total Route Duration: 4635.09
+  Total Demand Served: 1724.00
+  Time Window Violations: 1
+  Capacity Violations: 0
+  Num Vehicles: 26
+  Is Feasible: False
+  Computation Time: 0.0068 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 6.50%
+  Duration Improvement: 10.97%
+  Vehicle Reduction: 3.70%
+  Computation Time Change: 70.80%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 2036.07
+  Total Service Time: 1000.00
+  Total Waiting Time: 1343.39
+  Total Route Duration: 4379.46
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 23
+  Is Feasible: True
+  Computation Time: 0.0435 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 2481.79
+  Total Service Time: 1000.00
+  Total Waiting Time: 1001.21
+  Total Route Duration: 4483.00
+  Total Demand Served: 1724.00
+  Time Window Violations: 5
+  Capacity Violations: 0
+  Num Vehicles: 25
+  Is Feasible: False
+  Computation Time: 0.0063 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -21.89%
+  Duration Improvement: -2.36%
+  Vehicle Reduction: -8.70%
+  Computation Time Change: 85.49%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC1/RC103.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2220.76
+  Total Service Time: 1000.00
+  Total Waiting Time: 1481.88
+  Total Route Duration: 4702.65
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 23
+  Is Feasible: True
+  Computation Time: 0.0244 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2218.32
+  Total Service Time: 1000.00
+  Total Waiting Time: 578.00
+  Total Route Duration: 3796.32
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 21
+  Is Feasible: True
+  Computation Time: 0.0056 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 0.11%
+  Duration Improvement: 19.27%
+  Vehicle Reduction: 8.70%
+  Computation Time Change: 76.97%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1762.52
+  Total Service Time: 1000.00
+  Total Waiting Time: 878.67
+  Total Route Duration: 3641.19
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 19
+  Is Feasible: True
+  Computation Time: 0.0357 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 2242.11
+  Total Service Time: 1000.00
+  Total Waiting Time: 755.60
+  Total Route Duration: 3997.71
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 23
+  Is Feasible: True
+  Computation Time: 0.0063 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -27.21%
+  Duration Improvement: -9.79%
+  Vehicle Reduction: -21.05%
+  Computation Time Change: 82.35%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC1/RC104.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1758.61
+  Total Service Time: 1000.00
+  Total Waiting Time: 479.35
+  Total Route Duration: 3237.96
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: True
+  Computation Time: 0.0283 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1972.99
+  Total Service Time: 1000.00
+  Total Waiting Time: 396.93
+  Total Route Duration: 3369.92
+  Total Demand Served: 1724.00
+  Time Window Violations: 4
+  Capacity Violations: 0
+  Num Vehicles: 17
+  Is Feasible: False
+  Computation Time: 0.0051 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -12.19%
+  Duration Improvement: -4.08%
+  Vehicle Reduction: -6.25%
+  Computation Time Change: 81.98%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1503.52
+  Total Service Time: 1000.00
+  Total Waiting Time: 451.38
+  Total Route Duration: 2954.90
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0310 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 2021.90
+  Total Service Time: 1000.00
+  Total Waiting Time: 514.32
+  Total Route Duration: 3536.22
+  Total Demand Served: 1724.00
+  Time Window Violations: 2
+  Capacity Violations: 0
+  Num Vehicles: 20
+  Is Feasible: False
+  Computation Time: 0.0059 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -34.48%
+  Duration Improvement: -19.67%
+  Vehicle Reduction: -33.33%
+  Computation Time Change: 81.00%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC1/RC105.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2812.90
+  Total Service Time: 1000.00
+  Total Waiting Time: 1651.31
+  Total Route Duration: 5464.21
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 28
+  Is Feasible: True
+  Computation Time: 0.0231 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2602.98
+  Total Service Time: 1000.00
+  Total Waiting Time: 1251.00
+  Total Route Duration: 4853.97
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 27
+  Is Feasible: True
+  Computation Time: 0.0068 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 7.46%
+  Duration Improvement: 11.17%
+  Vehicle Reduction: 3.57%
+  Computation Time Change: 70.50%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 2224.40
+  Total Service Time: 1000.00
+  Total Waiting Time: 1680.68
+  Total Route Duration: 4905.09
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 27
+  Is Feasible: True
+  Computation Time: 0.0425 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 2686.50
+  Total Service Time: 1000.00
+  Total Waiting Time: 1554.88
+  Total Route Duration: 5241.38
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 30
+  Is Feasible: True
+  Computation Time: 0.0083 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -20.77%
+  Duration Improvement: -6.86%
+  Vehicle Reduction: -11.11%
+  Computation Time Change: 80.39%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC1/RC106.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2119.22
+  Total Service Time: 1000.00
+  Total Waiting Time: 785.64
+  Total Route Duration: 3904.86
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 20
+  Is Feasible: True
+  Computation Time: 0.0245 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2261.95
+  Total Service Time: 1000.00
+  Total Waiting Time: 768.44
+  Total Route Duration: 4030.39
+  Total Demand Served: 1724.00
+  Time Window Violations: 6
+  Capacity Violations: 0
+  Num Vehicles: 22
+  Is Feasible: False
+  Computation Time: 0.0058 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -6.74%
+  Duration Improvement: -3.21%
+  Vehicle Reduction: -10.00%
+  Computation Time Change: 76.15%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1654.91
+  Total Service Time: 1000.00
+  Total Waiting Time: 638.59
+  Total Route Duration: 3293.51
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 18
+  Is Feasible: True
+  Computation Time: 0.0317 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 2218.40
+  Total Service Time: 1000.00
+  Total Waiting Time: 772.11
+  Total Route Duration: 3990.50
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 23
+  Is Feasible: True
+  Computation Time: 0.0055 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -34.05%
+  Duration Improvement: -21.16%
+  Vehicle Reduction: -27.78%
+  Computation Time Change: 82.79%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC1/RC107.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1952.33
+  Total Service Time: 1000.00
+  Total Waiting Time: 711.32
+  Total Route Duration: 3663.65
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 18
+  Is Feasible: True
+  Computation Time: 0.0258 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1839.97
+  Total Service Time: 1000.00
+  Total Waiting Time: 549.53
+  Total Route Duration: 3389.50
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 18
+  Is Feasible: True
+  Computation Time: 0.0050 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 5.76%
+  Duration Improvement: 7.48%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 80.41%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1488.99
+  Total Service Time: 1000.00
+  Total Waiting Time: 382.01
+  Total Route Duration: 2871.00
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: True
+  Computation Time: 0.0286 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 2131.37
+  Total Service Time: 1000.00
+  Total Waiting Time: 747.92
+  Total Route Duration: 3879.29
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 24
+  Is Feasible: True
+  Computation Time: 0.0041 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -43.14%
+  Duration Improvement: -35.12%
+  Vehicle Reduction: -50.00%
+  Computation Time Change: 85.67%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC1/RC108.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1764.28
+  Total Service Time: 1000.00
+  Total Waiting Time: 490.11
+  Total Route Duration: 3254.39
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0270 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1784.66
+  Total Service Time: 1000.00
+  Total Waiting Time: 394.36
+  Total Route Duration: 3179.02
+  Total Demand Served: 1724.00
+  Time Window Violations: 8
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: False
+  Computation Time: 0.0051 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -1.15%
+  Duration Improvement: 2.32%
+  Vehicle Reduction: 0.00%
+  Computation Time Change: 81.23%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1326.63
+  Total Service Time: 1000.00
+  Total Waiting Time: 292.97
+  Total Route Duration: 2619.59
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 14
+  Is Feasible: True
+  Computation Time: 0.0266 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1788.07
+  Total Service Time: 1000.00
+  Total Waiting Time: 255.79
+  Total Route Duration: 3043.86
+  Total Demand Served: 1724.00
+  Time Window Violations: 2
+  Capacity Violations: 0
+  Num Vehicles: 17
+  Is Feasible: False
+  Computation Time: 0.0044 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -34.78%
+  Duration Improvement: -16.20%
+  Vehicle Reduction: -21.43%
+  Computation Time Change: 83.43%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC2/RC201.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2468.25
+  Total Service Time: 1000.00
+  Total Waiting Time: 5279.41
+  Total Route Duration: 8747.66
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0259 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2199.64
+  Total Service Time: 1000.00
+  Total Waiting Time: 4663.79
+  Total Route Duration: 7863.42
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0051 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 10.88%
+  Duration Improvement: 10.11%
+  Vehicle Reduction: 13.33%
+  Computation Time Change: 80.18%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1776.80
+  Total Service Time: 1000.00
+  Total Waiting Time: 10573.81
+  Total Route Duration: 13350.61
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 18
+  Is Feasible: True
+  Computation Time: 0.0359 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1921.21
+  Total Service Time: 1000.00
+  Total Waiting Time: 7959.42
+  Total Route Duration: 10880.63
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0098 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -8.13%
+  Duration Improvement: 18.50%
+  Vehicle Reduction: 16.67%
+  Computation Time Change: 72.83%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC2/RC202.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2114.34
+  Total Service Time: 1000.00
+  Total Waiting Time: 5172.61
+  Total Route Duration: 8286.95
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0301 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 2128.09
+  Total Service Time: 1000.00
+  Total Waiting Time: 4277.56
+  Total Route Duration: 7405.65
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0051 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -0.65%
+  Duration Improvement: 10.63%
+  Vehicle Reduction: 7.69%
+  Computation Time Change: 82.97%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1540.31
+  Total Service Time: 1000.00
+  Total Waiting Time: 9293.21
+  Total Route Duration: 11833.52
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: True
+  Computation Time: 0.0301 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1742.17
+  Total Service Time: 1000.00
+  Total Waiting Time: 6021.64
+  Total Route Duration: 8763.81
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0088 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -13.11%
+  Duration Improvement: 25.94%
+  Vehicle Reduction: 18.75%
+  Computation Time Change: 70.65%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC2/RC203.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2103.51
+  Total Service Time: 1000.00
+  Total Waiting Time: 4972.82
+  Total Route Duration: 8076.33
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0365 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1763.35
+  Total Service Time: 1000.00
+  Total Waiting Time: 3963.49
+  Total Route Duration: 6726.84
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0054 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 16.17%
+  Duration Improvement: 16.71%
+  Vehicle Reduction: 15.38%
+  Computation Time Change: 85.21%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1203.60
+  Total Service Time: 1000.00
+  Total Waiting Time: 6126.99
+  Total Route Duration: 8330.59
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0249 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1343.50
+  Total Service Time: 1000.00
+  Total Waiting Time: 4954.83
+  Total Route Duration: 7298.33
+  Total Demand Served: 1724.00
+  Time Window Violations: 1
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: False
+  Computation Time: 0.0082 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -11.62%
+  Duration Improvement: 12.39%
+  Vehicle Reduction: 9.09%
+  Computation Time Change: 66.94%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC2/RC204.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1318.06
+  Total Service Time: 1000.00
+  Total Waiting Time: 2318.04
+  Total Route Duration: 4636.10
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0512 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1491.83
+  Total Service Time: 1000.00
+  Total Waiting Time: 2619.77
+  Total Route Duration: 5111.60
+  Total Demand Served: 1724.00
+  Time Window Violations: 3
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: False
+  Computation Time: 0.0055 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: -13.18%
+  Duration Improvement: -10.26%
+  Vehicle Reduction: -14.29%
+  Computation Time Change: 89.28%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 942.28
+  Total Service Time: 1000.00
+  Total Waiting Time: 3461.60
+  Total Route Duration: 5403.88
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 8
+  Is Feasible: True
+  Computation Time: 0.0247 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1113.30
+  Total Service Time: 1000.00
+  Total Waiting Time: 2491.21
+  Total Route Duration: 4604.51
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 6
+  Is Feasible: True
+  Computation Time: 0.0070 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -18.15%
+  Duration Improvement: 14.79%
+  Vehicle Reduction: 25.00%
+  Computation Time Change: 71.76%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC2/RC205.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2567.28
+  Total Service Time: 1000.00
+  Total Waiting Time: 5621.93
+  Total Route Duration: 9189.21
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 15
+  Is Feasible: True
+  Computation Time: 0.0271 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1989.24
+  Total Service Time: 1000.00
+  Total Waiting Time: 4483.57
+  Total Route Duration: 7472.80
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0051 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 22.52%
+  Duration Improvement: 18.68%
+  Vehicle Reduction: 20.00%
+  Computation Time Change: 81.07%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1572.14
+  Total Service Time: 1000.00
+  Total Waiting Time: 8980.50
+  Total Route Duration: 11552.64
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 16
+  Is Feasible: True
+  Computation Time: 0.0295 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1726.43
+  Total Service Time: 1000.00
+  Total Waiting Time: 6765.64
+  Total Route Duration: 9492.08
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0085 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -9.81%
+  Duration Improvement: 17.84%
+  Vehicle Reduction: 18.75%
+  Computation Time Change: 71.08%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC2/RC206.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2028.00
+  Total Service Time: 1000.00
+  Total Waiting Time: 2474.40
+  Total Route Duration: 5502.40
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 9
+  Is Feasible: True
+  Computation Time: 0.0321 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1836.59
+  Total Service Time: 1000.00
+  Total Waiting Time: 3029.23
+  Total Route Duration: 5865.82
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: True
+  Computation Time: 0.0049 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 9.44%
+  Duration Improvement: -6.60%
+  Vehicle Reduction: -11.11%
+  Computation Time Change: 84.77%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1444.01
+  Total Service Time: 1000.00
+  Total Waiting Time: 6509.87
+  Total Route Duration: 8953.88
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 13
+  Is Feasible: True
+  Computation Time: 0.0344 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1636.27
+  Total Service Time: 1000.00
+  Total Waiting Time: 5156.60
+  Total Route Duration: 7792.88
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 12
+  Is Feasible: True
+  Computation Time: 0.0084 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -13.31%
+  Duration Improvement: 12.97%
+  Vehicle Reduction: 7.69%
+  Computation Time Change: 75.42%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC2/RC207.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 2007.40
+  Total Service Time: 1000.00
+  Total Waiting Time: 3353.16
+  Total Route Duration: 6360.55
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: True
+  Computation Time: 0.0328 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1890.96
+  Total Service Time: 1000.00
+  Total Waiting Time: 3341.49
+  Total Route Duration: 6232.45
+  Total Demand Served: 1724.00
+  Time Window Violations: 1
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: False
+  Computation Time: 0.0051 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 5.80%
+  Duration Improvement: 2.01%
+  Vehicle Reduction: -10.00%
+  Computation Time Change: 84.49%
+  Service Time Change: 0.00%
+  Time Window Violation Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 1256.69
+  Total Service Time: 1000.00
+  Total Waiting Time: 4607.58
+  Total Route Duration: 6864.27
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 11
+  Is Feasible: True
+  Computation Time: 0.0256 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1527.19
+  Total Service Time: 1000.00
+  Total Waiting Time: 3749.09
+  Total Route Duration: 6276.28
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 10
+  Is Feasible: True
+  Computation Time: 0.0078 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -21.52%
+  Duration Improvement: 8.57%
+  Vehicle Reduction: 9.09%
+  Computation Time Change: 69.69%
+  Service Time Change: 0.00%
+
+==============================
+
+
+--- Results for graph_coarsening/solomon_dataset/RC2/RC208.csv ---
+
+- Uncoarsened Greedy Solution -
+  Total Distance: 1395.02
+  Total Service Time: 1000.00
+  Total Waiting Time: 1149.29
+  Total Route Duration: 3544.31
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0472 seconds
+
+- Inflated Greedy Solution -
+  Total Distance: 1375.35
+  Total Service Time: 1000.00
+  Total Waiting Time: 2237.68
+  Total Route Duration: 4613.03
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0047 seconds
+
+-- Coarsening Optimization for Greedy --
+  Distance Improvement: 1.41%
+  Duration Improvement: -30.15%
+  Vehicle Reduction: -40.00%
+  Computation Time Change: 90.05%
+  Service Time Change: 0.00%
+
+- Uncoarsened Savings Solution -
+  Total Distance: 828.85
+  Total Service Time: 1000.00
+  Total Waiting Time: 1323.22
+  Total Route Duration: 3152.07
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 5
+  Is Feasible: True
+  Computation Time: 0.0250 seconds
+
+- Inflated Savings Solution -
+  Total Distance: 1145.82
+  Total Service Time: 1000.00
+  Total Waiting Time: 2068.94
+  Total Route Duration: 4214.76
+  Total Demand Served: 1724.00
+  Time Window Violations: 0
+  Capacity Violations: 0
+  Num Vehicles: 7
+  Is Feasible: True
+  Computation Time: 0.0056 seconds
+
+-- Coarsening Optimization for Savings --
+  Distance Improvement: -38.24%
+  Duration Improvement: -33.71%
+  Vehicle Reduction: -40.00%
+  Computation Time Change: 77.47%
+  Service Time Change: 0.00%
+
+==============================
+
