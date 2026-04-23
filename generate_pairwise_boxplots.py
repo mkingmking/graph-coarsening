@@ -47,6 +47,7 @@ from generate_output_boxplots import (
 PAIRWISE_METHODS = {"Uncoarsened", "Inflated", "Coarsened"}
 COARSENED_METHODS = {"Inflated", "Coarsened"}
 QUANTUM_SOLVERS = ("FullQubo", "AveragePartitionSolver")
+CLASSICAL_SOLVERS = ("Greedy", "Savings")
 
 SOLVER_LABELS = {
     "FullQubo": "FQS",
@@ -428,6 +429,107 @@ def generate_combined_quantum_reference_plots(
     return written, plot_rows
 
 
+def generate_classical_ortools_plots(
+    records: Sequence[SolutionRecord],
+    metrics: Sequence[str],
+    output_dir: Path,
+    output_format: str,
+) -> Tuple[List[Path], List[PlotDatum]]:
+    written: List[Path] = []
+    plot_rows: List[PlotDatum] = []
+
+    ortools_records = [
+        r for r in records
+        if r.solver == "ORTools" and r.method == "Uncoarsened" and r.scale == "All"
+    ]
+    if not ortools_records:
+        return written, plot_rows
+
+    for classical_solver in CLASSICAL_SOLVERS:
+        uncoarsened_records = [
+            r for r in records
+            if r.solver == classical_solver and r.method == "Uncoarsened" and r.scale == "All"
+        ]
+        coarsened_records = [
+            r for r in records
+            if r.solver == classical_solver and method_bucket(r) == "coarsened" and r.scale == "All"
+        ]
+        if not uncoarsened_records or not coarsened_records:
+            continue
+
+        context = f"Classical | {classical_solver} vs OR-Tools"
+
+        for metric in metrics:
+            uncoarsened_values = values_by_instance(uncoarsened_records, metric)
+            coarsened_values = values_by_instance(coarsened_records, metric)
+            ortools_values = values_by_instance(ortools_records, metric)
+            common_instances = sorted(
+                set(uncoarsened_values) & set(coarsened_values) & set(ortools_values)
+            )
+            if not common_instances:
+                continue
+
+            groups = [
+                (
+                    f"Uncoarsened {classical_solver}",
+                    [uncoarsened_values[i] for i in common_instances],
+                ),
+                (
+                    f"Coarsened {classical_solver}",
+                    [coarsened_values[i] for i in common_instances],
+                ),
+                (
+                    "Uncoarsened OR-Tools",
+                    [ortools_values[i] for i in common_instances],
+                ),
+            ]
+
+            output_path = (
+                output_dir
+                / "classical_vs_ortools"
+                / slugify(classical_solver)
+                / f"boxplot_{slugify(metric)}.{output_format}"
+            )
+            render_boxplot(
+                groups=groups,
+                title=f"{metric_label(metric)}: {classical_solver} vs OR-Tools Reference",
+                ylabel=metric_label(metric),
+                output_path=output_path,
+                output_format=output_format,
+            )
+            written.append(output_path)
+
+            record_plot_data(
+                plot_rows,
+                "classical_vs_ortools",
+                context,
+                f"Uncoarsened {classical_solver}",
+                uncoarsened_records,
+                metric,
+                common_instances,
+            )
+            record_plot_data(
+                plot_rows,
+                "classical_vs_ortools",
+                context,
+                f"Coarsened {classical_solver}",
+                coarsened_records,
+                metric,
+                common_instances,
+            )
+            record_plot_data(
+                plot_rows,
+                "classical_vs_ortools",
+                context,
+                "Uncoarsened OR-Tools",
+                ortools_records,
+                metric,
+                common_instances,
+            )
+
+    return written, plot_rows
+
+
 def write_plot_data_csv(rows: Sequence[PlotDatum], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="", encoding="utf-8") as handle:
@@ -495,9 +597,21 @@ def parse_args() -> argparse.Namespace:
         help="Skip combined FQS/APS/OR-Tools plots.",
     )
     parser.add_argument(
+        "--no-classical-reference",
+        action="store_true",
+        help="Skip Greedy/Savings vs OR-Tools reference plots (requires results_ortools_benchmark.json).",
+    )
+    parser.add_argument(
         "--no-csv",
         action="store_true",
         help="Do not write the normalized comparison CSV.",
+    )
+    parser.add_argument(
+        "--files",
+        nargs="+",
+        default=None,
+        metavar="FILENAME",
+        help="Specific JSON filenames to load from --input-dir. If omitted, all *.json files are loaded.",
     )
     return parser.parse_args()
 
@@ -508,7 +622,8 @@ def main() -> int:
         print(f"Input directory not found: {args.input_dir}")
         return 1
 
-    solution_records, _ = load_records(args.input_dir)
+    include_files = set(args.files) if args.files else None
+    solution_records, _ = load_records(args.input_dir, include_files)
     if not solution_records:
         print(f"No supported solver records found in {args.input_dir}")
         return 1
@@ -539,6 +654,16 @@ def main() -> int:
 
     if not args.no_combined_quantum_reference:
         new_paths, new_rows = generate_combined_quantum_reference_plots(
+            records=solution_records,
+            metrics=metrics,
+            output_dir=args.output_dir,
+            output_format=args.format,
+        )
+        written.extend(new_paths)
+        plot_rows.extend(new_rows)
+
+    if not args.no_classical_reference:
+        new_paths, new_rows = generate_classical_ortools_plots(
             records=solution_records,
             metrics=metrics,
             output_dir=args.output_dir,

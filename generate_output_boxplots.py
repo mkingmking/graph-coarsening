@@ -28,7 +28,7 @@ import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 from xml.sax.saxutils import escape
 
 
@@ -286,11 +286,16 @@ def extract_hyperparameter_records(
     return records
 
 
-def load_records(input_dir: Path) -> Tuple[List[SolutionRecord], List[HyperparameterRecord]]:
+def load_records(
+    input_dir: Path,
+    include_files: Optional[Set[str]] = None,
+) -> Tuple[List[SolutionRecord], List[HyperparameterRecord]]:
     solution_records: List[SolutionRecord] = []
     hyperparameter_records: List[HyperparameterRecord] = []
 
     for path in sorted(input_dir.glob("*.json")):
+        if include_files is not None and path.name not in include_files:
+            continue
         try:
             with path.open("r", encoding="utf-8") as handle:
                 data = json.load(handle)
@@ -302,10 +307,18 @@ def load_records(input_dir: Path) -> Tuple[List[SolutionRecord], List[Hyperparam
             continue
 
         source_file = path.name
+        source_name = path.name
+
         if "per_instance_trials" in data or "per_instance_best" in data:
             hyperparameter_records.extend(extract_hyperparameter_records(data, source_file))
         else:
-            solution_records.extend(extract_solution_records(data, source_file, path.name))
+            if "per_instance_results" in data:
+                cfg = data.get("config", {})
+                if isinstance(cfg, dict) and "customers" in cfg:
+                    n = cfg["customers"]
+                    source_name = f"{path.stem}_{n}customer{path.suffix}"
+                data = data["per_instance_results"]
+            solution_records.extend(extract_solution_records(data, source_file, source_name))
 
     return solution_records, hyperparameter_records
 
@@ -864,6 +877,14 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Do not write normalized CSV summaries.",
     )
+    parser.add_argument(
+        "--files",
+        nargs="+",
+        default=None,
+        metavar="FILENAME",
+        help="Specific JSON filenames to load from --input-dir (e.g. results_classical_final.json). "
+             "If omitted, all *.json files in --input-dir are loaded.",
+    )
     return parser.parse_args()
 
 
@@ -873,7 +894,8 @@ def main() -> int:
         print(f"Input directory not found: {args.input_dir}", file=sys.stderr)
         return 1
 
-    solution_records, hyperparameter_records = load_records(args.input_dir)
+    include_files = set(args.files) if args.files else None
+    solution_records, hyperparameter_records = load_records(args.input_dir, include_files)
     metrics = selected_metrics(args.metrics, solution_records, hyperparameter_records)
 
     if not solution_records and not hyperparameter_records:
