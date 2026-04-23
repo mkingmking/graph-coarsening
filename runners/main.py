@@ -2,12 +2,12 @@ import os
 import logging
 import json
 import time
-from .graph import Graph, compute_euclidean_tau
-from .utils import load_graph_from_csv, calculate_route_metrics, resolve_coarsening_params
-from .greedy_solver import GreedySolver
-from .savings_solver import SavingsSolver
-from .coarsener import SpatioTemporalGraphCoarsener
-from .visualisation import visualize_routes
+from ..graph import Graph, compute_euclidean_tau
+from ..utils import load_graph_from_csv, calculate_route_metrics, resolve_coarsening_params
+from ..greedy_solver import GreedySolver
+from ..savings_solver import SavingsSolver
+from ..coarsener import SpatioTemporalGraphCoarsener
+from ..visualisation import visualize_routes
 
 from pathlib import Path
 import argparse
@@ -306,7 +306,7 @@ def main():
         file_logger = configure_file_logger(args.report)
         logger.info(f"Summary report will be saved to: {args.report}")
 
-    script_dir = Path(__file__).resolve().parent
+    script_dir = Path(__file__).resolve().parent.parent
     base_dir = Path(args.data) if args.data else script_dir / "solomon_dataset"
 
     if args.file:

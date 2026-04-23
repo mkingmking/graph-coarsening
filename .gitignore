@@ -49,19 +49,23 @@ Thumbs.db
 *.tmp
 *.bak
 
-# Custom ignored files
+# Paper source
+paper/
 
-main_only_coarsened_quantum.py
-run_p_experiment.py
+# Generated visualisations (re-creatable from outputs/)
+plots/
+coarsened_quantum_visualisations/
+quantum_visualisations/
+visualisation_routes/
 
-graph_coarsening_for_cvrptw (6).pdf
-run_radius_experiment.py
-main.tex
+# Hyperparameter search results (intermediate experiment artefacts)
+hyperparam_*.json
 hyperparam_search_results.json
-run_hyperparam_search.py
+outputs/hyperparameter_*.json
+
+# One-off / scratch output files
 output10customer.json
-main.tex
-run_wilcoxon_test.py
+graph_coarsening_for_cvrptw*.pdf
 generate_quantum-boxplot.py
 graphics_classical.py
 graphics_quantum.py

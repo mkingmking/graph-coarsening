@@ -33,7 +33,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
-from generate_output_boxplots import (
+from .generate_output_boxplots import (
     DEFAULT_METRICS,
     METRIC_LABELS,
     SolutionRecord,

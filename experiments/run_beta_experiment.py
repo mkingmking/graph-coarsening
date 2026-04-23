@@ -1,34 +1,34 @@
 """
-Experiment: Compare solver across alpha values on a Solomon instance.
+Experiment: Compare solver across beta values on a Solomon instance.
 
 Usage (from repo root):
-    python -m graph_coarsening.run_alpha_experiment [options]
+    python -m graph_coarsening.run_beta_experiment [options]
 
 Examples:
-    # Defaults: Greedy, C101, alpha configs = 0.2 / 0.4 / 0.6 / 0.8 / 1.0
-    python -m graph_coarsening.run_alpha_experiment
+    # Defaults: Greedy, C101, beta configs = 0.2 / 0.4 / 0.6 / 0.8 / 1.0
+    python -m graph_coarsening.run_beta_experiment
 
     # Savings solver
-    python -m graph_coarsening.run_alpha_experiment --solver savings
+    python -m graph_coarsening.run_beta_experiment --solver savings
 
     # Quantum — FullQubo on first 5 customers
-    python -m graph_coarsening.run_alpha_experiment --solver fullqubo --customers 5
+    python -m graph_coarsening.run_beta_experiment --solver fullqubo --customers 5
 
-    # Custom alpha sweep + custom coarsening hyperparameters
-    python -m graph_coarsening.run_alpha_experiment --alpha-values 0.3 0.6 0.9 \\
-        --p 0.5 --beta 0.4 --radius 2.0
+    # Custom beta sweep + custom coarsening hyperparameters
+    python -m graph_coarsening.run_beta_experiment --beta-values 0.3 0.6 0.9 \\
+        --p 0.5 --alpha 0.8 --radius 2.0
 
     # Different dataset file
-    python -m graph_coarsening.run_alpha_experiment --csv solomon_dataset/R1/R101.csv
+    python -m graph_coarsening.run_beta_experiment --csv solomon_dataset/R1/R101.csv
 
 Options (general):
-    --solver        {greedy,savings,fullqubo,averagepartition}
-    --csv           PATH      Path to CSV relative to package dir (default: C1/C101.csv)
-    --customers     INT       Restrict to first N customers (required for quantum solvers on large instances)
-    --alpha-values  FLOAT ... Spatial weight values to sweep (default: 0.2 0.4 0.6 0.8 1.0)
-    --p             FLOAT     Coarsening ratio (default: 0.5)
-    --beta          FLOAT     Temporal weight for coarsener (default: 0.4)
-    --radius        FLOAT     Radius coefficient for coarsener (default: 2.0)
+    --solver       {greedy,savings,fullqubo,averagepartition}
+    --csv          PATH      Path to CSV relative to package dir (default: C1/C101.csv)
+    --customers    INT       Restrict to first N customers (required for quantum solvers on large instances)
+    --beta-values  FLOAT ... Temporal weight values to sweep (default: 0.2 0.4 0.6 0.8 1.0)
+    --p            FLOAT     Coarsening ratio (default: 0.5)
+    --alpha        FLOAT     Spatial weight for coarsener (default: 0.8)
+    --radius       FLOAT     Radius coefficient for coarsener (default: 2.0)
 
 Options (quantum only):
     --only-one     INT       Unique-visit constraint penalty (default: 10_000_000)
@@ -44,14 +44,14 @@ import argparse
 import time
 from pathlib import Path
 
-from .graph import Graph, compute_euclidean_tau
-from .utils import load_graph_from_csv, calculate_route_metrics
-from .greedy_solver import GreedySolver
-from .savings_solver import SavingsSolver
-from .coarsener import SpatioTemporalGraphCoarsener
-from .visualisation import visualize_routes
-from .quantum_solvers.vrp_problem import VRPProblem
-from .quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
+from ..graph import Graph, compute_euclidean_tau
+from ..utils import load_graph_from_csv, calculate_route_metrics
+from ..greedy_solver import GreedySolver
+from ..savings_solver import SavingsSolver
+from ..coarsener import SpatioTemporalGraphCoarsener
+from ..visualisation import visualize_routes
+from ..quantum_solvers.vrp_problem import VRPProblem
+from ..quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
 
 # ── Metrics to display ─────────────────────────────────────────────────────────
 
@@ -171,11 +171,11 @@ def _coverage(routes, graph, depot_id):
     return len(all_customers - visited)
 
 
-# ── Per-alpha runner ───────────────────────────────────────────────────────────
+# ── Per-beta runner ────────────────────────────────────────────────────────────
 
-def run_for_alpha(graph, depot_id, capacity, alpha, P, solver_runner, beta, radius, instance_name):
+def run_for_beta(graph, depot_id, capacity, beta, P, solver_runner, alpha, radius, instance_name):
     print(f"\n{'='*60}")
-    print(f"  Alpha={alpha}  (P={P}  beta={beta}  radius={radius})")
+    print(f"  Beta={beta}  (P={P}  alpha={alpha}  radius={radius})")
     print(f"{'='*60}")
 
     solver_name = solver_runner.__name__.replace("Solver", "")
@@ -197,10 +197,10 @@ def run_for_alpha(graph, depot_id, capacity, alpha, P, solver_runner, beta, radi
     if metrics["unserved_customers"] > 0:
         metrics["is_feasible"] = False
 
-    fname = f"{instance_name}_{solver_name}_alpha{alpha}_P{P}.png"
+    fname = f"{instance_name}_{solver_name}_beta{beta}_P{P}.png"
     visualize_routes(
         graph, inflated_routes, depot_id,
-        title=f"{instance_name}  {solver_name}  |  alpha={alpha}  P={P}",
+        title=f"{instance_name}  {solver_name}  |  beta={beta}  P={P}",
         filename=fname,
     )
     print(f"  Saved: visualisation_routes/{fname}")
@@ -213,7 +213,7 @@ QUANTUM_SOLVERS = {"fullqubo", "averagepartition"}
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Compare solver across alpha values on a Solomon VRPTW instance.",
+        description="Compare solver across beta values on a Solomon VRPTW instance.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
@@ -233,14 +233,14 @@ def main():
         help="Restrict graph to first N customers (recommended for quantum solvers)",
     )
     parser.add_argument(
-        "--alpha-values", nargs="+", type=float, default=[0.2, 0.4, 0.6, 0.8, 1.0],
-        metavar="ALPHA",
-        help="Spatial weight values to sweep",
+        "--beta-values", nargs="+", type=float, default=[0.2, 0.4, 0.6, 0.8, 1.0],
+        metavar="BETA",
+        help="Temporal weight values to sweep",
     )
 
     # ── Fixed coarsening hyperparameters ──────────────────────────
     parser.add_argument("--p",      type=float, default=0.5, help="Coarsening ratio (fixed)")
-    parser.add_argument("--beta",   type=float, default=0.4, help="Temporal weight")
+    parser.add_argument("--alpha",  type=float, default=0.8, help="Spatial weight")
     parser.add_argument("--radius", type=float, default=2.0, help="Radius coefficient")
 
     # ── QUBO hyperparameters (quantum only) ───────────────────────
@@ -255,7 +255,7 @@ def main():
     args = parser.parse_args()
 
     # ── Resolve CSV path ──────────────────────────────────────────
-    pkg_dir = Path(__file__).resolve().parent
+    pkg_dir = Path(__file__).resolve().parent.parent
     csv_rel = args.csv if args.csv else "solomon_dataset/C1/C101.csv"
     csv_path = pkg_dir / csv_rel
     instance_name = csv_path.stem
@@ -283,13 +283,13 @@ def main():
         solver_runner = _classical_runner(cls)
 
     # ── Print config ──────────────────────────────────────────────
-    print(f"\nInstance    : {instance_name}  ({csv_path})")
-    print(f"Solver      : {solver_runner.__name__}")
-    print(f"Alpha values: {args.alpha_values}")
-    print(f"Coarsener   : P={args.p}  beta={args.beta}  radius={args.radius}")
+    print(f"\nInstance   : {instance_name}  ({csv_path})")
+    print(f"Solver     : {solver_runner.__name__}")
+    print(f"Beta values: {args.beta_values}")
+    print(f"Coarsener  : P={args.p}  alpha={args.alpha}  radius={args.radius}")
     if args.solver in QUANTUM_SOLVERS:
-        print(f"Customers   : {args.customers}  (subgraph)")
-        print(f"QUBO        : only_one={args.only_one}  order={args.order}  "
+        print(f"Customers  : {args.customers}  (subgraph)")
+        print(f"QUBO       : only_one={args.only_one}  order={args.order}  "
               f"cap={args.cap_penalty}  tw={args.tw_penalty}  "
               f"start={args.start_cost}  backend={args.backend}  reads={args.num_reads}")
 
@@ -301,12 +301,12 @@ def main():
 
     # ── Run experiment ────────────────────────────────────────────
     all_results = {}
-    for alpha in args.alpha_values:
-        metrics, n_coarsened = run_for_alpha(
-            graph, depot_id, capacity, alpha, args.p,
-            solver_runner, args.beta, args.radius, instance_name,
+    for beta in args.beta_values:
+        metrics, n_coarsened = run_for_beta(
+            graph, depot_id, capacity, beta, args.p,
+            solver_runner, args.alpha, args.radius, instance_name,
         )
-        all_results[alpha] = (metrics, n_coarsened)
+        all_results[beta] = (metrics, n_coarsened)
 
         print(f"\n  Metrics:")
         for k in METRICS_TO_PRINT:
@@ -320,14 +320,14 @@ def main():
     print(f"  COMPARISON SUMMARY — {instance_name}  {solver_name} Solver  (P={args.p})")
     print(f"{'='*72}")
     header = (
-        f"  {'Alpha':<8} {'N_coarsened':>12} {'Distance':>12} {'Vehicles':>10}"
+        f"  {'Beta':<8} {'N_coarsened':>12} {'Distance':>12} {'Vehicles':>10}"
         f" {'Unserved':>10} {'TW Viol':>8} {'Feasible':>9}"
     )
     print(header)
     print(f"  {'-'*8} {'-'*12} {'-'*12} {'-'*10} {'-'*10} {'-'*8} {'-'*9}")
-    for alpha, (m, n_coarsened) in all_results.items():
+    for beta, (m, n_coarsened) in all_results.items():
         print(
-            f"  {alpha:<8} {n_coarsened:>12} "
+            f"  {beta:<8} {n_coarsened:>12} "
             f"{m.get('total_distance', 0):>12.2f} "
             f"{m.get('num_vehicles', 0):>10} "
             f"{m.get('unserved_customers', 0):>10} "

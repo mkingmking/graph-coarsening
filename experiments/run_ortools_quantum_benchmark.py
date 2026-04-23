@@ -36,10 +36,10 @@ import logging
 import time
 from pathlib import Path
 
-from .graph import Graph
-from .utils import load_graph_from_csv, calculate_route_metrics
-from .ortools_solver import ORToolsVRPTWSolver
-from .main_quantum import create_subgraph
+from ..graph import Graph
+from ..utils import load_graph_from_csv, calculate_route_metrics
+from ..ortools_solver import ORToolsVRPTWSolver
+from ..runners.main_quantum import create_subgraph
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -147,13 +147,13 @@ def main() -> None:
     parser.add_argument(
         "--output", type=str,
         default=str(
-            Path(__file__).resolve().parent / "outputs" / "results_ortools_quantum_benchmark.json"
+            Path(__file__).resolve().parent.parent / "outputs" / "results_ortools_quantum_benchmark.json"
         ),
         help="Path for the output JSON file"
     )
     args = parser.parse_args()
 
-    script_dir = Path(__file__).resolve().parent
+    script_dir = Path(__file__).resolve().parent.parent
 
     if args.file:
         csv = Path(args.file)

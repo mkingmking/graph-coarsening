@@ -1,33 +1,37 @@
 """
-Experiment: Compare solver across beta values on a Solomon instance.
+Experiment: Compare solver across coarsening levels on a Solomon instance.
 
 Usage (from repo root):
-    python -m graph_coarsening.run_beta_experiment [options]
+    python -m graph_coarsening.run_p_experiment [options]
 
 Examples:
-    # Defaults: Greedy, C101, beta configs = 0.2 / 0.4 / 0.6 / 0.8 / 1.0
-    python -m graph_coarsening.run_beta_experiment
+    # Defaults: Greedy, C101, P configs = 1.0 / 0.7 / 0.5 / 0.3
+    python -m graph_coarsening.run_p_experiment
 
     # Savings solver
-    python -m graph_coarsening.run_beta_experiment --solver savings
+    python -m graph_coarsening.run_p_experiment --solver savings
 
     # Quantum — FullQubo on first 5 customers
-    python -m graph_coarsening.run_beta_experiment --solver fullqubo --customers 5
+    python -m graph_coarsening.run_p_experiment --solver fullqubo --customers 5
 
-    # Custom beta sweep + custom coarsening hyperparameters
-    python -m graph_coarsening.run_beta_experiment --beta-values 0.3 0.6 0.9 \\
-        --p 0.5 --alpha 0.8 --radius 2.0
+    # Quantum — AveragePartition with custom QUBO params
+    python -m graph_coarsening.run_p_experiment --solver averagepartition --customers 8 \\
+        --only-one 8000000 --num-reads 2000
+
+    # Custom coarsening hyperparameters + custom P sweep
+    python -m graph_coarsening.run_p_experiment --p-values 1.0 0.6 0.4 \\
+        --alpha 0.6 --beta 0.5 --radius 1.5
 
     # Different dataset file
-    python -m graph_coarsening.run_beta_experiment --csv solomon_dataset/R1/R101.csv
+    python -m graph_coarsening.run_p_experiment --csv solomon_dataset/R1/R101.csv
 
 Options (general):
     --solver       {greedy,savings,fullqubo,averagepartition}
     --csv          PATH      Path to CSV relative to package dir (default: C1/C101.csv)
     --customers    INT       Restrict to first N customers (required for quantum solvers on large instances)
-    --beta-values  FLOAT ... Temporal weight values to sweep (default: 0.2 0.4 0.6 0.8 1.0)
-    --p            FLOAT     Coarsening ratio (default: 0.5)
+    --p-values     FLOAT ... Coarsening ratios (default: 1.0 0.7 0.5 0.3)
     --alpha        FLOAT     Spatial weight for coarsener (default: 0.8)
+    --beta         FLOAT     Temporal weight for coarsener (default: 0.4)
     --radius       FLOAT     Radius coefficient for coarsener (default: 2.0)
 
 Options (quantum only):
@@ -44,14 +48,14 @@ import argparse
 import time
 from pathlib import Path
 
-from .graph import Graph, compute_euclidean_tau
-from .utils import load_graph_from_csv, calculate_route_metrics
-from .greedy_solver import GreedySolver
-from .savings_solver import SavingsSolver
-from .coarsener import SpatioTemporalGraphCoarsener
-from .visualisation import visualize_routes
-from .quantum_solvers.vrp_problem import VRPProblem
-from .quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
+from ..graph import Graph, compute_euclidean_tau
+from ..utils import load_graph_from_csv, calculate_route_metrics
+from ..greedy_solver import GreedySolver
+from ..savings_solver import SavingsSolver
+from ..coarsener import SpatioTemporalGraphCoarsener
+from ..visualisation import visualize_routes
+from ..quantum_solvers.vrp_problem import VRPProblem
+from ..quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
 
 # ── Metrics to display ─────────────────────────────────────────────────────────
 
@@ -66,7 +70,7 @@ METRICS_TO_PRINT = [
     "computation_time",
 ]
 
-# ── Subgraph helper ────────────────────────────────────────────────────────────
+# ── Subgraph helper (mirrors main_quantum.py) ──────────────────────────────────
 
 def _create_subgraph(original_graph: Graph, depot_id: str, num_customers: int) -> Graph:
     subgraph = Graph()
@@ -84,7 +88,7 @@ def _create_subgraph(original_graph: Graph, depot_id: str, num_customers: int) -
     return subgraph
 
 
-# ── VRPProblem conversion ──────────────────────────────────────────────────────
+# ── VRPProblem conversion (mirrors main_quantum.py) ───────────────────────────
 
 def _graph_to_vrp_problem(graph: Graph, depot_id: str, vehicle_capacity: float):
     customer_ids = sorted([nid for nid in graph.nodes if nid != depot_id])
@@ -135,6 +139,7 @@ def _map_to_str_routes(solution_routes_int, int_to_id, depot_id):
 # ── Solver runner factories ────────────────────────────────────────────────────
 
 def _classical_runner(cls):
+    """Returns a callable (graph, depot_id, capacity) → (routes, metrics)."""
     def run(graph, depot_id, capacity):
         solver = cls(graph, depot_id, capacity)
         routes, metrics = solver.solve()
@@ -144,6 +149,7 @@ def _classical_runner(cls):
 
 
 def _quantum_runner(cls, qubo_params):
+    """Returns a callable (graph, depot_id, capacity) → (routes, metrics)."""
     def run(graph, depot_id, capacity, qubo_params=qubo_params):
         vrp, int_to_id = _graph_to_vrp_problem(graph, depot_id, capacity)
         solver = cls(vrp)
@@ -171,15 +177,45 @@ def _coverage(routes, graph, depot_id):
     return len(all_customers - visited)
 
 
-# ── Per-beta runner ────────────────────────────────────────────────────────────
+def _label_for_p(p):
+    if p >= 1.0:
+        return "No_Coarsening"
+    if p >= 0.7:
+        return "Low_Coarsening"
+    if p >= 0.5:
+        return "Moderate_Coarsening"
+    return "High_Coarsening"
 
-def run_for_beta(graph, depot_id, capacity, beta, P, solver_runner, alpha, radius, instance_name):
+
+# ── Per-P runner ───────────────────────────────────────────────────────────────
+
+def run_for_p(graph, depot_id, capacity, P, label, solver_runner, alpha, beta, radius, instance_name):
     print(f"\n{'='*60}")
-    print(f"  Beta={beta}  (P={P}  alpha={alpha}  radius={radius})")
+    print(f"  {label.replace('_', ' ')}  (P={P})")
     print(f"{'='*60}")
 
     solver_name = solver_runner.__name__.replace("Solver", "")
 
+    if P >= 1.0:
+        t0 = time.perf_counter()
+        routes, metrics = solver_runner(graph, depot_id, capacity)
+        metrics["computation_time"] = time.perf_counter() - t0
+        metrics["unserved_customers"] = _coverage(routes, graph, depot_id)
+        if metrics["unserved_customers"] > 0:
+            metrics["is_feasible"] = False
+
+        print(f"  Customers: {len(graph.nodes) - 1} (original graph, no coarsening)")
+
+        fname = f"{instance_name}_{solver_name}_P{P}_{label}.png"
+        visualize_routes(
+            graph, routes, depot_id,
+            title=f"{instance_name}  {solver_name}  |  {label.replace('_', ' ')}  (P={P})",
+            filename=fname,
+        )
+        print(f"  Saved: visualisation_routes/{fname}")
+        return metrics
+
+    # ── Coarsened path ─────────────────────────────────────────────
     coarsener = SpatioTemporalGraphCoarsener(
         graph=graph, alpha=alpha, beta=beta, P=P, radiusCoeff=radius, depot_id=depot_id
     )
@@ -197,14 +233,14 @@ def run_for_beta(graph, depot_id, capacity, beta, P, solver_runner, alpha, radiu
     if metrics["unserved_customers"] > 0:
         metrics["is_feasible"] = False
 
-    fname = f"{instance_name}_{solver_name}_beta{beta}_P{P}.png"
+    fname = f"{instance_name}_{solver_name}_P{P}_{label}.png"
     visualize_routes(
         graph, inflated_routes, depot_id,
-        title=f"{instance_name}  {solver_name}  |  beta={beta}  P={P}",
+        title=f"{instance_name}  {solver_name}  |  {label.replace('_', ' ')}  (P={P})",
         filename=fname,
     )
     print(f"  Saved: visualisation_routes/{fname}")
-    return metrics, n_coarsened
+    return metrics
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
@@ -213,7 +249,7 @@ QUANTUM_SOLVERS = {"fullqubo", "averagepartition"}
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Compare solver across beta values on a Solomon VRPTW instance.",
+        description="Compare solver across coarsening levels on a Solomon VRPTW instance.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
@@ -233,29 +269,29 @@ def main():
         help="Restrict graph to first N customers (recommended for quantum solvers)",
     )
     parser.add_argument(
-        "--beta-values", nargs="+", type=float, default=[0.2, 0.4, 0.6, 0.8, 1.0],
-        metavar="BETA",
-        help="Temporal weight values to sweep",
+        "--p-values", nargs="+", type=float, default=[1.0, 0.7, 0.5, 0.3],
+        metavar="P",
+        help="Coarsening ratios to test",
     )
 
-    # ── Fixed coarsening hyperparameters ──────────────────────────
-    parser.add_argument("--p",      type=float, default=0.5, help="Coarsening ratio (fixed)")
+    # ── Coarsening hyperparameters ────────────────────────────────
     parser.add_argument("--alpha",  type=float, default=0.8, help="Spatial weight")
+    parser.add_argument("--beta",   type=float, default=0.4, help="Temporal weight")
     parser.add_argument("--radius", type=float, default=2.0, help="Radius coefficient")
 
     # ── QUBO hyperparameters (quantum only) ───────────────────────
-    parser.add_argument("--only-one",    type=int,   default=10_000_000, help="Unique-visit penalty")
-    parser.add_argument("--order",       type=int,   default=100,        help="Travel distance weight")
-    parser.add_argument("--cap-penalty", type=int,   default=5_000_000,  help="Capacity penalty")
-    parser.add_argument("--tw-penalty",  type=int,   default=3_000_000,  help="Time-window penalty")
-    parser.add_argument("--start-cost",  type=int,   default=100_000,    help="Vehicle start cost")
-    parser.add_argument("--backend",     type=str,   default="simulated", help="simulated | dwave")
-    parser.add_argument("--num-reads",   type=int,   default=5_000,      help="Sampler reads")
+    parser.add_argument("--only-one",   type=int,   default=10_000_000, help="Unique-visit penalty")
+    parser.add_argument("--order",      type=int,   default=100,        help="Travel distance weight")
+    parser.add_argument("--cap-penalty",type=int,   default=5_000_000,  help="Capacity penalty")
+    parser.add_argument("--tw-penalty", type=int,   default=3_000_000,  help="Time-window penalty")
+    parser.add_argument("--start-cost", type=int,   default=100_000,    help="Vehicle start cost")
+    parser.add_argument("--backend",    type=str,   default="simulated", help="simulated | dwave")
+    parser.add_argument("--num-reads",  type=int,   default=5_000,      help="Sampler reads")
 
     args = parser.parse_args()
 
     # ── Resolve CSV path ──────────────────────────────────────────
-    pkg_dir = Path(__file__).resolve().parent
+    pkg_dir = Path(__file__).resolve().parent.parent
     csv_rel = args.csv if args.csv else "solomon_dataset/C1/C101.csv"
     csv_path = pkg_dir / csv_rel
     instance_name = csv_path.stem
@@ -283,13 +319,13 @@ def main():
         solver_runner = _classical_runner(cls)
 
     # ── Print config ──────────────────────────────────────────────
-    print(f"\nInstance   : {instance_name}  ({csv_path})")
-    print(f"Solver     : {solver_runner.__name__}")
-    print(f"Beta values: {args.beta_values}")
-    print(f"Coarsener  : P={args.p}  alpha={args.alpha}  radius={args.radius}")
+    print(f"\nInstance  : {instance_name}  ({csv_path})")
+    print(f"Solver    : {solver_runner.__name__}")
+    print(f"P values  : {args.p_values}")
+    print(f"Coarsener : alpha={args.alpha}  beta={args.beta}  radius={args.radius}")
     if args.solver in QUANTUM_SOLVERS:
-        print(f"Customers  : {args.customers}  (subgraph)")
-        print(f"QUBO       : only_one={args.only_one}  order={args.order}  "
+        print(f"Customers : {args.customers}  (subgraph)")
+        print(f"QUBO      : only_one={args.only_one}  order={args.order}  "
               f"cap={args.cap_penalty}  tw={args.tw_penalty}  "
               f"start={args.start_cost}  backend={args.backend}  reads={args.num_reads}")
 
@@ -301,12 +337,13 @@ def main():
 
     # ── Run experiment ────────────────────────────────────────────
     all_results = {}
-    for beta in args.beta_values:
-        metrics, n_coarsened = run_for_beta(
-            graph, depot_id, capacity, beta, args.p,
-            solver_runner, args.alpha, args.radius, instance_name,
+    for P in args.p_values:
+        label = _label_for_p(P)
+        metrics = run_for_p(
+            graph, depot_id, capacity, P, label,
+            solver_runner, args.alpha, args.beta, args.radius, instance_name,
         )
-        all_results[beta] = (metrics, n_coarsened)
+        all_results[(P, label)] = metrics
 
         print(f"\n  Metrics:")
         for k in METRICS_TO_PRINT:
@@ -317,17 +354,17 @@ def main():
     # ── Comparison table ──────────────────────────────────────────
     solver_name = solver_runner.__name__.replace("Solver", "")
     print(f"\n\n{'='*72}")
-    print(f"  COMPARISON SUMMARY — {instance_name}  {solver_name} Solver  (P={args.p})")
+    print(f"  COMPARISON SUMMARY — {instance_name}  {solver_name} Solver")
     print(f"{'='*72}")
     header = (
-        f"  {'Beta':<8} {'N_coarsened':>12} {'Distance':>12} {'Vehicles':>10}"
+        f"  {'Label':<25} {'P':<6} {'Distance':>12} {'Vehicles':>10}"
         f" {'Unserved':>10} {'TW Viol':>8} {'Feasible':>9}"
     )
     print(header)
-    print(f"  {'-'*8} {'-'*12} {'-'*12} {'-'*10} {'-'*10} {'-'*8} {'-'*9}")
-    for beta, (m, n_coarsened) in all_results.items():
+    print(f"  {'-'*25} {'-'*6} {'-'*12} {'-'*10} {'-'*10} {'-'*8} {'-'*9}")
+    for (P, label), m in all_results.items():
         print(
-            f"  {beta:<8} {n_coarsened:>12} "
+            f"  {label.replace('_', ' '):<25} {P:<6} "
             f"{m.get('total_distance', 0):>12.2f} "
             f"{m.get('num_vehicles', 0):>10} "
             f"{m.get('unserved_customers', 0):>10} "

@@ -5,16 +5,15 @@ import time
 import argparse
 from pathlib import Path
 
-from .graph import Graph, compute_euclidean_tau
-from .utils import load_graph_from_csv, calculate_route_metrics, resolve_coarsening_params
-from .coarsener import SpatioTemporalGraphCoarsener
-from .quantum_solvers.vrp_problem import VRPProblem
-from .quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
-from .visualisation import visualize_routes
+from ..graph import Graph, compute_euclidean_tau
+from ..utils import load_graph_from_csv, calculate_route_metrics, resolve_coarsening_params
+from ..coarsener import SpatioTemporalGraphCoarsener
+from ..quantum_solvers.vrp_problem import VRPProblem
+from ..quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
+from ..visualisation import visualize_routes
 
 # --- Visualization Counters ---
-_visualisation_counter_uncoarsened_quantum = {}
-_visualisation_counter_coarsened_quantum = {}
+_visualisation_counter = {}
 
 
 # --- Helper Functions for Data Conversion ---
@@ -24,6 +23,7 @@ def convert_graph_to_vrp_problem_inputs(graph: Graph, depot_id: str, vehicle_cap
     Converts the project's Graph object into the format required by VRPProblem,
     using integer indices for nodes.
     """
+    # Sorting handles both numeric and string-based super-node IDs
     customer_ids = sorted([nid for nid in graph.nodes if nid != depot_id])
     int_to_id_map = [depot_id] + customer_ids
     id_to_int_map = {nid: i for i, nid in enumerate(int_to_id_map)}
@@ -48,10 +48,7 @@ def convert_graph_to_vrp_problem_inputs(graph: Graph, depot_id: str, vehicle_cap
             costs[u_int][v_int] = tau
             time_costs[u_int][v_int] = tau
 
-    
-    # Use fewer vehicles to encourage multi-customer routes
-    num_customers = len(customer_ids)
-    num_vehicles = max(2, num_customers // 2)  # Half as many vehicles as customers (min 2)
+    num_vehicles = len(customer_ids)
     capacities = [vehicle_capacity] * num_vehicles
     customer_ints = [id_to_int_map[nid] for nid in customer_ids]
 
@@ -70,20 +67,20 @@ def map_solution_to_original_ids(solution_routes_int: list, int_to_id_map: list)
             mapped_routes.append([int_to_id_map[i] for i in route_int])
     return mapped_routes
 
-
+# --- Main Solver Pipeline ---
 
 def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, solver_name: str, coarsener: SpatioTemporalGraphCoarsener = None):
     start_time = time.perf_counter()
     
-    # Tuned parameters - balanced approach
+    # Tuned parameters — must match main_quantum.py for consistency
     qubo_params = {
-        'only_one': 10_000_000,           # Strong constraint penalty
-        'capacity_penalty': 5_000_000,    # Capacity constraints
-        'time_window_penalty': 3_000_000, # Time window constraints  
-        'vehicle_start_cost': 100_000,    # Encourage fewer vehicles
-        'order': 100,                     # Travel distance weight 
+        'only_one': 10_000_000,
+        'capacity_penalty': 5_000_000,
+        'time_window_penalty': 3_000_000,
+        'vehicle_start_cost': 100_000,
+        'order': 100,
         'backend': 'simulated',
-        'reads': 5000                     # High quality sampling
+        'reads': 5000
     }
 
     vrp, int_to_id_map = convert_graph_to_vrp_problem_inputs(graph, depot_id, vehicle_capacity)
@@ -96,13 +93,9 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
         raise ValueError(f"Unknown solver: {solver_name}")
 
     sol = solver.solve(
-        qubo_params['only_one'], 
-        qubo_params['order'], 
-        qubo_params['capacity_penalty'],
-        qubo_params['time_window_penalty'], 
-        qubo_params['vehicle_start_cost'],
-        qubo_params['backend'], 
-        qubo_params['reads']
+        qubo_params['only_one'], qubo_params['order'], qubo_params['capacity_penalty'],
+        qubo_params['time_window_penalty'], qubo_params['vehicle_start_cost'],
+        qubo_params['backend'], qubo_params['reads']
     )
     
     solution_routes_str = map_solution_to_original_ids(sol.solution, int_to_id_map)
@@ -118,7 +111,7 @@ def run_solver_pipeline(graph: Graph, depot_id: str, vehicle_capacity: float, so
     metrics_graph = graph
     if coarsener:
         routes = coarsener.inflate_route(formatted)
-        metrics_graph = coarsener.graph
+        metrics_graph = coarsener.graph # Use original graph for final metrics
 
     metrics = calculate_route_metrics(metrics_graph, routes, depot_id, vehicle_capacity)
     
@@ -137,24 +130,6 @@ logger = configure_logging()
 def log_solver_results(prefix: str, routes: list, metrics: dict, duration: float):
     logger.info(f"\n--- {prefix} Results ---")
     logger.info(f"  Computation Time: {duration:.4f} seconds")
-    logger.info(f"  Number of routes: {len(routes)}")
-    
-    # Check for duplicate customers
-    all_customers = []
-    for route in routes:
-        customers_in_route = route[1:-1] if len(route) > 2 else []
-        all_customers.extend(customers_in_route)
-    
-    unique_customers = set(all_customers)
-    if len(all_customers) != len(unique_customers):
-        duplicates = [c for c in all_customers if all_customers.count(c) > 1]
-        logger.warning(f"  ⚠️  WARNING: Customers visited multiple times: {set(duplicates)}")
-    else:
-        logger.info(f"  ✓ All {len(unique_customers)} customers visited exactly once")
-    
-    for route_idx, route in enumerate(routes):
-        logger.info(f"    Route {route_idx + 1}: {' -> '.join(str(n) for n in route)}")
-    
     for k, v in metrics.items():
         if isinstance(v, float):
             logger.info(f"    {k.replace('_',' ').title()}: {v:.2f}")
@@ -162,7 +137,7 @@ def log_solver_results(prefix: str, routes: list, metrics: dict, duration: float
             logger.info(f"    {k.replace('_',' ').title()}: {v}")
 
 def final_summary(all_results: dict):
-    logger.info("\n\n" + "="*25 + " FINAL SUMMARY " + "="*25)
+    logger.info("\n\n" + "="*25 + " FINAL SUMMARY (COARSENED-ONLY) " + "="*25)
     metrics_list = [
         "is_feasible", "total_distance", "num_vehicles", 
         "total_route_duration", "computation_time"
@@ -171,25 +146,18 @@ def final_summary(all_results: dict):
     for fname, res in sorted(all_results.items()):
         logger.info(f"\n--- Results for {Path(fname).name} ---")
         for solver_name in ('FullQubo', 'AveragePartitionSolver'):
-            uncoarsened_key = f"Uncoarsened {solver_name}"
             inflated_key = f"Inflated {solver_name}"
             
-            if uncoarsened_key not in res or inflated_key not in res:
+            if inflated_key not in res:
                 continue
 
-            logger.info(f"\n-- Comparison for {solver_name} --")
-            uncoarsened_metrics = res[uncoarsened_key]
-            inflated_metrics = res[inflated_key]
+            logger.info(f"\n-- Results for {inflated_key} --")
+            metrics = res[inflated_key]
 
-            logger.info(f"  {'Metric':<25} | {'Uncoarsened':<15} | {'Coarsened':<15}")
-            logger.info(f"  {'-'*25} | {'-'*15} | {'-'*15}")
-            
             for m in metrics_list:
-                val_u = uncoarsened_metrics.get(m, 'N/A')
-                val_i = inflated_metrics.get(m, 'N/A')
-                if isinstance(val_u, float): val_u = f"{val_u:.2f}"
-                if isinstance(val_i, float): val_i = f"{val_i:.2f}"
-                logger.info(f"  {m.replace('_',' ').title():<25} | {str(val_u):<15} | {str(val_i):<15}")
+                val = metrics.get(m, 'N/A')
+                if isinstance(val, float): val = f"{val:.2f}"
+                logger.info(f"  {m.replace('_',' ').title():<25}: {str(val)}")
 
 # --- Main Execution Flow ---
 
@@ -224,43 +192,28 @@ def process_file(csv_file_path: str, num_customers: int,
     file_results = {}
     solvers_to_run = ('FullQubo', 'AveragePartitionSolver')
 
-    script_dir = Path(__file__).resolve().parent
-    save_dir = script_dir / "quantum_visualisations"
+    script_dir = Path(__file__).resolve().parent.parent
+    save_dir = script_dir / "coarsened_quantum_visualisations"
     save_dir.mkdir(exist_ok=True)
-
-    # Run UNCOARSENED solvers
-    for name in solvers_to_run:
-        routes, metrics, duration = run_solver_pipeline(subgraph, depot_id, capacity, name)
-        metrics['computation_time'] = duration
-        file_results[f"Uncoarsened {name}"] = metrics
-        log_solver_results(f"Uncoarsened {name}", routes, metrics, duration)
-
-        base_filename = Path(csv_file_path).stem
-        count = _visualisation_counter_uncoarsened_quantum.get(name, 0) + 1
-        _visualisation_counter_uncoarsened_quantum[name] = count
-        filename = f"{base_filename}_{name}_uncoarsened_{count}.png"
-        absolute_filepath = save_dir / filename
-        visualize_routes(
-            subgraph, routes, depot_id,
-            title=f"{base_filename} Uncoarsened - {name}",
-            filename=str(absolute_filepath)
-        )
 
     # Run COARSENED solvers
     params = resolve_coarsening_params(csv_file_path, alpha=alpha, beta=beta, P=P, radiusCoeff=radiusCoeff)
-    logger.info(f"Coarsening params: {params}")
+    logger.info(f"--- Starting Coarsening for {num_customers} customers | params: {params} ---")
     coarsener = SpatioTemporalGraphCoarsener(graph=subgraph, depot_id=depot_id, **params)
     coarsened_graph, _ = coarsener.coarsen()
+    logger.info(f"--- Coarsening complete. Coarsened graph has {len(coarsened_graph.nodes)} nodes ---")
+    
     for name in solvers_to_run:
         routes, metrics, duration = run_solver_pipeline(coarsened_graph, depot_id, capacity, name, coarsener)
         metrics['computation_time'] = duration
         file_results[f"Inflated {name}"] = metrics
         log_solver_results(f"Inflated {name}", routes, metrics, duration)
 
+        # Visualize coarsened (inflated) solution using an absolute path
         base_filename = Path(csv_file_path).stem
-        count = _visualisation_counter_coarsened_quantum.get(name, 0) + 1
-        _visualisation_counter_coarsened_quantum[name] = count
-        filename = f"{base_filename}_{name}_coarsened_{count}.png"
+        count = _visualisation_counter.get(name, 0) + 1
+        _visualisation_counter[name] = count
+        filename = f"{base_filename}_{name}_coarsened_only_{count}.png"
         absolute_filepath = save_dir / filename
         visualize_routes(
             subgraph, routes, depot_id, 
@@ -270,12 +223,24 @@ def process_file(csv_file_path: str, num_customers: int,
         
     return file_results
 
+def _save(output_path: str, all_results: dict, config: dict):
+    """Save checkpoint to JSON after each instance completes."""
+    payload = {"config": config, "per_instance_results": all_results}
+    tmp_path = output_path + ".tmp"
+    with open(tmp_path, 'w') as f:
+        json.dump(payload, f, indent=4)
+    os.replace(tmp_path, output_path)
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Run Quantum VRP Solvers with and without Graph Coarsening.")
+    parser = argparse.ArgumentParser(description="Run COARSENED-ONLY Quantum VRP Solvers.")
     parser.add_argument("--file", type=str, default=None, help="Path to a single Solomon CSV file to process.")
     parser.add_argument("--data", type=str, default=None, help="Directory containing Solomon CSV files.")
-    parser.add_argument("--customers", type=int, default=5, help="Number of customers (default: 5).")
-    parser.add_argument("--output", type=str, help="Path to a JSON file to save the detailed results.")
+    parser.add_argument("--customers", type=int, default=15, help="Number of customers to include in the sub-problem.")
+    parser.add_argument("--output", type=str, default="quantum_coarsened_results.json",
+                        help="Path to the checkpoint/results JSON file (default: quantum_coarsened_results.json).")
+    parser.add_argument("--resume", action="store_true",
+                        help="Resume from an existing checkpoint file, skipping already-completed instances.")
     parser.add_argument("--alpha", type=float, default=None,
                         help="Coarsening spatial weight alpha (overrides per-family default).")
     parser.add_argument("--beta", type=float, default=None,
@@ -292,33 +257,48 @@ def main():
             logger.error(f"File not found: {args.file}")
             return
     else:
-        script_dir = Path(__file__).resolve().parent
+        script_dir = Path(__file__).resolve().parent.parent
         data_dir = Path(args.data) if args.data else script_dir / "solomon_dataset"
         if not data_dir.exists():
-            logger.error(f"Data directory not found: {data_dir}")
+            logger.error(f"Data directory not found: {data_dir}. Use --data or place data in a 'solomon_dataset' folder.")
             return
         files_to_process = [str(p) for p in sorted(data_dir.rglob("*.csv"))]
         if not files_to_process:
             logger.warning(f"No CSV files found in {data_dir}.")
             return
 
-    logger.info("\n" + "="*60)
-    
+    config = {
+        "customers": args.customers,
+        "alpha": args.alpha,
+        "beta": args.beta,
+        "P": args.P,
+        "radius": args.radius,
+    }
 
+    # Load existing checkpoint if resuming
     all_results = {}
+    if args.resume and Path(args.output).is_file():
+        with open(args.output, 'r') as f:
+            saved = json.load(f)
+        all_results = saved.get("per_instance_results", {})
+        done = len(all_results)
+        remaining = sum(1 for p in files_to_process if Path(p).stem not in all_results)
+        logger.info(f"Resuming: {done} instance(s) already done, {remaining} remaining.")
+
     for csv_path in files_to_process:
+        instance_name = Path(csv_path).stem
+        if instance_name in all_results:
+            logger.info(f"Skipping {instance_name} (already in checkpoint).")
+            continue
+
         results = process_file(csv_path, args.customers,
                                alpha=args.alpha, beta=args.beta, P=args.P, radiusCoeff=args.radius)
-        all_results[csv_path] = results
-    
-    if args.output:
-        Path(args.output).parent.mkdir(parents=True, exist_ok=True)
-        with open(args.output, 'w') as f:
-            json.dump(all_results, f, indent=4)
-        logger.info(f"\nResults saved to {args.output}")
+        all_results[instance_name] = results
+        _save(args.output, all_results, config)
+        logger.info(f"Checkpoint saved after {instance_name} → {args.output}")
 
-    final_summary(all_results)
-    logger.info("\nAll done.")
+    final_summary({p: all_results.get(Path(p).stem, {}) for p in files_to_process})
+    logger.info(f"\nAll done. Results saved to {args.output}")
 
 if __name__ == "__main__":
     main()

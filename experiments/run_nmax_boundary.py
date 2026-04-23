@@ -15,10 +15,10 @@ import json
 import time
 from pathlib import Path
 
-from .graph import compute_euclidean_tau
-from .utils import load_graph_from_csv
-from .quantum_solvers.vrp_problem import VRPProblem
-from .quantum_solvers.vrp_solvers import FullQuboSolver
+from ..graph import compute_euclidean_tau
+from ..utils import load_graph_from_csv
+from ..quantum_solvers.vrp_problem import VRPProblem
+from ..quantum_solvers.vrp_solvers import FullQuboSolver
 
 # QUBO params — identical to main_quantum.py
 QUBO_PARAMS = {

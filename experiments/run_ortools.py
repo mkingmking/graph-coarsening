@@ -42,10 +42,10 @@ import os
 import time
 from pathlib import Path
 
-from .graph import Graph
-from .utils import load_graph_from_csv, calculate_route_metrics
-from .coarsener import SpatioTemporalGraphCoarsener
-from .ortools_solver import ORToolsVRPTWSolver
+from ..graph import Graph
+from ..utils import load_graph_from_csv, calculate_route_metrics
+from ..coarsener import SpatioTemporalGraphCoarsener
+from ..ortools_solver import ORToolsVRPTWSolver
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -232,7 +232,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--output", type=str,
-        default=str(Path(__file__).resolve().parent / "outputs" / "results_ortools.json"),
+        default=str(Path(__file__).resolve().parent.parent / "outputs" / "results_ortools.json"),
         help="Path for the output JSON file"
     )
     parser.add_argument(
@@ -248,7 +248,7 @@ def main() -> None:
     args = parser.parse_args()
     solution_limit = args.solution_limit
 
-    script_dir = Path(__file__).resolve().parent
+    script_dir = Path(__file__).resolve().parent.parent
 
     # Single-file mode
     if args.file:
