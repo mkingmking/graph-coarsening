@@ -11,10 +11,6 @@ from ..utils import load_graph_from_csv, calculate_route_metrics, resolve_coarse
 from ..coarsener import SpatioTemporalGraphCoarsener
 from ..quantum_solvers.vrp_problem import VRPProblem
 from ..quantum_solvers.vrp_solvers import FullQuboSolver, AveragePartitionSolver
-from ..visualisation import visualize_routes
-
-_visualisation_counter_uncoarsened_quantum = {}
-_visualisation_counter_coarsened_quantum = {}
 
 
 def prompt_for_api_key() -> str:
@@ -239,25 +235,11 @@ def process_file(csv_file_path: str, num_customers: int, backend: str = 'hybrid'
     file_results = {}
     solvers_to_run = ('FullQubo', 'AveragePartitionSolver')
 
-    script_dir = Path(__file__).resolve().parent.parent
-    save_dir = script_dir / "dwave_visualisations" / backend
-    save_dir.mkdir(parents=True, exist_ok=True)
-
     for name in solvers_to_run:
         routes, metrics, duration = run_solver_pipeline(subgraph, depot_id, capacity, name, backend)
         metrics['computation_time'] = duration
         file_results[f"Uncoarsened {name}"] = metrics
         log_solver_results(f"Uncoarsened {name}", routes, metrics, duration)
-
-        base_filename = Path(csv_file_path).stem
-        count = _visualisation_counter_uncoarsened_quantum.get(name, 0) + 1
-        _visualisation_counter_uncoarsened_quantum[name] = count
-        filename = f"{base_filename}_{name}_{backend}_uncoarsened_{count}.png"
-        visualize_routes(
-            subgraph, routes, depot_id,
-            title=f"{base_filename} Uncoarsened - {name} [{backend}]",
-            filename=str(save_dir / filename)
-        )
 
     params = resolve_coarsening_params(csv_file_path, alpha=alpha, beta=beta, P=P, radiusCoeff=radiusCoeff)
     logger.info(f"Coarsening params: {params}")
@@ -268,16 +250,6 @@ def process_file(csv_file_path: str, num_customers: int, backend: str = 'hybrid'
         metrics['computation_time'] = duration
         file_results[f"Inflated {name}"] = metrics
         log_solver_results(f"Inflated {name}", routes, metrics, duration)
-
-        base_filename = Path(csv_file_path).stem
-        count = _visualisation_counter_coarsened_quantum.get(name, 0) + 1
-        _visualisation_counter_coarsened_quantum[name] = count
-        filename = f"{base_filename}_{name}_{backend}_coarsened_{count}.png"
-        visualize_routes(
-            subgraph, routes, depot_id,
-            title=f"{base_filename} Coarsened - {name} [{backend}]",
-            filename=str(save_dir / filename)
-        )
 
     return file_results
 
