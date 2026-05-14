@@ -124,3 +124,40 @@ def test_node_central_time_matches_constructor_formula():
     node = Node("A", 0, 0, 4, 10, 30, 1)
 
     assert node.t == 18
+
+
+def test_node_central_time_falls_back_to_e_when_window_too_tight():
+    # l - s < 0 branch: service time exceeds latest deadline
+    node = Node("B", 0, 0, 15, 5, 10, 1)  # l - s = 10 - 15 = -5 < 0
+
+    assert node.t == node.e
+
+
+_METRICS_KEYS = {
+    "total_distance",
+    "total_service_time",
+    "total_waiting_time",
+    "total_route_duration",
+    "time_window_violations",
+    "capacity_violations",
+    "is_feasible",
+    "num_vehicles",
+    "total_demand_served",
+    "routes_list",
+}
+
+
+def test_calculate_route_metrics_returns_all_keys_on_valid_route():
+    graph = _build_small_graph()
+    metrics = calculate_route_metrics(graph, [["D", "A", "B", "D"]], depot_id="D", vehicle_capacity=10)
+
+    assert set(metrics.keys()) == _METRICS_KEYS
+
+
+def test_calculate_route_metrics_returns_all_keys_on_empty_routes():
+    graph = _build_small_graph()
+    metrics = calculate_route_metrics(graph, [], depot_id="D", vehicle_capacity=10)
+
+    assert set(metrics.keys()) == _METRICS_KEYS
+    assert metrics["num_vehicles"] == 0
+    assert metrics["is_feasible"] is False
