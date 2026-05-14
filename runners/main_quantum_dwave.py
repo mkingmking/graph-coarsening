@@ -259,7 +259,7 @@ def main():
     parser.add_argument("--file", type=str, default=None, help="Path to a single Solomon CSV file.")
     parser.add_argument("--data", type=str, default=None, help="Directory containing Solomon CSV files.")
     parser.add_argument("--customers", type=int, default=5, help="Number of customers (default: 5).")
-    parser.add_argument("--output", type=str, help="Path to a JSON file to save results.")
+    parser.add_argument("--output", type=str, default=None, help="Path to a JSON file to save results.")
     parser.add_argument("--alpha", type=float, default=None)
     parser.add_argument("--beta", type=float, default=None)
     parser.add_argument("--P", type=float, default=None)
@@ -298,10 +298,17 @@ def main():
         all_results[csv_path] = results
 
     if args.output:
-        Path(args.output).parent.mkdir(parents=True, exist_ok=True)
-        with open(args.output, 'w') as f:
-            json.dump(all_results, f, indent=4)
-        logger.info(f"\nResults saved to {args.output}")
+        output_path = Path(args.output)
+    else:
+        import datetime
+        script_dir = Path(__file__).resolve().parent.parent
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_path = script_dir / "outputs" / f"results_dwave_{backend}_{args.customers}customers_{timestamp}.json"
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, 'w') as f:
+        json.dump(all_results, f, indent=4)
+    logger.info(f"\nResults saved to {output_path}")
 
     final_summary(all_results)
     logger.info("\nAll done.")
