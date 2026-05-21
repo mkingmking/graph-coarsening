@@ -29,10 +29,10 @@ class FullQuboSolver(VRPSolver):
         except Exception as e:
             print(f"Solver error: {e}")
             return VRPSolution(self.problem, {}, vehicle_k_limits, solution=[])
-            
+
         if not samples:
              return VRPSolution(self.problem, {}, vehicle_k_limits, solution=[])
-             
+
         solution = VRPSolution(self.problem, samples[0], vehicle_k_limits)
         return solution
 
@@ -54,10 +54,10 @@ class AveragePartitionSolver(VRPSolver):
         except Exception as e:
             print(f"Solver error: {e}")
             return VRPSolution(self.problem, {}, vehicle_k_limits, solution=[])
-            
+
         if not samples:
              return VRPSolution(self.problem, {}, vehicle_k_limits, solution=[])
-             
+
         solution = VRPSolution(self.problem, samples[0], vehicle_k_limits)
         return solution
 

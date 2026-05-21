@@ -259,6 +259,11 @@ def main():
     parser.add_argument("--file", type=str, default=None, help="Path to a single Solomon CSV file.")
     parser.add_argument("--data", type=str, default=None, help="Directory containing Solomon CSV files.")
     parser.add_argument("--customers", type=int, default=5, help="Number of customers (default: 5).")
+    parser.add_argument("--sample", type=int, default=None,
+                        help="Randomly sample this many instances from the dataset. "
+                             "Omit to run all instances.")
+    parser.add_argument("--seed", type=int, default=None,
+                        help="Random seed for --sample, for reproducibility.")
     parser.add_argument("--output", type=str, default=None, help="Path to a JSON file to save results.")
     parser.add_argument("--alpha", type=float, default=None)
     parser.add_argument("--beta", type=float, default=None)
@@ -287,31 +292,65 @@ def main():
             logger.warning(f"No CSV files found in {data_dir}.")
             return
 
-    logger.info("\n" + "="*60)
-    logger.info(f"Backend: D-Wave Leap  [{backend}]  (real hardware)")
-    logger.info("="*60)
+    if args.sample is not None:
+        import random
+        rng = random.Random(args.seed)
+        n = min(args.sample, len(files_to_process))
+        files_to_process = rng.sample(files_to_process, n)
+        files_to_process = sorted(files_to_process)   # sort for readable logs
+        logger.info(f"Sampled {n} instances (seed={args.seed}).")
 
-    all_results = {}
-    for csv_path in files_to_process:
-        results = process_file(csv_path, args.customers, backend,
-                               alpha=args.alpha, beta=args.beta, P=args.P, radiusCoeff=args.radius)
-        all_results[csv_path] = results
-
+    import datetime
+    script_dir = Path(__file__).resolve().parent.parent
     if args.output:
         output_path = Path(args.output)
     else:
-        import datetime
-        script_dir = Path(__file__).resolve().parent.parent
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_path = script_dir / "outputs" / f"results_dwave_{backend}_{args.customers}customers_{timestamp}.json"
+        label = f"sample{args.sample}" if args.sample else "all"
+        output_path = script_dir / "outputs" / f"results_dwave_{backend}_{args.customers}customers_{label}_{timestamp}.json"
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, 'w') as f:
-        json.dump(all_results, f, indent=4)
-    logger.info(f"\nResults saved to {output_path}")
+
+    # Load any results already on disk (useful if a previous run was interrupted).
+    if output_path.exists():
+        with open(output_path) as f:
+            all_results = json.load(f)
+        logger.info(f"Resuming: loaded {len(all_results)} existing results from {output_path}")
+    else:
+        all_results = {}
+
+    logger.info("\n" + "="*60)
+    logger.info(f"Backend: D-Wave Leap  [{backend}]  (real hardware)")
+    logger.info(f"Instances to run: {len(files_to_process)}")
+    logger.info("="*60)
+
+    completed = 0
+    for csv_path in files_to_process:
+        if csv_path in all_results:
+            logger.info(f"Skipping (already done): {Path(csv_path).name}")
+            continue
+
+        try:
+            results = process_file(csv_path, args.customers, backend,
+                                   alpha=args.alpha, beta=args.beta,
+                                   P=args.P, radiusCoeff=args.radius)
+        except Exception as e:
+            # Catches quota exhaustion, auth errors, network failures.
+            # Results so far are already saved; re-raise so the user sees the error.
+            logger.error(f"\nSolver failed on {Path(csv_path).name}: {e}")
+            logger.error("Partial results are saved. Re-run the same command to resume.")
+            raise
+
+        all_results[csv_path] = results
+        completed += 1
+
+        # Write after every instance so a mid-run quota error loses nothing.
+        with open(output_path, 'w') as f:
+            json.dump(all_results, f, indent=4)
+        logger.info(f"  [{completed}/{len(files_to_process)}] saved → {output_path.name}")
 
     final_summary(all_results)
-    logger.info("\nAll done.")
+    logger.info(f"\nAll done. Results saved to {output_path}")
 
 
 if __name__ == "__main__":
