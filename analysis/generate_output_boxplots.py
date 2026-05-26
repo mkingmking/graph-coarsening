@@ -126,7 +126,8 @@ def slugify(value: str) -> str:
 
 
 def instance_name(raw_key: str) -> str:
-    path = Path(str(raw_key))
+    normalized = str(raw_key).replace("\\", "/")
+    path = Path(normalized)
     name = path.stem if path.suffix else path.name
     return name or str(raw_key)
 
@@ -140,10 +141,14 @@ def infer_family(instance: str) -> Tuple[str, str]:
 
 
 def infer_scale_from_source(source_name: str) -> str:
-    match = re.search(r"(\d+)\s*customer", source_name)
+    match = re.search(r"(\d+)\s*customers?\b", source_name, re.IGNORECASE)
     if match:
         return f"N{match.group(1)}"
     return "All"
+
+
+def source_output_name(source_file: str) -> str:
+    return Path(source_file).stem
 
 
 def parse_solver_key(key: str) -> Tuple[str, str]:
@@ -610,7 +615,7 @@ def group_solution_values(
             continue
         label = record.configuration
         if include_source_in_label:
-            label = f"{Path(record.source_file).stem} | {label}"
+            label = f"{source_output_name(record.source_file)} | {label}"
         grouped.setdefault(label, []).append(record.metrics[metric])
     return sorted(grouped.items(), key=lambda item: item[0])
 
@@ -701,6 +706,18 @@ def write_solution_csv(records: Sequence[SolutionRecord], output_path: Path) -> 
                 )
 
 
+def write_solution_csv_by_source(records: Sequence[SolutionRecord], output_dir: Path) -> None:
+    sources = sorted({record.source_file for record in records})
+    for source in sources:
+        source_records = [record for record in records if record.source_file == source]
+        if not source_records:
+            continue
+        write_solution_csv(
+            source_records,
+            output_dir / "by_source" / source_output_name(source) / "solution_metrics.csv",
+        )
+
+
 def write_hyperparameter_csv(records: Sequence[HyperparameterRecord], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="", encoding="utf-8") as handle:
@@ -756,7 +773,7 @@ def generate_solution_plots(
         sources = sorted({record.source_file for record in records})
         for source in sources:
             source_records = [record for record in records if record.source_file == source]
-            source_stem = Path(source).stem
+            source_stem = source_output_name(source)
             for metric in metrics:
                 groups = group_solution_values(source_records, metric)
                 if len(groups) < 1:
@@ -905,6 +922,7 @@ def main() -> int:
     if not args.no_csv:
         if solution_records:
             write_solution_csv(solution_records, args.output_dir / "solution_metrics.csv")
+            write_solution_csv_by_source(solution_records, args.output_dir)
         if hyperparameter_records:
             write_hyperparameter_csv(hyperparameter_records, args.output_dir / "hyperparameter_metrics.csv")
 
