@@ -7,8 +7,8 @@ Outputs:
 1. Pairwise plots:
    Uncoarsened Greedy vs Coarsened Greedy
    Uncoarsened Savings vs Coarsened Savings
-   Uncoarsened FullQubo vs Coarsened FullQubo
-   Uncoarsened AveragePartitionSolver vs Coarsened AveragePartitionSolver
+   Uncoarsened FQS vs Coarsened FQS
+   Uncoarsened APS vs Coarsened APS
    and any other solver that has both methods in the same JSON file.
 
 2. Quantum reference plots:
@@ -37,6 +37,7 @@ from .generate_output_boxplots import (
     DEFAULT_METRICS,
     METRIC_LABELS,
     SolutionRecord,
+    display_solver_name,
     load_records,
     normalize_metric_name,
     render_boxplot,
@@ -48,12 +49,6 @@ PAIRWISE_METHODS = {"Uncoarsened", "Inflated", "Coarsened"}
 COARSENED_METHODS = {"Inflated", "Coarsened"}
 QUANTUM_SOLVERS = ("FullQubo", "AveragePartitionSolver")
 CLASSICAL_SOLVERS = ("Greedy", "Savings")
-
-SOLVER_LABELS = {
-    "FullQubo": "FQS",
-    "AveragePartitionSolver": "APS",
-    "ORTools": "OR-Tools",
-}
 
 
 @dataclass
@@ -85,7 +80,7 @@ def method_label(record: SolutionRecord) -> str:
 
 
 def solver_label(solver: str) -> str:
-    return SOLVER_LABELS.get(solver, solver)
+    return display_solver_name(solver)
 
 
 def metric_label(metric: str) -> str:
@@ -137,7 +132,7 @@ def record_plot_data(
                 source_file=record.source_file,
                 instance=record.instance,
                 scale=record.scale,
-                solver=record.solver,
+                solver=solver_label(record.solver),
                 method=method_label(record),
                 metric=metric,
                 value=by_instance[record.instance],

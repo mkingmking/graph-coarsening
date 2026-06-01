@@ -5,10 +5,10 @@ The script supports the result formats currently used in this repository:
 
 1. Standard solver results:
    instance -> "Uncoarsened Greedy" -> metrics
-   instance -> "Inflated FullQubo" -> metrics
+   instance -> "Inflated FQS" -> metrics
 
 2. Scale-nested benchmark results:
-   instance -> "N5" -> "Uncoarsened ORTools" -> metrics
+   instance -> "N5" -> "Uncoarsened OR-Tools" -> metrics
 
 3. Hyperparameter search results:
    per_instance_trials -> instance -> trial rows with P/radius/alpha/beta.
@@ -77,6 +77,12 @@ COLORS = [
     "#9D755D",
     "#BAB0AC",
 ]
+
+SOLVER_DISPLAY_NAMES = {
+    "FullQubo": "FQS",
+    "AveragePartitionSolver": "APS",
+    "ORTools": "OR-Tools",
+}
 
 
 @dataclass
@@ -149,6 +155,38 @@ def infer_scale_from_source(source_name: str) -> str:
 
 def source_output_name(source_file: str) -> str:
     return Path(source_file).stem
+
+
+def display_solver_name(solver: str) -> str:
+    return SOLVER_DISPLAY_NAMES.get(solver, solver)
+
+
+def display_configuration_name(record: "SolutionRecord") -> str:
+    label = f"{record.method} {display_solver_name(record.solver)}".strip()
+    if record.scale != "All":
+        label = f"{record.scale} {label}"
+    return label
+
+
+def display_source_name(source_file: str) -> str:
+    name = source_output_name(source_file)
+    lowered = name.lower()
+    customer_match = re.search(r"(\d+)\s*customer", lowered)
+    customer_suffix = f" {customer_match.group(1)}" if customer_match else ""
+
+    if "dwave" in lowered:
+        return f"D-Wave{customer_suffix}"
+    if "simulated_annealing" in lowered:
+        return f"SA{customer_suffix}"
+    if "quantum" in lowered:
+        return f"Quantum{customer_suffix}"
+    if "ortools" in lowered:
+        return "OR-Tools"
+    if "classical" in lowered:
+        return "Classical"
+
+    cleaned = re.sub(r"^results?_", "", name, flags=re.IGNORECASE)
+    return cleaned.replace("_", " ")
 
 
 def parse_solver_key(key: str) -> Tuple[str, str]:
@@ -421,12 +459,12 @@ def render_svg_boxplot(
     y_max = max(ticks)
 
     label_max_len = max(len(label) for label, _ in stats)
-    bottom_margin = min(230, max(120, int(label_max_len * 4.2)))
-    width = max(920, min(2400, 125 * len(stats) + 160))
-    height = 620
+    bottom_margin = min(360, max(140, int(label_max_len * 5.8)))
+    width = max(920, min(3200, 125 * len(stats) + 160 + int(label_max_len * 4.8)))
     left = 96
     right = 34
     top = 76
+    height = max(620, top + bottom_margin + 300)
     bottom = bottom_margin
     plot_width = width - left - right
     plot_height = height - top - bottom
@@ -613,9 +651,12 @@ def group_solution_values(
     for record in records:
         if metric not in record.metrics:
             continue
-        label = record.configuration
+        label = display_configuration_name(record)
         if include_source_in_label:
-            label = f"{source_output_name(record.source_file)} | {label}"
+            label = (
+                f"{display_source_name(record.source_file)} | "
+                f"{record.method} {display_solver_name(record.solver)}"
+            )
         grouped.setdefault(label, []).append(record.metrics[metric])
     return sorted(grouped.items(), key=lambda item: item[0])
 
@@ -698,8 +739,8 @@ def write_solution_csv(records: Sequence[SolutionRecord], output_path: Path) -> 
                         "family_group": record.family_group,
                         "scale": record.scale,
                         "method": record.method,
-                        "solver": record.solver,
-                        "configuration": record.configuration,
+                        "solver": display_solver_name(record.solver),
+                        "configuration": display_configuration_name(record),
                         "metric": metric,
                         "value": value,
                     }

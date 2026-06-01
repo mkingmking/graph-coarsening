@@ -29,7 +29,7 @@
 <circle cx="293.5" cy="143.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
 <circle cx="293.5" cy="143.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
 <text x="293.5" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
-<text transform="translate(289.5 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Inflated ORTools</text>
+<text transform="translate(289.5 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Inflated OR-Tools</text>
 <line x1="688.5" y1="415.1" x2="688.5" y2="415.2" stroke="#333333" stroke-width="1.2"/>
 <line x1="672.2" y1="415.1" x2="704.8" y2="415.1" stroke="#333333" stroke-width="1.2"/>
 <line x1="672.2" y1="415.2" x2="704.8" y2="415.2" stroke="#333333" stroke-width="1.2"/>
@@ -45,5 +45,5 @@
 <circle cx="688.5" cy="415.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
 <circle cx="688.5" cy="415.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
 <text x="688.5" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
-<text transform="translate(684.5 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Uncoarsened ORTools</text>
+<text transform="translate(684.5 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Uncoarsened OR-Tools</text>
 </svg>

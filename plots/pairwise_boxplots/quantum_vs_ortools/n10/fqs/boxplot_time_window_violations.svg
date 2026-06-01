@@ -4,50 +4,36 @@
 <text x="460.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700">Time Window Violations: FQS vs OR-Tools Reference (N10)</text>
 <text transform="translate(22 288.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="15">Time Window Violations</text>
 <line x1="96" y1="500.0" x2="886" y2="500.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="504.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">0</text>
+<text x="86" y="504.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">-1</text>
 <line x1="96" y1="394.0" x2="886" y2="394.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="398.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">2</text>
+<text x="86" y="398.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">-0.5</text>
 <line x1="96" y1="288.0" x2="886" y2="288.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="292.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">4</text>
+<text x="86" y="292.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">0</text>
 <line x1="96" y1="182.0" x2="886" y2="182.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="186.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">6</text>
+<text x="86" y="186.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">0.5</text>
 <line x1="96" y1="76.0" x2="886" y2="76.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="80.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">8</text>
+<text x="86" y="80.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">1</text>
 <line x1="96" y1="76" x2="96" y2="500" stroke="#333333" stroke-width="1.2"/>
 <line x1="96" y1="500" x2="886" y2="500" stroke="#333333" stroke-width="1.2"/>
-<line x1="227.7" y1="500.0" x2="227.7" y2="500.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="211.4" y1="500.0" x2="243.9" y2="500.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="211.4" y1="500.0" x2="243.9" y2="500.0" stroke="#333333" stroke-width="1.2"/>
-<rect x="202.7" y="500.0" width="50.0" height="1.5" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="202.7" y1="500.0" x2="252.7" y2="500.0" stroke="#111111" stroke-width="2"/>
-<text x="227.7" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<line x1="227.7" y1="288.0" x2="227.7" y2="288.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="211.4" y1="288.0" x2="243.9" y2="288.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="211.4" y1="288.0" x2="243.9" y2="288.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="202.7" y="288.0" width="50.0" height="1.5" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="202.7" y1="288.0" x2="252.7" y2="288.0" stroke="#111111" stroke-width="2"/>
+<text x="227.7" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=1</text>
 <text transform="translate(223.7 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Uncoarsened FQS</text>
-<line x1="491.0" y1="500.0" x2="491.0" y2="500.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="474.8" y1="500.0" x2="507.2" y2="500.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="474.8" y1="500.0" x2="507.2" y2="500.0" stroke="#333333" stroke-width="1.2"/>
-<rect x="466.0" y="486.8" width="50.0" height="13.2" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="466.0" y1="500.0" x2="516.0" y2="500.0" stroke="#111111" stroke-width="2"/>
-<circle cx="491.0" cy="447.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="447.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="447.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="394.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="394.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="394.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="394.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="341.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="341.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="341.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="288.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="235.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="235.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="76.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<text x="491.0" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<line x1="491.0" y1="288.0" x2="491.0" y2="288.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="474.8" y1="288.0" x2="507.2" y2="288.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="474.8" y1="288.0" x2="507.2" y2="288.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="466.0" y="288.0" width="50.0" height="1.5" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="466.0" y1="288.0" x2="516.0" y2="288.0" stroke="#111111" stroke-width="2"/>
+<text x="491.0" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=1</text>
 <text transform="translate(487.0 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Coarsened FQS</text>
-<line x1="754.3" y1="500.0" x2="754.3" y2="500.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="738.1" y1="500.0" x2="770.6" y2="500.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="738.1" y1="500.0" x2="770.6" y2="500.0" stroke="#333333" stroke-width="1.2"/>
-<rect x="729.3" y="500.0" width="50.0" height="1.5" fill="#54A24B" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="729.3" y1="500.0" x2="779.3" y2="500.0" stroke="#111111" stroke-width="2"/>
-<text x="754.3" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=56</text>
+<line x1="754.3" y1="288.0" x2="754.3" y2="288.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="738.1" y1="288.0" x2="770.6" y2="288.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="738.1" y1="288.0" x2="770.6" y2="288.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="729.3" y="288.0" width="50.0" height="1.5" fill="#54A24B" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="729.3" y1="288.0" x2="779.3" y2="288.0" stroke="#111111" stroke-width="2"/>
+<text x="754.3" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=1</text>
 <text transform="translate(750.3 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">Uncoarsened OR-Tools</text>
 </svg>
