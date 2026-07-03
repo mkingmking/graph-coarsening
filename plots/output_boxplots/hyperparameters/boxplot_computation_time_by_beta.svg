@@ -1,85 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620">
-<rect x="0" y="0" width="920" height="620" fill="#ffffff"/>
-<text x="460.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700">Computation Time (s) by beta</text>
-<text transform="translate(22 288.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="15">Computation Time (s)</text>
-<line x1="96" y1="500.0" x2="886" y2="500.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="504.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">0</text>
-<line x1="96" y1="394.0" x2="886" y2="394.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="398.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">10</text>
-<line x1="96" y1="288.0" x2="886" y2="288.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="292.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">20</text>
-<line x1="96" y1="182.0" x2="886" y2="182.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="186.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">30</text>
-<line x1="96" y1="76.0" x2="886" y2="76.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="80.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">40</text>
-<line x1="96" y1="76" x2="96" y2="500" stroke="#333333" stroke-width="1.2"/>
-<line x1="96" y1="500" x2="886" y2="500" stroke="#333333" stroke-width="1.2"/>
-<line x1="175.0" y1="397.9" x2="175.0" y2="478.9" stroke="#333333" stroke-width="1.2"/>
-<line x1="158.8" y1="397.9" x2="191.2" y2="397.9" stroke="#333333" stroke-width="1.2"/>
-<line x1="158.8" y1="478.9" x2="191.2" y2="478.9" stroke="#333333" stroke-width="1.2"/>
-<rect x="150.0" y="429.3" width="50.0" height="48.1" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="150.0" y1="455.4" x2="200.0" y2="455.4" stroke="#111111" stroke-width="2"/>
-<circle cx="175.0" cy="334.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="175.0" cy="306.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<text x="175.0" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=96</text>
-<text transform="translate(171.0 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">0.2</text>
-<line x1="333.0" y1="308.1" x2="333.0" y2="488.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="316.8" y1="308.1" x2="349.2" y2="308.1" stroke="#333333" stroke-width="1.2"/>
-<line x1="316.8" y1="488.0" x2="349.2" y2="488.0" stroke="#333333" stroke-width="1.2"/>
-<rect x="308.0" y="402.0" width="50.0" height="62.9" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="308.0" y1="451.2" x2="358.0" y2="451.2" stroke="#111111" stroke-width="2"/>
-<circle cx="333.0" cy="304.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="333.0" cy="164.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="333.0" cy="154.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<text x="333.0" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=160</text>
-<text transform="translate(329.0 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">0.4</text>
-<line x1="491.0" y1="397.8" x2="491.0" y2="488.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="474.8" y1="397.8" x2="507.2" y2="397.8" stroke="#333333" stroke-width="1.2"/>
-<line x1="474.8" y1="488.0" x2="507.2" y2="488.0" stroke="#333333" stroke-width="1.2"/>
-<rect x="466.0" y="429.2" width="50.0" height="49.1" fill="#54A24B" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="466.0" y1="455.0" x2="516.0" y2="455.0" stroke="#111111" stroke-width="2"/>
-<circle cx="491.0" cy="336.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="336.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="333.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="333.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="333.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="332.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="332.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="328.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="326.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="307.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="491.0" cy="305.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<text x="491.0" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=96</text>
-<text transform="translate(487.0 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">0.6</text>
-<line x1="649.0" y1="392.0" x2="649.0" y2="488.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="632.8" y1="392.0" x2="665.2" y2="392.0" stroke="#333333" stroke-width="1.2"/>
-<line x1="632.8" y1="488.0" x2="665.2" y2="488.0" stroke="#333333" stroke-width="1.2"/>
-<rect x="624.0" y="429.0" width="50.0" height="37.6" fill="#E45756" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="624.0" y1="455.8" x2="674.0" y2="455.8" stroke="#111111" stroke-width="2"/>
-<circle cx="649.0" cy="356.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="649.0" cy="336.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="649.0" cy="335.8" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="649.0" cy="334.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="649.0" cy="332.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="649.0" cy="332.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="649.0" cy="329.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="649.0" cy="302.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<text x="649.0" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=144</text>
-<text transform="translate(645.0 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">0.8</text>
-<line x1="807.0" y1="395.7" x2="807.0" y2="482.8" stroke="#333333" stroke-width="1.2"/>
-<line x1="790.8" y1="395.7" x2="823.2" y2="395.7" stroke="#333333" stroke-width="1.2"/>
-<line x1="790.8" y1="482.8" x2="823.2" y2="482.8" stroke="#333333" stroke-width="1.2"/>
-<rect x="782.0" y="430.1" width="50.0" height="47.7" fill="#72B7B2" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="782.0" y1="463.5" x2="832.0" y2="463.5" stroke="#111111" stroke-width="2"/>
-<circle cx="807.0" cy="333.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="807.0" cy="332.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="807.0" cy="327.8" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="807.0" cy="309.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="807.0" cy="308.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="807.0" cy="302.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="807.0" cy="301.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<circle cx="807.0" cy="160.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
-<text x="807.0" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=144</text>
-<text transform="translate(803.0 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">1</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="905" viewBox="0 0 1100 905">
+<rect x="0" y="0" width="1100" height="905" fill="#ffffff"/>
+<text x="550.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700">Computation Time (s) by beta</text>
+<text transform="translate(22 355.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="34">Computation Time (s)</text>
+<line x1="170" y1="565.0" x2="1044" y2="565.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="574.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">0</text>
+<line x1="170" y1="460.0" x2="1044" y2="460.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="469.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">10</text>
+<line x1="170" y1="355.0" x2="1044" y2="355.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="364.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">20</text>
+<line x1="170" y1="250.0" x2="1044" y2="250.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="259.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">30</text>
+<line x1="170" y1="145.0" x2="1044" y2="145.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="154.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">40</text>
+<line x1="170" y1="145" x2="170" y2="565" stroke="#333333" stroke-width="1.2"/>
+<line x1="170" y1="565" x2="1044" y2="565" stroke="#333333" stroke-width="1.2"/>
+<line x1="257.4" y1="463.9" x2="257.4" y2="544.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="241.1" y1="463.9" x2="273.6" y2="463.9" stroke="#333333" stroke-width="1.2"/>
+<line x1="241.1" y1="544.1" x2="273.6" y2="544.1" stroke="#333333" stroke-width="1.2"/>
+<rect x="232.4" y="495.0" width="50.0" height="47.7" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="232.4" y1="520.8" x2="282.4" y2="520.8" stroke="#111111" stroke-width="2"/>
+<circle cx="257.4" cy="400.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="257.4" cy="373.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="257.4" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#555555">n=96</text>
+<text transform="translate(249.4 647) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="28" fill="#222222">0.2</text>
+<line x1="432.2" y1="374.9" x2="432.2" y2="553.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="416.0" y1="374.9" x2="448.5" y2="374.9" stroke="#333333" stroke-width="1.2"/>
+<line x1="416.0" y1="553.1" x2="448.5" y2="553.1" stroke="#333333" stroke-width="1.2"/>
+<rect x="407.2" y="467.9" width="50.0" height="62.3" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="407.2" y1="516.6" x2="457.2" y2="516.6" stroke="#111111" stroke-width="2"/>
+<circle cx="432.2" cy="371.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="432.2" cy="232.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="432.2" cy="222.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="432.2" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#555555">n=160</text>
+<text transform="translate(424.2 647) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="28" fill="#222222">0.4</text>
+<line x1="607.0" y1="463.8" x2="607.0" y2="553.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="590.8" y1="463.8" x2="623.2" y2="463.8" stroke="#333333" stroke-width="1.2"/>
+<line x1="590.8" y1="553.1" x2="623.2" y2="553.1" stroke="#333333" stroke-width="1.2"/>
+<rect x="582.0" y="494.8" width="50.0" height="48.7" fill="#54A24B" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="582.0" y1="520.4" x2="632.0" y2="520.4" stroke="#111111" stroke-width="2"/>
+<circle cx="607.0" cy="402.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="402.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="400.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="399.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="399.8" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="399.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="398.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="395.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="393.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="374.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="607.0" cy="372.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="607.0" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#555555">n=96</text>
+<text transform="translate(599.0 647) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="28" fill="#222222">0.6</text>
+<line x1="781.8" y1="458.0" x2="781.8" y2="553.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="765.6" y1="458.0" x2="798.1" y2="458.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="765.6" y1="553.1" x2="798.1" y2="553.1" stroke="#333333" stroke-width="1.2"/>
+<rect x="756.8" y="494.7" width="50.0" height="37.2" fill="#E45756" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="756.8" y1="521.2" x2="806.8" y2="521.2" stroke="#111111" stroke-width="2"/>
+<circle cx="781.8" cy="422.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="781.8" cy="402.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="781.8" cy="402.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="781.8" cy="401.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="781.8" cy="399.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="781.8" cy="399.2" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="781.8" cy="396.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="781.8" cy="369.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="781.8" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#555555">n=144</text>
+<text transform="translate(773.8 647) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="28" fill="#222222">0.8</text>
+<line x1="956.6" y1="461.7" x2="956.6" y2="548.0" stroke="#333333" stroke-width="1.2"/>
+<line x1="940.4" y1="461.7" x2="972.9" y2="461.7" stroke="#333333" stroke-width="1.2"/>
+<line x1="940.4" y1="548.0" x2="972.9" y2="548.0" stroke="#333333" stroke-width="1.2"/>
+<rect x="931.6" y="495.8" width="50.0" height="47.2" fill="#72B7B2" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="931.6" y1="528.9" x2="981.6" y2="528.9" stroke="#111111" stroke-width="2"/>
+<circle cx="956.6" cy="399.7" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="956.6" cy="398.8" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="956.6" cy="394.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="956.6" cy="376.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="956.6" cy="374.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="956.6" cy="369.6" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="956.6" cy="368.1" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="956.6" cy="228.4" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="956.6" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#555555">n=144</text>
+<text transform="translate(948.6 647) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="28" fill="#222222">1</text>
 </svg>

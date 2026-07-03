@@ -25,7 +25,10 @@ import csv
 import json
 import math
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
@@ -77,6 +80,12 @@ COLORS = [
     "#9D755D",
     "#BAB0AC",
 ]
+
+PAPER_TITLE_FONT_SIZE = 42
+PAPER_AXIS_LABEL_FONT_SIZE = 34
+PAPER_TICK_FONT_SIZE = 28
+PAPER_XTICK_FONT_SIZE = 28
+PAPER_COUNT_FONT_SIZE = 22
 
 SOLVER_DISPLAY_NAMES = {
     "FullQubo": "FQS",
@@ -162,9 +171,14 @@ def display_solver_name(solver: str) -> str:
 
 
 def display_configuration_name(record: "SolutionRecord") -> str:
-    label = f"{record.method} {display_solver_name(record.solver)}".strip()
+    method_label = {
+        "Uncoarsened": "Unc.",
+        "Inflated": "Coars.",
+        "Coarsened": "Coars.",
+    }.get(record.method, record.method)
+    label = f"{method_label} {display_solver_name(record.solver)}".strip()
     if record.scale != "All":
-        label = f"{record.scale} {label}"
+        label = f"{record.scale.replace('N', 'N=')} {label}"
     return label
 
 
@@ -459,12 +473,12 @@ def render_svg_boxplot(
     y_max = max(ticks)
 
     label_max_len = max(len(label) for label, _ in stats)
-    bottom_margin = min(360, max(140, int(label_max_len * 5.8)))
-    width = max(920, min(3200, 125 * len(stats) + 160 + int(label_max_len * 4.8)))
-    left = 96
-    right = 34
-    top = 76
-    height = max(620, top + bottom_margin + 300)
+    bottom_margin = min(760, max(340, int(label_max_len * 18.0)))
+    width = max(1100, min(3600, 155 * len(stats) + 260 + int(label_max_len * 6.0)))
+    left = 170
+    right = 56
+    top = 145
+    height = max(840, top + bottom_margin + 420)
     bottom = bottom_margin
     plot_width = width - left - right
     plot_height = height - top - bottom
@@ -485,12 +499,12 @@ def render_svg_boxplot(
     elements.append(f'<rect x="0" y="0" width="{width}" height="{height}" fill="#ffffff"/>')
     elements.append(
         f'<text x="{width / 2:.1f}" y="32" text-anchor="middle" '
-        'font-family="Arial, sans-serif" font-size="20" font-weight="700">'
+        f'font-family="Arial, sans-serif" font-size="{PAPER_TITLE_FONT_SIZE}" font-weight="700">'
         f"{escape(title)}</text>"
     )
     elements.append(
         f'<text transform="translate(22 {top + plot_height / 2:.1f}) rotate(-90)" '
-        'text-anchor="middle" font-family="Arial, sans-serif" font-size="15">'
+        f'text-anchor="middle" font-family="Arial, sans-serif" font-size="{PAPER_AXIS_LABEL_FONT_SIZE}">'
         f"{escape(ylabel)}</text>"
     )
 
@@ -501,8 +515,8 @@ def render_svg_boxplot(
             'stroke="#d9d9d9" stroke-width="1"/>'
         )
         elements.append(
-            f'<text x="{left - 10}" y="{y + 4:.1f}" text-anchor="end" '
-            'font-family="Arial, sans-serif" font-size="12" fill="#333333">'
+            f'<text x="{left - 14}" y="{y + 9:.1f}" text-anchor="end" '
+            f'font-family="Arial, sans-serif" font-size="{PAPER_TICK_FONT_SIZE}" fill="#333333">'
             f"{escape(format_tick(tick))}</text>"
         )
 
@@ -561,13 +575,13 @@ def render_svg_boxplot(
 
         count_text = f"n={item['count']}"
         elements.append(
-            f'<text x="{x:.1f}" y="{top + plot_height + 17}" text-anchor="middle" '
-            'font-family="Arial, sans-serif" font-size="10" fill="#555555">'
+            f'<text x="{x:.1f}" y="{top + plot_height + 30}" text-anchor="middle" '
+            f'font-family="Arial, sans-serif" font-size="{PAPER_COUNT_FONT_SIZE}" fill="#555555">'
             f"{escape(count_text)}</text>"
         )
         elements.append(
-            f'<text transform="translate({x - 4:.1f} {top + plot_height + 33}) rotate(45)" '
-            'text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">'
+            f'<text transform="translate({x - 8:.1f} {top + plot_height + 82}) rotate(45)" '
+            f'text-anchor="start" font-family="Arial, sans-serif" font-size="{PAPER_XTICK_FONT_SIZE}" fill="#222222">'
             f"{escape(label)}</text>"
         )
 
@@ -607,9 +621,9 @@ def render_matplotlib_boxplot(
 
     labels = [label for label, _ in non_empty_groups]
     values = [item for _, item in non_empty_groups]
-    width = max(10, min(28, 0.55 * len(labels) + 4))
+    width = max(11, min(30, 0.75 * len(labels) + 5))
 
-    plt.figure(figsize=(width, 7))
+    plt.figure(figsize=(width, 9.5))
     boxplot = plt.boxplot(values, labels=labels, patch_artist=True, showfliers=True)
     for index, patch in enumerate(boxplot["boxes"]):
         patch.set_facecolor(COLORS[index % len(COLORS)])
@@ -617,11 +631,13 @@ def render_matplotlib_boxplot(
     for median in boxplot["medians"]:
         median.set(color="#111111", linewidth=2)
 
-    plt.title(title)
-    plt.ylabel(ylabel)
-    plt.xticks(rotation=45, ha="right")
+    plt.title(title, fontsize=PAPER_TITLE_FONT_SIZE, fontweight="bold", pad=14)
+    plt.ylabel(ylabel, fontsize=PAPER_AXIS_LABEL_FONT_SIZE)
+    plt.xticks(rotation=45, ha="right", fontsize=PAPER_XTICK_FONT_SIZE)
+    plt.yticks(fontsize=PAPER_TICK_FONT_SIZE)
+    plt.tick_params(axis="both", which="major", labelsize=PAPER_TICK_FONT_SIZE)
     plt.grid(axis="y", linestyle="--", alpha=0.45)
-    plt.tight_layout()
+    plt.tight_layout(pad=1.4)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(output_path, dpi=300)
     plt.close()
@@ -637,7 +653,20 @@ def render_boxplot(
     if output_format == "svg":
         render_svg_boxplot(groups, title, ylabel, output_path)
     elif output_format == "png":
-        render_matplotlib_boxplot(groups, title, ylabel, output_path)
+        try:
+            render_matplotlib_boxplot(groups, title, ylabel, output_path)
+        except RuntimeError:
+            converter = shutil.which("rsvg-convert")
+            if not converter:
+                raise
+            with tempfile.TemporaryDirectory() as temp_dir:
+                svg_path = Path(temp_dir) / f"{output_path.stem}.svg"
+                render_svg_boxplot(groups, title, ylabel, svg_path)
+                output_path.parent.mkdir(parents=True, exist_ok=True)
+                subprocess.run(
+                    [converter, str(svg_path), "-o", str(output_path)],
+                    check=True,
+                )
     else:
         raise ValueError(f"Unsupported output format: {output_format}")
 
@@ -825,7 +854,7 @@ def generate_solution_plots(
                     / source_stem
                     / f"boxplot_{slugify(metric)}.{output_format}"
                 )
-                title = f"{METRIC_LABELS.get(metric, metric.replace('_', ' ').title())} - {source_stem}"
+                title = METRIC_LABELS.get(metric, metric.replace("_", " ").title())
                 render_boxplot(
                     groups,
                     title=title,
@@ -843,7 +872,7 @@ def generate_solution_plots(
             output_path = output_dir / "combined" / f"boxplot_{slugify(metric)}.{output_format}"
             render_boxplot(
                 groups,
-                title=f"{METRIC_LABELS.get(metric, metric.replace('_', ' ').title())} - All Output Files",
+                title=METRIC_LABELS.get(metric, metric.replace("_", " ").title()),
                 ylabel=METRIC_LABELS.get(metric, metric.replace("_", " ").title()),
                 output_path=output_path,
                 output_format=output_format,

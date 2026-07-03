@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620">
-<rect x="0" y="0" width="920" height="620" fill="#ffffff"/>
-<text x="460.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700">Total Travel Distance - results_ortools_quantum_benchmark</text>
-<text transform="translate(22 288.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="15">Total Travel Distance</text>
-<line x1="96" y1="500.0" x2="886" y2="500.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="504.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">40</text>
-<line x1="96" y1="394.0" x2="886" y2="394.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="398.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">45</text>
-<line x1="96" y1="288.0" x2="886" y2="288.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="292.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">50</text>
-<line x1="96" y1="182.0" x2="886" y2="182.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="186.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">55</text>
-<line x1="96" y1="76.0" x2="886" y2="76.0" stroke="#d9d9d9" stroke-width="1"/>
-<text x="86" y="80.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#333333">60</text>
-<line x1="96" y1="76" x2="96" y2="500" stroke="#333333" stroke-width="1.2"/>
-<line x1="96" y1="500" x2="886" y2="500" stroke="#333333" stroke-width="1.2"/>
-<line x1="293.5" y1="111.5" x2="293.5" y2="111.5" stroke="#333333" stroke-width="1.2"/>
-<line x1="277.2" y1="111.5" x2="309.8" y2="111.5" stroke="#333333" stroke-width="1.2"/>
-<line x1="277.2" y1="111.5" x2="309.8" y2="111.5" stroke="#333333" stroke-width="1.2"/>
-<rect x="268.5" y="111.5" width="50.0" height="1.5" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="268.5" y1="111.5" x2="318.5" y2="111.5" stroke="#111111" stroke-width="2"/>
-<text x="293.5" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=1</text>
-<text transform="translate(289.5 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">N10 Uncoarsened OR-Tools</text>
-<line x1="688.5" y1="448.7" x2="688.5" y2="448.7" stroke="#333333" stroke-width="1.2"/>
-<line x1="672.2" y1="448.7" x2="704.8" y2="448.7" stroke="#333333" stroke-width="1.2"/>
-<line x1="672.2" y1="448.7" x2="704.8" y2="448.7" stroke="#333333" stroke-width="1.2"/>
-<rect x="663.5" y="448.7" width="50.0" height="1.5" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
-<line x1="663.5" y1="448.7" x2="713.5" y2="448.7" stroke="#111111" stroke-width="2"/>
-<text x="688.5" y="517" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#555555">n=1</text>
-<text transform="translate(684.5 533) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="12" fill="#222222">N5 Uncoarsened OR-Tools</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="905" viewBox="0 0 1100 905">
+<rect x="0" y="0" width="1100" height="905" fill="#ffffff"/>
+<text x="550.0" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700">Total Travel Distance</text>
+<text transform="translate(22 355.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="34">Total Travel Distance</text>
+<line x1="170" y1="565.0" x2="1044" y2="565.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="574.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">0</text>
+<line x1="170" y1="495.0" x2="1044" y2="495.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="504.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">50</text>
+<line x1="170" y1="425.0" x2="1044" y2="425.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="434.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">100</text>
+<line x1="170" y1="355.0" x2="1044" y2="355.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="364.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">150</text>
+<line x1="170" y1="285.0" x2="1044" y2="285.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="294.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">200</text>
+<line x1="170" y1="215.0" x2="1044" y2="215.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="224.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">250</text>
+<line x1="170" y1="145.0" x2="1044" y2="145.0" stroke="#d9d9d9" stroke-width="1"/>
+<text x="156" y="154.0" text-anchor="end" font-family="Arial, sans-serif" font-size="28" fill="#333333">300</text>
+<line x1="170" y1="145" x2="170" y2="565" stroke="#333333" stroke-width="1.2"/>
+<line x1="170" y1="565" x2="1044" y2="565" stroke="#333333" stroke-width="1.2"/>
+<line x1="388.5" y1="187.7" x2="388.5" y2="378.6" stroke="#333333" stroke-width="1.2"/>
+<line x1="372.2" y1="187.7" x2="404.8" y2="187.7" stroke="#333333" stroke-width="1.2"/>
+<line x1="372.2" y1="378.6" x2="404.8" y2="378.6" stroke="#333333" stroke-width="1.2"/>
+<rect x="363.5" y="279.4" width="50.0" height="81.2" fill="#4C78A8" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="363.5" y1="313.6" x2="413.5" y2="313.6" stroke="#111111" stroke-width="2"/>
+<circle cx="388.5" cy="486.0" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="388.5" cy="484.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="388.5" cy="484.9" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="388.5" cy="484.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="388.5" cy="484.5" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="388.5" cy="483.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="388.5" cy="483.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="388.5" cy="483.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<circle cx="388.5" cy="483.3" r="3" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+<text x="388.5" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#555555">n=56</text>
+<text transform="translate(380.5 647) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="28" fill="#222222">N=10 Unc. OR-Tools</text>
+<line x1="825.5" y1="346.1" x2="825.5" y2="505.6" stroke="#333333" stroke-width="1.2"/>
+<line x1="809.2" y1="346.1" x2="841.8" y2="346.1" stroke="#333333" stroke-width="1.2"/>
+<line x1="809.2" y1="505.6" x2="841.8" y2="505.6" stroke="#333333" stroke-width="1.2"/>
+<rect x="800.5" y="397.7" width="50.0" height="68.7" fill="#F58518" fill-opacity="0.70" stroke="#333333" stroke-width="1.2"/>
+<line x1="800.5" y1="441.5" x2="850.5" y2="441.5" stroke="#111111" stroke-width="2"/>
+<text x="825.5" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#555555">n=56</text>
+<text transform="translate(817.5 647) rotate(45)" text-anchor="start" font-family="Arial, sans-serif" font-size="28" fill="#222222">N=5 Unc. OR-Tools</text>
 </svg>

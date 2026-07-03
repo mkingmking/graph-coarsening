@@ -75,7 +75,9 @@ def method_bucket(record: SolutionRecord) -> Optional[str]:
 
 def method_label(record: SolutionRecord) -> str:
     if record.method in COARSENED_METHODS:
-        return "Coarsened"
+        return "Coars."
+    if record.method == "Uncoarsened":
+        return "Unc."
     return record.method
 
 
@@ -180,11 +182,11 @@ def generate_pairwise_plots(
 
             groups = [
                 (
-                    f"Uncoarsened {display_solver}",
+                    f"Unc. {display_solver}",
                     [uncoarsened_values[instance] for instance in common_instances],
                 ),
                 (
-                    f"Coarsened {display_solver}",
+                    f"Coars. {display_solver}",
                     [coarsened_values[instance] for instance in common_instances],
                 ),
             ]
@@ -199,7 +201,7 @@ def generate_pairwise_plots(
             )
             render_boxplot(
                 groups=groups,
-                title=f"{metric_label(metric)}: Uncoarsened vs Coarsened {display_solver}",
+                title=metric_label(metric),
                 ylabel=metric_label(metric),
                 output_path=output_path,
                 output_format=output_format,
@@ -210,7 +212,7 @@ def generate_pairwise_plots(
                 plot_rows,
                 "pairwise",
                 context,
-                f"Uncoarsened {display_solver}",
+                f"Unc. {display_solver}",
                 uncoarsened_records,
                 metric,
                 common_instances,
@@ -219,7 +221,7 @@ def generate_pairwise_plots(
                 plot_rows,
                 "pairwise",
                 context,
-                f"Coarsened {display_solver}",
+                f"Coars. {display_solver}",
                 coarsened_records,
                 metric,
                 common_instances,
@@ -287,15 +289,15 @@ def generate_quantum_reference_plots(
 
                 groups = [
                     (
-                        f"Uncoarsened {display_solver}",
+                        f"Unc. {display_solver}",
                         [uncoarsened_values[instance] for instance in common_instances],
                     ),
                     (
-                        f"Coarsened {display_solver}",
+                        f"Coars. {display_solver}",
                         [coarsened_values[instance] for instance in common_instances],
                     ),
                     (
-                        "Uncoarsened OR-Tools",
+                        "Unc. OR-Tools",
                         [ortools_values[instance] for instance in common_instances],
                     ),
                 ]
@@ -309,7 +311,7 @@ def generate_quantum_reference_plots(
                 )
                 render_boxplot(
                     groups=groups,
-                    title=f"{metric_label(metric)}: {display_solver} vs OR-Tools Reference ({scale})",
+                    title=metric_label(metric),
                     ylabel=metric_label(metric),
                     output_path=output_path,
                     output_format=output_format,
@@ -320,7 +322,7 @@ def generate_quantum_reference_plots(
                     plot_rows,
                     "quantum_vs_ortools",
                     context,
-                    f"Uncoarsened {display_solver}",
+                    f"Unc. {display_solver}",
                     uncoarsened_records,
                     metric,
                     common_instances,
@@ -329,7 +331,7 @@ def generate_quantum_reference_plots(
                     plot_rows,
                     "quantum_vs_ortools",
                     context,
-                    f"Coarsened {display_solver}",
+                    f"Coars. {display_solver}",
                     coarsened_records,
                     metric,
                     common_instances,
@@ -338,7 +340,7 @@ def generate_quantum_reference_plots(
                     plot_rows,
                     "quantum_vs_ortools",
                     context,
-                    "Uncoarsened OR-Tools",
+                    "Unc. OR-Tools",
                     ortools_records,
                     metric,
                     common_instances,
@@ -366,17 +368,17 @@ def generate_combined_quantum_reference_plots(
 
     for scale in scales:
         group_specs = [
-            ("Uncoarsened FQS", records_for_group(records, scale, "FullQubo", "uncoarsened")),
-            ("Coarsened FQS", records_for_group(records, scale, "FullQubo", "coarsened")),
+            ("Unc. FQS", records_for_group(records, scale, "FullQubo", "uncoarsened")),
+            ("Coars. FQS", records_for_group(records, scale, "FullQubo", "coarsened")),
             (
-                "Uncoarsened APS",
+                "Unc. APS",
                 records_for_group(records, scale, "AveragePartitionSolver", "uncoarsened"),
             ),
             (
-                "Coarsened APS",
+                "Coars. APS",
                 records_for_group(records, scale, "AveragePartitionSolver", "coarsened"),
             ),
-            ("Uncoarsened OR-Tools", records_for_group(records, scale, "ORTools", "uncoarsened")),
+            ("Unc. OR-Tools", records_for_group(records, scale, "ORTools", "uncoarsened")),
         ]
 
         if any(not group_records for _, group_records in group_specs):
@@ -403,7 +405,7 @@ def generate_combined_quantum_reference_plots(
             )
             render_boxplot(
                 groups=groups,
-                title=f"{metric_label(metric)}: FQS and APS vs OR-Tools Reference ({scale})",
+                title=metric_label(metric),
                 ylabel=metric_label(metric),
                 output_path=output_path,
                 output_format=output_format,
@@ -466,15 +468,15 @@ def generate_classical_ortools_plots(
 
             groups = [
                 (
-                    f"Uncoarsened {classical_solver}",
+                    f"Unc. {classical_solver}",
                     [uncoarsened_values[i] for i in common_instances],
                 ),
                 (
-                    f"Coarsened {classical_solver}",
+                    f"Coars. {classical_solver}",
                     [coarsened_values[i] for i in common_instances],
                 ),
                 (
-                    "Uncoarsened OR-Tools",
+                    "Unc. OR-Tools",
                     [ortools_values[i] for i in common_instances],
                 ),
             ]
@@ -487,7 +489,7 @@ def generate_classical_ortools_plots(
             )
             render_boxplot(
                 groups=groups,
-                title=f"{metric_label(metric)}: {classical_solver} vs OR-Tools Reference",
+                title=metric_label(metric),
                 ylabel=metric_label(metric),
                 output_path=output_path,
                 output_format=output_format,
@@ -498,7 +500,7 @@ def generate_classical_ortools_plots(
                 plot_rows,
                 "classical_vs_ortools",
                 context,
-                f"Uncoarsened {classical_solver}",
+                f"Unc. {classical_solver}",
                 uncoarsened_records,
                 metric,
                 common_instances,
@@ -507,7 +509,7 @@ def generate_classical_ortools_plots(
                 plot_rows,
                 "classical_vs_ortools",
                 context,
-                f"Coarsened {classical_solver}",
+                f"Coars. {classical_solver}",
                 coarsened_records,
                 metric,
                 common_instances,
@@ -516,7 +518,7 @@ def generate_classical_ortools_plots(
                 plot_rows,
                 "classical_vs_ortools",
                 context,
-                "Uncoarsened OR-Tools",
+                "Unc. OR-Tools",
                 ortools_records,
                 metric,
                 common_instances,
