@@ -81,11 +81,11 @@ COLORS = [
     "#BAB0AC",
 ]
 
-PAPER_TITLE_FONT_SIZE = 42
-PAPER_AXIS_LABEL_FONT_SIZE = 34
-PAPER_TICK_FONT_SIZE = 28
-PAPER_XTICK_FONT_SIZE = 28
-PAPER_COUNT_FONT_SIZE = 22
+PAPER_TITLE_FONT_SIZE = 52
+PAPER_AXIS_LABEL_FONT_SIZE = 42
+PAPER_TICK_FONT_SIZE = 34
+PAPER_XTICK_FONT_SIZE = 34
+PAPER_COUNT_FONT_SIZE = 26
 
 SOLVER_DISPLAY_NAMES = {
     "FullQubo": "FQS",
@@ -624,7 +624,7 @@ def render_matplotlib_boxplot(
     width = max(11, min(30, 0.75 * len(labels) + 5))
 
     plt.figure(figsize=(width, 9.5))
-    boxplot = plt.boxplot(values, labels=labels, patch_artist=True, showfliers=True)
+    boxplot = plt.boxplot(values, patch_artist=True, showfliers=True)
     for index, patch in enumerate(boxplot["boxes"]):
         patch.set_facecolor(COLORS[index % len(COLORS)])
         patch.set_alpha(0.70)
@@ -633,13 +633,13 @@ def render_matplotlib_boxplot(
 
     plt.title(title, fontsize=PAPER_TITLE_FONT_SIZE, fontweight="bold", pad=14)
     plt.ylabel(ylabel, fontsize=PAPER_AXIS_LABEL_FONT_SIZE)
-    plt.xticks(rotation=45, ha="right", fontsize=PAPER_XTICK_FONT_SIZE)
+    plt.xticks(range(1, len(labels) + 1), labels, rotation=45, ha="right", fontsize=PAPER_XTICK_FONT_SIZE)
     plt.yticks(fontsize=PAPER_TICK_FONT_SIZE)
     plt.tick_params(axis="both", which="major", labelsize=PAPER_TICK_FONT_SIZE)
     plt.grid(axis="y", linestyle="--", alpha=0.45)
     plt.tight_layout(pad=1.4)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(output_path, dpi=300)
+    plt.savefig(output_path, dpi=300, bbox_inches="tight")
     plt.close()
 
 
