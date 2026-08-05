@@ -42,19 +42,19 @@ FIGURE_COPIES = [
         "subfigure_time_window_violations/boxplot_time_window_violations_savings.png",
     ),
     (
-        "plots/output_boxplots/by_source/results_simulated_annealing_5customer/boxplot_total_distance.png",
+        "plots/pairwise_boxplots/quantum_vs_ortools/combined_by_scale/n5/boxplot_total_distance.png",
         "subfigure_total_distance/boxplot_total_distance_N5.png",
     ),
     (
-        "plots/output_boxplots/by_source/results_simulated_annealing_10customer/boxplot_total_distance.png",
+        "plots/pairwise_boxplots/quantum_vs_ortools/combined_by_scale/n10/boxplot_total_distance.png",
         "subfigure_total_distance/boxplot_total_distance_N10.png",
     ),
     (
-        "plots/pairwise_boxplots/pairwise/results_classical_solvers/all/greedy/boxplot_total_distance.png",
+        "plots/pairwise_boxplots/classical_vs_ortools/greedy/boxplot_total_distance.png",
         "subfigure_total_distance/boxplot_total_distance_greedy.png",
     ),
     (
-        "plots/pairwise_boxplots/pairwise/results_classical_solvers/all/savings/boxplot_total_distance.png",
+        "plots/pairwise_boxplots/classical_vs_ortools/savings/boxplot_total_distance.png",
         "subfigure_total_distance/boxplot_total_distance_savings.png",
     ),
     (
